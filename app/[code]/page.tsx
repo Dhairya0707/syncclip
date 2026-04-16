@@ -49,7 +49,7 @@ export default function SessionPage() {
             OFFLINE
           </h1>
           <p className="font-body text-zinc-600 mb-10 leading-relaxed font-bold italic">
-            Session Node {code} has reached its terminal state or expired from the cloud buffer (24h Limit).
+            Node {code} is currently unresponsive. This identifier may be invalid, or the protocol has expired from the cloud buffer (24h Limit).
           </p>
           <button
             onClick={() => router.push("/")}

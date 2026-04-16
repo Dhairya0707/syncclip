@@ -6,13 +6,20 @@ function generateCode() {
 }
 
 export const createSession = mutation({
-  handler: async (ctx) => {
+  args: {
+    ownerNodeId: v.optional(v.string())
+  },
+  handler: async (ctx, args) => {
     const code = generateCode();
 
     await ctx.db.insert("sessions", {
       code,
-      text: "The concept of digital ephemerality is challenged by the persistence of the clipboard. In this interface, we treat every string of text as a primary document—an archival entry in the stream of consciousness that defines modern workflow. \n\nThe architecture here is rigid because the data it holds is fluid. By grounding the user in a broadsheet-inspired framework, we restore a sense of weight to the intangible.",
+      text: "Awaiting your next masterpiece. Or just that grocery list you'll forget anyway. I'm not picky.",
       createdAt: Date.now(),
+      ownerNodeId: args.ownerNodeId,
+      isLocked: false,
+      isBurnMode: false,
+      updateCount: 0,
     });
 
     return code;
@@ -34,6 +41,7 @@ export const updateText = mutation({
     id: v.id("sessions"),
     text: v.string(),
     saveToHistory: v.optional(v.boolean()),
+    callerNodeId: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     // Security check: limit text length to 100,000 chars (~100KB)
@@ -43,8 +51,16 @@ export const updateText = mutation({
 
     const session = await ctx.db.get(args.id);
     if (!session) return;
+    
+    // Lock guard
+    if (session.isLocked && session.ownerNodeId !== args.callerNodeId) {
+      throw new Error("Session is locked. Only the origin node may overwrite data.");
+    }
 
-    const patches: any = { text: args.text };
+    const patches: any = { 
+      text: args.text,
+      updateCount: (session.updateCount || 0) + 1
+    };
 
     if (args.saveToHistory && session.text !== args.text) {
       const history = session.history || [];
@@ -54,6 +70,82 @@ export const updateText = mutation({
     }
 
     await ctx.db.patch(args.id, patches);
+  },
+});
+
+export const toggleLock = mutation({
+  args: {
+    id: v.id("sessions"),
+    callerNodeId: v.string(),
+    isLocked: v.boolean(),
+  },
+  handler: async (ctx, args) => {
+    const session = await ctx.db.get(args.id);
+    if (!session) return;
+    if (session.ownerNodeId !== args.callerNodeId) {
+      throw new Error("Only the origin node may modify lock states.");
+    }
+    await ctx.db.patch(args.id, { isLocked: args.isLocked });
+  }
+});
+
+export const toggleBurnMode = mutation({
+  args: {
+    id: v.id("sessions"),
+    callerNodeId: v.string(),
+    isBurnMode: v.boolean(),
+  },
+  handler: async (ctx, args) => {
+    const session = await ctx.db.get(args.id);
+    if (!session) return;
+    if (session.ownerNodeId !== args.callerNodeId) {
+      throw new Error("Only the origin node may activate Burn Mode.");
+    }
+    await ctx.db.patch(args.id, { isBurnMode: args.isBurnMode });
+  }
+});
+
+export const burnSession = mutation({
+  args: {
+    id: v.id("sessions"),
+  },
+  handler: async (ctx, args) => {
+    const session = await ctx.db.get(args.id);
+    if (!session || !session.isBurnMode) return;
+    
+    // Complete overwrite & wipe history
+    await ctx.db.patch(args.id, {
+      text: "",
+      history: [],
+      isBurnMode: false, // Turn off after burn to prevent loops
+    });
+  }
+});
+
+export const deleteSession = mutation({
+  args: {
+    id: v.id("sessions"),
+    callerNodeId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const session = await ctx.db.get(args.id);
+    if (!session) return;
+    
+    if (session.ownerNodeId !== args.callerNodeId) {
+      throw new Error("Only the origin operator can delete this cluster.");
+    }
+
+    // Cleanup presence for this session
+    const presence = await ctx.db
+      .query("presence")
+      .withIndex("by_session", (q) => q.eq("sessionId", args.id))
+      .collect();
+    for (const p of presence) {
+      await ctx.db.delete(p._id);
+    }
+
+    // Delete session
+    await ctx.db.delete(args.id);
   },
 });
 
@@ -105,6 +197,16 @@ export const updatePresence = mutation({
         updatedAt: Date.now(),
       });
     } else {
+      // Security check: limit to 100 active nodes per session
+      const presenceCount = await ctx.db
+        .query("presence")
+        .withIndex("by_session", (q) => q.eq("sessionId", args.sessionId))
+        .collect();
+
+      if (presenceCount.length >= 100) {
+        throw new Error("Cluster Capacity Reached: This node is at maximum capacity (100 operators).");
+      }
+
       await ctx.db.insert("presence", {
         sessionId: args.sessionId,
         name: args.name,
@@ -139,10 +241,16 @@ export const restoreHistory = mutation({
   args: {
     id: v.id("sessions"),
     index: v.number(),
+    callerNodeId: v.optional(v.string())
   },
   handler: async (ctx, args) => {
     const session = await ctx.db.get(args.id);
     if (!session || !session.history || !session.history[args.index]) return;
+    
+    // Lock guard
+    if (session.isLocked && session.ownerNodeId !== args.callerNodeId) {
+      throw new Error("Session is locked. Only the origin node may restore history.");
+    }
 
     const restoredText = session.history[args.index].text;
     await ctx.db.patch(args.id, {

@@ -1,33 +1,40 @@
-"use client";
+"use client"
 
 import { useEffect, useState } from "react";
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Home() {
   const createSession = useMutation(api.sessions.createSession);
   const router = useRouter();
   const [initializing, setInitializing] = useState(false);
   const [recentSessions, setRecentSessions] = useState<string[]>([]);
+  const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("syncclip_recent_sessions");
     if (saved) {
-      setRecentSessions(JSON.parse(saved).slice(0, 5)); // Show last 5
+      setRecentSessions(JSON.parse(saved).slice(0, 5));
     }
   }, []);
 
   async function handleCreateSession() {
     setInitializing(true);
     try {
-      const code = await createSession();
-      // Update local storage
+      let nodeId = localStorage.getItem("syncclip_node_id");
+      if (!nodeId) {
+        nodeId = `NODE-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
+        localStorage.setItem("syncclip_node_id", nodeId);
+      }
+
+      const code = await createSession({ ownerNodeId: nodeId });
       const saved = localStorage.getItem("syncclip_recent_sessions");
       const current = saved ? JSON.parse(saved) : [];
       const updated = [code, ...current.filter((c: string) => c !== code)].slice(0, 10);
       localStorage.setItem("syncclip_recent_sessions", JSON.stringify(updated));
-      
+
       router.push(`/${code}`);
     } catch (err) {
       console.error("Failed to create session:", err);
@@ -36,61 +43,346 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-surface font-body min-h-screen flex items-center justify-center p-6">
-      <div className="max-w-xl w-full">
-        <div className="flex flex-col items-center mb-12">
-          <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter font-headline leading-none text-primary mb-2">
-            SYNCCLIP
-          </h1>
-          <div className="font-mono text-[10px] tracking-[0.4em] text-on-surface-variant uppercase">
-            Digital Broadsheet Protocol V4.2
-          </div>
-        </div>
+    <div className="bg-surface font-body min-h-screen flex flex-col">
+      {/* NAV */}
+      <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
+        <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
+        <nav className="flex gap-6 items-center">
+          <Link href="/join" className="text-secondary hover:text-white transition-colors font-bold">JOIN</Link>
+          <a href="#features" className="text-zinc-400 hover:text-white transition-colors hidden sm:block">FEATURES</a>
+          <Link href="/support" className="text-zinc-400 hover:text-white transition-colors">SUPPORT</Link>
+          <button
+            onClick={handleCreateSession}
+            disabled={initializing}
+            className="bg-secondary text-white px-4 py-1 font-bold hover:bg-white hover:text-black transition-all text-[10px] tracking-widest"
+          >
+            {initializing ? "..." : "LAUNCH"}
+          </button>
+        </nav>
+      </header>
 
-        <div className="grid md:grid-cols-2 gap-12 border-t-2 border-black pt-12">
-          {/* New Session Section */}
-          <div className="flex flex-col">
-            <div className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-secondary mb-6">PROTOCOL_INIT</div>
-            <h2 className="font-headline text-3xl italic mb-6">Initialize New Node Cluster</h2>
-            <button 
-              onClick={handleCreateSession}
-              disabled={initializing}
-              className="bg-black text-white font-label font-bold py-6 px-4 border-2 border-black hover:bg-secondary hover:border-secondary transition-all uppercase tracking-widest text-sm shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] disabled:bg-zinc-800 disabled:shadow-none"
-            >
-              {initializing ? "GENERATING_CODE..." : "CREATE RE-SYNC NODE"}
-            </button>
-          </div>
+      <main className="pt-10 flex-grow">
 
-          {/* Recent Sessions section */}
-          <div className="flex flex-col border-l-0 md:border-l-2 border-black md:pl-12">
-            <div className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 mb-6">RECENT_NODES</div>
-            <div className="space-y-4">
-              {recentSessions.length > 0 ? (
-                recentSessions.map((code) => (
-                  <button
-                    key={code}
-                    onClick={() => router.push(`/${code}`)}
-                    className="w-full flex justify-between items-center group border border-zinc-200 p-4 hover:border-black hover:bg-black transition-all"
-                  >
-                    <span className="font-mono text-sm tracking-widest uppercase group-hover:text-white group-hover:font-bold">NODE_{code}</span>
-                    <span className="material-symbols-outlined text-zinc-300 group-hover:text-secondary group-hover:rotate-45 transition-all">north_east</span>
-                  </button>
-                ))
-              ) : (
-                <div className="text-zinc-400 italic font-body text-sm border border-dashed border-zinc-200 p-8 text-center">
-                  No previous sessions detected in local buffer.
+        {/* ════════════════════════════════════════════
+            HERO — Benefit-Focused, Product-in-Context
+        ════════════════════════════════════════════ */}
+        <section className="border-b-2 border-black min-h-[calc(100vh-40px)] flex items-center">
+          <div className="max-w-7xl mx-auto px-6 py-16 md:py-0 w-full">
+            <div className="grid lg:grid-cols-5 gap-12 lg:gap-20 items-center">
+
+              {/* Left: Copy — 3 columns */}
+              <div className="lg:col-span-3">
+                <div className="font-mono text-[10px] tracking-[0.4em] text-secondary uppercase mb-6 flex items-center gap-3">
+                  <span className="w-2 h-2 bg-secondary animate-pulse block"></span>
+                  Live · No Signup · Ephemeral
                 </div>
-              )}
+
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter font-headline leading-[0.9] text-primary mb-6">
+                  Copy Here,
+                  <br />
+                  <span className="text-secondary">Paste</span>
+                  <br />
+                  Anywhere.
+                </h1>
+
+                <p className="font-body text-lg md:text-xl text-zinc-600 max-w-lg leading-relaxed mb-10">
+                  The universal clipboard that syncs across every device in real-time. No downloads. No accounts. Just open a link and start pasting.
+                </p>
+
+                  <div className="relative mb-8">
+                    {/* Primary Desktop Action (Side-by-side) */}
+                    <div className="hidden sm:flex flex-row gap-4">
+                      <button
+                        onClick={handleCreateSession}
+                        disabled={initializing}
+                        className="bg-zinc-900 text-white font-label font-bold py-5 px-10 border-2 border-black hover:bg-secondary hover:border-secondary transition-all uppercase tracking-widest text-sm shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] disabled:bg-zinc-800 disabled:shadow-none inline-flex items-center justify-center gap-3"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">bolt</span>
+                        {initializing ? "GENERATING..." : "START SYNCING — FREE"}
+                      </button>
+                      <Link
+                        href="/join"
+                        className="bg-white text-black font-label font-bold py-5 px-10 border-2 border-black hover:bg-zinc-100 transition-all uppercase tracking-widest text-sm shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] inline-flex items-center justify-center gap-3"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">key</span>
+                        JOIN NODE
+                      </Link>
+                    </div>
+
+                    {/* Unified Mobile Actions (Direct Access) */}
+                    <div className="sm:hidden flex flex-col gap-4 w-full">
+                      <button
+                        onClick={handleCreateSession}
+                        disabled={initializing}
+                        className="w-full bg-zinc-900 text-white font-label font-bold py-6 px-10 border-2 border-black flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-sm shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">bolt</span>
+                        {initializing ? "GENERATING..." : "START SYNCING"}
+                      </button>
+                      <Link
+                        href="/join"
+                        className="w-full bg-white text-black font-label font-bold py-5 px-10 border-2 border-black flex items-center justify-center gap-3 uppercase tracking-widest text-sm shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">key</span>
+                        JOIN NODE
+                      </Link>
+                    </div>
+                  </div>
+
+                {/* Trust line */}
+                <div className="flex flex-wrap items-center gap-4 font-mono text-[9px] tracking-widest uppercase text-zinc-400">
+                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">encrypted</span> Secured</span>
+                  <span className="text-zinc-200">|</span>
+                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">timer</span> Sessions expire in 24h</span>
+                  <span className="text-zinc-200">|</span>
+                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">devices</span> Unlimited devices</span>
+                </div>
+              </div>
+
+              {/* Right: Recent Sessions Panel — 2 columns */}
+              <div className="lg:col-span-2 flex flex-col gap-6">
+                {/* Live UI mockup card */}
+                <div className="border-2 border-black bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                  <div className="bg-black text-white px-5 py-3 font-mono text-[10px] tracking-widest uppercase flex justify-between items-center">
+                    <span>SYNCCLIP</span>
+                    <span className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-secondary rounded-full animate-pulse"></span>
+                      LIVE
+                    </span>
+                  </div>
+                  <div className="p-5">
+                    <div className="border border-zinc-200 p-4 min-h-[80px] font-body text-sm text-zinc-400 italic">
+                      Begin typing on any device...
+                    </div>
+                    <div className="mt-3 flex gap-6 font-mono text-[8px] tracking-widest uppercase text-zinc-400">
+                      <span>WEIGHT: 0.00 KB</span>
+                      <span>TYPE: EMPTY</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Recent Sessions */}
+                <div>
+                  <div className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 mb-3 flex items-center gap-2">
+                    <span className="material-symbols-outlined text-[14px]">history</span>
+                    YOUR RECENT SESSIONS
+                  </div>
+                  <div className="space-y-2">
+                    {recentSessions.length > 0 ? (
+                      recentSessions.map((code) => (
+                        <button
+                          key={code}
+                          onClick={() => router.push(`/${code}`)}
+                          className="w-full flex justify-between items-center group border border-zinc-200 p-4 hover:border-black hover:bg-black transition-all bg-white"
+                        >
+                          <div className="flex items-center gap-3">
+                            <span className="material-symbols-outlined text-[16px] text-zinc-400 group-hover:text-secondary transition-colors">cloud_done</span>
+                            <span className="font-mono text-xs tracking-widest uppercase group-hover:text-white group-hover:font-bold transition-colors">NODE_{code}</span>
+                          </div>
+                          <span className="material-symbols-outlined text-[16px] text-zinc-300 group-hover:text-secondary group-hover:rotate-45 transition-all">north_east</span>
+                        </button>
+                      ))
+                    ) : (
+                      <div className="text-zinc-400 italic font-body text-sm border border-dashed border-zinc-200 p-6 text-center bg-white flex flex-col items-center gap-3">
+                        <span className="material-symbols-outlined text-3xl text-zinc-200">cloud_off</span>
+                        No sessions in your local buffer yet.
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div className="mt-24 text-center">
-          <div className="font-mono text-[8px] text-zinc-400 uppercase tracking-widest">
-            © 2024 SYNCCLIP PUBLISHING GROUP // SECURE DISTRIBUTED CLIPBOARD
+        </section>
+
+        {/* ════════════════════════════════════════════
+            TICKER RIBBON
+        ════════════════════════════════════════════ */}
+        <section className="bg-black text-white py-5 overflow-hidden">
+          <div className="flex animate-marquee whitespace-nowrap gap-12 font-mono text-[10px] tracking-[0.3em] uppercase text-zinc-400">
+            <span>REAL-TIME SYNC</span><span className="text-secondary">◆</span>
+            <span>NO ACCOUNTS</span><span className="text-secondary">◆</span>
+            <span>MULTI-DEVICE</span><span className="text-secondary">◆</span>
+            <span>BURN AFTER READING</span><span className="text-secondary">◆</span>
+            <span>COMMAND PALETTE</span><span className="text-secondary">◆</span>
+            <span>QR PAIRING</span><span className="text-secondary">◆</span>
+            <span>SESSION LOCKING</span><span className="text-secondary">◆</span>
+            <span>ZERO INSTALL</span><span className="text-secondary">◆</span>
+            <span>REAL-TIME SYNC</span><span className="text-secondary">◆</span>
+            <span>NO ACCOUNTS</span><span className="text-secondary">◆</span>
+            <span>MULTI-DEVICE</span><span className="text-secondary">◆</span>
+            <span>BURN AFTER READING</span><span className="text-secondary">◆</span>
           </div>
+        </section>
+
+        {/* ════════════════════════════════════════════
+            HOW IT WORKS — 3 Steps
+        ════════════════════════════════════════════ */}
+        <section className="border-b-2 border-black">
+          <div className="max-w-7xl mx-auto px-6 py-24">
+            <div className="text-center mb-16">
+              <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">HOW_IT_WORKS</div>
+              <h2 className="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter">Three Steps. Done.</h2>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-0 border-2 border-black">
+              <div className="p-8 md:p-10 border-b-2 md:border-b-0 md:border-r-2 border-black">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="bg-black text-white font-mono font-black text-lg w-10 h-10 flex items-center justify-center">01</span>
+                  <h3 className="font-headline text-xl font-black uppercase">Create</h3>
+                </div>
+                <p className="font-body text-sm text-zinc-600 leading-relaxed">
+                  Hit the button. A unique session is generated instantly. No signup, no email, nothing.
+                </p>
+              </div>
+              <div className="p-8 md:p-10 border-b-2 md:border-b-0 md:border-r-2 border-black">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="bg-black text-white font-mono font-black text-lg w-10 h-10 flex items-center justify-center">02</span>
+                  <h3 className="font-headline text-xl font-black uppercase">Share</h3>
+                </div>
+                <p className="font-body text-sm text-zinc-600 leading-relaxed">
+                  Send the link or scan the QR code from your other device. One URL syncs them all.
+                </p>
+              </div>
+              <div className="p-8 md:p-10">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="bg-secondary text-white font-mono font-black text-lg w-10 h-10 flex items-center justify-center">03</span>
+                  <h3 className="font-headline text-xl font-black uppercase">Paste</h3>
+                </div>
+                <p className="font-body text-sm text-zinc-600 leading-relaxed">
+                  Type or paste on any connected device. It appears everywhere in milliseconds. Real-time magic.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════
+            KEY FEATURES — Only the power moves
+        ════════════════════════════════════════════ */}
+        <section id="features" className="border-b-2 border-black">
+          <div className="max-w-7xl mx-auto px-6 py-24">
+            <div className="text-center mb-16">
+              <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">CORE_FEATURES</div>
+              <h2 className="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter">Why SYNCCLIP</h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-0">
+              {/* Feature 1: Real-Time Sync */}
+              <div className="border-2 border-black p-8 md:p-10 group hover:bg-black transition-all duration-300 -mr-[2px] -mb-[2px]">
+                <span className="material-symbols-outlined text-4xl block mb-5 text-black group-hover:text-secondary transition-colors">cloud_sync</span>
+                <h3 className="font-headline text-2xl uppercase font-black mb-3 group-hover:text-white transition-colors">Real-Time Sync</h3>
+                <p className="font-body text-sm text-zinc-600 leading-relaxed group-hover:text-zinc-400 transition-colors">
+                  Every keystroke is pushed through a real-time engine. All connected devices update within milliseconds. No polling, no refresh, no lag.
+                </p>
+              </div>
+
+              {/* Feature 2: Auto Clipboard Sync */}
+              <div className="border-2 border-black p-8 md:p-10 group hover:bg-black transition-all duration-300 -mb-[2px]">
+                <span className="material-symbols-outlined text-4xl block mb-5 text-black group-hover:text-secondary transition-colors">all_match</span>
+                <h3 className="font-headline text-2xl uppercase font-black mb-3 group-hover:text-white transition-colors">Auto Clipboard Sync</h3>
+                <p className="font-body text-sm text-zinc-600 leading-relaxed group-hover:text-zinc-400 transition-colors">
+                  Toggle <strong className="group-hover:text-white">Auto-Push</strong> and remote changes land directly in your OS clipboard. Toggle <strong className="group-hover:text-white">Auto-Read</strong> and local clipboard changes sync to the cloud when you return.
+                </p>
+              </div>
+
+              {/* Feature 3: Burn After Reading */}
+              <div className="border-2 border-black p-8 md:p-10 group hover:bg-black transition-all duration-300 -mr-[2px]">
+                <span className="material-symbols-outlined text-4xl block mb-5 text-orange-500 group-hover:text-orange-400 transition-colors">local_fire_department</span>
+                <h3 className="font-headline text-2xl uppercase font-black mb-3 group-hover:text-white transition-colors">Burn After Reading</h3>
+                <p className="font-body text-sm text-zinc-600 leading-relaxed group-hover:text-zinc-400 transition-colors">
+                  Arm the protocol and your clipboard becomes volatile. When a second device opens it, the data self-destructs in 5 seconds — permanently wiped from the database.
+                </p>
+              </div>
+
+              {/* Feature 4: Session Lock + QR */}
+              <div className="border-2 border-black p-8 md:p-10 group hover:bg-black transition-all duration-300">
+                <span className="material-symbols-outlined text-4xl block mb-5 text-black group-hover:text-secondary transition-colors">shield_lock</span>
+                <h3 className="font-headline text-2xl uppercase font-black mb-3 group-hover:text-white transition-colors">Secure &amp; Controlled</h3>
+                <p className="font-body text-sm text-zinc-600 leading-relaxed group-hover:text-zinc-400 transition-colors">
+                  <strong className="group-hover:text-white">Lock</strong> your session to make all others read-only. Pair devices instantly via <strong className="group-hover:text-white">QR codes</strong>. Use <strong className="group-hover:text-white">CMD+K</strong> to control everything from the keyboard.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════
+            BUILT FOR — Personas
+        ════════════════════════════════════════════ */}
+        <section className="border-b-2 border-black">
+          <div className="max-w-7xl mx-auto px-6 py-24">
+            <div className="text-center mb-16">
+              <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">WHO_ITS_FOR</div>
+              <h2 className="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter">Built For</h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-0">
+              <div className="border-2 border-black p-8 -mr-[2px] -mb-[2px]">
+                <span className="material-symbols-outlined text-3xl text-secondary mb-4 block">engineering</span>
+                <h3 className="font-headline text-lg font-black uppercase mb-2">Developers</h3>
+                <p className="text-sm text-zinc-600 leading-relaxed">Move API keys, config snippets, and code between machines without messaging yourself.</p>
+              </div>
+              <div className="border-2 border-black p-8 -mr-[2px] -mb-[2px]">
+                <span className="material-symbols-outlined text-3xl text-secondary mb-4 block">palette</span>
+                <h3 className="font-headline text-lg font-black uppercase mb-2">Designers</h3>
+                <p className="text-sm text-zinc-600 leading-relaxed">Share hex codes, copy strings, and content blocks between desktop and mobile instantly.</p>
+              </div>
+              <div className="border-2 border-black p-8 -mr-[2px] -mb-[2px]">
+                <span className="material-symbols-outlined text-3xl text-secondary mb-4 block">groups</span>
+                <h3 className="font-headline text-lg font-black uppercase mb-2">Teams</h3>
+                <p className="text-sm text-zinc-600 leading-relaxed">Share meeting notes and quick updates in a disposable, no-login workspace.</p>
+              </div>
+              <div className="border-2 border-black p-8 -mb-[2px]">
+                <span className="material-symbols-outlined text-3xl text-secondary mb-4 block">shield</span>
+                <h3 className="font-headline text-lg font-black uppercase mb-2">Privacy-First</h3>
+                <p className="text-sm text-zinc-600 leading-relaxed">Share secrets with Burn Mode. Data self-destructs after reading. No trail.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════
+            FINAL CTA
+        ════════════════════════════════════════════ */}
+        <section className="bg-black text-white">
+          <div className="max-w-4xl mx-auto px-6 py-24 md:py-32 text-center">
+            <div className="font-mono text-[10px] tracking-[0.4em] text-secondary uppercase mb-6">READY_TO_SYNC</div>
+            <h2 className="font-headline text-4xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] mb-6">
+              Stop Emailing
+              <br/>Yourself.
+            </h2>
+            <p className="font-body text-lg italic text-zinc-400 max-w-xl mx-auto leading-relaxed mb-10">
+              One click. One link. Every device connected.
+            </p>
+            <button
+              onClick={handleCreateSession}
+              disabled={initializing}
+              className="bg-secondary text-white font-label font-bold py-5 px-14 border-2 border-secondary hover:bg-white hover:text-black hover:border-white transition-all uppercase tracking-widest text-sm shadow-[6px_6px_0px_0px_rgba(255,255,255,0.15)] hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] disabled:bg-zinc-800 disabled:border-zinc-800 inline-flex items-center gap-3"
+            >
+              <span className="material-symbols-outlined text-[20px]">bolt</span>
+              {initializing ? "GENERATING..." : "CREATE YOUR FIRST NODE"}
+            </button>
+            <div className="mt-6 font-mono text-[9px] text-zinc-600 tracking-widest uppercase">
+              Free · No account · No install · Live in 1 second
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      {/* FOOTER */}
+      <footer className="w-full border-t-2 border-black bg-white" role="contentinfo">
+        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="font-mono text-[9px] tracking-widest text-on-surface-variant uppercase text-center md:text-left">
+            © {new Date().getFullYear()} SYNCCLIP // DISTRIBUTED CLIPBOARD PROTOCOL // V4.2
+          </div>
+          <nav className="flex gap-6 font-mono text-[9px] tracking-widest uppercase">
+            <Link href="/about" className="text-zinc-500 hover:text-secondary transition-colors">About</Link>
+            <Link href="/support" className="text-zinc-500 hover:text-secondary transition-colors">Support</Link>
+          </nav>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }

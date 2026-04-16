@@ -7,6 +7,10 @@ export default defineSchema({
     text: v.string(),
     createdAt: v.number(),
     history: v.optional(v.array(v.object({ text: v.string(), timestamp: v.number() }))),
+    ownerNodeId: v.optional(v.string()),
+    isLocked: v.optional(v.boolean()),
+    isBurnMode: v.optional(v.boolean()),
+    updateCount: v.optional(v.number()),
   }),
   presence: defineTable({
     sessionId: v.id("sessions"),
