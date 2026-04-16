@@ -38,7 +38,15 @@ export default function ClipboardEditor({ session }: { session: any }) {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [activeInfo, setActiveInfo] = useState<string | null>(null);
-  const qrUrl = typeof window !== "undefined" ? window.location.href : "";
+
+  const getBaseUrl = () => {
+    if (typeof window !== "undefined") {
+      return window.location.origin;
+    }
+    return process.env.NEXT_PUBLIC_APP_URL || "https://syncclip.app";
+  };
+
+  const qrUrl = `${getBaseUrl()}/${session.code}`;
 
   // Network Status
   useEffect(() => {
@@ -186,28 +194,43 @@ export default function ClipboardEditor({ session }: { session: any }) {
     }
   }, [session.isBurnMode, isOwner, session._id, text, burnMutation]);
 
-  // Smart Clipboard Polling (Auto-Read)
+  // Smart Clipboard Polling (Upload to Cloud)
   useEffect(() => {
     if (!autoReadEnabled || !canEdit) return;
-    const handleFocus = async () => {
+
+    const checkClipboard = async () => {
+      // Only check if window is focused to respect browser security & user privacy
+      if (document.hidden || !document.hasFocus()) return;
+
       try {
         if (typeof navigator !== "undefined" && navigator.clipboard) {
           const localText = await navigator.clipboard.readText();
+          // Only update if local clipboard differs from both cloud AND current local state
           if (localText && localText !== session.text && localText !== text) {
             setText(localText);
             setIsSyncing(true);
             update({ id: session._id, text: localText, callerNodeId: nodeId }).finally(() => {
               setIsSyncing(false);
-              showToast("Clipboard Auto-Synced to Node");
+              showToast("Local Clipboard Uploaded to Cloud");
             });
           }
         }
       } catch (err) {
-        console.error("Auto-read clipboard failed:", err);
+        // Silently fail if permission not granted yet, or log if restricted
+        console.debug("Clipboard read restricted or permission denied.");
       }
     };
-    window.addEventListener("focus", handleFocus);
-    return () => window.removeEventListener("focus", handleFocus);
+
+    // Immediate check on focus
+    window.addEventListener("focus", checkClipboard);
+    
+    // 1s Polling Interval while focused
+    const pollInterval = setInterval(checkClipboard, 1000);
+
+    return () => {
+      window.removeEventListener("focus", checkClipboard);
+      clearInterval(pollInterval);
+    };
   }, [autoReadEnabled, session.text, text, session._id, update, nodeId, canEdit]);
 
   const debouncedUpdate = useCallback(
@@ -230,7 +253,8 @@ export default function ClipboardEditor({ session }: { session: any }) {
   function handleCopyLink(e?: React.MouseEvent) {
     if (e) e.preventDefault();
     if (typeof window !== "undefined") {
-      navigator.clipboard.writeText(window.location.href);
+      const fullUrl = `${getBaseUrl()}/${session.code}`;
+      navigator.clipboard.writeText(fullUrl);
       showToast("Link copied to clipboard");
     }
   }
@@ -739,33 +763,17 @@ export default function ClipboardEditor({ session }: { session: any }) {
                   </div>
 
                   <div className="space-y-6">
-                    {/* Auto-Push */}
+                    {/* Auto-Push (Hidden per user request) */}
+                    {/* 
                     <div className="flex flex-col border-2 border-black p-4 bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                       <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-3">
-                          <button
-                            onClick={() => setActiveInfo(activeInfo === 'push' ? null : 'push')}
-                            className={`w-6 h-6 border border-black flex items-center justify-center text-[10px] font-bold transition-colors ${activeInfo === 'push' ? 'bg-secondary text-white' : 'bg-zinc-100 hover:bg-zinc-200'}`}
-                          >
-                            ?
-                          </button>
-                          <span className="font-label font-bold uppercase tracking-widest text-xs">Upload to Cloud</span>
-                        </div>
-                        <button
-                          onClick={() => setAutoSyncEnabled(!autoSyncEnabled)}
-                          className={`w-12 h-6 border-2 border-black relative transition-colors ${autoSyncEnabled ? 'bg-secondary' : 'bg-zinc-200'}`}
-                        >
-                          <div className={`absolute top-0.5 bottom-0.5 w-4 bg-white border border-black transition-all ${autoSyncEnabled ? 'right-0.5' : 'left-0.5'}`}></div>
-                        </button>
+                        ...
                       </div>
-                      {activeInfo === 'push' && (
-                        <div className="mt-4 pt-4 border-t border-zinc-100 font-mono text-[10px] text-zinc-500 leading-relaxed uppercase">
-                          Automatically syncs your local clipboard to this cloud node.
-                        </div>
-                      )}
-                    </div>
+                    </div> 
+                    */}
 
-                    {/* Auto-Read */}
+                    {/* Auto-Read (Hidden per user request) */}
+                    {/* 
                     {canEdit && (
                       <div className="flex flex-col border-2 border-black p-4 bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                         <div className="flex justify-between items-center">
@@ -792,6 +800,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
                         )}
                       </div>
                     )}
+                    */}
 
                     {/* Node Lock */}
                     {isOwner && (
@@ -862,7 +871,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
                       </div>
                     )}
 
-                    {/* Status Info / Expiration Note */}
+                    {/* Status Info / Expiration Note (Updated to remove hidden features reference) */}
                     <div className="mt-8 pt-6 border-t-2 border-zinc-100">
                       <div className="flex items-start gap-4 p-4 bg-zinc-50 border border-zinc-200 font-mono text-[9px] text-zinc-400 uppercase leading-relaxed">
                         <span className="material-symbols-outlined text-sm text-secondary">info</span>

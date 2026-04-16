@@ -2,6 +2,10 @@
 
 ## Updates
 
+### 2026-04-16 - Feature Shelving & UI Focus
+- **Deferred Sync Protocols**: Temporarily hidden the **'Upload to Cloud'** and **'Download to Device'** features from the Node Settings interface. This maintains a focused, minimal-complexity workflow for the current development phase while preserving the underlying logic for future protocol activation.
+- **Enhanced Security Profile**: The 100-node cluster capacity limit and manual deletion protocols remain active as the primary security layer.
+
 ### 2026-04-16 - Security, UX Consolidation & Cluster Persistence
 - **Exit & Delete Protocol**: Implemented a secure "self-destruct" function for session owners. A new `deleteSession` mutation allows origin operators to wipe nodes and their history instantly while redirecting to the landing page.
 - **Cluster Capacity Security**: Enforced a strict **100-node limit** per session. The `updatePresence` mutation now prevents over-enrollment to protect against DoS attacks and resource exhaustion.
@@ -134,3 +138,6 @@ session expire countdown ? Session expires in: 23h
 
 
 -- security things like in one room max 100 device just to prevent attacks 
+
+
+-- change base url every where
