@@ -252,19 +252,19 @@ export default function AboutPage() {
           <div className="border-t-2 border-black pt-10">
             <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">THE_BUILDER</div>
             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-10">Creator</h2>
-            
+
             <div className="border-2 border-black p-8 bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
               <h3 className="font-headline text-2xl font-black uppercase mb-4">Dhairya Darji</h3>
               <p className="font-body text-zinc-700 leading-relaxed mb-6">
                 I built SYNCCLIP to solve my own problem: I hated sending myself emails or Slack messages just to move a snippet of text from my phone to my desktop. I wanted something instant, account-free, and ephemeral.
               </p>
-              
+
               <div className="flex gap-4 font-mono text-sm tracking-widest uppercase">
                 <a href="https://github.com/Dhairya0707" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-secondary transition-colors font-bold">
-                   GitHub <span className="material-symbols-outlined text-[16px]">north_east</span>
+                  GitHub <span className="material-symbols-outlined text-[16px]">north_east</span>
                 </a>
-                <a href="https://linkedin.com/in/dhairyadarji" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-secondary transition-colors font-bold">
-                   LinkedIn <span className="material-symbols-outlined text-[16px]">north_east</span>
+                <a href="https://www.linkedin.com/in/dhairya-darji-072428284/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-secondary transition-colors font-bold">
+                  LinkedIn <span className="material-symbols-outlined text-[16px]">north_east</span>
                 </a>
               </div>
             </div>
