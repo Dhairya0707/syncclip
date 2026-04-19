@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Clipboard Sync Between Devices | Copy Paste Across Devices No Login | SyncClip",
+  title: "Sync Clipboard Between Devices Instantly",
   description: "Sync your clipboard between Android, iOS, Windows, and Mac instantly. No login, no app installation, and zero tracking. The fastest way to copy paste across devices.",
   alternates: {
-    canonical: "https://syncclip.in/sync-clipboard",
+    canonical: "https://syncclip.in/sync-clipboard-between-devices",
   },
 };
 

@@ -17,6 +17,7 @@
 - **Visual Assets**: Generated and integrated 8+ high-fidelity neobrutalist assets (OG image, workflow diagrams, mockups, step illustrations) across all landing pages.
 - **Content & GEO Optimization**: Finalized the 1200+ word guide and 4 niche landing pages. All pages are professionally optimized for 2026 search trends and AI citation.
 - **Launch Assets**: Created `production_task/launch_marketing_kit.md` containing high-conversion hooks, Product Hunt taglines, Hacker News intros, and platform-specific Reddit frames.
+- **Home Page & Blog Integration**: Added a dedicated "Productivity Hub" blog section to the home page. Integrated new SEO blog posts into the home page and `sitemap.ts` for maximum crawling and internal authority.
 - **Growth Loops**: Successfully implemented the Link Sharing referral loop and home page resource hub.
 - **UI Integrity Maintenance**: Reverted experimental in-page logo placements to preserve the "Editorial Brutalist" text-only aesthetic, keeping the new logo exclusively as the browser/system brand mark.
 2: ### 2026-04-16 - Major Security Hardening (Post-Audit)

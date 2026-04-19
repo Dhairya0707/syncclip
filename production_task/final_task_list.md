@@ -17,11 +17,15 @@ This document represents the final status of the SyncClip production roadmap as 
     - [x] Vercel Analytics integration for real-time traffic.
 
 ## ✅ Phase 1: Core Content & SEO Expansion
-- [x] **Primary Landing Pages**:
-    - [x] `/sync-clipboard` (Target: clipboard sync between devices)
-    - [x] `/copy-text-phone-to-pc` (Target: copy text from phone to PC)
+- [x] **Primary Landing Pages & SEO Content**:
+    - [x] `/online-clipboard` (Optimized title)
+    - [x] `/sync-clipboard-between-devices` (Target: cross-device sync)
+    - [x] `/copy-text-from-phone-to-computer` (Target: phone to laptop)
     - [x] `/pushbullet-alternative` (Target: competitor traffic)
-    - [x] `/online-clipboard` (Target: India market)
+    - [x] **New Blog Section**:
+        - [x] `/blog/how-to-sync-clipboard-between-devices`
+        - [x] `/blog/5-ways-to-copy-text-between-phone-and-laptop`
+        - [x] `/blog/best-online-clipboard-tools-2026`
 - [x] **GEO Authority**:
     - [x] `/clipboard-sync-guide` (1200+ word authoritative guide for AI citation)
 - [x] **Meta Optimization**:

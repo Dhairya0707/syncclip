@@ -6,10 +6,10 @@ import ConvexClientProvider from "./ConvexClientProvider";
 export const metadata: Metadata = {
   metadataBase: new URL('https://syncclip.in'),
   title: {
-    default: "SyncClip | Free Universal Clipboard for All Devices",
+    default: "Online Clipboard — Sync Clipboard Between Devices | SyncClip",
     template: "%s | SyncClip"
   },
-  description: "The real-time universal clipboard that syncs across every device instantly. No accounts, no downloads, ephemeral by design. Copy here, paste anywhere.",
+  description: "Use SyncClip as an online clipboard to instantly copy and paste text between devices. No login, no tracking, just fast clipboard sharing.",
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",

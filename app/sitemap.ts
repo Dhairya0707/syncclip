@@ -35,13 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/sync-clipboard`,
+      url: `${baseUrl}/sync-clipboard-between-devices`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/copy-text-phone-to-pc`,
+      url: `${baseUrl}/copy-text-from-phone-to-computer`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
@@ -57,6 +57,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/blog/how-to-sync-clipboard-between-devices`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/blog/5-ways-to-copy-text-between-phone-and-laptop`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/blog/best-online-clipboard-tools-2026`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
     },
   ];
 }

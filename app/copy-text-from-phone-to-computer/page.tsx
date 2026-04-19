@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How to Copy Text from Phone to PC & Laptop Instantly | No App Required | SyncClip",
+  title: "Copy Text from Phone to Computer Instantly",
   description: "The fastest way to copy text from your Android or iPhone to your Windows or Mac laptop instantly without installing apps or emailing yourself. Works in 3 steps.",
   alternates: {
-    canonical: "https://syncclip.in/copy-text-phone-to-pc",
+    canonical: "https://syncclip.in/copy-text-from-phone-to-computer",
   },
 };
 
