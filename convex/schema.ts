@@ -17,5 +17,13 @@ export default defineSchema({
     name: v.string(),
     updatedAt: v.number(),
     nodeId: v.string(),
-  }).index("by_session", ["sessionId"]),
+  })
+    .index("by_session", ["sessionId"])
+    .index("by_updatedAt", ["updatedAt"]),
+  logs: defineTable({
+    type: v.string(), // e.g., "session_cleanup", "presence_cleanup"
+    count: v.number(), // number of items deleted
+    timestamp: v.number(),
+    status: v.string(), // e.g., "success", "error"
+  }).index("by_type", ["type"]),
 });

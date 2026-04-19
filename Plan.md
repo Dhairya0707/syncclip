@@ -202,11 +202,11 @@ export default function Home() {
 
 So opening:
 
-syncclip.app
+syncclip.in
 
 automatically creates:
 
-syncclip.app/abc123
+syncclip.in/abc123
 
 
 ⸻
@@ -439,11 +439,11 @@ Laptop
 
 Open
 
-syncclip.app
+syncclip.in
 
 Session created.
 
-syncclip.app/ab92kd
+syncclip.in/ab92kd
 
 
 ⸻

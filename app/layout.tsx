@@ -1,10 +1,55 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import "./globals.css";
 import ConvexClientProvider from "./ConvexClientProvider";
 
 export const metadata: Metadata = {
-  title: "SYNCCLIP | High-Density Editorial Clipboard",
-  description: "Digital Broadsheet Protocol V4.2",
+  metadataBase: new URL('https://syncclip.in'),
+  title: {
+    default: "SyncClip | Free Universal Clipboard for All Devices",
+    template: "%s | SyncClip"
+  },
+  description: "The real-time universal clipboard that syncs across every device instantly. No accounts, no downloads, ephemeral by design. Copy here, paste anywhere.",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
+  openGraph: {
+    title: "SyncClip | Universal Clipboard",
+    description: "Instantly sync text and code between your phone, tablet, and desktop without logging in.",
+    url: "https://syncclip.in",
+    siteName: "SyncClip",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "SyncClip Workflow Mockup",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SyncClip | Universal Clipboard",
+    description: "Instantly sync text and code between your phone, tablet, and desktop without logging in.",
+    images: ["/og-image.png"],
+  },
+  alternates: {
+    canonical: "https://syncclip.in",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -27,6 +72,7 @@ export default function RootLayout({
       <body className="font-body selection:bg-secondary selection:text-white">
         <ConvexClientProvider>
           {children}
+          <Analytics />
         </ConvexClientProvider>
       </body>
     </html>

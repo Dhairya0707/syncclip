@@ -168,9 +168,16 @@ export default function SupportPage() {
       </main>
 
       {/* Footer Ribbon */}
-      <footer className="border-t-2 border-black p-6 flex flex-col md:flex-row justify-between items-center" role="contentinfo">
-        <div className="font-mono text-[9px] tracking-widest text-on-surface-variant mb-4 md:mb-0 uppercase text-center md:text-left">
-          © {new Date().getFullYear()} SYNCCLIP PUBLISHING GROUP // DISTRIBUTED ARCHIVAL CLIPBOARD // V4.2
+      <footer className="w-full border-t-2 border-black bg-white" role="contentinfo">
+        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="font-mono text-[9px] tracking-widest text-on-surface-variant uppercase text-center md:text-left">
+            © {new Date().getFullYear()} SYNCCLIP PUBLISHING GROUP // DISTRIBUTED ARCHIVAL CLIPBOARD // V4.2
+          </div>
+          <nav className="flex gap-6 font-mono text-[9px] tracking-widest uppercase">
+            <Link href="/" className="text-zinc-500 hover:text-secondary transition-colors">Home</Link>
+            <Link href="/about" className="text-zinc-500 hover:text-secondary transition-colors">About</Link>
+            <Link href="/privacy" className="text-zinc-500 hover:text-secondary transition-colors">Privacy</Link>
+          </nav>
         </div>
       </footer>
     </div>

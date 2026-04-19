@@ -42,8 +42,27 @@ export default function Home() {
     }
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'SyncClip',
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'All',
+    url: 'https://syncclip.in',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    description: 'The real-time universal clipboard sync between devices. Copy text from phone to PC instantly. No accounts, no downloads, ephemeral by design.',
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* NAV */}
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
@@ -78,15 +97,15 @@ export default function Home() {
                 </div>
 
                 <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter font-headline leading-[0.9] text-primary mb-6">
-                  Copy Here,
+                  CLIPBOARD SYNC_
                   <br />
-                  <span className="text-secondary">Paste</span>
+                  BETWEEN
                   <br />
-                  Anywhere.
+                  <span className="text-secondary">ANY DEVICE.</span>
                 </h1>
 
                 <p className="font-body text-lg md:text-xl text-zinc-600 max-w-lg leading-relaxed mb-10">
-                  The universal clipboard that syncs across every device in real-time. No downloads. No accounts. Just open a link and start pasting.
+                  The fastest free universal clipboard to sync text and code between devices. No downloads, no logins, and zero tracking. Copy on phone, paste on PC instantly.
                 </p>
 
                   <div className="relative mb-8">
@@ -226,8 +245,11 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-0 border-2 border-black">
-              <div className="p-8 md:p-10 border-b-2 md:border-b-0 md:border-r-2 border-black">
-                <div className="flex items-center gap-3 mb-4">
+              <div className="p-8 md:p-10 border-b-2 md:border-b-0 md:border-r-2 border-black flex flex-col">
+                <div className="mb-6 border-2 border-black grayscale hover:grayscale-0 transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white">
+                  <img src="/step-1-create.png" alt="Step 1: Create Session" className="w-full h-auto" />
+                </div>
+                <div className="flex items-center gap-3 mb-4 mt-auto">
                   <span className="bg-black text-white font-mono font-black text-lg w-10 h-10 flex items-center justify-center">01</span>
                   <h3 className="font-headline text-xl font-black uppercase">Create</h3>
                 </div>
@@ -235,8 +257,11 @@ export default function Home() {
                   Hit the button. A unique session is generated instantly. No signup, no email, nothing.
                 </p>
               </div>
-              <div className="p-8 md:p-10 border-b-2 md:border-b-0 md:border-r-2 border-black">
-                <div className="flex items-center gap-3 mb-4">
+              <div className="p-8 md:p-10 border-b-2 md:border-b-0 md:border-r-2 border-black flex flex-col">
+                <div className="mb-6 border-2 border-black grayscale hover:grayscale-0 transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white">
+                  <img src="/step-2-join.png" alt="Step 2: Join Session" className="w-full h-auto" />
+                </div>
+                <div className="flex items-center gap-3 mb-4 mt-auto">
                   <span className="bg-black text-white font-mono font-black text-lg w-10 h-10 flex items-center justify-center">02</span>
                   <h3 className="font-headline text-xl font-black uppercase">Share</h3>
                 </div>
@@ -244,8 +269,11 @@ export default function Home() {
                   Send the link or scan the QR code from your other device. One URL syncs them all.
                 </p>
               </div>
-              <div className="p-8 md:p-10">
-                <div className="flex items-center gap-3 mb-4">
+              <div className="p-8 md:p-10 flex flex-col">
+                <div className="mb-6 border-2 border-black grayscale hover:grayscale-0 transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white">
+                  <img src="/step-3-sync.png" alt="Step 3: Syncing" className="w-full h-auto" />
+                </div>
+                <div className="flex items-center gap-3 mb-4 mt-auto">
                   <span className="bg-secondary text-white font-mono font-black text-lg w-10 h-10 flex items-center justify-center">03</span>
                   <h3 className="font-headline text-xl font-black uppercase">Paste</h3>
                 </div>
@@ -343,6 +371,44 @@ export default function Home() {
         </section>
 
         {/* ════════════════════════════════════════════
+            RESOURCES — Internal SEO linking
+        ════════════════════════════════════════════ */}
+        <section className="border-b-2 border-black bg-white">
+          <div className="max-w-7xl mx-auto px-6 py-24">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+              <div>
+                <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">RESOURCES_&_SEO_GUIDES</div>
+                <h2 className="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter">Clipboard Sync Guides</h2>
+              </div>
+              <Link href="/clipboard-sync-guide" className="font-mono text-[10px] font-black uppercase tracking-widest border-b-2 border-black pb-1 hover:text-secondary hover:border-secondary transition-all">View Full Guide →</Link>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Link href="/sync-clipboard" className="border-2 border-black p-6 hover:bg-black group transition-all">
+                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">How to Sync</h3>
+                <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">Master the real-time clipboard sync between all your devices.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Read More _</span>
+              </Link>
+              <Link href="/copy-text-phone-to-pc" className="border-2 border-black p-6 hover:bg-black group transition-all">
+                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Phone to PC</h3>
+                <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">The fastest way to move text from mobile to desktop without apps.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Read More _</span>
+              </Link>
+              <Link href="/pushbullet-alternative" className="border-2 border-black p-6 hover:bg-black group transition-all">
+                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Free Alternative</h3>
+                <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">Why SyncClip is the best free alternative to Pushbullet in 2026.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Read More _</span>
+              </Link>
+              <Link href="/online-clipboard" className="border-2 border-black p-6 hover:bg-black group transition-all">
+                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Online Hub</h3>
+                <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">A secure, ephemeral space for your transient clipboard data.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Read More _</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════
             FINAL CTA
         ════════════════════════════════════════════ */}
         <section className="bg-black text-white">
@@ -380,6 +446,7 @@ export default function Home() {
           <nav className="flex gap-6 font-mono text-[9px] tracking-widest uppercase">
             <Link href="/about" className="text-zinc-500 hover:text-secondary transition-colors">About</Link>
             <Link href="/support" className="text-zinc-500 hover:text-secondary transition-colors">Support</Link>
+            <Link href="/privacy" className="text-zinc-500 hover:text-secondary transition-colors">Privacy</Link>
           </nav>
         </div>
       </footer>

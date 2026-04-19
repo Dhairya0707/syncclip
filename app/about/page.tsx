@@ -1,10 +1,42 @@
-"use client";
 
+
+import type { Metadata } from "next";
 import Link from "next/link";
 
+export const metadata: Metadata = {
+  title: "About SyncClip | Architecture & Features",
+  description: "Learn how SyncClip's ephemeral clipboard protocol works. Discover our real-time Convex engine, zero-tracking policy, and secure 'Burn After Reading' functionality.",
+  alternates: {
+    canonical: "https://syncclip.in/about",
+  },
+};
+
 export default function AboutPage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://syncclip.in',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'About',
+        item: 'https://syncclip.in/about',
+      },
+    ],
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* NAV */}
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
@@ -214,6 +246,32 @@ export default function AboutPage() {
         </section>
 
         {/* ═══════════════════════════════════════
+            THE CREATOR
+        ═══════════════════════════════════════ */}
+        <section className="max-w-4xl mx-auto mb-20">
+          <div className="border-t-2 border-black pt-10">
+            <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">THE_BUILDER</div>
+            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-10">Creator</h2>
+            
+            <div className="border-2 border-black p-8 bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+              <h3 className="font-headline text-2xl font-black uppercase mb-4">Dhairya Darji</h3>
+              <p className="font-body text-zinc-700 leading-relaxed mb-6">
+                I built SYNCCLIP to solve my own problem: I hated sending myself emails or Slack messages just to move a snippet of text from my phone to my desktop. I wanted something instant, account-free, and ephemeral.
+              </p>
+              
+              <div className="flex gap-4 font-mono text-sm tracking-widest uppercase">
+                <a href="https://github.com/Dhairya0707" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-secondary transition-colors font-bold">
+                   GitHub <span className="material-symbols-outlined text-[16px]">north_east</span>
+                </a>
+                <a href="https://linkedin.com/in/dhairyadarji" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-secondary transition-colors font-bold">
+                   LinkedIn <span className="material-symbols-outlined text-[16px]">north_east</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════
             TECH STACK
         ═══════════════════════════════════════ */}
         <section className="max-w-4xl mx-auto mb-20">
@@ -291,6 +349,7 @@ export default function AboutPage() {
           <nav className="flex gap-6 font-mono text-[9px] tracking-widest uppercase">
             <Link href="/" className="text-zinc-500 hover:text-secondary transition-colors">Home</Link>
             <Link href="/support" className="text-zinc-500 hover:text-secondary transition-colors">Support</Link>
+            <Link href="/privacy" className="text-zinc-500 hover:text-secondary transition-colors">Privacy</Link>
           </nav>
         </div>
       </footer>

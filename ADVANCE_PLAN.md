@@ -71,7 +71,7 @@ AX42
 
 Phone enters:
 
-syncclip.app/pair
+syncclip.in/pair
 
 Enter code → connected.
 

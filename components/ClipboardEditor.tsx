@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { debounce } from "../utils/debounce";
@@ -16,7 +16,22 @@ export default function ClipboardEditor({ session }: { session: any }) {
   const burnMutation = useMutation(api.sessions.burnSession);
   const deleteSessionMutation = useMutation(api.sessions.deleteSession);
   const router = useRouter();
-  const presence = useQuery(api.sessions.getPresence, { sessionId: session._id });
+
+  // Persistent Node ID for heartbeat continuity
+  const nodeId = useMemo(() => {
+    if (typeof window === "undefined") return "NODE-INIT";
+    let id = localStorage.getItem("syncclip_node_id");
+    if (!id) {
+      id = `NODE-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
+      localStorage.setItem("syncclip_node_id", id);
+    }
+    return id;
+  }, []);
+
+  const presence = useQuery(api.sessions.getPresence, { 
+    sessionId: session._id,
+    nodeId: nodeId
+  });
 
   const [text, setText] = useState(session.text);
   const [toast, setToast] = useState<string | null>(null);
@@ -38,12 +53,13 @@ export default function ClipboardEditor({ session }: { session: any }) {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [activeInfo, setActiveInfo] = useState<string | null>(null);
+  const lastDownloadedRef = useRef<number>(0);
 
   const getBaseUrl = () => {
     if (typeof window !== "undefined") {
       return window.location.origin;
     }
-    return process.env.NEXT_PUBLIC_APP_URL || "https://syncclip.app";
+    return process.env.NEXT_PUBLIC_APP_URL || "https://syncclip.in";
   };
 
   const qrUrl = `${getBaseUrl()}/${session.code}`;
@@ -72,15 +88,6 @@ export default function ClipboardEditor({ session }: { session: any }) {
   }, [fragments]);
 
   // Persistent Node ID for heartbeat continuity
-  const nodeId = useMemo(() => {
-    if (typeof window === "undefined") return "NODE-INIT";
-    let id = localStorage.getItem("syncclip_node_id");
-    if (!id) {
-      id = `NODE-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
-      localStorage.setItem("syncclip_node_id", id);
-    }
-    return id;
-  }, []);
 
   const showToast = (message: string) => {
     setToast(message);
@@ -152,6 +159,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
   useEffect(() => {
     if (session.text !== text) {
       setText(session.text);
+      lastDownloadedRef.current = Date.now(); // SET SEMAPHORE
       if (autoSyncEnabled && typeof navigator !== "undefined" && navigator.clipboard) {
         navigator.clipboard.writeText(session.text).then(() => {
           showToast("Remote Uplink Copied to Clipboard");
@@ -207,6 +215,11 @@ export default function ClipboardEditor({ session }: { session: any }) {
           const localText = await navigator.clipboard.readText();
           // Only update if local clipboard differs from both cloud AND current local state
           if (localText && localText !== session.text && localText !== text) {
+            // Guard clause: Only trigger upload if we haven't recently downloaded
+            if (Date.now() - lastDownloadedRef.current < 1500) {
+              return; // Ignore local reads during the synchronization settling period
+            }
+
             setText(localText);
             setIsSyncing(true);
             update({ id: session._id, text: localText, callerNodeId: nodeId }).finally(() => {
@@ -1001,9 +1014,9 @@ export default function ClipboardEditor({ session }: { session: any }) {
                 </div>
                 <ul className="space-y-3 font-label text-xs">
                   {presence?.map((p: any) => (
-                    <li key={p.nodeId} className="flex justify-between items-center border-b border-zinc-100 pb-2">
-                      <span className={`${p.nodeId === nodeId ? "text-black font-bold" : "text-zinc-600"} truncate pr-2`}>
-                        {p.name} {p.nodeId === nodeId && "(YOU)"}
+                    <li key={p._id} className="flex justify-between items-center border-b border-zinc-100 pb-2">
+                      <span className={`${p.isMe ? "text-black font-bold" : "text-zinc-600"} truncate pr-2`}>
+                        {p.name} {p.isMe && "(YOU)"}
                       </span>
                       <span className="text-secondary text-[8px] animate-pulse uppercase font-black shrink-0">active</span>
                     </li>
@@ -1049,10 +1062,17 @@ export default function ClipboardEditor({ session }: { session: any }) {
       </main>
 
       {/* Footer Ribbon */}
-      <footer className="mt-auto border-t-2 border-black p-6 flex flex-col md:flex-row justify-between items-center" role="contentinfo">
+      <footer className="mt-auto border-t-2 border-black p-6 flex flex-col md:flex-row justify-between items-center bg-white" role="contentinfo">
         <div className="font-mono text-[9px] tracking-widest text-on-surface-variant mb-4 md:mb-0 uppercase text-center md:text-left">
           © 2026 SYNCCLIP PUBLISHING GROUP // DISTRIBUTED ARCHIVAL CLIPBOARD // V4.2
         </div>
+        <Link 
+          href="/" 
+          className="font-mono text-[10px] font-black uppercase tracking-widest text-secondary hover:text-black transition-colors flex items-center gap-2 border-b-2 border-transparent hover:border-black"
+        >
+          <span>Create Your Own Node_</span>
+          <span className="material-symbols-outlined text-[14px]">north_east</span>
+        </Link>
       </footer>
 
       {/* Action Toast Snackbar */}

@@ -1,0 +1,378 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.plan { padding: 1.5rem 0; }
+.section { margin-bottom: 2.5rem; }
+.section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.phase-badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; }
+.ph0 { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+.ph1 { background: #E6F1FB; color: #0C447C; }
+.ph2 { background: #E1F5EE; color: #085041; }
+.ph3 { background: #FAEEDA; color: #633806; }
+.ph4 { background: #FAECE7; color: #711B13; }
+.ph5 { background: #EEEDFE; color: #3C3489; }
+@media (prefers-color-scheme: dark) {
+  .ph1 { background: #0C447C; color: #B5D4F4; }
+  .ph2 { background: #085041; color: #9FE1CB; }
+  .ph3 { background: #633806; color: #FAC775; }
+  .ph4 { background: #711B13; color: #F5C4B3; }
+  .ph5 { background: #3C3489; color: #CECBF6; }
+}
+.section-title { font-size: 16px; font-weight: 500; color: var(--color-text-primary); }
+.section-sub { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 0.9rem 1rem; }
+.card-label { font-size: 11px; color: var(--color-text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.card-value { font-size: 14px; color: var(--color-text-primary); font-weight: 500; line-height: 1.5; }
+.card-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; line-height: 1.5; }
+.kw-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.kw-table th { text-align: left; color: var(--color-text-secondary); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; padding: 6px 10px; background: var(--color-background-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); }
+.kw-table td { padding: 8px 10px; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-primary); vertical-align: top; }
+.kw-table tr:last-child td { border-bottom: none; }
+.pill { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+.high { background: #EAF3DE; color: #27500A; }
+.med { background: #FAEEDA; color: #633806; }
+.low { background: #E6F1FB; color: #0C447C; }
+@media (prefers-color-scheme: dark) {
+  .high { background: #27500A; color: #C0DD97; }
+  .med { background: #633806; color: #FAC775; }
+  .low { background: #0C447C; color: #B5D4F4; }
+}
+.timeline { position: relative; }
+.timeline::before { content: ''; position: absolute; left: 14px; top: 6px; bottom: 6px; width: 1px; background: var(--color-border-tertiary); }
+.titem { display: flex; gap: 14px; margin-bottom: 1.2rem; position: relative; }
+.tdot { width: 28px; height: 28px; border-radius: 50%; border: 0.5px solid var(--color-border-secondary); background: var(--color-background-primary); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; color: var(--color-text-secondary); z-index: 1; }
+.tday { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 3px; }
+.ttext { font-size: 14px; color: var(--color-text-primary); line-height: 1.5; }
+.ttag { font-size: 11px; color: var(--color-text-secondary); background: var(--color-background-secondary); padding: 2px 7px; border-radius: 8px; margin-top: 4px; display: inline-block; }
+.checklist { list-style: none; }
+.checklist li { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--color-text-primary); padding: 6px 0; border-bottom: 0.5px solid var(--color-border-tertiary); line-height: 1.5; }
+.checklist li:last-child { border-bottom: none; }
+.check { width: 18px; height: 18px; border-radius: 4px; border: 0.5px solid var(--color-border-secondary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+.check.done { background: var(--color-background-success); border-color: var(--color-border-success); }
+.check.done::after { content: '✓'; font-size: 11px; color: var(--color-text-success); }
+.page-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
+.page-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem; }
+.page-url { font-size: 12px; font-weight: 500; color: var(--color-text-primary); font-family: var(--font-mono); }
+.page-kw { font-size: 11px; color: var(--color-text-secondary); margin-top: 4px; }
+.page-priority { font-size: 11px; color: var(--color-text-secondary); margin-top: 3px; }
+.tab-bar { display: flex; gap: 4px; margin-bottom: 1.2rem; flex-wrap: wrap; }
+.tab { font-size: 13px; padding: 6px 14px; border-radius: 20px; cursor: pointer; border: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); background: transparent; font-family: var(--font-sans); }
+.tab.active { background: var(--color-background-info); color: var(--color-text-info); border-color: transparent; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.dir-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.dir-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.7rem; display: flex; justify-content: space-between; align-items: center; }
+.dir-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+.dir-type { font-size: 11px; color: var(--color-text-secondary); }
+.dir-priority { font-size: 11px; }
+.dp1 { color: #27500A; } .dp2 { color: #633806; } .dp3 { color: #0C447C; }
+@media (prefers-color-scheme: dark) {
+  .dp1 { color: #C0DD97; } .dp2 { color: #FAC775; } .dp3 { color: #B5D4F4; }
+}
+</style>
+<div class="plan">
+
+  <!-- Section: Identity -->
+  <div class="section">
+    <div class="section-header">
+      <span class="phase-badge ph0">Overview</span>
+      <div>
+        <div class="section-title">SyncClip.in — Launch Identity</div>
+        <div class="section-sub">Your positioning, domain, and core message</div>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Domain</div>
+        <div class="card-value">syncclip.in</div>
+        <div class="card-sub">.in TLD — targets India-first, but ranks globally for English keywords</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Core positioning</div>
+        <div class="card-value">No-login clipboard sync between any devices</div>
+        <div class="card-sub">Zero friction. Open URL. Share instantly.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Hero tagline</div>
+        <div class="card-value">"Copy here. Paste anywhere."</div>
+        <div class="card-sub">Simple, solves the pain, no jargon</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Primary audience</div>
+        <div class="card-value">Students, developers, remote workers</div>
+        <div class="card-sub">India + global English-speaking market</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Keywords -->
+  <div class="section">
+    <div class="section-header">
+      <span class="phase-badge ph1">Phase 1 — SEO</span>
+      <div>
+        <div class="section-title">Keyword Strategy</div>
+        <div class="section-sub">Researched based on real search intent and competition gaps</div>
+      </div>
+    </div>
+    <div class="tab-bar">
+      <button class="tab active" onclick="showTab('primary')">Primary keywords</button>
+      <button class="tab" onclick="showTab('longtail')">Long-tail & India</button>
+      <button class="tab" onclick="showTab('competitor')">Competitor keywords</button>
+    </div>
+    <div id="primary" class="tab-content active">
+      <table class="kw-table">
+        <thead><tr><th>Keyword</th><th>Intent</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td>clipboard sync between devices</td><td>Tool seeking</td><td><span class="pill high">Primary</span></td></tr>
+          <tr><td>copy text from phone to PC</td><td>Problem solving</td><td><span class="pill high">Primary</span></td></tr>
+          <tr><td>share clipboard online</td><td>Tool seeking</td><td><span class="pill high">Primary</span></td></tr>
+          <tr><td>cross device clipboard</td><td>Tool seeking</td><td><span class="pill med">Secondary</span></td></tr>
+          <tr><td>clipboard sharing tool</td><td>Tool seeking</td><td><span class="pill med">Secondary</span></td></tr>
+          <tr><td>paste text between devices</td><td>Problem solving</td><td><span class="pill med">Secondary</span></td></tr>
+          <tr><td>copy paste across devices no login</td><td>High intent</td><td><span class="pill high">Primary</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="longtail" class="tab-content">
+      <table class="kw-table">
+        <thead><tr><th>Keyword</th><th>Why it works</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>how to send text from phone to laptop instantly</td><td>Exact problem users face daily</td><td><span class="pill low">Long-tail</span></td></tr>
+          <tr><td>copy text from android to pc without app</td><td>"without app" = high intent, matches SyncClip</td><td><span class="pill high">High intent</span></td></tr>
+          <tr><td>clipboard sync android windows free</td><td>OS-specific, free tool seekers</td><td><span class="pill low">Long-tail</span></td></tr>
+          <tr><td>online clipboard share text</td><td>Simple, widely searched India</td><td><span class="pill med">India</span></td></tr>
+          <tr><td>copy paste between phone and laptop india</td><td>India-specific phrasing</td><td><span class="pill med">India</span></td></tr>
+          <tr><td>best free clipboard sync tool 2025</td><td>Comparison searches, new-domain friendly</td><td><span class="pill low">Long-tail</span></td></tr>
+          <tr><td>universal clipboard online no signup</td><td>"no signup" triggers = your UVP</td><td><span class="pill high">High intent</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="competitor" class="tab-content">
+      <table class="kw-table">
+        <thead><tr><th>Keyword</th><th>Opportunity</th><th>Page to create</th></tr></thead>
+        <tbody>
+          <tr><td>pushbullet alternative free</td><td>Pushbullet is degrading + paywalled — active Reddit demand found</td><td>/pushbullet-alternative</td></tr>
+          <tr><td>kde connect alternative browser</td><td>KDE Connect needs app install — SyncClip needs zero</td><td>/kde-connect-alternative</td></tr>
+          <tr><td>clipt alternative</td><td>Clipt requires Google account</td><td>/pushbullet-alternative</td></tr>
+          <tr><td>join app alternative clipboard</td><td>Join is paid, complex setup</td><td>/pushbullet-alternative</td></tr>
+          <tr><td>pastebin alternative realtime</td><td>Pastebin users who want live sync</td><td>Landing page mention</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Section: SEO Pages -->
+  <div class="section">
+    <div class="section-header">
+      <span class="phase-badge ph1">Phase 1 — SEO</span>
+      <div>
+        <div class="section-title">Content Pages to Create</div>
+        <div class="section-sub">Static pages that rank passively over time — your long-game traffic engine</div>
+      </div>
+    </div>
+    <div class="page-list">
+      <div class="page-card">
+        <div class="page-url">/sync-clipboard</div>
+        <div class="page-kw">Target: "clipboard sync between devices"</div>
+        <div class="page-priority">Week 1 — highest priority</div>
+      </div>
+      <div class="page-card">
+        <div class="page-url">/copy-text-phone-to-pc</div>
+        <div class="page-kw">Target: "copy text from phone to PC"</div>
+        <div class="page-priority">Week 1 — high traffic potential</div>
+      </div>
+      <div class="page-card">
+        <div class="page-url">/pushbullet-alternative</div>
+        <div class="page-kw">Target: "pushbullet alternative free 2025"</div>
+        <div class="page-priority">Week 2 — competitor traffic</div>
+      </div>
+      <div class="page-card">
+        <div class="page-url">/clipboard-sync-guide</div>
+        <div class="page-kw">Target: AI citation (GEO) + general guide</div>
+        <div class="page-priority">Week 2 — AI search visibility</div>
+      </div>
+      <div class="page-card">
+        <div class="page-url">/online-clipboard</div>
+        <div class="page-kw">Target: "online clipboard share text"</div>
+        <div class="page-priority">Week 3 — India market</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Pre-Launch Checklist -->
+  <div class="section">
+    <div class="section-header">
+      <span class="phase-badge ph0">Pre-Launch</span>
+      <div>
+        <div class="section-title">Technical Readiness Checklist</div>
+        <div class="section-sub">Must be 100% done before any public announcement</div>
+      </div>
+    </div>
+    <ul class="checklist" id="checklist">
+      <li><div class="check" onclick="toggleCheck(this)"></div><span>syncclip.in resolves with SSL on Vercel (not just dev)</span></li>
+      <li><div class="check" onclick="toggleCheck(this)"></div><span>Convex prod deployed via npx convex deploy</span></li>
+      <li><div class="check" onclick="toggleCheck(this)"></div><span>End-to-end smoke test: session create → sync → burn on mobile + desktop</span></li>
+      <li><div class="check" onclick="toggleCheck(this)"></div><span>PageSpeed score &gt; 85 on mobile (syncclip.in home)</span></li>
+      <li><div class="check" onclick="toggleCheck(this)"></div><span>Google Search Console verified via DNS + sitemap submitted</span></li>
+      <li><div class="check" onclick="toggleCheck(this)"></div><span>Bing Webmaster Tools verified + sitemap submitted</span></li>
+      <li><div class="check" onclick="toggleCheck(this)"></div><span>OG image renders correctly when link shared on WhatsApp/Twitter</span></li>
+      <li><div class="check" onclick="toggleCheck(this)"></div><span>404 page works, /about and /support pages live</span></li>
+      <li><div class="check" onclick="toggleCheck(this)"></div><span>Demo GIF recorded (2 devices syncing in real-time, &lt;30s)</span></li>
+      <li><div class="check" onclick="toggleCheck(this)"></div><span>Product Hunt assets ready: tagline, description, 3 screenshots</span></li>
+    </ul>
+  </div>
+
+  <!-- Section: Launch Sequence -->
+  <div class="section">
+    <div class="section-header">
+      <span class="phase-badge ph2">Phase 2 — Launch Day</span>
+      <div>
+        <div class="section-title">Launch Sequence</div>
+        <div class="section-sub">Order matters — do not post everywhere at once</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="titem">
+        <div class="tdot">D1</div>
+        <div>
+          <div class="tday">Launch day — Tuesday or Wednesday (peak traffic)</div>
+          <div class="ttext">Post on Product Hunt first thing morning IST. Then within 2 hours post "Show HN" on Hacker News. Both audiences are active early morning US time (evening IST).</div>
+          <span class="ttag">Product Hunt + Hacker News</span>
+        </div>
+      </div>
+      <div class="titem">
+        <div class="tdot">D2</div>
+        <div>
+          <div class="tday">Day 2 — Reddit posts</div>
+          <div class="ttext">Post in r/webdev ("I built this"), r/selfhosted, and r/India (tech angle). Different framing per subreddit — technical for webdev, practical for India. Don't cross-post the same text.</div>
+          <span class="ttag">Reddit — 3 subreddits</span>
+        </div>
+      </div>
+      <div class="titem">
+        <div class="tdot">D3</div>
+        <div>
+          <div class="tday">Day 3 — Dev community write-up</div>
+          <div class="ttext">Publish "How I built SyncClip with Next.js + Convex" on Dev.to and Hashnode. This gets indexed within days and drives developer traffic long-term. Link back to syncclip.in.</div>
+          <span class="ttag">Dev.to + Hashnode</span>
+        </div>
+      </div>
+      <div class="titem">
+        <div class="tdot">D5</div>
+        <div>
+          <div class="tday">Day 5 — Indian developer communities</div>
+          <div class="ttext">Post on Peerlist (strong Indian dev presence), GUVI community, and any college WhatsApp/Telegram dev groups. The .in domain helps signal India relevance.</div>
+          <span class="ttag">Peerlist + Indian devs</span>
+        </div>
+      </div>
+      <div class="titem">
+        <div class="tdot">W2</div>
+        <div>
+          <div class="tday">Week 2 — Directory submissions</div>
+          <div class="ttext">Submit to AlternativeTo (as Pushbullet alternative), Uneed, Fazier, there.is, and Lobste.rs. These give backlinks and passive discovery — compound over months.</div>
+          <span class="ttag">5+ directories = 5+ backlinks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Directory Submissions -->
+  <div class="section">
+    <div class="section-header">
+      <span class="phase-badge ph3">Phase 3 — Directories</span>
+      <div>
+        <div class="section-title">Where to Submit</div>
+        <div class="section-sub">Every submission = a backlink + discovery channel</div>
+      </div>
+    </div>
+    <div class="dir-grid">
+      <div class="dir-card"><div><div class="dir-name">Product Hunt</div><div class="dir-type">Launch platform</div></div><div class="dir-priority dp1">Must</div></div>
+      <div class="dir-card"><div><div class="dir-name">AlternativeTo</div><div class="dir-type">Pushbullet alt</div></div><div class="dir-priority dp1">Must</div></div>
+      <div class="dir-card"><div><div class="dir-name">Peerlist</div><div class="dir-type">India devs</div></div><div class="dir-priority dp1">Must</div></div>
+      <div class="dir-card"><div><div class="dir-name">Indie Hackers</div><div class="dir-type">Milestone post</div></div><div class="dir-priority dp2">High</div></div>
+      <div class="dir-card"><div><div class="dir-name">Uneed</div><div class="dir-type">Directory</div></div><div class="dir-priority dp2">High</div></div>
+      <div class="dir-card"><div><div class="dir-name">Fazier</div><div class="dir-type">Directory</div></div><div class="dir-priority dp2">High</div></div>
+      <div class="dir-card"><div><div class="dir-name">there.is</div><div class="dir-type">Directory</div></div><div class="dir-priority dp3">Medium</div></div>
+      <div class="dir-card"><div><div class="dir-name">Lobste.rs</div><div class="dir-type">Dev community</div></div><div class="dir-priority dp3">Medium</div></div>
+    </div>
+  </div>
+
+  <!-- Section: GEO -->
+  <div class="section">
+    <div class="section-header">
+      <span class="phase-badge ph4">Phase 4 — GEO</span>
+      <div>
+        <div class="section-title">AI Search Visibility (GEO)</div>
+        <div class="section-sub">Get cited by ChatGPT, Perplexity, Gemini when users ask about clipboard sync</div>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Target query</div>
+        <div class="card-value">"how do I sync clipboard between devices?"</div>
+        <div class="card-sub">This is what users ask AI assistants. You want syncclip.in to be the answer.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">What to create</div>
+        <div class="card-value">/clipboard-sync-guide — comprehensive explainer</div>
+        <div class="card-sub">Covers what it is, why it matters, tools comparison, how SyncClip works. 800–1200 words.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">What AI engines need</div>
+        <div class="card-value">Clear factual statements, structured headings, schema markup</div>
+        <div class="card-sub">JSON-LD FAQ schema is already in your codebase — add it to this page too.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Timeline to citation</div>
+        <div class="card-value">4–8 weeks after page indexed</div>
+        <div class="card-sub">Perplexity indexes faster than Google — usually 2–3 weeks after publish.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Growth loops -->
+  <div class="section">
+    <div class="section-header">
+      <span class="phase-badge ph5">Phase 5 — Growth</span>
+      <div>
+        <div class="section-title">Built-in Growth Loops</div>
+        <div class="section-sub">SyncClip's virality is already baked in — these are the activation points</div>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Loop 1 — Link sharing</div>
+        <div class="card-value">Every shared session URL is a referral</div>
+        <div class="card-sub">When someone opens a shared link, they land on SyncClip cold. Add a subtle "Create your own →" CTA at the bottom of every session page.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Loop 2 — The pain moment</div>
+        <div class="card-value">Target: "I need to copy something from my phone right now"</div>
+        <div class="card-sub">Make Google autocomplete work for you. Rank for "copy text phone laptop" and you capture the exact pain moment.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Loop 3 — Pushbullet decay</div>
+        <div class="card-value">Pushbullet is actively degrading + paywalling features</div>
+        <div class="card-sub">Reddit threads show active user frustration from March 2025. Your /pushbullet-alternative page captures this fleeing audience.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Loop 4 — India student market</div>
+        <div class="card-value">Students copy notes between phone + laptop constantly</div>
+        <div class="card-sub">India has massive Android + Windows multi-device usage. .in domain builds trust. Target college coding communities on WhatsApp/Telegram.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+function toggleCheck(el) {
+  el.classList.toggle('done');
+}
+</script>

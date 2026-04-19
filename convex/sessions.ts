@@ -1,8 +1,10 @@
-import { mutation, query } from "./_generated/server";
+import { mutation, query, internalMutation } from "./_generated/server";
 import { v } from "convex/values";
 
 function generateCode() {
-  return Math.random().toString(36).slice(2, 8).toUpperCase();
+  const array = new Uint32Array(1);
+  crypto.getRandomValues(array);
+  return array[0].toString(36).toUpperCase().slice(0, 6).padStart(6, '0');
 }
 
 export const createSession = mutation({
@@ -170,6 +172,15 @@ export const cleanupSessions = mutation({
       // Delete session
       await ctx.db.delete(session._id);
     }
+
+    // Log the cleanup activity
+    await ctx.db.insert("logs", {
+      type: "session_cleanup",
+      count: oldSessions.length,
+      timestamp: Date.now(),
+      status: "success",
+    });
+
     return oldSessions.length;
   },
 });
@@ -214,26 +225,52 @@ export const updatePresence = mutation({
         updatedAt: Date.now(),
       });
     }
+  },
+});
 
-    // Cleanup old presence (older than 1 minute)
+export const cleanupOldPresence = internalMutation({
+  args: {},
+  handler: async (ctx) => {
     const old = await ctx.db
       .query("presence")
-      .filter((q) => q.lt(q.field("updatedAt"), Date.now() - 60000))
+      .withIndex("by_updatedAt", (q) => q.lt("updatedAt", Date.now() - 60000))
       .collect();
     for (const p of old) {
       await ctx.db.delete(p._id);
+    }
+
+    // Log the cleanup activity
+    if (old.length > 0) {
+      await ctx.db.insert("logs", {
+        type: "presence_cleanup",
+        count: old.length,
+        timestamp: Date.now(),
+        status: "success",
+      });
     }
   },
 });
 
 export const getPresence = query({
-  args: { sessionId: v.id("sessions") },
+  args: { 
+    sessionId: v.id("sessions"),
+    nodeId: v.optional(v.string()) 
+  },
   handler: async (ctx, args) => {
-    return await ctx.db
+    const presenceList = await ctx.db
       .query("presence")
       .withIndex("by_session", (q) => q.eq("sessionId", args.sessionId))
       .filter((q) => q.gt(q.field("updatedAt"), Date.now() - 30000)) // 30 sec timeout
       .collect();
+    
+    // Privacy sanitize: never leak nodeId to nodes other than the owner
+    return presenceList.map(p => ({
+      _id: p._id,
+      name: p.name,
+      updatedAt: p.updatedAt,
+      sessionId: p.sessionId,
+      isMe: p.nodeId === args.nodeId
+    }));
   },
 });
 
