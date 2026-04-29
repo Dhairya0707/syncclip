@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Online Clipboard — Copy and Paste Across Devices",
-  description: "The best free online clipboard to share text between your phone and laptop instantly in 2026. No signup, no login, and secure real-time syncing. Perfect for developers and students in India.",
+  title: "Online Clipboard — Copy and Paste Across Devices Free",
+  description: "The best free online clipboard to share text between your phone and laptop instantly. No signup, no login, no app download. Secure real-time clipboard sync for Android, iOS, Windows, Mac. Perfect clipboard sharing tool for developers and students.",
+  keywords: ["online clipboard", "clipboard online", "share clipboard online", "online clipboard free", "clipboard sharing tool", "copy paste online", "text sharing between devices"],
   alternates: {
     canonical: "https://syncclip.in/online-clipboard",
   },

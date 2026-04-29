@@ -35,6 +35,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/clipboard`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
       url: `${baseUrl}/sync-clipboard-between-devices`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
@@ -56,7 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/online-clipboard`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.7,
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/blog/how-to-sync-clipboard-between-devices`,
@@ -72,6 +78,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/blog/best-online-clipboard-tools-2026`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/blog/is-online-clipboard-secure`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,

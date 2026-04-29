@@ -6,25 +6,26 @@ import ConvexClientProvider from "./ConvexClientProvider";
 export const metadata: Metadata = {
   metadataBase: new URL('https://syncclip.in'),
   title: {
-    default: "Online Clipboard — Sync Clipboard Between Devices | SyncClip",
-    template: "%s | SyncClip"
+    default: "Online Clipboard — Copy Paste Between Devices Free | SyncClip",
+    template: "%s | SyncClip — Online Clipboard"
   },
-  description: "Use SyncClip as an online clipboard to instantly copy and paste text between devices. No login, no tracking, just fast clipboard sharing.",
+  description: "Free online clipboard to copy and paste text between devices instantly. Sync clipboard between phone, laptop, and tablet with no login, no app install, and no tracking. The fastest clipboard sharing tool.",
+  keywords: ["online clipboard", "clipboard online", "copy paste between devices", "sync clipboard between devices", "share clipboard online", "clipboard sharing tool", "cross device clipboard", "paste text between devices", "copy text from phone to computer", "free clipboard sync", "clipboard sync android windows", "universal clipboard online no signup", "pushbullet alternative free"],
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",
   },
   openGraph: {
-    title: "SyncClip | Universal Clipboard",
-    description: "Instantly sync text and code between your phone, tablet, and desktop without logging in.",
+    title: "Online Clipboard — Copy Paste Between Devices Free",
+    description: "Free online clipboard to sync text between phone and PC instantly. No login, no app install. Works on Android, iOS, Windows, Mac, and Linux.",
     url: "https://syncclip.in",
-    siteName: "SyncClip",
+    siteName: "SyncClip — Online Clipboard",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "SyncClip Workflow Mockup",
+        alt: "Online Clipboard — Copy Paste Between Devices",
       },
     ],
     locale: "en_US",
@@ -32,8 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SyncClip | Universal Clipboard",
-    description: "Instantly sync text and code between your phone, tablet, and desktop without logging in.",
+    title: "Online Clipboard — Copy Paste Between Devices Free",
+    description: "Free online clipboard to sync text between phone and PC instantly. No login, no app install.",
     images: ["/og-image.png"],
   },
   alternates: {

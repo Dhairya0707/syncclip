@@ -37,7 +37,7 @@ export default function Blog1() {
 
             <h2 className="font-headline font-black text-2xl uppercase mt-10">2. Free Online Clipboard Tools</h2>
             <p>
-              For cross-platform compatibility, an <strong>online clipboard</strong> like <strong>SyncClip</strong> is the most efficient choice. By using a web-native protocol, you can bridge any OS without installing background apps that drain battery life.
+              For cross-platform compatibility, an <Link href="/clipboard" className="text-secondary underline font-bold">online clipboard</Link> like <strong>SyncClip</strong> is the most efficient choice. By using a web-native protocol, you can bridge any OS without installing background apps that drain battery life.
             </p>
 
             <h2 className="font-headline font-black text-2xl uppercase mt-10">3. The 30-Second Solution</h2>

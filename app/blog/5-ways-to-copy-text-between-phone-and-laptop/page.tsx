@@ -33,7 +33,7 @@ export default function Blog2() {
             <section>
               <h2 className="font-headline font-black text-2xl uppercase mb-4">1. SyncClip (The Fastest Web Method)</h2>
               <p>
-                The most efficient "no-app" method. Open <Link href="/" className="text-secondary underline">SyncClip</Link> on both browsers. No login, no account. It uses WebSockets to bridge the two devices in milliseconds.
+                The most efficient "no-app" method. Open <Link href="/clipboard" className="text-secondary underline font-bold">SyncClip</Link> on both browsers. No login, no account. It uses WebSockets to bridge the two devices in milliseconds.
               </p>
             </section>
 

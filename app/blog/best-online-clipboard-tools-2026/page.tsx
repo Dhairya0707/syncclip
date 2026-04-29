@@ -45,7 +45,7 @@ export default function Blog3() {
             <div className="space-y-8">
               <h2 className="font-headline font-black text-3xl uppercase border-b-2 border-black pb-4">2. SyncClip (The Modern Web Choice)</h2>
               <p>
-                <strong>SyncClip</strong> is built for speed and privacy. It is a browser-native <strong>online clipboard</strong> that uses real-time WebSockets to sync text instantly without accounts or logins.
+                <strong>SyncClip</strong> is built for speed and privacy. It is a browser-native <Link href="/clipboard" className="text-secondary underline font-bold">online clipboard</Link> that uses real-time WebSockets to sync text instantly without accounts or logins.
               </p>
               <ul className="list-none space-y-2 font-mono text-xs uppercase text-zinc-500">
                 <li className="flex gap-2 text-secondary"><span>[+]</span> No login / No app</li>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncClip – Search Engine Rankings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        secondary: '#057dbc',
+                        'on-surface-variant': '#474747',
+                        success: '#10b981',
+                    },
+                    fontFamily: {
+                        display: ['"Playfair Display"', 'serif'],
+                        ui: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        * { border-radius: 0 !important; box-sizing: border-box; }
+
+        /* Fixed canvas size: 1280 × 1600 (4:5 portrait) */
+        .canvas {
+            width: 1920px;
+            height: 1200px;
+            background: #ffffff;
+            border: 1px solid #000;
+            box-shadow: 20px 20px 0 0 #000;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Subtle dot grid */
+        .canvas::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, #ddd 1px, transparent 1px);
+            background-size: 28px 28px;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .canvas > * { position: relative; z-index: 1; }
+
+        /* Badge pill */
+        .rank-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #000;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+        }
+        .rank-badge.ok { background: #057dbc; }
+
+        .dot-pulse {
+            width: 8px; height: 8px;
+            background: #10b981;
+        }
+
+        /* Screenshot frame */
+        .se-frame {
+            border: 1px solid #000;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+        .se-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+    </style>
+</head>
+
+<!--
+  Outer page = light gray so the canvas card "floats"
+  We center the fixed-size canvas on the page.
+-->
+<body style="background:#f1f1f1; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; ;padding: 40px; font-family:'Space Grotesk',sans-serif;">
+
+<!-- ═══════════════════════════════════════════════════
+     CANVAS  1280 × 1600
+═══════════════════════════════════════════════════ -->
+<div class="canvas">
+
+    <!-- ── TOP BAR ── -->
+    <header style="border-bottom:1px solid #000; padding: 18px 32px; display:flex; justify-content:space-between; align-items:center; background:#fff;">
+
+        <!-- Left: Logo + Brand -->
+        <div style="display:flex; align-items:center; gap:16px;">
+            <img src="../public/favicon.ico" alt="SyncClip Logo" style="width:52px; height:52px; border:1px solid #000; padding:4px; background:#fff; object-fit:contain;">
+            <div>
+                <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:22px; text-transform:uppercase; letter-spacing:-0.03em; line-height:1;">SyncClip</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.2em; color:#474747; text-transform:uppercase; margin-top:2px;">Ephemeral · Real-Time Clipboard</div>
+            </div>
+        </div>
+
+        <!-- Centre: Headline -->
+        <div style="text-align:center; flex:1; padding: 0 40px;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:#474747; margin-bottom:6px;">
+                ── RANKING AUDIT // Q2 2026 ──
+            </div>
+            <h1 style="font-family:'Playfair Display',serif; font-size:40px; font-weight:700; line-height:1.05; margin:0;">
+                SyncClip <em style="color:#057dbc;">Ranked</em> on All Major Search Engines 🚀
+            </h1>
+        </div>
+
+        <!-- Right: Tagline -->
+        <div style="text-align:right; min-width:220px;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:#474747; margin-bottom:6px;">
+                Same keyword.
+            </div>
+            <div style="font-family:'Playfair Display',serif; font-size:18px; font-style:italic; line-height:1.3; color:#000;">
+                "Consistent visibility<br>across the web."
+            </div>
+            <div style="width:100%; height:2px; background:#057dbc; margin-top:8px;"></div>
+        </div>
+
+    </header>
+
+    <!-- ── SCREENSHOTS GRID (2 × 2) ── -->
+    <main style="display:grid ;grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:0; border-bottom:1px solid #000; overflow:hidden;">
+
+        <!-- 01 Google — row 1, col 1 -->
+        <div style="display:flex; height: 480px; flex-direction:column; border-right:1px solid #000; border-bottom:1px solid #000;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 20px; border-bottom:1px solid #000; background:#057dbc;">
+                <span style="font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#fff;">01 · Google</span>
+                <div style="display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; letter-spacing:0.1em; color:#fff;">
+                    <span class="dot-pulse" style="background:#fff;"></span> RANK #1
+                </div>
+            </div>
+            <div class="se-frame" style="flex:1; ">
+                <img  src="./imgs/google.png" alt="Google #1">
+            </div>
+        </div>
+
+        <!-- 02 Bing — row 1, col 2 -->
+        <div style="display:flex; height: 480px;flex-direction:column; border-bottom:1px solid #000;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 20px; border-bottom:1px solid #000; background:#057dbc;">
+                <span style="font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#fff;">02 · Bing</span>
+                <div style="display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; letter-spacing:0.1em; color:#fff;">
+                    <span class="dot-pulse" style="background:#fff;"></span> RANK #1
+                </div>
+            </div>
+            <div class="se-frame" style="flex:1;">
+                <img src="./imgs/bing.png" alt="Bing #1">
+            </div>
+        </div>
+
+        <!-- 03 DuckDuckGo — row 2, col 1 -->
+        <div style="display:flex; height: 480px; flex-direction:column; border-right:1px solid #000;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 20px; border-bottom:1px solid #000; background:#057dbc;">
+                <span style="font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#fff;">03 · DuckDuckGo</span>
+                <div style="display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; letter-spacing:0.1em; color:#fff;">
+                    <span class="dot-pulse" style="background:#fff;"></span> TOP 3
+                </div>
+            </div>
+            <div class="se-frame" style="flex:1;">
+                <img src="./imgs/ddg.png" alt="DuckDuckGo #1">
+            </div>
+        </div>
+
+        <!-- 04 Yahoo — row 2, col 2 -->
+        <div style="display:flex; height: 480px; flex-direction:column;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 20px; border-bottom:1px solid #000; background:#057dbc;">
+                <span style="font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#fff;">04 · Yahoo</span>
+                <div style="display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:16px; font-weight:700; letter-spacing:0.1em; color:#fff;">
+                    <span class="dot-pulse" style="background:#fff;"></span> TOP 3
+                </div>
+            </div>
+            <div class="se-frame" style="flex:1;">
+                <img src="./imgs/yh.png" alt="Yahoo #2">
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ── BOTTOM BAR ── -->
+    <footer style="padding: 14px 32px; display:flex; justify-content:space-between; align-items:center; background:#fff; gap:16px;">
+
+        <!-- Stat chips -->
+        <div style="display:flex; gap:8px; flex-shrink:0;">
+            <div style="background:#057dbc; color:#fff; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:8px 16px; display:flex; align-items:center; gap:8px;">
+                <span class="dot-pulse" style="background:#fff;"></span> Google #1
+            </div>
+            <div style="background:#057dbc; color:#fff; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:8px 16px; display:flex; align-items:center; gap:8px;">
+                <span class="dot-pulse" style="background:#fff;"></span> Bing #1
+            </div>
+            <div style="background:#057dbc; color:#fff; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:8px 16px; display:flex; align-items:center; gap:8px;">
+                <span class="dot-pulse" style="background:#fff;"></span> DDG TOP 3
+            </div>
+            <div style="background:#057dbc; color:#fff; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:8px 16px; display:flex; align-items:center; gap:8px;">
+                <span class="dot-pulse" style="background:#fff;"></span> Yahoo TOP 3
+            </div>
+        </div>
+
+        <!-- Centre note -->
+        <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:#474747; text-align:center; flex:1;">
+            Searched "syncclip" · Captured Wed 29 Apr 2025, 11:45 AM
+        </div>
+
+        <!-- URL -->
+        <div style="text-align:right; flex-shrink:0;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:#474747; margin-bottom:2px;">Production</div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; letter-spacing:-0.02em; border-bottom:2px solid #057dbc; padding-bottom:1px;">WWW.SYNCCLIP.IN</div>
+        </div>
+
+    </footer>
+
+</div>
+<!-- /canvas -->
+
+</body>
+</html>

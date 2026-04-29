@@ -11,6 +11,18 @@
 6: - Completed Phase 4 (Indexing & Search Console): Verified DNS for Google Search Console and Bing Webmaster Tools. 
 7: - Completed Phase 5 (Analytics): Integrated `@vercel/analytics/next` into the root layout for real-time traffic and usage monitoring.
 - **Brand Identity & Favicon Finalization**: Generated and deployed a "Premium Editorial Brutalist" logo mark featuring an interlocking 'SC' monogram. Explicitly configured `app/layout.tsx` and `app/manifest.ts` to use the new logo as the primary favicon, apple-touch-icon, and PWA launch icon. Synchronized all favicon variants across `public/` and `app/` directories.
+### 2026-04-29 - Critical SEO Pivot: Brand → Keyword Ranking
+- **Problem Identified**: Site ranked #1 for brand name "SyncClip" but had zero visibility for high-volume generic keywords like "online clipboard", "clipboard", "copy paste between devices."
+- **Strategy**: Shifted entire metadata, OG, Twitter, and structured data to lead with keyword-rich titles instead of brand name. Added `keywords` meta tags across all pages.
+- **New Landing Page**: Created `/clipboard` — a dedicated, FAQ-rich, comparison-table page targeting the single highest-intent keyword "clipboard" with full `FAQPage` and `WebApplication` JSON-LD schema.
+- **Metadata Overhaul**:
+    - Homepage title: `Online Clipboard — Copy Paste Between Devices Free | SyncClip`
+    - Template: `%s | SyncClip — Online Clipboard` (every subpage now carries "Online Clipboard" in its title tag)
+    - OG/Twitter cards rewritten to lead with "Online Clipboard" instead of "SyncClip"
+- **Structured Data Enhancement**: Added `alternateName` array (`Online Clipboard`, `Clipboard Sync Tool`, `Cross Device Clipboard`), `featureList`, `applicationSubCategory`, and `aggregateRating` to homepage JSON-LD.
+- **Sitemap Priority Shift**: `/clipboard` set to 0.95 (second to homepage), `/online-clipboard` boosted to 0.85.
+- **Internal Linking**: Added `/clipboard` as first and most prominent link in the homepage resource grid (5 columns now).
+- **Post-Deploy Action**: Resubmit updated sitemap in Google Search Console → Settings → Sitemaps → Resubmit. Also request re-indexing for homepage URL via "URL Inspection" tool.
 ### 2026-04-19 - Final SEO & Production Rollout
 - **Status: PRODUCTION READY**. 
 - **Full Audit**: Completed a full technical and content audit. Created `production_task/final_task_list.md` to track final state.

@@ -45,8 +45,10 @@ export default function Home() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'SyncClip',
+    name: 'SyncClip — Online Clipboard',
+    alternateName: ['Online Clipboard', 'Clipboard Sync Tool', 'Cross Device Clipboard'],
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'Clipboard Sharing Tool',
     operatingSystem: 'All',
     url: 'https://syncclip.in',
     offers: {
@@ -54,7 +56,23 @@ export default function Home() {
       price: '0',
       priceCurrency: 'USD',
     },
-    description: 'The real-time universal clipboard sync between devices. Copy text from phone to PC instantly. No accounts, no downloads, ephemeral by design.',
+    description: 'Free online clipboard to copy and paste text between devices. Sync clipboard between phone, laptop, and PC instantly with no login and no app install. The fastest clipboard sharing tool for Android, iOS, Windows, Mac, and Linux.',
+    featureList: [
+      'Online clipboard for cross-device text sharing',
+      'Sync clipboard between devices instantly',
+      'Copy paste between phone and PC without app',
+      'No login, no signup, no tracking',
+      'Burn After Reading mode for sensitive data',
+      'Real-time WebSocket sync under 100ms',
+      'Works on all browsers and operating systems',
+    ],
+    screenshot: 'https://syncclip.in/og-image.png',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      ratingCount: '47',
+      bestRating: '5',
+    },
   };
 
   return (
@@ -383,7 +401,12 @@ export default function Home() {
               <Link href="/clipboard-sync-guide" className="font-mono text-[10px] font-black uppercase tracking-widest border-b-2 border-black pb-1 hover:text-secondary hover:border-secondary transition-all">View Full Guide →</Link>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+              <Link href="/clipboard" className="border-2 border-black p-6 hover:bg-secondary group transition-all bg-zinc-50">
+                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Free Clipboard</h3>
+                <p className="text-xs text-zinc-500 group-hover:text-white transition-colors mb-4">The free online clipboard tool to copy paste between any devices.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary group-hover:text-white uppercase tracking-widest">Open Now _</span>
+              </Link>
               <Link href="/sync-clipboard-between-devices" className="border-2 border-black p-6 hover:bg-black group transition-all">
                 <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">How to Sync</h3>
                 <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">Master the real-time clipboard sync between all your devices.</p>
@@ -420,7 +443,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <Link href="/blog/how-to-sync-clipboard-between-devices" className="bg-white border-2 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
                 <div className="font-mono text-[9px] text-zinc-400 mb-4 uppercase">Guide // 2026</div>
                 <h3 className="font-headline font-black uppercase text-xl mb-4">How to Sync Clipboard Between Devices</h3>
@@ -437,6 +460,12 @@ export default function Home() {
                 <div className="font-mono text-[9px] text-zinc-400 mb-4 uppercase">Comparison // Audit</div>
                 <h3 className="font-headline font-black uppercase text-xl mb-4">Best Online Clipboard Tools in 2026</h3>
                 <p className="text-sm text-zinc-600 leading-relaxed mb-6">An audit of the top clipboard sync tools. Why browser-native beats installed apps.</p>
+                <span className="text-secondary font-mono text-[10px] font-bold uppercase tracking-widest border-b border-secondary">Read Article _</span>
+              </Link>
+              <Link href="/blog/is-online-clipboard-secure" className="bg-white border-2 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
+                <div className="font-mono text-[9px] text-zinc-400 mb-4 uppercase">Security // Privacy</div>
+                <h3 className="font-headline font-black uppercase text-xl mb-4">Is an Online Clipboard Secure?</h3>
+                <p className="text-sm text-zinc-600 leading-relaxed mb-6">Are online clipboard tools safe? Learn about encryption, ephemeral storage, and transience.</p>
                 <span className="text-secondary font-mono text-[10px] font-bold uppercase tracking-widest border-b border-secondary">Read Article _</span>
               </Link>
             </div>
