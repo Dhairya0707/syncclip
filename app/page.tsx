@@ -441,9 +441,10 @@ export default function Home() {
                 <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">LATEST_FROM_THE_BLOG</div>
                 <h2 className="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter">Productivity Hub</h2>
               </div>
+              <Link href="/blog" className="font-mono text-[10px] font-black uppercase tracking-widest border-b-2 border-black pb-1 hover:text-secondary hover:border-secondary transition-all">View All Articles →</Link>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
               <Link href="/blog/how-to-sync-clipboard-between-devices" className="bg-white border-2 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
                 <div className="font-mono text-[9px] text-zinc-400 mb-4 uppercase">Guide // 2026</div>
                 <h3 className="font-headline font-black uppercase text-xl mb-4">How to Sync Clipboard Between Devices</h3>
@@ -460,12 +461,6 @@ export default function Home() {
                 <div className="font-mono text-[9px] text-zinc-400 mb-4 uppercase">Comparison // Audit</div>
                 <h3 className="font-headline font-black uppercase text-xl mb-4">Best Online Clipboard Tools in 2026</h3>
                 <p className="text-sm text-zinc-600 leading-relaxed mb-6">An audit of the top clipboard sync tools. Why browser-native beats installed apps.</p>
-                <span className="text-secondary font-mono text-[10px] font-bold uppercase tracking-widest border-b border-secondary">Read Article _</span>
-              </Link>
-              <Link href="/blog/is-online-clipboard-secure" className="bg-white border-2 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
-                <div className="font-mono text-[9px] text-zinc-400 mb-4 uppercase">Security // Privacy</div>
-                <h3 className="font-headline font-black uppercase text-xl mb-4">Is an Online Clipboard Secure?</h3>
-                <p className="text-sm text-zinc-600 leading-relaxed mb-6">Are online clipboard tools safe? Learn about encryption, ephemeral storage, and transience.</p>
                 <span className="text-secondary font-mono text-[10px] font-bold uppercase tracking-widest border-b border-secondary">Read Article _</span>
               </Link>
             </div>
