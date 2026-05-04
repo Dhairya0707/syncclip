@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SyncClip — LinkedIn Company Banner · 1128×191</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,700;6..72,800&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * { box-sizing: border-box; border-radius: 0 !important; margin: 0; padding: 0; }
+
+    body {
+      background: #b8b8b8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* ═══ CANVAS: 1128 × 191 ═══ */
+    .banner {
+      width: 1128px;
+      height: 191px;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* ── DEAD ZONE (left) ──
+       LinkedIn profile pic covers bottom-left ~100px.
+       This column is intentionally minimal. */
+    .dead-zone {
+      width: 180px;
+      flex-shrink: 0;
+      border-right: 2px solid #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 20px 18px;
+    }
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #057DBC;
+    }
+    .live-dot {
+      width: 5px;
+      height: 5px;
+      background: #057DBC;
+    }
+
+    /* ── HEADLINE ZONE (center + right fills remaining space) ── */
+    .main-zone {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 0 56px;
+      gap: 0;
+    }
+
+    /* Left half of main: headline block */
+    .headline-block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+    .kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #057DBC;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kicker::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: #057DBC;
+      flex-shrink: 0;
+    }
+    .headline {
+      font-family: 'Newsreader', serif;
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      color: #000;
+    }
+    .headline-accent { color: #057DBC; }
+
+    /* Divider between headline and right text */
+    .v-divider {
+      width: 2px;
+      height: 100px;
+      background: #000;
+      flex-shrink: 0;
+      margin: 0 52px;
+      align-self: center;
+    }
+
+    /* Right half of main: secondary statement */
+    .right-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      min-width: 220px;
+    }
+    .right-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999;
+    }
+    .right-statement {
+      font-family: 'Newsreader', serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: #000;
+    }
+    .right-url {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #057DBC;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ LinkedIn Company Banner — 1128 × 191 ═══ -->
+  <div class="banner">
+
+    <!-- Dead zone: LinkedIn profile pic overlaps here -->
+    <div class="dead-zone">
+      <div class="live-badge">
+        <span class="live-dot"></span>
+        Live
+      </div>
+    </div>
+
+    <!-- Main content area -->
+    <div class="main-zone">
+
+      <!-- Left: Big headline -->
+      <div class="headline-block">
+        <div class="kicker">The Clipboard, Reinvented.</div>
+        <div class="headline">
+          Copy Here.<br><span class="headline-accent">Paste Anywhere.</span>
+        </div>
+      </div>
+
+      <!-- Vertical divider -->
+      <div class="v-divider"></div>
+
+      <!-- Right: Secondary statement -->
+      <div class="right-block">
+        <div class="right-label">No Login. No App. No Fuss.</div>
+        <div class="right-statement">
+          Real-time sync.<br>Every device.
+        </div>
+        <div class="right-url">syncclip.in →</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="font-family:monospace;font-size:11px;color:#555;text-align:center;">
+    1128 × 191 · LinkedIn Company Banner · Profile pic safe zone = left column
+  </div>
+
+</body>
+</html>

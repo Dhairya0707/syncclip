@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SyncClip — LinkedIn Banner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,700;6..72,800&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * { box-sizing: border-box; border-radius: 0 !important; }
+    body {
+      background: #d4d4d4;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .banner {
+      width: 1584px;
+      height: 396px;
+      background: #fff;
+      border: 2px solid #000;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .body-row {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* ── LEFT COLUMN ── */
+    .col-left {
+      width: 268px;
+      flex-shrink: 0;
+      border-right: 2px solid #000;
+      display: flex;
+      flex-direction: column;
+      padding: 28px 28px 24px;
+    }
+    .logo-wrap {
+      width: 72px;
+      height: 72px;
+      border: 2px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+      padding: 6px;
+    }
+    .logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
+    .brand-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #000;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .brand-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      color: #474747;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+    .divider-h { width: 100%; height: 1px; background: #000; margin: 18px 0; }
+    .tagline-block {
+      margin-top: auto;
+      border-top: 1px solid #000;
+      padding-top: 14px;
+    }
+    .tagline-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      color: #474747;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .tagline-text {
+      font-family: 'Newsreader', serif;
+      font-size: 13.5px;
+      font-style: italic;
+      color: #000;
+      line-height: 1.35;
+    }
+
+    /* ── CENTER COLUMN ── */
+    .col-center {
+      flex: 1;
+      padding: 32px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 2px solid #000;
+    }
+    .kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: #057DBC;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .kicker-line {
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: #057DBC;
+      flex-shrink: 0;
+    }
+    .headline {
+      font-family: 'Newsreader', serif;
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      color: #000;
+      margin-bottom: 18px;
+    }
+    .headline span { color: #057DBC; }
+    .support-line {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #474747;
+      line-height: 1.5;
+      max-width: 420px;
+      margin-bottom: 22px;
+    }
+    .url-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .url-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #057DBC;
+      text-transform: uppercase;
+      border-bottom: 2px solid #057DBC;
+      padding-bottom: 1px;
+    }
+    .url-sep {
+      width: 32px;
+      height: 1px;
+      background: #000;
+    }
+    .url-note {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: #474747;
+      text-transform: uppercase;
+    }
+
+    /* ── RIGHT COLUMN ── */
+    .col-right {
+      width: 370px;
+      flex-shrink: 0;
+      background: #09090B;
+      display: flex;
+      flex-direction: column;
+    }
+    .right-header {
+      background: #000;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #3F3F46;
+    }
+    .right-header-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #FAFAFA;
+      text-transform: uppercase;
+    }
+    .live-dot {
+      width: 6px; height: 6px;
+      background: #057DBC;
+      display: inline-block;
+      margin-right: 5px;
+    }
+    .right-body {
+      flex: 1;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .clip-item {
+      border: 1px solid #3F3F46;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .clip-item-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .clip-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border: 1px solid;
+    }
+    .tag-text  { color: #A1A1AA; border-color: #52525B; background: rgba(82,82,91,0.15); }
+    .tag-url   { color: #60A5FA; border-color: #1D4ED8; background: rgba(29,78,216,0.12); }
+    .tag-code  { color: #4ADE80; border-color: #15803D; background: rgba(21,128,61,0.12); }
+    .clip-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      color: #52525B;
+    }
+    .clip-bar {
+      height: 6px;
+      background: #27272A;
+      position: relative;
+      overflow: hidden;
+    }
+    .clip-bar-fill { height: 100%; background: #3F3F46; }
+    .clip-text-line {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      color: #71717A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .right-footer {
+      border-top: 1px solid #3F3F46;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #18181B;
+    }
+    .right-footer-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #A1A1AA;
+      text-transform: uppercase;
+    }
+    .cursor {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #057DBC;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ── BOTTOM STRIP ── */
+    .bottom-strip {
+      height: 50px;
+      border-top: 2px solid #000;
+      display: flex;
+    }
+    .strip-item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #000;
+      gap: 8px;
+    }
+    .strip-item:last-child { border-right: none; }
+    .strip-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #000;
+    }
+    .strip-dot {
+      width: 5px; height: 5px;
+      background: #057DBC;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banner">
+    <div class="body-row">
+
+      <!-- ── LEFT: Brand Identity ── -->
+      <div class="col-left">
+        <div class="logo-wrap">
+          <img src="../app/icon.png" alt="SyncClip" />
+        </div>
+        <div class="brand-name">SyncClip</div>
+        <div class="brand-sub">Digital Clipboard<br>System</div>
+        <div class="divider-h"></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.12em;color:#474747;text-transform:uppercase;margin-bottom:6px;">No Login. No App.</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.12em;color:#057DBC;text-transform:uppercase;font-weight:700;">syncclip.in</div>
+        <div class="tagline-block">
+          <div class="tagline-label">Core Principle</div>
+          <div class="tagline-text">"Privacy isn't a feature.<br>It's the architecture."</div>
+        </div>
+      </div>
+
+      <!-- ── CENTER: Editorial Headline ── -->
+      <div class="col-center">
+        <div class="kicker">
+          <span class="kicker-line"></span>
+          Stop emailing yourself snippets.
+        </div>
+        <div class="headline">
+          Copy Here.<br><span>Paste Anywhere.</span>
+        </div>
+        <div class="support-line">
+          Real-time clipboard sync between any devices — no login, no install. Just a 6-char code and you're live in under 100ms.
+        </div>
+        <div class="url-row">
+          <span class="url-label">syncclip.in</span>
+          <span class="url-sep"></span>
+          <span class="url-note">Live now · Free forever</span>
+        </div>
+      </div>
+
+      <!-- ── RIGHT: Dark session panel ── -->
+      <div class="col-right">
+        <div class="right-header">
+          <div style="display:flex;align-items:center;">
+            <span class="live-dot"></span>
+            <span class="right-header-label">Session: AK7F2X</span>
+          </div>
+          <span class="right-header-label" style="color:#3F3F46;">2 nodes</span>
+        </div>
+        <div class="right-body">
+
+          <!-- Item: URL -->
+          <div class="clip-item">
+            <div class="clip-item-meta">
+              <span class="clip-tag tag-url">URL</span>
+              <span class="clip-time">just now</span>
+            </div>
+            <div class="clip-text-line">https://syncclip.in/join · session AK7F2X</div>
+          </div>
+
+          <!-- Item: Text snippet -->
+          <div class="clip-item">
+            <div class="clip-item-meta">
+              <span class="clip-tag tag-text">Text</span>
+              <span class="clip-time">18s ago</span>
+            </div>
+            <div class="clip-text-line">Meet @ 3pm — Figma link in notion doc</div>
+          </div>
+
+          <!-- Item: Burn mode with sensitive text -->
+          <div class="clip-item" style="border-color:#EF4444;">
+            <div class="clip-item-meta">
+              <span class="clip-tag tag-text" style="color:#EF4444;border-color:#EF4444;background:rgba(239,68,68,0.1);">Burn</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#EF4444;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;">⚡ Self-destructs on read</span>
+            </div>
+            <div class="clip-text-line" style="color:#71717A;">Password: ••••••••••••  [REDACTED]</div>
+          </div>
+
+        </div>
+        <div class="right-footer">
+          <span class="right-footer-label">Encrypted · Ephemeral · Private</span>
+          <span class="cursor">▌</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── BOTTOM STRIP: Feature bar ── -->
+    <div class="bottom-strip">
+      <div class="strip-item">
+        <span class="strip-dot"></span>
+        <span class="strip-label">No Login Required</span>
+      </div>
+      <div class="strip-item">
+        <span class="strip-dot"></span>
+        <span class="strip-label">Sub-100ms Sync</span>
+      </div>
+      <div class="strip-item">
+        <span class="strip-dot"></span>
+        <span class="strip-label">Burn After Reading</span>
+      </div>
+      <div class="strip-item">
+        <span class="strip-dot"></span>
+        <span class="strip-label">Cross-Device · Any Browser</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
