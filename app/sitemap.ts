@@ -7,8 +7,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}`,
       lastModified: new Date(),
-      changeFrequency: 'always', // Since sessions update real-time, the app itself changes frequently, though landing is static
+      changeFrequency: 'always',
       priority: 1,
+      alternates: {
+        languages: {
+          'en-US': `${baseUrl}`,
+          'en-IN': `${baseUrl}`,
+        },
+      },
     },
     {
       url: `${baseUrl}/about`,
@@ -93,6 +99,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/what-is-a-live-clipboard`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/blog/how-to-share-clipboard-online`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/blog/syncclip-vs-universal-clipboard`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
     },
     {
       url: `${baseUrl}/blog/how-to-copy-text-from-android-to-mac`,

@@ -3,19 +3,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How to Sync Your Clipboard Between Devices in 2026 | SyncClip Guide",
-  description: "The ultimate guide to cross-device clipboard syncing in 2026. Learn how to copy text from phone to PC instantly without apps or logins using SyncClip, Apple, and Pushbullet.",
+  title: "Sync Clipboard Between Any Devices — Free, No Login | SyncClip",
+  description: "Sync your clipboard instantly between Phone and PC. No app installation, no login, and 100% free. Copy text on one device and it appears on the other in <100ms. Works on Android, iOS, Windows, and Mac.",
   alternates: {
     canonical: "https://syncclip.in/clipboard-sync-guide",
   },
   openGraph: {
-    title: "How to Sync Your Clipboard Between Devices in 2026",
-    description: "No-login, zero-installation clipboard sync guide for Android, iOS, Windows, and Mac.",
+    title: "Sync Clipboard Between Any Devices — Free, No Login",
+    description: "Instant, no-login, zero-installation clipboard sync guide for Android, iOS, Windows, and Mac.",
     url: "https://syncclip.in/clipboard-sync-guide",
     type: "article",
     images: [
       {
-        url: "https://syncclip.in/og-image.png", // Assuming this exists or will be generated
+        url: "https://syncclip.in/og-image.png",
         width: 1200,
         height: 630,
         alt: "SyncClip Clipboard Sync Guide",

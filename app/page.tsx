@@ -44,35 +44,73 @@ export default function Home() {
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
-    name: 'SyncClip — Online Clipboard',
-    alternateName: ['Online Clipboard', 'Clipboard Sync Tool', 'Cross Device Clipboard'],
-    applicationCategory: 'UtilityApplication',
-    applicationSubCategory: 'Clipboard Sharing Tool',
-    operatingSystem: 'All',
-    url: 'https://syncclip.in',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
-    description: 'Free online clipboard to copy and paste text between devices. Sync clipboard between phone, laptop, and PC instantly with no login and no app install. The fastest clipboard sharing tool for Android, iOS, Windows, Mac, and Linux.',
-    featureList: [
-      'Online clipboard for cross-device text sharing',
-      'Sync clipboard between devices instantly',
-      'Copy paste between phone and PC without app',
-      'No login, no signup, no tracking',
-      'Burn After Reading mode for sensitive data',
-      'Real-time WebSocket sync under 100ms',
-      'Works on all browsers and operating systems',
-    ],
-    screenshot: 'https://syncclip.in/og-image.png',
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      ratingCount: '47',
-      bestRating: '5',
-    },
+    '@graph': [
+      {
+        '@type': 'WebApplication',
+        name: 'SyncClip — Online Clipboard',
+        alternateName: ['Online Clipboard', 'Clipboard Sync Tool', 'Cross Device Clipboard'],
+        applicationCategory: 'UtilityApplication',
+        applicationSubCategory: 'Clipboard Sharing Tool',
+        operatingSystem: 'All',
+        url: 'https://syncclip.in',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+        description: 'Free online clipboard to copy and paste text between devices. Sync clipboard between phone, laptop, and PC instantly with no login and no app install.',
+        featureList: [
+          'Online clipboard for cross-device text sharing',
+          'Sync clipboard between devices instantly',
+          'Copy paste between phone and PC without app',
+          'No login, no signup, no tracking',
+          'Burn After Reading mode for sensitive data',
+          'Real-time WebSocket sync under 100ms',
+        ],
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'SyncClip',
+        applicationCategory: 'UtilitiesApplication',
+        operatingSystem: 'All',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      }
+    ]
+  };
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': [
+      {
+        '@type': 'Question',
+        'name': 'How do I sync my clipboard between devices for free?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'The fastest free way to sync your clipboard is using SyncClip. Open syncclip.in on both devices, join the same session, and text copied on one will appear on the other instantly via WebSockets.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'Is there a clipboard sync tool that doesn\'t require login?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Yes, SyncClip is a zero-login clipboard sync tool. It uses ephemeral session codes instead of user accounts to ensure privacy and speed.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'Can I copy text from Android to PC without an app?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Yes. SyncClip works in any modern mobile and desktop browser, allowing you to move text from Android to Windows, Mac, or Linux without installing any software.'
+        }
+      }
+    ]
   };
 
   return (
@@ -80,6 +118,10 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       {/* NAV */}
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">

@@ -39,6 +39,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://syncclip.in",
+    languages: {
+      "en-US": "https://syncclip.in",
+      "en-IN": "https://syncclip.in",
+      "x-default": "https://syncclip.in",
+    },
   },
   robots: {
     index: true,

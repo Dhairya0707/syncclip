@@ -13,6 +13,24 @@ export const metadata: Metadata = {
 export default function BlogIndex() {
   const blogs = [
     {
+      title: "What is a Live Clipboard?",
+      desc: "Discover the new way to sync devices instantly without apps or cloud storage. Learn about the live clipboard protocol.",
+      slug: "what-is-a-live-clipboard",
+      tag: "Technology // 2026",
+    },
+    {
+      title: "How to Share Your Clipboard Online",
+      desc: "Stop emailing yourself. Learn how to share your clipboard instantly using real-time WebSockets.",
+      slug: "how-to-share-clipboard-online",
+      tag: "Workflow // Guide",
+    },
+    {
+      title: "SyncClip vs Universal Clipboard",
+      desc: "Bridge the gap between Android, iPhone, and PC without ecosystem walls.",
+      slug: "syncclip-vs-universal-clipboard",
+      tag: "Analysis // Ecosystem",
+    },
+    {
       title: "How to Copy Text from Android to Mac (Without Apps)",
       desc: "Learn the fastest way to move text from an Android phone to a Mac computer in 2026 without installing background apps.",
       slug: "how-to-copy-text-from-android-to-mac",
@@ -37,7 +55,7 @@ export default function BlogIndex() {
       tag: "Listicle // Workflow",
     },
     {
-      title: "Best Online Clipboard Tools in 2026",
+      title: "Online Clipboard: Best Free Sync Tools for 2026",
       desc: "An audit of the top clipboard sync tools. Why browser-native beats installed apps.",
       slug: "best-online-clipboard-tools-2026",
       tag: "Comparison // Audit",

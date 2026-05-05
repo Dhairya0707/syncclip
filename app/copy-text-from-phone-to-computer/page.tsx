@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Copy Text from Phone to Computer Instantly",
-  description: "The fastest way to copy text from your Android or iPhone to your Windows or Mac laptop instantly without installing apps or emailing yourself. Works in 3 steps.",
+  title: "How to Copy Text from Phone to Computer Instantly (No App)",
+  description: "The fastest way to copy text from your Android or iPhone to your Windows or Mac laptop instantly without installing apps or emailing yourself. Sync your clipboard in 3 seconds.",
   alternates: {
     canonical: "https://syncclip.in/copy-text-from-phone-to-computer",
   },
@@ -65,6 +65,19 @@ export default function CopyPhoneToPcPage() {
             <p className="font-body text-xl md:text-2xl leading-relaxed italic text-zinc-600 max-w-2xl mb-12">
               Stop emailing yourself snippets. Start syncing your clipboard in real-time with zero installation.
             </p>
+
+            {/* QUICK ANSWER BOX FOR AI/AEO */}
+            <div className="bg-zinc-900 text-white p-8 mb-12 border-l-8 border-secondary">
+              <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">Quick Answer</div>
+              <p className="font-body text-lg md:text-xl leading-relaxed font-bold">
+                To copy text from phone to PC instantly without an app: 
+                1. Open <Link href="/" className="text-secondary hover:underline">SyncClip</Link> on both devices. 
+                2. Join the same session code. 
+                3. Paste on your phone and the text appears on your PC in real-time. 
+                This works across Android, iOS, Windows, and Mac using only your browser.
+              </p>
+            </div>
+
             <div className="border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] bg-white p-2">
               <img 
                 src="/mockup-desktop.png" 

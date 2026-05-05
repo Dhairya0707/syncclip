@@ -19,11 +19,46 @@ export default function PushbulletAlternativePage() {
     "breadcrumb": "Home > Pushbullet Alternative"
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is there a free alternative to Pushbullet in 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, SyncClip is a 100% free alternative to Pushbullet for clipboard syncing. It requires no app installation, no login, and offers unlimited text synchronization across all platforms including Android, iOS, Windows, and Mac."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to install an app to sync my clipboard with SyncClip?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Unlike Pushbullet which requires browser extensions and mobile apps, SyncClip is web-native. You only need a modern browser to sync your clipboard instantly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is SyncClip safer than Pushbullet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip prioritizes privacy by using ephemeral sessions that are purged every 24 hours. No personal data or login information is ever collected, whereas Pushbullet requires account creation and cloud storage of your data."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* NAV */}
@@ -135,7 +170,7 @@ export default function PushbulletAlternativePage() {
             <h2 className="font-headline text-4xl md:text-7xl font-black uppercase mb-8 italic text-secondary">Stop Paying. Start Syncing_</h2>
             <p className="font-mono text-sm tracking-widest mb-10 text-zinc-500 italic uppercase">Unlimited Sync. No Account. Free Forever.</p>
             <Link href="/" className="inline-block bg-white text-black font-mono font-black py-5 px-14 hover:bg-secondary transition-colors uppercase tracking-widest text-lg shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]">
-              TRY_ THE_ ALTERNATIVE
+              SYNC NOW — NO INSTALL REQUIRED
             </Link>
           </section>
 

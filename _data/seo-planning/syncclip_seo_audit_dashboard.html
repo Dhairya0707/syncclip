@@ -1,0 +1,529 @@
+
+<h2 class="sr-only">SyncClip SEO audit dashboard showing search performance, keyword analysis, and 90-day strategy</h2>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.sec { margin-bottom: 2rem; }
+.sec-title { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .75rem; padding-bottom: .5rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.metric { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: .875rem 1rem; }
+.metric-label { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 4px; }
+.metric-value { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+.metric-sub { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+.metric-tag { font-size: 10px; padding: 2px 7px; border-radius: 3px; display: inline-block; margin-top: 4px; font-weight: 500; }
+.tag-warn { background: #FAEEDA; color: #854F0B; }
+.tag-good { background: #EAF3DE; color: #3B6D11; }
+.tag-danger { background: #FCEBEB; color: #A32D2D; }
+.tag-info { background: #E6F1FB; color: #185FA5; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
+.kw-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; }
+.kw-row:last-child { border-bottom: none; }
+.kw-name { flex: 1; color: var(--color-text-primary); }
+.kw-imp { width: 52px; text-align: right; color: var(--color-text-secondary); font-size: 12px; }
+.kw-pos { width: 42px; text-align: right; font-size: 12px; }
+.kw-ctr { width: 44px; text-align: right; font-size: 12px; }
+.kw-bar-wrap { width: 70px; height: 6px; background: var(--color-background-secondary); border-radius: 3px; overflow: hidden; }
+.kw-bar { height: 100%; border-radius: 3px; }
+.pill { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 3px; font-weight: 500; }
+.pill-opp { background: #FAEEDA; color: #854F0B; }
+.pill-brand { background: #E6F1FB; color: #185FA5; }
+.pill-zero { background: #FCEBEB; color: #A32D2D; }
+.pill-win { background: #EAF3DE; color: #3B6D11; }
+.matrix-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.matrix-table th { text-align: left; padding: 6px 8px; font-size: 11px; font-weight: 500; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); }
+.matrix-table td { padding: 7px 8px; vertical-align: top; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-primary); line-height: 1.4; }
+.matrix-table tr:last-child td { border-bottom: none; }
+.pri { font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 3px; white-space: nowrap; }
+.pri-h { background: #FCEBEB; color: #A32D2D; }
+.pri-m { background: #FAEEDA; color: #854F0B; }
+.pri-l { background: #EAF3DE; color: #3B6D11; }
+.cal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.cal-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: .75rem 1rem; font-size: 12px; }
+.cal-num { font-size: 10px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 4px; }
+.cal-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; line-height: 1.3; }
+.cal-kw { font-size: 11px; color: var(--color-text-secondary); }
+.geo-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; }
+.geo-row:last-child { border-bottom: none; }
+.geo-flag { width: 20px; font-size: 14px; }
+.geo-name { flex: 1; }
+.geo-imp { width: 50px; text-align: right; color: var(--color-text-secondary); font-size: 12px; }
+.geo-ctr { width: 50px; text-align: right; font-size: 12px; }
+.geo-pos { width: 40px; text-align: right; font-size: 12px; }
+.insight-box { background: var(--color-background-secondary); border-left: 2px solid #378ADD; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; padding: .75rem 1rem; margin-bottom: .625rem; font-size: 13px; color: var(--color-text-primary); line-height: 1.5; }
+.insight-box.warn { border-left-color: #BA7517; }
+.insight-box.good { border-left-color: #639922; }
+</style>
+
+<div style="padding: 1rem 0;">
+
+<div class="sec">
+  <div class="sec-title">Executive summary — 15 days indexed (Apr 18 – May 3, 2026)</div>
+  <div class="metric-grid">
+    <div class="metric">
+      <div class="metric-label">Total impressions</div>
+      <div class="metric-value">714</div>
+      <div class="metric-sub">GSC web search</div>
+      <span class="metric-tag tag-info">Brand-heavy</span>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Total clicks</div>
+      <div class="metric-value">31</div>
+      <div class="metric-sub">15 days post-index</div>
+      <span class="metric-tag tag-warn">4.3% avg CTR</span>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Avg. position (all)</div>
+      <div class="metric-value">8.71</div>
+      <div class="metric-sub">Homepage / GSC</div>
+      <span class="metric-tag tag-warn">Page 1 edge</span>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Non-brand CTR</div>
+      <div class="metric-value">0%</div>
+      <div class="metric-sub">43 impressions wasted</div>
+      <span class="metric-tag tag-danger">Critical gap</span>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">Key insight signals</div>
+  <div class="insight-box good">"online clipboard (sync automatically in realtime)" — 43 impressions, pos 8.8, 0 clicks. This is your biggest non-brand opportunity on Bing. Exact-match to product function. Needs a landing page with that phrase in H1.</div>
+  <div class="insight-box warn">/clipboard-sync-guide has 278 impressions but only 1 click (0.36% CTR). Ranks at pos 6.3 — strong indexation but title/meta description is not driving clicks. Rewrite title tag to question format.</div>
+  <div class="insight-box">US is #1 by impressions (190) but only 1.58% CTR vs India's 12.64%. US users are finding you but not clicking — likely a SERP snippet / title relevance mismatch for intent.</div>
+  <div class="insight-box warn">Mobile has 20.93% CTR vs desktop 4.66%. Mobile users who find you, click. Desktop users don't. Desktop snippet is underperforming — description likely not answering the query for task-oriented users.</div>
+  <div class="insight-box good">Bing keyword research shows "online clipboard" at 177K impressions, "clipboard online" at 6.7K. These are the core commercial terms — you rank nowhere near page 1 yet.</div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">Top queries — GSC analysis</div>
+  <div class="card">
+    <div class="kw-row" style="font-size:11px; font-weight:500; color:var(--color-text-secondary);">
+      <span class="kw-name">Query</span>
+      <span class="kw-imp">Impr.</span>
+      <span class="kw-pos">Pos.</span>
+      <span class="kw-ctr">CTR</span>
+      <span style="width:70px; font-size:11px; text-align:right;">Signal</span>
+    </div>
+    <div class="kw-row">
+      <span class="kw-name">syncclip <span class="pill pill-brand">brand</span></span>
+      <span class="kw-imp">47</span>
+      <span class="kw-pos" style="color:#639922;">1.3</span>
+      <span class="kw-ctr" style="color:#639922;">55%</span>
+      <span class="pill pill-win" style="width:70px; text-align:center;">Healthy</span>
+    </div>
+    <div class="kw-row">
+      <span class="kw-name">online clipboard (sync…) <span class="pill pill-opp">opportunity</span></span>
+      <span class="kw-imp">43</span>
+      <span class="kw-pos" style="color:#BA7517;">8.8</span>
+      <span class="kw-ctr" style="color:#A32D2D;">0%</span>
+      <span class="pill pill-zero" style="width:70px; text-align:center;">Fix title</span>
+    </div>
+    <div class="kw-row">
+      <span class="kw-name">go online tools clipboard</span>
+      <span class="kw-imp">13</span>
+      <span class="kw-pos" style="color:#BA7517;">6.1</span>
+      <span class="kw-ctr" style="color:#A32D2D;">0%</span>
+      <span class="pill pill-zero" style="width:70px; text-align:center;">Weak match</span>
+    </div>
+    <div class="kw-row">
+      <span class="kw-name">clipboard share <span class="pill pill-opp">opportunity</span></span>
+      <span class="kw-imp">7</span>
+      <span class="kw-pos" style="color:#A32D2D;">75.7</span>
+      <span class="kw-ctr" style="color:#A32D2D;">0%</span>
+      <span class="pill pill-zero" style="width:70px; text-align:center;">Too deep</span>
+    </div>
+    <div class="kw-row">
+      <span class="kw-name">pushbullet browser extension <span class="pill pill-opp">intent match</span></span>
+      <span class="kw-imp">2</span>
+      <span class="kw-pos" style="color:#BA7517;">8.5</span>
+      <span class="kw-ctr" style="color:#A32D2D;">0%</span>
+      <span class="pill pill-opp" style="width:70px; text-align:center;">Alt page</span>
+    </div>
+    <div class="kw-row">
+      <span class="kw-name">online clipboard sync</span>
+      <span class="kw-imp">2</span>
+      <span class="kw-pos" style="color:#BA7517;">10</span>
+      <span class="kw-ctr" style="color:#A32D2D;">0%</span>
+      <span class="pill pill-opp" style="width:70px; text-align:center;">Core term</span>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">Top pages — GSC</div>
+  <div class="card">
+    <div class="kw-row" style="font-size:11px; font-weight:500; color:var(--color-text-secondary);">
+      <span class="kw-name">Page</span>
+      <span class="kw-imp">Impr.</span>
+      <span class="kw-pos">Pos.</span>
+      <span class="kw-ctr">CTR</span>
+      <span style="width:80px; text-align:right; font-size:11px;">Action</span>
+    </div>
+    <div class="kw-row">
+      <span class="kw-name">/ (homepage)</span>
+      <span class="kw-imp">159</span>
+      <span class="kw-pos" style="color:#BA7517;">8.7</span>
+      <span class="kw-ctr" style="color:#639922;">15%</span>
+      <span class="pill pill-win" style="width:80px; text-align:center;">Optimize H1</span>
+    </div>
+    <div class="kw-row">
+      <span class="kw-name">/clipboard-sync-guide</span>
+      <span class="kw-imp">278</span>
+      <span class="kw-pos" style="color:#BA7517;">6.3</span>
+      <span class="kw-ctr" style="color:#A32D2D;">0.36%</span>
+      <span class="pill pill-zero" style="width:80px; text-align:center;">Rewrite meta</span>
+    </div>
+    <div class="kw-row">
+      <span class="kw-name">/sync-clipboard</span>
+      <span class="kw-imp">76</span>
+      <span class="kw-pos" style="color:#A32D2D;">31</span>
+      <span class="kw-ctr" style="color:#A32D2D;">0%</span>
+      <span class="pill pill-zero" style="width:80px; text-align:center;">Too deep</span>
+    </div>
+    <div class="kw-row">
+      <span class="kw-name">/about</span>
+      <span class="kw-imp">44</span>
+      <span class="kw-pos" style="color:#639922;">4.3</span>
+      <span class="kw-ctr" style="color:#A32D2D;">0%</span>
+      <span class="pill pill-opp" style="width:80px; text-align:center;">Add FAQ schema</span>
+    </div>
+    <div class="kw-row">
+      <span class="kw-name">/clipboard</span>
+      <span class="kw-imp">43</span>
+      <span class="kw-pos" style="color:#639922;">6.5</span>
+      <span class="kw-ctr" style="color:#A32D2D;">0%</span>
+      <span class="pill pill-opp" style="width:80px; text-align:center;">Merge or fix</span>
+    </div>
+    <div class="kw-row">
+      <span class="kw-name">/pushbullet-alternative</span>
+      <span class="kw-imp">22</span>
+      <span class="kw-pos" style="color:#639922;">5.8</span>
+      <span class="kw-ctr" style="color:#A32D2D;">0%</span>
+      <span class="pill pill-opp" style="width:80px; text-align:center;">High intent</span>
+    </div>
+  </div>
+</div>
+
+<div class="row2 sec">
+  <div>
+    <div class="sec-title">Geo breakdown</div>
+    <div class="card">
+      <div class="geo-row" style="font-size:11px; font-weight:500; color:var(--color-text-secondary);">
+        <span class="geo-flag"></span>
+        <span class="geo-name">Country</span>
+        <span class="geo-imp">Impr.</span>
+        <span class="geo-ctr">CTR</span>
+        <span class="geo-pos">Pos.</span>
+      </div>
+      <div class="geo-row">
+        <span class="geo-flag">🇺🇸</span>
+        <span class="geo-name">United States</span>
+        <span class="geo-imp">190</span>
+        <span class="geo-ctr" style="color:#BA7517;">1.6%</span>
+        <span class="geo-pos" style="color:#639922;">5.2</span>
+      </div>
+      <div class="geo-row">
+        <span class="geo-flag">🇮🇳</span>
+        <span class="geo-name">India</span>
+        <span class="geo-imp">174</span>
+        <span class="geo-ctr" style="color:#639922;">12.6%</span>
+        <span class="geo-pos" style="color:#BA7517;">17.3</span>
+      </div>
+      <div class="geo-row">
+        <span class="geo-flag">🇨🇦</span>
+        <span class="geo-name">Canada</span>
+        <span class="geo-imp">10</span>
+        <span class="geo-ctr" style="color:#A32D2D;">0%</span>
+        <span class="geo-pos" style="color:#639922;">4.6</span>
+      </div>
+      <div class="geo-row">
+        <span class="geo-flag">🇯🇵</span>
+        <span class="geo-name">Japan</span>
+        <span class="geo-imp">7</span>
+        <span class="geo-ctr" style="color:#A32D2D;">0%</span>
+        <span class="geo-pos" style="color:#639922;">2.7</span>
+      </div>
+      <div class="geo-row">
+        <span class="geo-flag">🇬🇧</span>
+        <span class="geo-name">United Kingdom</span>
+        <span class="geo-imp">7</span>
+        <span class="geo-ctr" style="color:#A32D2D;">0%</span>
+        <span class="geo-pos" style="color:#BA7517;">7.9</span>
+      </div>
+      <div class="geo-row">
+        <span class="geo-flag">🇧🇷</span>
+        <span class="geo-name">Brazil</span>
+        <span class="geo-imp">8</span>
+        <span class="geo-ctr" style="color:#A32D2D;">0%</span>
+        <span class="geo-pos" style="color:#639922;">5.3</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="sec-title">Device performance</div>
+    <div class="card" style="margin-bottom:12px;">
+      <div class="geo-row" style="font-size:11px; font-weight:500; color:var(--color-text-secondary);">
+        <span class="geo-name">Device</span>
+        <span class="geo-imp">Impr.</span>
+        <span class="geo-ctr">CTR</span>
+        <span class="geo-pos">Pos.</span>
+      </div>
+      <div class="geo-row">
+        <span class="geo-name">Desktop</span>
+        <span class="geo-imp">451</span>
+        <span class="geo-ctr" style="color:#BA7517;">4.7%</span>
+        <span class="geo-pos" style="color:#BA7517;">10.1</span>
+      </div>
+      <div class="geo-row">
+        <span class="geo-name">Mobile</span>
+        <span class="geo-imp">43</span>
+        <span class="geo-ctr" style="color:#639922;">20.9%</span>
+        <span class="geo-pos" style="color:#639922;">5.5</span>
+      </div>
+      <div class="geo-row">
+        <span class="geo-name">Tablet</span>
+        <span class="geo-imp">4</span>
+        <span class="geo-ctr" style="color:#639922;">25%</span>
+        <span class="geo-pos" style="color:#639922;">2.8</span>
+      </div>
+    </div>
+    <div class="sec-title">Bing keyword volume (from screenshot)</div>
+    <div class="card">
+      <div class="geo-row"><span class="geo-name" style="font-size:12px;">online clipboard</span><span class="geo-imp">177K</span><span style="width:70px; text-align:right;"><span class="pill pill-zero">Gap</span></span></div>
+      <div class="geo-row"><span class="geo-name" style="font-size:12px;">clipboard online</span><span class="geo-imp">6.7K</span><span style="width:70px; text-align:right;"><span class="pill pill-zero">Gap</span></span></div>
+      <div class="geo-row"><span class="geo-name" style="font-size:12px;">online clipboard free</span><span class="geo-imp">1.5K</span><span style="width:70px; text-align:right;"><span class="pill pill-opp">Target</span></span></div>
+      <div class="geo-row"><span class="geo-name" style="font-size:12px;">online clipboard share</span><span class="geo-imp">1.4K</span><span style="width:70px; text-align:right;"><span class="pill pill-opp">Target</span></span></div>
+      <div class="geo-row"><span class="geo-name" style="font-size:12px;">realtime clipboard</span><span class="geo-imp">572</span><span style="width:70px; text-align:right;"><span class="pill pill-win">Ranking</span></span></div>
+      <div class="geo-row"><span class="geo-name" style="font-size:12px;">live clipboard</span><span class="geo-imp">520</span><span style="width:70px; text-align:right;"><span class="pill pill-opp">Target</span></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">90-day priority matrix</div>
+  <div class="card" style="overflow-x:auto;">
+    <table class="matrix-table">
+      <tr>
+        <th style="width:64px;">Priority</th>
+        <th style="width:160px;">Tactic</th>
+        <th>Target query / page</th>
+        <th style="width:110px;">Expected impact</th>
+        <th style="width:80px;">Timeline</th>
+      </tr>
+      <tr>
+        <td><span class="pri pri-h">High</span></td>
+        <td>Rewrite /clipboard-sync-guide title + meta description</td>
+        <td>"online clipboard sync automatically in realtime" — 278 impr, 0.36% CTR at pos 6</td>
+        <td>+15–30 clicks/week</td>
+        <td>Week 1</td>
+      </tr>
+      <tr>
+        <td><span class="pri pri-h">High</span></td>
+        <td>Add FAQ schema + HowTo schema to /about and /pushbullet-alternative</td>
+        <td>"how to sync clipboard between devices", "pushbullet alternative"</td>
+        <td>Snippet eligibility, AEO citations</td>
+        <td>Week 1</td>
+      </tr>
+      <tr>
+        <td><span class="pri pri-h">High</span></td>
+        <td>Fix www vs non-www canonical (2 separate GSC entries)</td>
+        <td>syncclip.in vs www.syncclip.in splitting link equity</td>
+        <td>Consolidate authority</td>
+        <td>Week 1</td>
+      </tr>
+      <tr>
+        <td><span class="pri pri-h">High</span></td>
+        <td>Build dedicated landing page: "Copy text from phone to PC"</td>
+        <td>"copy text from android to pc without usb", "send text to computer"</td>
+        <td>Captures high-intent US/IN traffic</td>
+        <td>Week 2</td>
+      </tr>
+      <tr>
+        <td><span class="pri pri-m">Med</span></td>
+        <td>Improve /pushbullet-alternative content depth (comparison table, CTAs)</td>
+        <td>"pushbullet alternative free", "pushbullet browser extension" — pos 5.8, 8.5</td>
+        <td>+CTR, conversion traffic</td>
+        <td>Week 2–3</td>
+      </tr>
+      <tr>
+        <td><span class="pri pri-m">Med</span></td>
+        <td>Add desktop-specific meta description mentioning "no install" angle</td>
+        <td>Desktop 451 impressions, 4.7% CTR — underperforming vs mobile</td>
+        <td>+2–3% CTR on desktop</td>
+        <td>Week 2</td>
+      </tr>
+      <tr>
+        <td><span class="pri pri-m">Med</span></td>
+        <td>Create blog: "Stop emailing yourself notes — use SyncClip"</td>
+        <td>"email notes to myself", "share text between devices" — already 1 GSC impression</td>
+        <td>Long-tail + GEO citation</td>
+        <td>Week 3–4</td>
+      </tr>
+      <tr>
+        <td><span class="pri pri-m">Med</span></td>
+        <td>IndexNow submission on every new/updated page</td>
+        <td>Bing fast indexation — critical for new landing pages</td>
+        <td>Indexed in &lt;24h on Bing</td>
+        <td>Ongoing</td>
+      </tr>
+      <tr>
+        <td><span class="pri pri-l">Low</span></td>
+        <td>Localized content for India (Hindi meta descriptions)</td>
+        <td>174 impressions, 12.6% CTR but avg pos 17 — biggest volume growth potential</td>
+        <td>+20 clicks/week from IN</td>
+        <td>Week 5–6</td>
+      </tr>
+      <tr>
+        <td><span class="pri pri-l">Low</span></td>
+        <td>Outreach to dev newsletters / Hacker News / Indie Hackers for backlinks</td>
+        <td>No backlink data in dataset — authority building needed for "online clipboard" top terms</td>
+        <td>Domain authority +</td>
+        <td>Week 6–8</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">12-piece content calendar — next 90 days</div>
+  <div class="cal-grid">
+    <div class="cal-card">
+      <div class="cal-num">Week 1 · Fix</div>
+      <div class="cal-title">Rewrite /clipboard-sync-guide</div>
+      <div class="cal-kw">Title: "Sync Clipboard Between Devices in Seconds — Free" · 600w · AEO: answer-first para</div>
+    </div>
+    <div class="cal-card">
+      <div class="cal-num">Week 2 · New</div>
+      <div class="cal-title">How to copy text from Android to Mac/PC without an app</div>
+      <div class="cal-kw">Target: "copy text from phone to computer" · 800w · HowTo schema</div>
+    </div>
+    <div class="cal-card">
+      <div class="cal-num">Week 2 · Fix</div>
+      <div class="cal-title">Expand /pushbullet-alternative with comparison table</div>
+      <div class="cal-kw">Target: "pushbullet alternative free 2026" · 900w · FAQ schema</div>
+    </div>
+    <div class="cal-card">
+      <div class="cal-num">Week 3 · New</div>
+      <div class="cal-title">Best free online clipboard tools (2026 comparison)</div>
+      <div class="cal-kw">Target: "online clipboard free", "clipboard online" 6.7K Bing · 1200w · table</div>
+    </div>
+    <div class="cal-card">
+      <div class="cal-num">Week 3 · New</div>
+      <div class="cal-title">Stop emailing yourself — here's a better way</div>
+      <div class="cal-kw">Target: "email notes to myself" · 600w · GEO angle, shareable stat</div>
+    </div>
+    <div class="cal-card">
+      <div class="cal-num">Week 4 · New</div>
+      <div class="cal-title">Universal clipboard: what it is and how to set it up</div>
+      <div class="cal-kw">Target: "universal clipboard" — high intent, broad · 1000w · definition + HowTo</div>
+    </div>
+    <div class="cal-card">
+      <div class="cal-num">Week 5 · New</div>
+      <div class="cal-title">Clipboard sync between Windows and iPhone (no iCloud)</div>
+      <div class="cal-kw">Target: "windows iphone clipboard sync" · 700w · cross-platform angle</div>
+    </div>
+    <div class="cal-card">
+      <div class="cal-num">Week 5 · New</div>
+      <div class="cal-title">How to share text between devices without WhatsApp or Telegram</div>
+      <div class="cal-kw">Target: "share text between devices" · 700w · social alt angle, India-relevant</div>
+    </div>
+    <div class="cal-card">
+      <div class="cal-num">Week 6 · New</div>
+      <div class="cal-title">Remote clipboard — how developers use SyncClip</div>
+      <div class="cal-kw">Target: r/webdev + "remote clipboard" · 800w · developer use case, GEO citable</div>
+    </div>
+    <div class="cal-card">
+      <div class="cal-num">Week 7 · New</div>
+      <div class="cal-title">Burn mode: what it is and when to use it</div>
+      <div class="cal-kw">Target: "secure clipboard", "burn after reading" · 600w · unique feature, AEO</div>
+    </div>
+    <div class="cal-card">
+      <div class="cal-num">Week 8 · New</div>
+      <div class="cal-title">Copy text from browser on PC — paste on phone instantly</div>
+      <div class="cal-kw">Target: "copy from PC to phone browser" · 700w · mobile-first query</div>
+    </div>
+    <div class="cal-card">
+      <div class="cal-num">Week 10 · New</div>
+      <div class="cal-title">Self-hosted clipboard sync: options and tradeoffs</div>
+      <div class="cal-kw">Target: "self hosted clipboard" r/selfhosted · 1000w · backlink bait</div>
+    </div>
+  </div>
+</div>
+
+<div class="row2 sec">
+  <div>
+    <div class="sec-title">Technical fixes — immediate</div>
+    <div class="card">
+      <div class="kw-row" style="align-items:flex-start; gap:10px;">
+        <span class="pill pri-h pri" style="margin-top:2px;">1</span>
+        <span style="font-size:13px; color:var(--color-text-primary); line-height:1.5;">Canonical fix: 301 redirect www → non-www (or vice versa). Currently two separate GSC entities splitting authority.</span>
+      </div>
+      <div class="kw-row" style="align-items:flex-start; gap:10px;">
+        <span class="pill pri-h pri" style="margin-top:2px;">2</span>
+        <span style="font-size:13px; color:var(--color-text-primary); line-height:1.5;">Add FAQ schema (JSON-LD) to /about, /pushbullet-alternative, /clipboard-sync-guide. Use schema.org/FAQPage.</span>
+      </div>
+      <div class="kw-row" style="align-items:flex-start; gap:10px;">
+        <span class="pill pri-h pri" style="margin-top:2px;">3</span>
+        <span style="font-size:13px; color:var(--color-text-primary); line-height:1.5;">Rewrite /clipboard-sync-guide meta title to: "Sync Clipboard Online — Free, No Login | SyncClip" and meta desc to answer format (40 words, question first).</span>
+      </div>
+      <div class="kw-row" style="align-items:flex-start; gap:10px;">
+        <span class="pill pri-m pri" style="margin-top:2px;">4</span>
+        <span style="font-size:13px; color:var(--color-text-primary); line-height:1.5;">Submit all updated/new URLs via IndexNow to Bing instantly (already have IndexNow config — use it on every deploy).</span>
+      </div>
+      <div class="kw-row" style="align-items:flex-start; gap:10px;">
+        <span class="pill pri-m pri" style="margin-top:2px;">5</span>
+        <span style="font-size:13px; color:var(--color-text-primary); line-height:1.5;">Add WebApplication + SoftwareApplication JSON-LD to homepage. Include "operatingSystem": "All", "applicationCategory": "UtilitiesApplication".</span>
+      </div>
+      <div class="kw-row" style="align-items:flex-start; gap:10px; border-bottom:none;">
+        <span class="pill pri-l pri" style="margin-top:2px;">6</span>
+        <span style="font-size:13px; color:var(--color-text-primary); line-height:1.5;">Add hreflang="en-IN" to homepage and India-targeted pages to capture better ranking for the 174 Indian impressions.</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="sec-title">GEO / AI visibility tactics</div>
+    <div class="card">
+      <div class="kw-row" style="align-items:flex-start; gap:10px;">
+        <span class="pill pill-info" style="background:#E6F1FB; color:#185FA5; margin-top:2px; padding:2px 6px;">AI</span>
+        <span style="font-size:13px; color:var(--color-text-primary); line-height:1.5;">Add a bold "Quick Answer" box at top of every blog post — 40–60 words answering the title question directly. Perplexity and ChatGPT pull from these for citations.</span>
+      </div>
+      <div class="kw-row" style="align-items:flex-start; gap:10px;">
+        <span class="pill pill-info" style="background:#E6F1FB; color:#185FA5; margin-top:2px; padding:2px 6px;">AI</span>
+        <span style="font-size:13px; color:var(--color-text-primary); line-height:1.5;">Add a "How SyncClip works" section with numbered steps on the homepage. AI Overview and SGE tend to use structured how-it-works content.</span>
+      </div>
+      <div class="kw-row" style="align-items:flex-start; gap:10px;">
+        <span class="pill pill-info" style="background:#E6F1FB; color:#185FA5; margin-top:2px; padding:2px 6px;">AI</span>
+        <span style="font-size:13px; color:var(--color-text-primary); line-height:1.5;">Include a unique stat on your homepage or /about: "Sessions created so far: X" — real, live-ish data makes content citation-worthy. AI tools prefer primary data sources.</span>
+      </div>
+      <div class="kw-row" style="align-items:flex-start; gap:10px; border-bottom:none;">
+        <span class="pill pill-info" style="background:#E6F1FB; color:#185FA5; margin-top:2px; padding:2px 6px;">AI</span>
+        <span style="font-size:13px; color:var(--color-text-primary); line-height:1.5;">Target "what is the best free clipboard sync tool" as a blog title — this exact question pattern is how ChatGPT/Perplexity users search. Your /pushbullet-alternative page is close but lacks direct answer.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">Tracking setup — what to watch</div>
+  <div class="card">
+    <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:12px; font-size:12px;">
+      <div>
+        <div style="font-weight:500; margin-bottom:6px; font-size:13px; color:var(--color-text-primary);">GSC filters to set up</div>
+        <div style="color:var(--color-text-secondary); line-height:1.8;">Filter: non-brand queries (exclude "syncclip")<br>Track /clipboard-sync-guide CTR weekly<br>Watch US position for "online clipboard"<br>Compare mobile vs desktop CTR monthly</div>
+      </div>
+      <div>
+        <div style="font-weight:500; margin-bottom:6px; font-size:13px; color:var(--color-text-primary);">90-day KPI targets</div>
+        <div style="color:var(--color-text-secondary); line-height:1.8;">Non-brand clicks: 0 → 50+/week<br>Homepage avg position: 8.7 → 5<br>/clipboard-sync-guide CTR: 0.36% → 3%<br>US CTR: 1.6% → 4%+</div>
+      </div>
+      <div>
+        <div style="font-weight:500; margin-bottom:6px; font-size:13px; color:var(--color-text-primary);">Free tools to use</div>
+        <div style="color:var(--color-text-secondary); line-height:1.8;">Google Rich Results Test (schema)<br>Bing IndexNow API (instant submit)<br>Ahrefs free tier (backlink gaps)<br>Schema.org validator<br>Vercel Analytics (already live)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

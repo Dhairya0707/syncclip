@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Best Online Clipboard Tools 2026 (Pushbullet Alternatives)",
-  description: "Comparing the best online clipboard tools for 2026. Find the best free alternative to Pushbullet, KDE Connect, and Join for instant text sync.",
+  title: "Online Clipboard: Best Free Sync Tools for 2026",
+  description: "Looking for the best online clipboard? Compare the top free tools for 2026. Sync text and code between Android, iPhone, and PC instantly with no login or app install.",
 };
 
 export default function Blog3() {
