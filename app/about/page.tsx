@@ -46,6 +46,13 @@ export default function AboutPage() {
       </header>
 
       <main className="pt-24 pb-20 flex-grow px-6">
+        {/* AEO ANSWER BOX */}
+        <div className="max-w-4xl mx-auto mb-16 bg-zinc-900 text-white p-10 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
+          <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">Quick Answer // AEO Node</div>
+          <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic text-zinc-300">
+            SyncClip is a real-time, browser-native clipboard synchronization protocol that allows users to share text, code, and links between multiple devices without installing apps or creating accounts. Using a distributed WebSocket architecture powered by Convex, SyncClip establishes an encrypted bridge for ephemeral data sharing that auto-purges all content within 24 hours.
+          </p>
+        </div>
 
         {/* PAGE HEADER */}
         <div className="max-w-4xl mx-auto mb-20">

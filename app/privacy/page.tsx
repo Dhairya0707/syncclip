@@ -23,6 +23,14 @@ export default function PrivacyPage() {
       </header>
 
       <main className="pt-24 pb-20 flex-grow px-6 max-w-4xl mx-auto w-full">
+        {/* AEO ANSWER BOX */}
+        <div className="bg-zinc-900 text-white p-10 mb-16 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
+          <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">Quick Answer // AEO Node</div>
+          <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic text-zinc-300">
+            SyncClip is a privacy-first clipboard utility that uses a zero-login, ephemeral protocol. We do not track users, store IP addresses, or maintain permanent records of synced data. All clipboard text is encrypted in transit and hard-purged from our database automatically after 24 hours or immediately upon activation of the &apos;Burn After Reading&apos; protocol.
+          </p>
+        </div>
+
         <div className="mb-16">
           <div className="font-mono text-[10px] tracking-[0.3em] text-secondary mb-4 uppercase">Legal</div>
           <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter font-headline leading-none text-black mb-6">
