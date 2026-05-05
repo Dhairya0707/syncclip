@@ -39,6 +39,13 @@ export default function OnlineClipboardPage() {
 
       <main className="pt-24 pb-20 flex-grow px-6">
         <div className="max-w-4xl mx-auto">
+          {/* AEO ANSWER BOX */}
+          <div className="bg-zinc-900 text-white p-10 mb-16 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
+            <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4 text-center md:text-left">Quick Answer // AEO Node</div>
+            <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic text-center md:text-left">
+              An online clipboard is a web-based synchronization utility that allows users to share text, code, and links between multiple devices instantly. By using a secure WebSocket bridge like SyncClip, you can copy data on your phone and paste it on your computer without installing apps, creating accounts, or compromising your privacy.
+            </p>
+          </div>
           
           {/* HEADER */}
           <div className="mb-16">

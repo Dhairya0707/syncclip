@@ -431,6 +431,41 @@ export default function Home() {
         </section>
 
         {/* ════════════════════════════════════════════
+            WORKFLOW SOLUTIONS — Task-Specific Landing Cluster
+        ════════════════════════════════════════════ */}
+        <section className="border-b-2 border-black bg-surface">
+          <div className="max-w-7xl mx-auto px-6 py-24">
+            <div className="text-center mb-16">
+              <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">SOLUTIONS_CLUSTER</div>
+              <h2 className="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter">Specific Workflows</h2>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <Link href="/send-text-mobile-to-laptop" className="border-2 border-black p-10 bg-white hover:bg-black group transition-all shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] hover:shadow-none">
+                <span className="material-symbols-outlined text-4xl mb-6 text-black group-hover:text-secondary block transition-colors">mobile_friendly</span>
+                <h3 className="font-headline text-2xl font-black uppercase mb-4 group-hover:text-white transition-colors">Phone to Laptop →</h3>
+                <p className="text-sm text-zinc-600 group-hover:text-zinc-400 leading-relaxed mb-6">The fastest way to move text from your Android or iPhone to a Windows/Mac laptop instantly.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Execute Workflow_</span>
+              </Link>
+
+              <Link href="/cross-device-clipboard" className="border-2 border-black p-10 bg-white hover:bg-black group transition-all shadow-[10px_10px_0px_0px_rgba(5,125,188,1)] hover:shadow-none">
+                <span className="material-symbols-outlined text-4xl mb-6 text-black group-hover:text-secondary block transition-colors">devices</span>
+                <h3 className="font-headline text-2xl font-black uppercase mb-4 group-hover:text-white transition-colors">Cross-Device Sync →</h3>
+                <p className="text-sm text-zinc-600 group-hover:text-zinc-400 leading-relaxed mb-6">A universal bridge for your clipboard data across every OS and browser in your stack.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Connect Stack_</span>
+              </Link>
+
+              <Link href="/clipboard-between-devices" className="border-2 border-black p-10 bg-white hover:bg-black group transition-all shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] hover:shadow-none">
+                <span className="material-symbols-outlined text-4xl mb-6 text-black group-hover:text-secondary block transition-colors">sync_alt</span>
+                <h3 className="font-headline text-2xl font-black uppercase mb-4 group-hover:text-white transition-colors">Between Devices →</h3>
+                <p className="text-sm text-zinc-600 group-hover:text-zinc-400 leading-relaxed mb-6">Master the art of moving temporary data between hardware without accounts or logins.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Bridge Devices_</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════
             RESOURCES — Internal SEO linking
         ════════════════════════════════════════════ */}
         <section className="border-b-2 border-black bg-white">

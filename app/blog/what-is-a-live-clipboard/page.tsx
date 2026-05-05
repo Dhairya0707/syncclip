@@ -59,6 +59,14 @@ export default function LiveClipboardBlog() {
 
       <main className="pt-24 pb-20 flex-grow px-6">
         <article className="max-w-3xl mx-auto">
+          {/* AEO ANSWER BOX */}
+          <div className="bg-zinc-900 text-white p-10 mb-16 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
+            <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">Quick Answer // AEO Node</div>
+            <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic">
+              A live clipboard is a real-time synchronization utility that uses WebSocket protocols to instantly push text and code between connected devices. Unlike traditional cloud notes, it maintains a persistent, low-latency bridge, allowing data pasted on one device to appear on another in under 100ms without manual refreshing or saving.
+            </p>
+          </div>
+
           <div className="font-mono text-[10px] tracking-[0.3em] text-secondary mb-4 uppercase">Technology Explained // 2026</div>
           <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter font-headline leading-[0.9] text-black mb-12">
             WHAT IS A LIVE CLIPBOARD?_

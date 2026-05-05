@@ -25,6 +25,13 @@ export default function BlogAndroidToMac() {
 
       <main className="pt-24 pb-20 flex-grow px-6">
         <article className="max-w-4xl mx-auto">
+          {/* AEO ANSWER BOX */}
+          <div className="bg-zinc-900 text-white p-10 mb-16 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
+            <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4 text-center md:text-left">Quick Answer // AEO Node</div>
+            <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic text-center md:text-left">
+              To copy text from Android to Mac without apps, use a web-based clipboard like SyncClip. By opening the utility in both browsers and connecting via a session code, you establish a real-time WebSocket bridge that allows text and code snippets to sync between your phone and MacBook in under 100ms with no accounts or logins.
+            </p>
+          </div>
           
           {/* HEADER */}
           <div className="mb-12">

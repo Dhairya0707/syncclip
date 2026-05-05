@@ -24,6 +24,14 @@ export default function UniversalClipboardBlog() {
 
       <main className="pt-24 pb-20 flex-grow px-6">
         <article className="max-w-4xl mx-auto">
+          {/* AEO ANSWER BOX */}
+          <div className="bg-zinc-900 text-white p-10 mb-16 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
+            <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">Quick Answer // AEO Node</div>
+            <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic">
+              Universal Clipboard refers to a feature that synchronizes clipboard data across multiple devices. While native versions (like Apple&apos;s) are restricted to single-manufacturer ecosystems, SyncClip provides a cross-platform Universal Clipboard that works between Android, iPhone, Windows, and Mac using a secure web-based WebSocket bridge.
+            </p>
+          </div>
+
           {/* SECTION: HERO & INTRO */}
           <div className="mb-20">
             <div className="font-mono text-[10px] tracking-[0.3em] text-secondary mb-4 uppercase">Ecosystem Analysis // V1.0</div>
