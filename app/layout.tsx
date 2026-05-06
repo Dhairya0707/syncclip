@@ -33,17 +33,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Online Clipboard — Copy Paste Between Devices Free",
+    title: "Online Clipboard — Copy Paste Devices Free",
     description: "Free online clipboard to sync text between phone and PC instantly. No login, no app install.",
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://syncclip.in",
-    languages: {
-      "en-US": "https://syncclip.in",
-      "en-IN": "https://syncclip.in",
-      "x-default": "https://syncclip.in",
-    },
+    canonical: "/",
   },
   robots: {
     index: true,

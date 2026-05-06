@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Support & Contact | Node Diagnostics",
-  description: "Get technical support for SyncClip. Report node connection issues, request features, or learn more about our distributed clipboard security.",
+  title: "Support & Help Center | SyncClip",
+  description: "Get help with SyncClip, report issues, or suggest new features for our real-time clipboard sync protocol.",
   alternates: {
-    canonical: "https://syncclip.in/support",
+    canonical: "/support",
   },
 };
 
