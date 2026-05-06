@@ -26,4 +26,15 @@ export default defineSchema({
     timestamp: v.number(),
     status: v.string(), // e.g., "success", "error"
   }).index("by_type", ["type"]),
+  analytics_events: defineTable({
+    type: v.string(),      // e.g., "room_created", "first_keystroke"
+    timestamp: v.number(),
+    environment: v.string(), // "development" or "production"
+    pathname: v.string(),
+    device: v.string(),    // "mobile" or "desktop"
+    nodeId: v.optional(v.string()),
+    sessionId: v.optional(v.string()), // room code
+    metadata: v.optional(v.any()),
+  }).index("by_type", ["type"])
+    .index("by_timestamp", ["timestamp"]),
 });

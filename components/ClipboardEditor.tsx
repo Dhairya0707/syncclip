@@ -6,6 +6,11 @@ import { api } from "../convex/_generated/api";
 import { debounce } from "../utils/debounce";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { track } from "../utils/analytics";
+import { isExperimentEnabled } from "../utils/experiments";
+import SecondDeviceCTA from "./SecondDeviceCTA";
+import PWAInstallPrompt from "./PWAInstallPrompt";
+import { getRandomCopyBlock, CopyBlock } from "../utils/headlines";
 
 export default function ClipboardEditor({ session }: { session: any }) {
   const update = useMutation(api.sessions.updateText);
@@ -54,6 +59,10 @@ export default function ClipboardEditor({ session }: { session: any }) {
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [activeInfo, setActiveInfo] = useState<string | null>(null);
   const lastDownloadedRef = useRef<number>(0);
+  const firstKeystrokeTracked = useRef(false);
+  const secondDeviceTracked = useRef(false);
+  const qrTracked = useRef(false);
+  const [copyBlock, setCopyBlock] = useState<CopyBlock | null>(null);
 
   const getBaseUrl = () => {
     if (typeof window !== "undefined") {
@@ -94,7 +103,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
     setTimeout(() => setToast(null), 3000);
   };
 
-  // Initialize Name from localStorage or suggest one
+  // Initialize Name and Headline
   useEffect(() => {
     const savedName = localStorage.getItem("syncclip_user_name");
     if (savedName) {
@@ -103,7 +112,30 @@ export default function ClipboardEditor({ session }: { session: any }) {
     } else {
       setSuggestedName(generateRandomName());
     }
-  }, [generateRandomName]);
+
+    if (isExperimentEnabled("ROTATING_HEADLINES_ENABLED")) {
+      setCopyBlock(getRandomCopyBlock());
+    }
+
+    // Auto-show QR modal on first entry if alone
+    const hasSeenQR = sessionStorage.getItem(`syncclip_qr_shown_${session.code}`);
+    if (presence?.length === 1 && !hasSeenQR) {
+      setShowQRModal(true);
+      sessionStorage.setItem(`syncclip_qr_shown_${session.code}`, "true");
+      // Tracking will be handled by the useEffect watching showQRModal
+    }
+  }, [generateRandomName, presence?.length, session.code]);
+
+
+  // Track QR View (Once per modal show)
+  useEffect(() => {
+    if (showQRModal && !qrTracked.current) {
+      track("qr_viewed", { timestamp: new Date().toISOString() });
+      qrTracked.current = true;
+    } else if (!showQRModal) {
+      qrTracked.current = false; // Reset when closed so it tracks on next open
+    }
+  }, [showQRModal]);
 
   // Presence Heartbeat (with Visibility Throttling)
   useEffect(() => {
@@ -174,6 +206,19 @@ export default function ClipboardEditor({ session }: { session: any }) {
   const isOwner = session.ownerNodeId === nodeId;
   const isLocked = session.isLocked;
   const canEdit = !isLocked || isOwner;
+
+  // Track when second device joins
+  useEffect(() => {
+    if (presence && presence.length > 1) {
+      if (!secondDeviceTracked.current) {
+        track("second_device_joined", {
+          deviceCount: presence.length,
+          timestamp: new Date().toISOString(),
+        });
+        secondDeviceTracked.current = true;
+      }
+    }
+  }, [presence]);
 
   // Command Palette Listener
   useEffect(() => {
@@ -259,6 +304,15 @@ export default function ClipboardEditor({ session }: { session: any }) {
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value;
+    
+    // Experiment Flag F: Track first keystroke
+    if (!firstKeystrokeTracked.current && value.length > 0) {
+      track("first_keystroke", { timestamp: new Date().toISOString() });
+      firstKeystrokeTracked.current = true;
+      // Dispatch custom event for PWA nudge (Part D)
+      window.dispatchEvent(new Event('first_keystroke'));
+    }
+
     setText(value);
     debouncedUpdate(value);
   }
@@ -269,6 +323,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
       const fullUrl = `${getBaseUrl()}/${session.code}`;
       navigator.clipboard.writeText(fullUrl);
       showToast("Link copied to clipboard");
+      track("link_shared", { timestamp: new Date().toISOString() });
     }
   }
 
@@ -276,6 +331,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
     if (!canEdit) return;
     setIsSyncing(true);
     setText("");
+    track("node_cleared", { text_length: text.length, timestamp: new Date().toISOString() });
     update({ id: session._id, text: "", saveToHistory: true, callerNodeId: nodeId }).finally(() => {
       setIsSyncing(false);
       showToast("Node cleared & saved to history");
@@ -293,27 +349,33 @@ export default function ClipboardEditor({ session }: { session: any }) {
 
   function handleRestore(idx: number) {
     if (!canEdit) return;
+    track("history_restored", { history_index: idx, timestamp: new Date().toISOString() });
     restoreHistory({ id: session._id, index: idx, callerNodeId: nodeId });
     setIsSidebarOpen(false); // Close drawer on mobile
   }
 
   function handleToggleLock() {
     if (!isOwner) return;
-    toggleLockMutation({ id: session._id, callerNodeId: nodeId, isLocked: !isLocked }).then(() => {
-      showToast(`Node ${!isLocked ? "Locked" : "Unlocked"}`);
+    const newLockedState = !isLocked;
+    track("session_locked", { locked: newLockedState, timestamp: new Date().toISOString() });
+    toggleLockMutation({ id: session._id, callerNodeId: nodeId, isLocked: newLockedState }).then(() => {
+      showToast(`Node ${newLockedState ? "Locked" : "Unlocked"}`);
     });
   }
 
   function handleToggleBurn() {
     if (!isOwner) return;
-    toggleBurnMutation({ id: session._id, callerNodeId: nodeId, isBurnMode: !session.isBurnMode }).then(() => {
-      showToast(`Burn Protocol ${!session.isBurnMode ? "ARMED" : "DISARMED"}`);
+    const newBurnState = !session.isBurnMode;
+    track("burn_mode_toggled", { armed: newBurnState, timestamp: new Date().toISOString() });
+    toggleBurnMutation({ id: session._id, callerNodeId: nodeId, isBurnMode: newBurnState }).then(() => {
+      showToast(`Burn Protocol ${newBurnState ? "ARMED" : "DISARMED"}`);
     });
   }
 
   async function handleDeleteSession() {
     if (!isOwner) return;
     if (confirm("🚨 WARNING: This cluster and its archival history will be permanently deleted. Proceed?")) {
+      track("session_deleted", { timestamp: new Date().toISOString() });
       await deleteSessionMutation({ id: session._id, callerNodeId: nodeId });
       router.push("/");
     }
@@ -454,7 +516,9 @@ export default function ClipboardEditor({ session }: { session: any }) {
                     if (cmd.id === 'clear') handleClearNode();
                     if (cmd.id === 'copy') { navigator.clipboard.writeText(text); showToast("Copied"); }
                     if (cmd.id === 'lock') handleToggleLock();
-                    if (cmd.id === 'pair') setShowQRModal(true);
+                    if (cmd.id === 'pair') {
+                      setShowQRModal(true);
+                    }
                     if (cmd.id === 'burn') handleToggleBurn();
                     if (cmd.id === 'sync') handleForceSync();
                   }}
@@ -545,7 +609,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
             </h1>
             {/* </Link> */}
             <div className="font-mono text-xs tracking-[0.2em] mt-2 text-on-surface-variant uppercase flex items-center gap-3">
-              DIGITAL BROADSHEET PROTOCOL V4.2
+              {copyBlock?.brandPrompt || "DIGITAL BROADSHEET PROTOCOL V4.2"}
               <span className="text-black inline-block px-2 border border-black text-[9px]">NODE_{session.code}</span>
             </div>
           </div>
@@ -560,6 +624,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
         <div className="editorial-grid flex-grow min-h-[calc(100vh-350px)]">
           {/* Left Column: Primary Interaction */}
           <div className="p-6 border-r border-black flex flex-col">
+            
             <div className="mb-4 flex flex-col sm:flex-row justify-between items-baseline sm:items-center gap-2">
               <div className="font-mono text-xs font-bold tracking-[0.3em] text-secondary uppercase flex items-center gap-2 flex-wrap">
                 <span className={`w-2 h-2 rounded-full ${isOnline ? "bg-secondary animate-pulse" : "bg-zinc-400"} block`}></span>
@@ -588,7 +653,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
                 maxLength={100000}
                 readOnly={!canEdit}
                 className={`w-full h-full min-h-[300px] flex-grow p-6 md:p-10 font-body text-xl md:text-2xl leading-relaxed border ${!canEdit ? 'border-zinc-300 bg-zinc-50 text-zinc-500 cursor-not-allowed' : 'border-black focus:border-secondary'} focus:outline-none focus:ring-0 transition-all resize-none placeholder:text-zinc-300`}
-                placeholder={canEdit ? "Your text here. Or your cat's walking on the keyboard. Both are fine." : "This node is locked. No entry for you."}
+                placeholder={canEdit ? (copyBlock?.hook || "Awaiting your next masterpiece...") : "This node is locked. No entry for you."}
                 value={text}
                 onChange={handleChange}
               />
@@ -636,6 +701,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
                   onClick={() => {
                     navigator.clipboard.writeText(text);
                     showToast("Copied to clipboard");
+                    track("text_copied", { text_length: text.length, timestamp: new Date().toISOString() });
                   }}
                   aria-label="Copy session text"
                   className="bg-white text-black font-label font-bold py-6 px-2 border-2 border-black hover:bg-secondary hover:text-white hover:border-secondary transition-all uppercase tracking-widest text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] flex items-center justify-center gap-2"
@@ -649,7 +715,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
                   className="bg-white text-black font-label font-bold py-6 px-2 border-2 border-black hover:bg-secondary hover:text-white hover:border-secondary transition-all uppercase tracking-widest text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] flex items-center justify-center gap-2"
                 >
                   <span className="material-symbols-outlined text-[18px]">share</span>
-                  Share
+                  CONNECT
                 </button>
                 <button
                   onClick={() => setIsSettingsModalOpen(true)}
@@ -731,7 +797,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
                     >
                       <span className="flex items-center gap-3">
                         <span className="material-symbols-outlined">share</span>
-                        Share Protocol
+                        Connect Node
                       </span>
                       <span className="material-symbols-outlined text-[18px]">chevron_right</span>
                     </button>
@@ -1058,6 +1124,9 @@ export default function ClipboardEditor({ session }: { session: any }) {
               </section>
             </div>
           </aside>
+
+          {/* PWA Nudge (Part D) */}
+          <PWAInstallPrompt />
         </div>
       </main>
 

@@ -1,6 +1,7 @@
 import { mutation, query, internalMutation } from "./_generated/server";
 import { v } from "convex/values";
 
+// Force sync: Updated createSession validator to include initialText
 function generateCode() {
   const array = new Uint32Array(1);
   crypto.getRandomValues(array);
@@ -9,14 +10,15 @@ function generateCode() {
 
 export const createSession = mutation({
   args: {
-    ownerNodeId: v.optional(v.string())
+    ownerNodeId: v.optional(v.string()),
+    initialText: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const code = generateCode();
 
     await ctx.db.insert("sessions", {
       code,
-      text: "Awaiting your next masterpiece. Or just that grocery list you'll forget anyway. I'm not picky.",
+      text: args.initialText || "",
       createdAt: Date.now(),
       ownerNodeId: args.ownerNodeId,
       isLocked: false,

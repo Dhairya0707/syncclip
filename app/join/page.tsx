@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { track } from "../../utils/analytics";
 
 export default function JoinPage() {
   const [code, setCode] = useState("");
@@ -11,6 +12,10 @@ export default function JoinPage() {
   useEffect(() => {
     // Auto-redirect when 6 characters are entered
     if (code.length === 6) {
+      track("session_joined", {
+        method: "auto",
+        platform: typeof window !== "undefined" ? (window.innerWidth < 768 ? "mobile" : "desktop") : "unknown",
+      });
       router.push(`/${code.toUpperCase()}`);
     }
   }, [code, router]);
@@ -18,6 +23,10 @@ export default function JoinPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (code.length === 6) {
+      track("session_joined", {
+        method: "submit",
+        platform: typeof window !== "undefined" ? (window.innerWidth < 768 ? "mobile" : "desktop") : "unknown",
+      });
       router.push(`/${code.toUpperCase()}`);
     }
   };

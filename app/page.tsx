@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { useRouter } from "next/navigation";
+import { track } from "../utils/analytics";
+import { isExperimentEnabled } from "../utils/experiments";
+import { getRandomCopyBlock } from "../utils/headlines";
 import Link from "next/link";
+import RedirectNudgeBar from "../components/RedirectNudgeBar";
 
 export default function Home() {
   const createSession = useMutation(api.sessions.createSession);
@@ -29,7 +33,20 @@ export default function Home() {
         localStorage.setItem("syncclip_node_id", nodeId);
       }
 
-      const code = await createSession({ ownerNodeId: nodeId });
+      const initialCopy = isExperimentEnabled("ROTATING_HEADLINES_ENABLED") 
+        ? getRandomCopyBlock().hook 
+        : "";
+
+      const code = await createSession({ 
+        ownerNodeId: nodeId,
+        initialText: initialCopy
+      });
+      
+      track("room_created", {
+        timestamp: new Date().toISOString(),
+        platform: typeof window !== "undefined" ? (window.innerWidth < 768 ? "mobile" : "desktop") : "unknown",
+      });
+
       const saved = localStorage.getItem("syncclip_recent_sessions");
       const current = saved ? JSON.parse(saved) : [];
       const updated = [code, ...current.filter((c: string) => c !== code)].slice(0, 10);
@@ -139,6 +156,8 @@ export default function Home() {
           </button>
         </nav>
       </header>
+
+      <RedirectNudgeBar />
 
       <main className="pt-10 flex-grow">
 
