@@ -16,7 +16,7 @@
 - [x] Stabilize useEffect dependencies to prevent "changed size" errors.
 - [x] Force sync Convex validators for `initialText`.
 - [x] **Custom Convex Analytics**: Completely removed PostHog. Built lightweight Convex-based event logging system.
-- [x] **Documentation**: Added detailed Experiment & Tracking Map to `Claude.md`.
+- [x] **Documentation**: Added [ANALYTICS_DOC.md](./ANALYTICS_DOC.md) and detailed Experiment Map to `Claude.md`.
 
 ## Constraints
 - Follow "High-Density Editorial Brutalism" design language.

@@ -11,7 +11,7 @@ crons.daily(
 
 crons.interval(
   "cleanup old presence",
-  { minutes: 30 },
+  { minutes: 2 },
   internal.sessions.cleanupOldPresence
 );
 
