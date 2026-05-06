@@ -103,6 +103,20 @@ export const getDashboard = query({
       secondDeviceJoined: data.filter((event) => event.type === "second_device_joined").length,
     });
 
+    const dailyActive = new Map<string, Set<string>>();
+    for (const event of filtered) {
+      if (event.nodeId) {
+        const day = new Date(event.timestamp).toISOString().split("T")[0];
+        const daySet = dailyActive.get(day) ?? new Set<string>();
+        daySet.add(event.nodeId);
+        dailyActive.set(day, daySet);
+      }
+    }
+
+    const dauTrend = Array.from(dailyActive.entries())
+      .map(([day, nodes]) => ({ day, count: nodes.size }))
+      .sort((a, b) => a.day.localeCompare(b.day));
+
     return {
       generatedAt: now,
       rangeMs,
@@ -110,6 +124,7 @@ export const getDashboard = query({
       retention: uniqueNodes.size > 0 ? Math.round((returningNodes / uniqueNodes.size) * 100) : 0,
       totals: getTotals(filtered),
       prevTotals: getTotals(prevFiltered),
+      dauTrend,
       byType: countBy(filtered, (event) => event.type),
       byDevice: countBy(filtered, (event) => event.device),
       byEnvironment: countBy(filtered, (event) => event.environment),
@@ -121,17 +136,19 @@ export const getDashboard = query({
         const [day, hour] = key.split("-").map(Number);
         return { day, hour, count };
       }),
-      recent: sorted.slice(0, 25).map((event) => ({
+      recent: sorted.slice(0, 100).map((event) => ({
         _id: event._id,
         type: event.type,
         timestamp: event.timestamp,
         environment: event.environment,
         pathname: event.pathname,
         device: event.device,
+        nodeId: event.nodeId,
         sessionId: event.sessionId,
         metadata: event.metadata,
       })),
     };
+
 
   },
 });
