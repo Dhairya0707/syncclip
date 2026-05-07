@@ -105,26 +105,26 @@ export default function Home() {
     'mainEntity': [
       {
         '@type': 'Question',
-        'name': 'How do I sync my clipboard between devices for free?',
+        'name': 'Is SyncClip free?',
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': 'The fastest free way to sync your clipboard is using SyncClip. Open syncclip.in on both devices, join the same session, and text copied on one will appear on the other instantly via WebSockets.'
+          'text': 'Yes, completely free. No account or login required to sync your clipboard between devices.'
         }
       },
       {
         '@type': 'Question',
-        'name': 'Is there a clipboard sync tool that doesn\'t require login?',
+        'name': 'How fast does it sync?',
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': 'Yes, SyncClip is a zero-login clipboard sync tool. It uses ephemeral session codes instead of user accounts to ensure privacy and speed.'
+          'text': 'Under 100ms. Type or paste on one device, it appears instantly on another via our real-time WebSocket engine.'
         }
       },
       {
         '@type': 'Question',
-        'name': 'Can I copy text from Android to PC without an app?',
+        'name': 'What happens to my data?',
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': 'Yes. SyncClip works in any modern mobile and desktop browser, allowing you to move text from Android to Windows, Mac, or Linux without installing any software.'
+          'text': 'Sessions auto-delete after 24 hours of inactivity. We offer a "Burn After Reading" mode for permanent data destruction after one use.'
         }
       }
     ]
@@ -176,15 +176,17 @@ export default function Home() {
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter font-headline leading-[1.1] text-primary mb-6">
+                  FREE_
+                  <br />
                   ONLINE_
                   <br />
                   CLIPBOARD_
                   <br />
-                  <span className="text-secondary block mt-4 md:mt-6">SYNC_ANYWHERE.</span>
+                  <span className="text-secondary block mt-4 md:mt-6 text-3xl sm:text-4xl md:text-5xl">SYNC INSTANTLY.</span>
                 </h1>
 
                 <p className="font-body text-lg md:text-xl text-zinc-600 max-w-lg leading-relaxed mb-10">
-                  The fastest free universal clipboard to sync text and code between devices. No downloads, no logins, and zero tracking. Copy on phone, paste on PC instantly.
+                  Copy text on your phone &rarr; paste on PC in milliseconds. No signup, no installation, no logs. Works on Android, iOS, Windows, Mac, Linux.
                 </p>
 
                   <div className="relative mb-8">

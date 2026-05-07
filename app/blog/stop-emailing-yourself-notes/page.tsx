@@ -3,33 +3,44 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Why You Should Stop Emailing Yourself Notes in 2026",
-  description: "Emailing yourself notes and links is a broken productivity habit. Learn how online clipboard tools provide a frictionless, zero-inbox alternative for transferring text across devices.",
-  keywords: ["emailing yourself notes", "alternative to emailing notes", "share text online", "online clipboard tool", "productivity workflow", "inbox zero"],
+  title: "Stop Emailing Yourself Notes — Use an Online Clipboard in 2026",
+  description: "Stop emailing yourself. Learn 5 faster ways to move snippets between devices in 2026 without Slack or email. Use a real-time online clipboard for instant sync.",
   alternates: {
-    canonical: "https://syncclip.in/blog/stop-emailing-yourself-notes",
+    canonical: "/blog/stop-emailing-yourself-notes",
   },
 };
 
-export default function BlogStopEmailing() {
+export default function BlogPost() {
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
-      {/* NAV */}
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">
           <Link href="/blog" className="text-zinc-400 hover:text-white transition-colors">BLOG</Link>
-          <Link href="/clipboard" className="text-zinc-400 hover:text-white transition-colors">CLIPBOARD</Link>
+          <Link href="/about" className="text-zinc-400 hover:text-white transition-colors">ABOUT</Link>
         </nav>
       </header>
 
       <main className="pt-24 pb-20 flex-grow px-6">
-        <article className="max-w-4xl mx-auto">
-          {/* AEO ANSWER BOX */}
-          <div className="bg-zinc-900 text-white p-10 mb-16 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
-            <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4 text-center md:text-left">Quick Answer // AEO Node</div>
-            <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic text-center md:text-left">
-              Emailing yourself notes is an inefficient productivity habit that causes inbox clutter and sync delays. A better alternative is a web-based clipboard tool like SyncClip, which provides a real-time, zero-login WebSocket bridge to sync text between phone and PC in under 100ms without leaving a permanent trail in your inbox.
+        <article className="max-w-3xl mx-auto">
+          <div className="font-mono text-[10px] tracking-[0.3em] text-secondary mb-4 uppercase">Workflow Audit // 2026</div>
+          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter font-headline leading-tight text-black mb-8">
+            Stop Emailing Yourself Notes — Switch to One-Click Sync
+          </h1>
+
+          <div className="prose prose-zinc max-w-none font-body text-base text-zinc-700 leading-relaxed space-y-6">
+            <p>
+              It is the year 2026. You are still opening your Gmail, clicking &quot;Compose,&quot; typing your own email address, and pasting a 10-digit code into the subject line just to get it from your iPhone to your Windows laptop.
+            </p>
+
+            <h2 className="font-headline font-black text-2xl uppercase mt-12 text-black">The Inefficiency Tax of &quot;Email-to-Self&quot;</h2>
+            <p>
+              Every time you email yourself a note or a link, you pay a &quot;context switch&quot; tax. You enter an inbox full of distractions, wait for the server to sync, and then manually delete the email later.
+            </p>
+
+            <h2 className="font-headline font-black text-2xl uppercase mt-12 text-black italic">The Modern Solution: SyncClip_</h2>
+            <p>
+              Instead of cluttering your inbox, use a dedicated <Link href="/" className="text-secondary underline font-bold">online clipboard</Link>. SyncClip allows you to move that same piece of text in under 5 seconds with zero emails required. For a full breakdown on the fastest hardware bridges, check our guide on <Link href="/blog/copy-phone-to-pc-without-app" className="text-secondary underline">how to copy text from phone to pc without an app</Link>.
             </p>
           </div>
           

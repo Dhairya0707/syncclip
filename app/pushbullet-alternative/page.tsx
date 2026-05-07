@@ -155,7 +155,84 @@ export default function PushbulletAlternativePage() {
 
           {/* APP FATIGUE SECTION */}
           <section className="mb-24 border-t-2 border-black pt-16">
-             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter text-black">Solving_ App_ Fatigue_</h2>
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter text-black leading-none">Pushbullet_ Alternatives_ for_ Different_ Use_ Cases_</h2>
+            <div className="grid md:grid-cols-2 gap-12 mb-20">
+              <div className="border-4 border-black p-8 bg-zinc-50 relative group hover:bg-black transition-all">
+                <h3 className="font-headline font-black uppercase text-xl mb-4 group-hover:text-secondary italic transition-colors">For Developers_</h3>
+                <p className="font-body text-sm text-zinc-600 group-hover:text-zinc-400 leading-relaxed mb-4 italic">The fastest ephemeral node for moving regex, terminal commands, and API snippets without cloud storage risks.</p>
+                <div className="font-mono text-[9px] uppercase tracking-widest text-zinc-400">Recommended: SyncClip</div>
+              </div>
+              <div className="border-4 border-black p-8 bg-zinc-50 relative group hover:bg-black transition-all">
+                <h3 className="font-headline font-black uppercase text-xl mb-4 group-hover:text-secondary italic transition-colors">For Teams_</h3>
+                <p className="font-body text-sm text-zinc-600 group-hover:text-zinc-400 leading-relaxed mb-4 italic">Share temporary credentials or meeting links during huddles without cluttering your Slack history.</p>
+                <div className="font-mono text-[9px] uppercase tracking-widest text-zinc-400">Recommended: SyncClip</div>
+              </div>
+              <div className="border-4 border-black p-8 bg-zinc-50 relative group hover:bg-black transition-all">
+                <h3 className="font-headline font-black uppercase text-xl mb-4 group-hover:text-secondary italic transition-colors">For Privacy First_</h3>
+                <p className="font-body text-sm text-zinc-600 group-hover:text-zinc-400 leading-relaxed mb-4 italic">No login, no logs, and 24-hour auto-purge. Your data doesn&apos;t live in a permanent cloud database.</p>
+                <div className="font-mono text-[9px] uppercase tracking-widest text-zinc-400">Recommended: SyncClip</div>
+              </div>
+              <div className="border-4 border-black p-8 bg-zinc-50 relative group hover:bg-black transition-all">
+                <h3 className="font-headline font-black uppercase text-xl mb-4 group-hover:text-secondary italic transition-colors">For Cross-OS Bridge_</h3>
+                <p className="font-body text-sm text-zinc-600 group-hover:text-zinc-400 leading-relaxed mb-4 italic">Moving data between a Mac and a Windows rig? SyncClip bridges the ecosystem gap instantly.</p>
+                <div className="font-mono text-[9px] uppercase tracking-widest text-zinc-400">Recommended: SyncClip</div>
+              </div>
+            </div>
+
+            {/* COMPARISON WITH OTHER FREE ALTS */}
+            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter text-black leading-none">The_ Free_ Alternative_ Matrix_</h2>
+            <div className="overflow-x-auto border-4 border-black mb-20">
+               <table className="w-full text-left border-collapse font-mono text-[11px] uppercase">
+                  <thead className="bg-black text-white">
+                     <tr>
+                        <th className="p-6 border-r border-zinc-800">Competitor</th>
+                        <th className="p-6 border-r border-zinc-800">Account?</th>
+                        <th className="p-6 border-r border-zinc-800">Install?</th>
+                        <th className="p-6">Best For</th>
+                     </tr>
+                  </thead>
+                  <tbody className="divide-y-2 divide-black">
+                     <tr>
+                        <td className="p-6 font-black border-r border-black bg-zinc-50">Pushbullet</td>
+                        <td className="p-6 border-r border-black">YES</td>
+                        <td className="p-6 border-r border-black">YES</td>
+                        <td className="p-4 italic">Legacy Users</td>
+                     </tr>
+                     <tr>
+                        <td className="p-6 font-black border-r border-black bg-zinc-50 text-secondary italic">SyncClip</td>
+                        <td className="p-6 border-r border-black font-bold">NO</td>
+                        <td className="p-6 border-r border-black font-bold">NO</td>
+                        <td className="p-4 italic font-black">Speed & Privacy</td>
+                     </tr>
+                     <tr>
+                        <td className="p-6 font-black border-r border-black bg-zinc-50">AnyDesk</td>
+                        <td className="p-6 border-r border-black">NO</td>
+                        <td className="p-6 border-r border-black">YES</td>
+                        <td className="p-4 italic">Remote Control</td>
+                     </tr>
+                     <tr>
+                        <td className="p-6 font-black border-r border-black bg-zinc-50">KDE Connect</td>
+                        <td className="p-6 border-r border-black">NO</td>
+                        <td className="p-6 border-r border-black">YES</td>
+                        <td className="p-4 italic">Local Linux</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+
+            {/* FAQ SECTION */}
+            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter text-black leading-none">Common_ Questions_</h2>
+            <div className="space-y-12 mb-20 border-t-2 border-black pt-12">
+               <div>
+                  <h4 className="font-headline font-black uppercase text-xl mb-4 italic">Why did Pushbullet stop being free?</h4>
+                  <p className="font-body text-base text-zinc-600 leading-relaxed max-w-2xl italic">As infrastructure costs grew, Pushbullet moved many core features (like unlimited SMS and clipboard sync) into their Pro tier. SyncClip remains free by using an ephemeral architecture that minimizes long-term storage costs.</p>
+               </div>
+               <div>
+                  <h4 className="font-headline font-black uppercase text-xl mb-4 italic">Is SyncClip a direct replacement?</h4>
+                  <p className="font-body text-base text-zinc-600 leading-relaxed max-w-2xl italic">For clipboard and text sharing, yes. We prioritize the frictionless sync experience without the bloat of notifications or file management that original Pushbullet users may have found overwhelming.</p>
+               </div>
+            </div>
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter text-black leading-none">Solving_ App_ Fatigue_</h2>
              <div className="font-body text-lg text-zinc-700 leading-relaxed space-y-8 max-w-3xl">
                 <p>
                    In 2026, the average professional uses 15+ SaaS tools daily. Installing a dedicated application, granting it &quot;Accessibility Services&quot; permissions on Android, or installing a background helper on Windows just to move a URL is <strong>technology overkill</strong>.

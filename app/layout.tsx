@@ -6,18 +6,18 @@ import ConvexClientProvider from "./ConvexClientProvider";
 export const metadata: Metadata = {
   metadataBase: new URL('https://syncclip.in'),
   title: {
-    default: "Online Clipboard Sync — Free Copy Paste Between Devices | SyncClip",
+    default: "SyncClip — Free Online Clipboard (Sync Instantly, No App, No Login)",
     template: "%s | SyncClip — Online Clipboard"
   },
-  description: "Copy on one device, paste on another instantly. Free online clipboard to sync text between phone and PC with no login, no app install, and zero tracking.",
+  description: "Copy text on your phone → paste on PC in milliseconds. No signup, no installation, no logs. Works on Android, iOS, Windows, Mac, Linux.",
   keywords: ["online clipboard", "clipboard online", "copy paste between devices", "sync clipboard between devices", "share clipboard online", "clipboard sharing tool", "cross device clipboard", "paste text between devices", "copy text from phone to computer", "free clipboard sync", "clipboard sync android windows", "universal clipboard online no signup", "pushbullet alternative free"],
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico",
   },
   openGraph: {
-    title: "Online Clipboard — Copy Paste Between Devices Free",
-    description: "Free online clipboard to sync text between phone and PC instantly. No login, no app install. Works on Android, iOS, Windows, Mac, and Linux.",
+    title: "SyncClip — Free Online Clipboard (Sync Instantly)",
+    description: "Copy text on your phone → paste on PC in milliseconds. No signup, no installation, no logs. Works on Android, iOS, Windows, Mac, Linux.",
     url: "https://syncclip.in",
     siteName: "SyncClip — Online Clipboard",
     images: [
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Online Clipboard — Copy Paste Devices Free",
-    description: "Free online clipboard to sync text between phone and PC instantly. No login, no app install.",
+    title: "SyncClip — Free Online Clipboard (Sync Instantly)",
+    description: "Copy text on your phone → paste on PC in milliseconds. No signup, no installation, no logs.",
     images: ["/og-image.png"],
   },
   alternates: {
