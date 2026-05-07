@@ -6,10 +6,10 @@ import ConvexClientProvider from "./ConvexClientProvider";
 export const metadata: Metadata = {
   metadataBase: new URL('https://syncclip.in'),
   title: {
-    default: "Online Clipboard — Copy Paste Between Devices Free | SyncClip",
+    default: "Online Clipboard Sync — Free Copy Paste Between Devices | SyncClip",
     template: "%s | SyncClip — Online Clipboard"
   },
-  description: "Free online clipboard to copy and paste text between devices instantly. Sync clipboard between phone, laptop, and tablet with no login, no app install, and no tracking. The fastest clipboard sharing tool.",
+  description: "Copy on one device, paste on another instantly. Free online clipboard to sync text between phone and PC with no login, no app install, and zero tracking.",
   keywords: ["online clipboard", "clipboard online", "copy paste between devices", "sync clipboard between devices", "share clipboard online", "clipboard sharing tool", "cross device clipboard", "paste text between devices", "copy text from phone to computer", "free clipboard sync", "clipboard sync android windows", "universal clipboard online no signup", "pushbullet alternative free"],
   icons: {
     icon: "/favicon.ico",

@@ -43,37 +43,96 @@ export default function TemporaryClipboardPage() {
             </p>
           </div>
 
+          <div className="bg-zinc-100 p-8 border-2 border-black mb-16 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="border-r border-zinc-300 pr-8">
+                   <div className="text-black font-black mb-2 italic uppercase">Retention Policy</div>
+                   <p className="text-[10px] leading-relaxed">Active sessions only. Hard-purge after 24h inactivity or instant manual destruction.</p>
+                </div>
+                <div className="border-r border-zinc-300 px-8">
+                   <div className="text-black font-black mb-2 italic uppercase">Tracking Level</div>
+                   <p className="text-[10px] leading-relaxed">Zero. No persistent cookies, no account profiling, no fingerprinting.</p>
+                </div>
+                <div className="pl-8">
+                   <div className="text-black font-black mb-2 italic uppercase">Encryption</div>
+                   <p className="text-[10px] leading-relaxed">TLS 1.3 + WSS (Secure WebSockets). AES-256 at rest (for ephemeral cache).</p>
+                </div>
+             </div>
+          </div>
+
           {/* THE CONCEPT */}
           <section className="mb-24 border-t-2 border-black pt-16">
-             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter">The_ Disposable_ Philosophy_</h2>
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter text-secondary">The_ Disposable_ Philosophy_</h2>
              <div className="font-body text-lg text-zinc-700 leading-relaxed space-y-8 max-w-3xl">
                 <p>
-                   In an era of permanent data, SyncClip is built for transience. Whether you&apos;re using a public computer at a library, a shared workstation, or simply moving a one-time link, you don&apos;t need a persistent cloud trail.
+                   In an era of permanent data, SyncClip is built for transience. Whether you&apos;re using a public computer at a library, a shared workstation, or simply moving a one-time link, you don&apos;t need a persistent cloud trail. 
                 </p>
                 <p>
-                   Our <strong>Temporary Clipboard Online</strong> works on the &quot;Burner&quot; principle. You open a session, sync your data, and close the session. The data is gone. No logs. No history. No footprint.
+                   A <strong>temporary clipboard</strong> is not just a tool; it is a security strategy. By ensuring that your data only exists during the transfer phase, you eliminate the &quot;Data at Rest&quot; vulnerability that plagues traditional cloud notes and messaging apps.
                 </p>
+                <p>
+                   Our <strong>Temporary Clipboard Online</strong> works on the &quot;Burner&quot; principle. You open a session, sync your data, and close the session. The data is gone. No logs. No history. No footprint. This is &quot;Privacy by Architecture.&quot;
+                </p>
+             </div>
+          </section>
+
+          {/* COMPARISON TABLE */}
+          <section className="mb-24">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12">Temporary vs Persistent Storage</h2>
+             <div className="overflow-x-auto border-4 border-black shadow-[15px_15px_0px_0px_rgba(5,125,188,0.1)] bg-white">
+                <table className="w-full text-left font-body">
+                   <thead>
+                      <tr className="bg-black text-white font-mono text-[10px] uppercase tracking-widest">
+                         <th className="p-6 border-r border-zinc-800">Storage Type</th>
+                         <th className="p-6 border-r border-zinc-800 text-secondary">Best For</th>
+                         <th className="p-6">Retention Lifecycle</th>
+                      </tr>
+                   </thead>
+                   <tbody className="text-sm divide-y divide-black">
+                      <tr>
+                         <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px]">SyncClip (Temporary)</td>
+                         <td className="p-6 border-r border-black text-secondary font-black">OTPs, Links, Dev Snippets</td>
+                         <td className="p-6">Disposable (Manual/24h)</td>
+                      </tr>
+                      <tr>
+                         <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px]">Cloud Notes (Persistent)</td>
+                         <td className="p-6 border-r border-black">Documentation, Projects</td>
+                         <td className="p-6">Indefinite (Cloud Logs)</td>
+                      </tr>
+                      <tr>
+                         <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px]">Email (Permanent)</td>
+                         <td className="p-6 border-r border-black">Archival Communication</td>
+                         <td className="p-6">Permanent (Indexed Search)</td>
+                      </tr>
+                   </tbody>
+                </table>
              </div>
           </section>
 
           {/* WORKFLOW STEPS */}
-          <section className="mb-24 grid md:grid-cols-3 gap-8">
-             <div className="border-2 border-black p-8 bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                <h3 className="font-headline font-black text-xl mb-4 uppercase text-secondary">01. Create</h3>
-                <p className="text-sm text-zinc-600">Generate a unique session node in one click. No registration required.</p>
-             </div>
-             <div className="border-2 border-black p-8 bg-white shadow-[6px_6px_0px_0px_rgba(5,125,188,1)]">
-                <h3 className="font-headline font-black text-xl mb-4 uppercase text-secondary">02. Sync</h3>
-                <p className="text-sm text-zinc-600">Paste your text. It mirrors across your devices via encrypted WebSocket tunnels.</p>
-             </div>
-             <div className="border-2 border-black p-8 bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                <h3 className="font-headline font-black text-xl mb-4 uppercase text-secondary">03. Burn</h3>
-                <p className="text-sm text-zinc-600">Close the browser tab or hit &apos;Destroy Session&apos;. Data is hard-purged instantly.</p>
+          <section className="mb-24">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic text-black">The_ Disposable_ Workflow_</h2>
+             <div className="grid md:grid-cols-3 gap-8">
+                <div className="border-4 border-black p-8 bg-white hover:bg-zinc-50 transition-colors">
+                   <div className="font-mono text-3xl font-black text-secondary mb-4">01</div>
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-black">Create Node</h3>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Generate a unique session node in one click. No registration, no email, no friction. Just a clean slate.</p>
+                </div>
+                <div className="border-4 border-black p-8 bg-white hover:bg-zinc-50 transition-colors">
+                   <div className="font-mono text-3xl font-black text-secondary mb-4">02</div>
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-black">Sync Live</h3>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Paste your text. It mirrors across your hardware stack via encrypted WebSocket tunnels in under 100ms.</p>
+                </div>
+                <div className="border-4 border-black p-8 bg-white hover:bg-zinc-50 transition-colors">
+                   <div className="font-mono text-3xl font-black text-secondary mb-4">03</div>
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-black">Hard Purge</h3>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Close the browser tab or hit &apos;Destroy Session&apos;. The data is hard-purged from the hot layer instantly. Zero traces left.</p>
+                </div>
              </div>
           </section>
 
           {/* CTA */}
-          <div className="bg-black text-white p-16 md:p-24 text-center border-t-8 border-secondary">
+          <div className="bg-black text-white p-16 md:p-24 text-center border-t-8 border-secondary shadow-[30px_30px_0px_0px_rgba(5,125,188,0.2)]">
             <h2 className="font-headline text-4xl md:text-7xl font-black uppercase mb-10 italic tracking-tighter leading-none text-secondary">Burn_ Data_ Now_</h2>
             <Link href="/" className="inline-block bg-white text-black font-mono font-black py-6 px-16 hover:bg-secondary transition-all uppercase tracking-widest text-xl shadow-[12px_12px_0px_0px_rgba(255,255,255,1)]">
               LAUNCH_ DISPOSABLE_ NODE_
@@ -83,7 +142,7 @@ export default function TemporaryClipboardPage() {
       </main>
 
       <footer className="w-full border-t-2 border-black bg-white">
-        <div className="max-w-7xl mx-auto px-6 py-12 flex justify-between items-center font-mono text-[9px] tracking-widest text-zinc-400 uppercase">
+        <div className="max-w-7xl mx-auto px-6 py-12 flex justify-between items-center font-mono text-[9px] tracking-widest text-zinc-400 uppercase gap-8">
           <div>© 2026 SYNCCLIP // TEMPORARY-CLIP-V2</div>
           <Link href="/blog/is-online-clipboard-secure" className="hover:text-black">Privacy Protocol</Link>
         </div>

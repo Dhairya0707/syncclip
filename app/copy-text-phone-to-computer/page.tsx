@@ -63,29 +63,72 @@ export default function CopyTextPhoneToComputer() {
             </p>
           </div>
 
+          <div className="bg-zinc-100 p-8 border-2 border-black mb-16 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="border-r border-zinc-300 pr-8">
+                   <div className="text-black font-black mb-2 italic uppercase">Zero Install</div>
+                   <p className="text-[10px] leading-relaxed">No apps, no extensions. Runs entirely in the browser runtime using native Web APIs.</p>
+                </div>
+                <div className="border-r border-zinc-300 px-8">
+                   <div className="text-black font-black mb-2 italic uppercase">Latency Floor</div>
+                   <p className="text-[10px] leading-relaxed">Sub-100ms sync across global clusters. Faster than human reaction time.</p>
+                </div>
+                <div className="pl-8">
+                   <div className="text-black font-black mb-2 italic uppercase">Privacy Lock</div>
+                   <p className="text-[10px] leading-relaxed">Anonymous sessions. Data is hard-purged from the hot layer after 24 hours.</p>
+                </div>
+             </div>
+          </div>
+
           {/* THE PROBLEM SECTION */}
           <section className="mb-24 border-t-2 border-black pt-16">
-             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter leading-tight">Why_ It_ Was_ Slow_</h2>
-             <div className="font-body text-lg text-zinc-700 leading-relaxed space-y-8 max-w-2xl">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter leading-tight text-secondary">The_ Friction_ Audit_</h2>
+             <div className="font-body text-lg text-zinc-700 leading-relaxed space-y-8 max-w-3xl">
                 <p>
-                   Most people still use &quot;Self-Emailing&quot; to move text from their phone to their PC. This is a 20th-century solution to a 21st-century problem. It litters your inbox, creates a permanent data trail, and takes way too long.
+                   Most people still use &quot;Self-Emailing&quot; to move text from their phone to their PC. This is a 20th-century solution to a 21st-century problem. It litters your inbox, creates a permanent data trail, and takes way too long. 
                 </p>
                 <p>
-                   SyncClip provides a <strong>Distrubuted Clipboard Node</strong>. It acts as a temporary digital scratchpad that mirrors your clipboard across all active browser windows instantly.
+                   A <strong>cross-device clipboard</strong> should be as invisible as the air. SyncClip provides a <strong>Distributed Clipboard Node</strong>. It acts as a temporary digital scratchpad that mirrors your clipboard across all active browser windows instantly. No login, no registration, no friction.
                 </p>
              </div>
           </section>
 
-          {/* THE SOLUTION STEPS */}
-          <section className="mb-24">
-             <div className="grid md:grid-cols-2 gap-12">
-                <div className="border-4 border-black p-10 bg-white shadow-[12px_12px_0px_0px_rgba(5,125,188,1)]">
-                   <h3 className="font-headline font-black uppercase text-2xl mb-6">01. Open the Bridge</h3>
-                   <p className="text-zinc-600">Navigate to syncclip.in on your phone and computer. Tap &apos;Launch&apos; to create an anonymous session.</p>
+          {/* SCENARIO GRID */}
+          <section className="mb-24 border-t-2 border-black pt-16">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 text-black">When To Use SyncClip_</h2>
+             <div className="grid md:grid-cols-2 gap-8">
+                <div className="border-4 border-black p-8 bg-white hover:bg-zinc-50 transition-colors">
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-secondary italic">01. 2FA & Auth Codes_</h3>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Received a 2FA code on your phone? Don&apos;t type it manually on your laptop. Copy on phone, paste on PC in under 0.1 seconds.</p>
                 </div>
-                <div className="border-4 border-black p-10 bg-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
-                   <h3 className="font-headline font-black uppercase text-2xl mb-6">02. Copy & Paste</h3>
-                   <p className="text-zinc-600">Paste the text on your phone. It lands on your computer screen in milliseconds. Zero clicks required.</p>
+                <div className="border-4 border-black p-8 bg-white hover:bg-zinc-50 transition-colors">
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-secondary italic">02. Terminal Commands_</h3>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Found a complex bash command on your phone while researching? Send it to your workstation terminal instantly without Slack/WhatsApp bloat.</p>
+                </div>
+                <div className="border-4 border-black p-8 bg-white hover:bg-zinc-50 transition-colors">
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-secondary italic">03. Long Form Content_</h3>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Drafted a quick paragraph on your mobile notes? Move it to your desktop word processor without starting a document sync cycle.</p>
+                </div>
+                <div className="border-4 border-black p-8 bg-white hover:bg-zinc-50 transition-colors">
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-secondary italic">04. Deep Links_</h3>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Open complex URLs from your mobile browser on your desktop monitor for better visibility and dev-tools access.</p>
+                </div>
+             </div>
+          </section>
+
+          {/* THE SOLUTION STEPS */}
+          <section className="mb-24 border-t-2 border-black pt-16">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter text-black">How_ To_ Move_ Text_</h2>
+             <div className="grid md:grid-cols-2 gap-12">
+                <div className="border-4 border-black p-10 bg-white shadow-[12px_12px_0px_0px_rgba(5,125,188,1)] relative">
+                   <div className="absolute -top-4 -left-4 bg-black text-white font-mono font-black w-10 h-10 flex items-center justify-center italic">1</div>
+                   <h3 className="font-headline font-black uppercase text-2xl mb-6 text-black">Open the Bridge</h3>
+                   <p className="text-zinc-600 font-body leading-relaxed">Navigate to <strong>syncclip.in</strong> on your phone and computer. Tap &apos;Launch&apos; on one device to create an anonymous session, then scan the QR or type the 6-character code on the other.</p>
+                </div>
+                <div className="border-4 border-black p-10 bg-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative">
+                   <div className="absolute -top-4 -left-4 bg-black text-white font-mono font-black w-10 h-10 flex items-center justify-center italic">2</div>
+                   <h3 className="font-headline font-black uppercase text-2xl mb-6 text-black">Copy & Paste</h3>
+                   <p className="text-zinc-600 font-body leading-relaxed">Paste the text into the SyncClip window on your phone. It lands in the &apos;Remote Clipboard&apos; section of your computer screen in milliseconds. One-click copy and you are done.</p>
                 </div>
              </div>
           </section>
@@ -93,25 +136,30 @@ export default function CopyTextPhoneToComputer() {
           {/* COMPARISON */}
           <section className="mb-24 border-t-2 border-black pt-16">
              <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12">The Speed Analysis</h2>
-             <div className="overflow-x-auto border-2 border-black shadow-[15px_15px_0px_0px_rgba(5,125,188,0.1)]">
+             <div className="overflow-x-auto border-4 border-black shadow-[15px_15px_0px_0px_rgba(5,125,188,0.1)] bg-white">
                 <table className="w-full text-left font-body">
                    <thead>
                       <tr className="bg-black text-white font-mono text-[10px] uppercase tracking-widest">
-                         <th className="p-6 border-r border-zinc-800">Method</th>
-                         <th className="p-6 border-r border-zinc-800 text-secondary">SyncClip</th>
-                         <th className="p-6">Email / Cloud Note</th>
+                         <th className="p-6 border-r border-zinc-800">Transfer Method</th>
+                         <th className="p-6 border-r border-zinc-800 text-secondary">Sync Speed</th>
+                         <th className="p-6">Friction Rating</th>
                       </tr>
                    </thead>
                    <tbody className="text-sm divide-y divide-black">
                       <tr>
-                         <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px] tracking-widest">Transfer Speed</td>
-                         <td className="p-6 border-r border-black text-secondary font-black">INSTANT (&lt;100ms)</td>
-                         <td className="p-6">SLOW (30s+)</td>
+                         <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px] tracking-widest">SyncClip Bridge</td>
+                         <td className="p-6 border-r border-black text-secondary font-black italic">INSTANT (&lt;100ms)</td>
+                         <td className="p-6 uppercase font-mono text-[10px] text-green-600 font-black">Zero Friction</td>
                       </tr>
                       <tr>
-                         <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px] tracking-widest">Steps Involved</td>
-                         <td className="p-6 border-r border-black text-secondary font-black text-center">2</td>
-                         <td className="p-6 text-center">8+</td>
+                         <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px] tracking-widest">Email Self-Send</td>
+                         <td className="p-6 border-r border-black text-center">30s - 60s</td>
+                         <td className="p-6 uppercase font-mono text-[10px] text-red-600 font-black">High Friction</td>
+                      </tr>
+                      <tr>
+                         <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px] tracking-widest">Cloud Storage</td>
+                         <td className="p-6 border-r border-black text-center">5s - 15s</td>
+                         <td className="p-6 uppercase font-mono text-[10px] text-orange-600 font-black">Medium Friction</td>
                       </tr>
                    </tbody>
                 </table>
@@ -119,9 +167,9 @@ export default function CopyTextPhoneToComputer() {
           </section>
 
           {/* CTA */}
-          <div className="bg-black text-white p-16 md:p-24 text-center border-b-[20px] border-secondary">
-            <h2 className="font-headline text-4xl md:text-7xl font-black uppercase mb-10 italic tracking-tighter leading-none">Sync_ Now_</h2>
-            <Link href="/" className="inline-block bg-secondary text-black font-mono font-black py-6 px-16 hover:bg-white transition-all uppercase tracking-widest text-xl shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+          <div className="bg-black text-white p-16 md:p-24 text-center border-b-[20px] border-secondary shadow-[30px_30px_0px_0px_rgba(5,125,188,0.2)]">
+            <h2 className="font-headline text-4xl md:text-7xl font-black uppercase mb-10 italic tracking-tighter leading-none text-secondary">Sync_ Now_</h2>
+            <Link href="/" className="inline-block bg-white text-black font-mono font-black py-6 px-16 hover:bg-secondary transition-all uppercase tracking-widest text-xl shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
               LAUNCH_ NODE_ V4
             </Link>
           </div>

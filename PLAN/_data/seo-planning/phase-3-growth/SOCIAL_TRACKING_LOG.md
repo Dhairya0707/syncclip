@@ -9,6 +9,8 @@
 | :--- | :--- | :--- | :--- | :--- |
 | 2026-05-05 | LinkedIn | `/blog/is-online-clipboard-secure` | ✅ POSTED | "The Privacy Reality of Cloud Notes" |
 | 2026-05-05 | LinkedIn | `/blog/how-to-copy-text-from-android-to-mac` | 🚀 PLANNED | "Breaking the Apple Walled Garden" |
+| 2026-05-07 | LinkedIn | `/blog/clipboard-sync-for-remote-teams` | 🚀 PLANNED | "The Context Switching Tax" |
+| 2026-05-07 | Reddit | `/blog/online-clipboard-vs-cloud-notes` | 🚀 PLANNED | "Transient vs Permanent Storage Battle" |
 
 ---
 *Log maintained by SyncClip Social Distributor Skill*

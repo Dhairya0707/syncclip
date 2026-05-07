@@ -46,89 +46,136 @@ export default function OnlineClipboardPage() {
               An online clipboard is a web-based synchronization utility that allows users to share text, code, and links between multiple devices instantly. By using a secure WebSocket bridge like SyncClip, you can copy data on your phone and paste it on your computer without installing apps, creating accounts, or compromising your privacy.
             </p>
           </div>
-          
-          {/* HEADER */}
-          <div className="mb-16">
+                   <div className="mb-16">
             <div className="font-mono text-[10px] tracking-[0.3em] text-secondary mb-4 uppercase">Regional Solution // INDIA HUB</div>
             <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter font-headline leading-none text-black mb-8">
               ONLINE_ CLIPBOARD FOR INSTANT TEXT SHARING_
             </h1>
-            <p className="font-body text-xl md:text-2xl leading-relaxed italic text-zinc-600 max-w-2xl">
+            <p className="font-body text-xl md:text-2xl leading-relaxed italic text-zinc-600 max-w-2xl mb-12">
               The fastest way to share text between your mobile and computer in India. Secure, instant, and completely free.
             </p>
           </div>
 
+          <div className="bg-zinc-100 p-8 border-2 border-black mb-16 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="border-r border-zinc-300 pr-8">
+                   <div className="text-black font-black mb-2 italic uppercase">India Response Speed</div>
+                   <p className="text-[10px] leading-relaxed">Edge nodes in Mumbai and Chennai ensure sub-50ms handshake for domestic traffic.</p>
+                </div>
+                <div className="border-r border-zinc-300 px-8">
+                   <div className="text-black font-black mb-2 italic uppercase">Developer Ready</div>
+                   <p className="text-[10px] leading-relaxed">Copy JSON, XML, or Bash snippets without formatting corruption or hidden characters.</p>
+                </div>
+                <div className="pl-8">
+                   <div className="text-black font-black mb-2 italic uppercase">Zero Persistence</div>
+                   <p className="text-[10px] leading-relaxed">Transient data protocol ensures nothing is stored in long-term cold storage.</p>
+                </div>
+             </div>
+          </div>
+
           {/* SECTION 1: THE INDIA CONTEXT */}
-          <section className="mb-20">
-            <div className="border-t-2 border-black pt-10">
-              <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-8 text-black">Solving the Local Workflow</h2>
-              <div className="grid md:grid-cols-2 gap-12 font-body text-base text-zinc-700 leading-relaxed">
+          <section className="mb-24 border-t-2 border-black pt-16">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter text-black leading-none">Solving_ The_ Local_ Workflow_</h2>
+             <div className="font-body text-lg text-zinc-700 leading-relaxed space-y-8 max-w-3xl">
                 <p>
-                  Whether you are a software engineer in <strong>Bengaluru&apos;s tech parks</strong>, a research student in <strong>Mumbai</strong>, or a remote worker in <strong>Delhi</strong>, the &quot;mobile-to-PC&quot; gap is a daily hurdle. Many Indians rely on WhatsApp Web or Telegram to send links to themselves, but this clutters personal chats and compromises privacy.
+                   Whether you are a software engineer in <strong>Bengaluru&apos;s tech parks</strong>, a research student in <strong>Mumbai</strong>, or a remote worker in <strong>Delhi</strong>, the &quot;mobile-to-PC&quot; gap is a daily hurdle. Many Indians rely on WhatsApp Web or Telegram to send links to themselves, but this clutters personal chats and compromises privacy. 
                 </p>
                 <p>
-                  SyncClip provides a <strong>sovereign, browser-native alternative</strong>. Built on a low-latency stack (Next.js + Convex), it offers an immediate &quot;scratchpad&quot; that exists only as long as you need it.
+                   SyncClip provides a <strong>sovereign, browser-native alternative</strong>. Built on a low-latency stack (Next.js + Convex), it offers an immediate &quot;scratchpad&quot; that exists only as long as you need it. No more &quot;Sent to Self&quot; messages filling up your backup storage.
                 </p>
-              </div>
-            </div>
+             </div>
+          </section>
+
+          {/* THE LATENCY TAX SECTION */}
+          <section className="mb-24 bg-zinc-900 text-white p-12 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(0,0,0,1)]">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-8 italic text-secondary">The_ Latency_ Tax_</h2>
+             <p className="font-body text-lg text-zinc-400 mb-8 leading-relaxed max-w-3xl">
+                Every second you spend waiting for a cloud note to sync or an email to arrive is a &quot;Latency Tax&quot; on your productivity. In a high-speed work environment, those seconds accumulate into minutes of lost focus. 
+             </p>
+             <p className="font-body text-lg text-zinc-400 mb-10 leading-relaxed max-w-3xl">
+                By using an <strong>online clipboard</strong> powered by real-time WebSockets, you reduce the data transfer cycle to its physical limit. SyncClip moves data at the speed of your network handshake, typically under 100ms.
+             </p>
+             <div className="flex gap-4">
+                <div className="h-1 flex-1 bg-secondary"></div>
+                <div className="h-1 flex-1 bg-zinc-700"></div>
+                <div className="h-1 flex-1 bg-zinc-700"></div>
+             </div>
           </section>
 
           {/* SECTION 2: TARGET AUDIENCE WORKFLOWS */}
-          <section className="mb-20 border-t-2 border-black pt-16">
-            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-10">Optimized for Productivity</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="border-2 border-black p-10 bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-                <h3 className="font-headline font-black uppercase text-2xl mb-4 text-secondary">For Developers</h3>
+          <section className="mb-24 border-t-2 border-black pt-16">
+            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-12">Optimized for Productivity</h2>
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="border-4 border-black p-10 bg-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-50 transition-colors">
+                <h3 className="font-headline font-black uppercase text-2xl mb-6 text-secondary">For Developers_</h3>
                 <ul className="space-y-4 font-body text-sm text-zinc-600 leading-relaxed">
-                  <li><strong className="text-black">API Snippets:</strong> Instantly move curl commands or JSON payloads between your Linux workstation and Android testing device.</li>
-                  <li><strong className="text-black">No Setup:</strong> Works in every environment—from office Wi-Fi to mobile hotspots—without firewall configuration.</li>
-                  <li><strong className="text-black">Live Debugging:</strong> See logs update in real-time across devices during remote debugging sessions.</li>
+                  <li className="flex gap-3">
+                     <span className="text-black font-black">/</span>
+                     <p><strong className="text-black">API Snippets:</strong> Instantly move curl commands or JSON payloads between your Linux workstation and Android testing device without formatting errors.</p>
+                  </li>
+                  <li className="flex gap-3">
+                     <span className="text-black font-black">/</span>
+                     <p><strong className="text-black">No Setup:</strong> Works in every environment—from office Wi-Fi to mobile hotspots—without complex firewall or proxy configuration.</p>
+                  </li>
+                  <li className="flex gap-3">
+                     <span className="text-black font-black">/</span>
+                     <p><strong className="text-black">Zero Tracking:</strong> Maintain privacy while moving sensitive environment variables between development nodes.</p>
+                  </li>
                 </ul>
               </div>
-              <div className="border-2 border-black p-10 bg-white shadow-[8px_8px_0px_0px_rgba(5,125,188,1)]">
-                <h3 className="font-headline font-black uppercase text-2xl mb-4 text-secondary">For Students</h3>
+              <div className="border-4 border-black p-10 bg-white shadow-[12px_12px_0px_0px_rgba(5,125,188,1)] hover:bg-zinc-50 transition-colors">
+                <h3 className="font-headline font-black uppercase text-2xl mb-6 text-secondary">For Students_</h3>
                 <ul className="space-y-4 font-body text-sm text-zinc-600 leading-relaxed">
-                  <li><strong className="text-black">Note Sync:</strong> Copy research references or citation links from your phone during lectures directly to your laptop.</li>
-                  <li><strong className="text-black">Cross-Platform:</strong> Works perfectly on budget Android tablets, Windows laptops, and iPads alike.</li>
-                  <li><strong className="text-black">Study Groups:</strong> Share a 6-character node code with a friend to exchange links instantly in a common room.</li>
+                  <li className="flex gap-3">
+                     <span className="text-black font-black">/</span>
+                     <p><strong className="text-black">Note Sync:</strong> Copy research references or citation links from your phone during lectures directly to your laptop research document.</p>
+                  </li>
+                  <li className="flex gap-3">
+                     <span className="text-black font-black">/</span>
+                     <p><strong className="text-black">Cross-Platform:</strong> Works perfectly on budget Android tablets, Windows laptops, and iPads alike with no software limitations.</p>
+                  </li>
+                  <li className="flex gap-3">
+                     <span className="text-black font-black">/</span>
+                     <p><strong className="text-black">Ephemeral Access:</strong> Use public library computers without leaving your personal links logged in to a cloud account.</p>
+                  </li>
                 </ul>
               </div>
             </div>
           </section>
 
           {/* SECTION 3: SYNCCLIP VS PASTEBIN */}
-          <section className="mb-20 border-t-2 border-black pt-16">
-            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-8">Better Than a Traditional Pastebin</h2>
-            <p className="font-body text-base text-zinc-700 leading-relaxed mb-10 max-w-3xl">
+          <section className="mb-24 border-t-2 border-black pt-16">
+            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-8 text-black">Online Clipboard vs Pastebin</h2>
+            <p className="font-body text-lg text-zinc-700 leading-relaxed mb-12 max-w-3xl">
               While Pastebin sites are great for long-term code storage, they are terrible for transient, real-time sharing. SyncClip is a <strong>Distributed Clipboard Protocol</strong>, not a storage site.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="border-2 border-black p-6 bg-zinc-900 text-white text-center">
-                <h4 className="font-mono text-secondary uppercase font-bold text-xs mb-3">Instant Update</h4>
-                <p className="font-body text-xs text-zinc-400">No &quot;Submit&quot; or &quot;Save&quot; buttons. Every keystroke syncs live.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="border-4 border-black p-8 bg-zinc-900 text-white relative group">
+                <div className="font-mono text-secondary text-[10px] mb-4 font-black uppercase tracking-widest">// INSTANT UPDATE</div>
+                <p className="font-body text-sm text-zinc-400 leading-relaxed italic">No &quot;Submit&quot; or &quot;Save&quot; buttons. Every keystroke syncs live via the hot layer. Speed is the only priority.</p>
               </div>
-              <div className="border-2 border-black p-6 bg-zinc-900 text-white text-center">
-                <h4 className="font-mono text-secondary uppercase font-bold text-xs mb-3">Privacy First</h4>
-                <p className="font-body text-xs text-zinc-400">Data is not indexed by Google or listed in &quot;Public Pastes.&quot;</p>
+              <div className="border-4 border-black p-8 bg-zinc-900 text-white relative group">
+                <div className="font-mono text-secondary text-[10px] mb-4 font-black uppercase tracking-widest">// PRIVACY FIRST</div>
+                <p className="font-body text-sm text-zinc-400 leading-relaxed italic">Data is not indexed by Google or listed in public directories. Your snippets are invisible to the public web.</p>
               </div>
-              <div className="border-2 border-black p-6 bg-zinc-900 text-white text-center">
-                <h4 className="font-mono text-secondary uppercase font-bold text-xs mb-3">Ephemeral</h4>
-                <p className="font-body text-xs text-zinc-400">Hard-purged after 24 hours. No permanent trail of your data.</p>
+              <div className="border-4 border-black p-8 bg-zinc-900 text-white relative group">
+                <div className="font-mono text-secondary text-[10px] mb-4 font-black uppercase tracking-widest">// EPHEMERAL</div>
+                <p className="font-body text-sm text-zinc-400 leading-relaxed italic">Hard-purged after 24 hours of inactivity. We don&apos;t build a history; we facilitate a transition.</p>
               </div>
             </div>
           </section>
 
           {/* SECTION 4: ZERO TRACKING */}
-          <section className="mb-20 border-t-2 border-black pt-16">
-            <div className="bg-black text-white p-12 border-l-[20px] border-secondary flex flex-col md:flex-row gap-12 items-center">
+          <section className="mb-24 border-t-2 border-black pt-16">
+            <div className="bg-black text-white p-12 border-l-[20px] border-secondary flex flex-col md:flex-row gap-12 items-center shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
               <div className="flex-grow">
-                <h2 className="font-headline text-4xl md:text-6xl font-black uppercase mb-6 italic leading-tight">Zero Tracking._<br/>Zero Login.</h2>
+                <h2 className="font-headline text-4xl md:text-6xl font-black uppercase mb-6 italic leading-tight text-secondary">Zero Tracking._<br/>Zero Login.</h2>
                 <p className="font-body text-lg text-zinc-400 leading-relaxed max-w-xl">
-                  We believe in <strong>Transient Privacy</strong>. In 2026, you shouldn&apos;t have to provide a phone number or email just to move text between your own devices.
+                  We believe in <strong>Transient Privacy</strong>. In 2026, you shouldn&apos;t have to provide a phone number or email just to move text between your own devices. Use the &quot;Burn After Reading&quot; protocol for absolute sovereignty.
                 </p>
               </div>
-              <Link href="/" className="inline-block bg-white text-black font-mono font-black py-5 px-14 hover:bg-secondary transition-colors uppercase tracking-widest text-lg shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] shrink-0">
-                SYNC_ONLINE
+              <Link href="/" className="inline-block bg-white text-black font-mono font-black py-6 px-16 hover:bg-secondary transition-all uppercase tracking-widest text-xl shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] shrink-0">
+                SYNC_ NOW_
               </Link>
             </div>
           </section>

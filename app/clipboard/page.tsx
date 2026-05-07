@@ -137,8 +137,14 @@ export default function ClipboardPage() {
                <Link href="/blog/best-online-clipboard-tools-2026" className="bg-white text-black p-6 font-mono text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition-all border-2 border-black flex items-center justify-center text-center">
                   Best Tools 2026_
                </Link>
-               <Link href="/cross-device-clipboard" className="bg-white text-black p-6 font-mono text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition-all border-2 border-black flex items-center justify-center text-center">
-                  Cross-Device_
+               <Link href="/blog/online-clipboard-vs-cloud-notes" className="bg-white text-black p-6 font-mono text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition-all border-2 border-black flex items-center justify-center text-center">
+                  Notes vs Sync_
+               </Link>
+               <Link href="/blog/clipboard-sync-for-remote-teams" className="bg-white text-black p-6 font-mono text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition-all border-2 border-black flex items-center justify-center text-center">
+                  Remote Teams_
+               </Link>
+               <Link href="/blog/online-clipboard-vs-desktop-apps" className="bg-white text-black p-6 font-mono text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition-all border-2 border-black flex items-center justify-center text-center">
+                  Apps vs Web_
                </Link>
                <Link href="/blog/syncclip-vs-universal-clipboard" className="bg-white text-black p-6 font-mono text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition-all border-2 border-black flex items-center justify-center text-center">
                   Ecosystems_

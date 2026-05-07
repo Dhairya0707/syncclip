@@ -13,6 +13,24 @@ export const metadata: Metadata = {
 export default function BlogIndex() {
   const blogs = [
     {
+      title: "Online Clipboard vs Cloud Notes (Notion, Keep, Evernote)",
+      desc: "Why permanent storage is the wrong tool for transient data. A speed and privacy comparison.",
+      slug: "online-clipboard-vs-cloud-notes",
+      tag: "Ecosystem // Battle",
+    },
+    {
+      title: "Clipboard Sync for Remote Teams",
+      desc: "How to use an online clipboard for pair-programming and remote team collaboration.",
+      slug: "clipboard-sync-for-remote-teams",
+      tag: "B2B // Team Workflow",
+    },
+    {
+      title: "Online Clipboard vs Desktop Apps: Why Web-Native is Better",
+      desc: "Comparing online clipboard sync tools vs traditional desktop apps. Privacy, speed, and battery audits.",
+      slug: "online-clipboard-vs-desktop-apps",
+      tag: "Analysis // Comparison",
+    },
+    {
       title: "How to Copy Text from Android to Mac (Without Apps)",
       desc: "Learn the fastest way to move text from an Android phone to a Mac computer in 2026 without installing background apps.",
       slug: "how-to-copy-text-from-android-to-mac",

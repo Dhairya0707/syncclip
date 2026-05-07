@@ -51,27 +51,65 @@ export default function ShareWithoutWhatsAppPage() {
                    Using WhatsApp &quot;Message Yourself&quot; or Telegram &quot;Saved Messages&quot; to transfer text feels easy, but it creates a permanent digital mess. Every time you send a link, a 2FA code, or a snippet, you are bloating your cloud storage and mixing transient data with your personal memories.
                 </p>
                 <p>
-                   SyncClip provides a <strong>sovereign workspace</strong>. It is designed for data that is meant to be moved, used, and then destroyed.
+                   In 2026, <strong>Privacy Sovereignty</strong> is a major concern. When you paste a sensitive URL or a private note into a Meta-owned platform like WhatsApp, that data is indexed within their ecosystem. Even with end-to-end encryption, the metadata and the sheer persistence of the record create a digital footprint you might not want.
+                </p>
+                <p>
+                   SyncClip provides a <strong>sovereign workspace</strong>. It is designed for data that is meant to be moved, used, and then destroyed. 
                 </p>
              </div>
           </section>
 
-          {/* ADVANTAGES GRID */}
+          {/* AUDIT: MESSENGER VS SYNCCLIP */}
           <section className="mb-24">
-             <div className="grid md:grid-cols-2 gap-12">
-                <div className="border-4 border-black p-10 bg-white">
-                   <h3 className="font-headline font-black uppercase text-2xl mb-6">No Chat History</h3>
-                   <p className="text-zinc-600">Your clipboard data doesn&apos;t live in a chat thread. Once the session is closed, the data is hard-purged. Zero clutter.</p>
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12">The &quot;Zero-Trace&quot; Audit</h2>
+             <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-zinc-100 p-10 border-4 border-black relative">
+                   <div className="absolute top-0 right-0 bg-red-600 text-white font-mono text-[9px] px-3 py-1 uppercase font-black">Broken Method</div>
+                   <h3 className="font-headline font-black uppercase text-2xl mb-6">WhatsApp &quot;Self-Msg&quot;</h3>
+                   <ul className="space-y-4 font-mono text-xs uppercase text-zinc-500">
+                      <li className="flex gap-2"><span>[X]</span> Requires Phone Number Link</li>
+                      <li className="flex gap-2"><span>[X]</span> Permanent Cloud Storage</li>
+                      <li className="flex gap-2"><span>[X]</span> Influx of personal notifications</li>
+                      <li className="flex gap-2"><span>[X]</span> Hard to purge single snippets</li>
+                   </ul>
                 </div>
-                <div className="border-4 border-black p-10 bg-white shadow-[12px_12px_0px_0px_rgba(5,125,188,1)]">
-                   <h3 className="font-headline font-black uppercase text-2xl mb-6">Instant Access</h3>
-                   <p className="text-zinc-600">No need to wait for &apos;WhatsApp Web&apos; to load or sync your entire chat database just to copy a single URL.</p>
+                <div className="bg-zinc-900 text-white p-10 border-4 border-secondary relative shadow-[15px_15px_0px_0px_rgba(5,125,188,0.2)]">
+                   <div className="absolute top-0 right-0 bg-secondary text-black font-mono text-[9px] px-3 py-1 uppercase font-black">SyncClip Protocol</div>
+                   <h3 className="font-headline font-black uppercase text-2xl mb-6 text-secondary">The Ephemeral Bridge</h3>
+                   <ul className="space-y-4 font-mono text-xs uppercase text-zinc-400">
+                      <li className="flex gap-2 text-white font-black"><span>[✓]</span> No Account / No Phone Needed</li>
+                      <li className="flex gap-2 text-white font-black"><span>[✓]</span> Ephemeral Hot-Layer Purge</li>
+                      <li className="flex gap-2 text-white font-black"><span>[✓]</span> Dedicated Productivity Tunnel</li>
+                      <li className="flex gap-2 text-white font-black"><span>[✓]</span> One-click Clear for all data</li>
+                   </ul>
+                </div>
+             </div>
+          </section>
+
+          {/* HOW TO SWITCH */}
+          <section className="mb-24 space-y-12">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase italic text-black">How to move text without chat_</h2>
+             <p className="text-zinc-600 text-xl leading-relaxed max-w-2xl">
+                Switching to a browser-native bridge takes less time than waiting for &quot;WhatsApp Web&quot; to sync your 2GB chat history.
+             </p>
+             <div className="flex flex-col md:flex-row gap-6">
+                <div className="flex-1 border-2 border-black p-6 font-body text-sm bg-white">
+                   <strong className="block font-headline uppercase text-lg mb-2">1. Open the Node</strong>
+                   Visit syncclip.in on any browser. No login, no app, no friction.
+                </div>
+                <div className="flex-1 border-2 border-black p-6 font-body text-sm bg-white">
+                   <strong className="block font-headline uppercase text-lg mb-2">2. Scan & Pair</strong>
+                   Use the built-in QR scanner to instantly bridge your phone and PC.
+                </div>
+                <div className="flex-1 border-2 border-black p-6 font-body text-sm bg-white">
+                   <strong className="block font-headline uppercase text-lg mb-2">3. Burn on Copy</strong>
+                   Paste your text, copy it on the other side, and close the tab. Data is gone.
                 </div>
              </div>
           </section>
 
           {/* CTA */}
-          <div className="bg-black text-white p-16 md:p-24 text-center">
+          <div className="bg-black text-white p-16 md:p-24 text-center shadow-[20px_20px_0px_0px_rgba(5,125,188,1)]">
             <h2 className="font-headline text-4xl md:text-7xl font-black uppercase mb-10 italic tracking-tighter leading-none text-secondary">Clean_ Sync_ Now_</h2>
             <Link href="/" className="inline-block bg-white text-black font-mono font-black py-6 px-16 hover:bg-secondary transition-all uppercase tracking-widest text-xl shadow-[12px_12px_0px_0px_rgba(255,255,255,1)]">
               SYNC_ WITHOUT_ CHAT_

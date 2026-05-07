@@ -62,64 +62,99 @@ export default function PastebinAlternativePage() {
             </p>
           </div>
 
+          <div className="bg-black text-white p-8 border-l-[12px] border-secondary mb-16 shadow-[15px_15px_0px_0px_rgba(0,0,0,0.1)]">
+             <div className="font-mono text-secondary text-[11px] mb-6 uppercase font-black">// Developer Security Advisory (2026)</div>
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                   <h3 className="font-headline uppercase text-lg mb-2 text-white">The Indexing Risk</h3>
+                   <p className="text-zinc-500 text-xs leading-relaxed">Public pastebins are constantly scraped by malicious bots looking for API keys, hardcoded credentials, and sensitive configuration files. Once it&apos;s on a public paste list, it&apos;s potentially compromised.</p>
+                </div>
+                <div>
+                   <h3 className="font-headline uppercase text-lg mb-2 text-white">The Persistence Trap</h3>
+                   <p className="text-zinc-500 text-xs leading-relaxed">Deleting a paste on a traditional site doesn&apos;t always remove it from caches or archive.org. SyncClip uses <strong>ephemeral memory nodes</strong> that ensure data is truly hard-purged.</p>
+                </div>
+             </div>
+          </div>
+
+          {/* CODE SOVEREIGNTY SECTION */}
+          <section className="mb-24 border-t-2 border-black pt-16">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter text-black leading-none">Code_ Sovereignty_</h2>
+             <div className="font-body text-lg text-zinc-700 leading-relaxed space-y-8 max-w-3xl">
+                <p>
+                   As a developer, your code is your intellectual property. Moving a snippet from your local machine to a remote server or a colleague&apos;s workstation shouldn&apos;t require handing that code over to a third-party database for permanent storage.
+                </p>
+                <p>
+                   A <strong>Pastebin alternative</strong> should focus on the *transfer*, not the *archive*. SyncClip operates on the principle of <strong>Transient Code Sharing</strong>. We provide the pipe, not the bucket. 
+                </p>
+                <p>
+                   By using our browser-native bridge, you maintain sovereignty over your snippets. The data exists in the &quot;hot layer&quot; for the duration of the sync and vanishes once the session expires or is manually destroyed.
+                </p>
+             </div>
+          </section>
+
+          {/* DEVELOPER WORKFLOWS */}
+          <section className="mb-24 border-t-2 border-black pt-16">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 text-secondary">Optimized for Dev Workflows_</h2>
+             <div className="grid md:grid-cols-3 gap-8">
+                <div className="border-4 border-black p-8 bg-white hover:bg-zinc-50 transition-colors">
+                   <h4 className="font-headline font-black uppercase text-xl mb-4 text-black">Terminal Bridge</h4>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Move complex bash commands, SQL queries, or regex strings from your documentation browser to your terminal without invisible character corruption.</p>
+                </div>
+                <div className="border-4 border-black p-8 bg-white hover:bg-zinc-50 transition-colors">
+                   <h4 className="font-headline font-black uppercase text-xl mb-4 text-black">Cross-Env Sync</h4>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Bridge the gap between your local dev environment and a remote VPS or virtual machine instantly using only a browser tab.</p>
+                </div>
+                <div className="border-4 border-black p-8 bg-white hover:bg-zinc-50 transition-colors">
+                   <h4 className="font-headline font-black uppercase text-xl mb-4 text-black">Auth Code Proxy</h4>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Move 2FA codes or session tokens from mobile authenticators to your desktop IDE in under 100ms.</p>
+                </div>
+             </div>
+          </section>
+
           {/* THE COMPARISON */}
           <section className="mb-24 border-t-2 border-black pt-16">
-             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter">Why_ Traditional_ Pastes_ Fail_</h2>
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter">SyncClip vs Legacy Pastes</h2>
              <div className="grid md:grid-cols-2 gap-12 font-body text-lg text-zinc-700 leading-relaxed">
-                <div>
-                   <h3 className="font-headline font-black uppercase text-2xl mb-6 text-red-600">The Problem: Public Indexing</h3>
-                   <p className="mb-6">Many developers don&apos;t realize that &quot;Public Pastes&quot; on major sites are indexed by search engines and scraped by bots. If you accidentally paste a key or sensitive config, it&apos;s potentially public forever.</p>
-                   <p>SyncClip bypasses indexing entirely by using <strong>Ephemeral URLs</strong> and <strong>Burn-After-Reading</strong> logic.</p>
+                <div className="border-4 border-black p-10 bg-zinc-50 relative group">
+                   <div className="absolute top-0 right-0 bg-red-600 text-white font-mono text-[9px] px-3 py-1 uppercase font-black italic">Legacy Risks</div>
+                   <h3 className="font-headline font-black uppercase text-2xl mb-6 text-red-600">Traditional Pastebin</h3>
+                   <ul className="space-y-4 text-sm font-mono uppercase tracking-widest text-zinc-500">
+                      <li>• Indexed by Google</li>
+                      <li>• Permanent Storage</li>
+                      <li>• Public List Exposure</li>
+                      <li>• Ad-Heavy UI</li>
+                      <li className="border-t border-zinc-300 pt-4 font-black text-black">Latency: 5s - 10s (Save/Load)</li>
+                   </ul>
                 </div>
-                <div className="bg-zinc-900 text-white p-10 border-l-8 border-secondary">
-                   <h3 className="font-headline font-black uppercase text-2xl mb-6 text-secondary">The Solution: Transience</h3>
-                   <ul className="space-y-4 text-sm font-mono uppercase tracking-widest">
-                      <li>• Sub-100ms WebSocket Sync</li>
-                      <li>• Zero Database Persistence</li>
-                      <li>• Auto-Purge Protocol</li>
-                      <li>• No Public Searchability</li>
+                <div className="border-4 border-black p-10 bg-white shadow-[12px_12px_0px_0px_rgba(5,125,188,1)] relative group">
+                   <div className="absolute top-0 right-0 bg-secondary text-black font-mono text-[9px] px-3 py-1 uppercase font-black italic">SyncClip Advantage</div>
+                   <h3 className="font-headline font-black uppercase text-2xl mb-6 text-secondary">Modern Ephemeral Node</h3>
+                   <ul className="space-y-4 text-sm font-mono uppercase tracking-widest text-zinc-800 font-black">
+                      <li>• Zero Indexing (Private)</li>
+                      <li>• Ephemeral (Auto-Purge)</li>
+                      <li>• Anonymous Handshake</li>
+                      <li>• Clean, Zero-Ad Interface</li>
+                      <li className="border-t border-zinc-300 pt-4 text-secondary">Latency: &lt;100ms (Real-time)</li>
                    </ul>
                 </div>
              </div>
           </section>
 
-          {/* FEATURE COMPARISON TABLE */}
-          <section className="mb-24">
-             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12">Security Battle Card</h2>
-             <div className="overflow-x-auto border-2 border-black shadow-[20px_20px_0px_0px_rgba(5,125,188,1)]">
-                <table className="w-full text-left font-body">
-                   <thead>
-                      <tr className="bg-black text-white font-mono text-[10px] uppercase tracking-widest">
-                         <th className="p-6 border-r border-zinc-800">Feature</th>
-                         <th className="p-6 border-r border-zinc-800 text-secondary">SyncClip</th>
-                         <th className="p-6">Traditional Pastebin</th>
-                      </tr>
-                   </thead>
-                   <tbody className="text-sm divide-y divide-black">
-                      <tr>
-                         <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px]">Public Indexing</td>
-                         <td className="p-6 border-r border-black text-secondary font-black">NEVER</td>
-                         <td className="p-6">OFTEN DEFAULT</td>
-                      </tr>
-                      <tr>
-                         <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px]">Auto-Delete</td>
-                         <td className="p-6 border-r border-black text-secondary font-black text-center">YES (Instant/24h)</td>
-                         <td className="p-6 text-center">OPTIONAL/PAID</td>
-                      </tr>
-                      <tr>
-                         <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px]">Real-time Sync</td>
-                         <td className="p-6 border-r border-black text-secondary font-black text-center">YES</td>
-                         <td className="p-6 text-center">NO (Page Refresh)</td>
-                      </tr>
-                   </tbody>
-                </table>
-             </div>
+          {/* SECURITY AUDIT SECTION */}
+          <section className="mb-24 bg-zinc-100 p-12 border-2 border-black shadow-[20px_20px_0px_0px_rgba(0,0,0,0.1)]">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-8 italic text-black">The_ Security_ Audit_</h2>
+             <p className="font-body text-lg text-zinc-700 mb-8 leading-relaxed max-w-3xl">
+                When you use a <strong>secure Pastebin alternative</strong>, you aren&apos;t just looking for features; you are looking for a reduction in your attack surface. Traditional sites increase your surface area by keeping records of every snippet you ever shared. 
+             </p>
+             <p className="font-body text-lg text-zinc-700 leading-relaxed max-w-3xl">
+                SyncClip uses <strong>WebSocket TLS 1.3 encryption</strong> and hard-purges all session data from our hot-storage layer. If we are ever compromised, the attacker finds an empty bucket, not an archive of your code history.
+             </p>
           </section>
 
           {/* CTA */}
-          <div className="bg-black text-white p-16 md:p-24 text-center border-b-[20px] border-secondary">
-            <h2 className="font-headline text-4xl md:text-7xl font-black uppercase mb-10 italic tracking-tighter leading-none">Share_ Code_ Now_</h2>
-            <Link href="/" className="inline-block bg-secondary text-black font-mono font-black py-6 px-16 hover:bg-white transition-all uppercase tracking-widest text-xl shadow-[12px_12px_0px_0px_rgba(255,255,255,1)]">
+          <div className="bg-black text-white p-16 md:p-24 text-center border-b-[20px] border-secondary shadow-[30px_30px_0px_0px_rgba(5,125,188,0.2)]">
+            <h2 className="font-headline text-4xl md:text-7xl font-black uppercase mb-10 italic tracking-tighter leading-none text-secondary">Share_ Code_ Now_</h2>
+            <Link href="/" className="inline-block bg-white text-black font-mono font-black py-6 px-16 hover:bg-secondary transition-all uppercase tracking-widest text-xl shadow-[12px_12px_0px_0px_rgba(255,255,255,1)]">
               LAUNCH_ ANONYMOUS_ NODE_
             </Link>
           </div>
@@ -127,9 +162,9 @@ export default function PastebinAlternativePage() {
       </main>
 
       <footer className="w-full border-t-2 border-black bg-white">
-        <div className="max-w-7xl mx-auto px-6 py-12 flex justify-between items-center font-mono text-[9px] tracking-widest text-zinc-400 uppercase">
+        <div className="max-w-7xl mx-auto px-6 py-12 flex justify-between items-center font-mono text-[9px] tracking-widest text-zinc-400 uppercase gap-8">
           <div>© 2026 SYNCCLIP // PASTEBIN-ALT-V1</div>
-          <Link href="/blog/is-online-clipboard-secure" className="hover:text-black">Security Audit</Link>
+          <Link href="/blog/is-online-clipboard-secure" className="hover:text-black transition-colors">Security Audit</Link>
         </div>
       </footer>
     </div>

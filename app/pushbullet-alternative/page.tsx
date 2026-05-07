@@ -81,7 +81,6 @@ export default function PushbulletAlternativePage() {
             </p>
           </div>
 
-          {/* HEADER */}
           <div className="mb-16">
             <div className="font-mono text-[10px] tracking-[0.3em] text-secondary mb-4 uppercase">Competitor Comparison // 2026 UPDATE</div>
             <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter font-headline leading-none text-black mb-8">
@@ -92,93 +91,115 @@ export default function PushbulletAlternativePage() {
             </p>
           </div>
 
+          <div className="bg-zinc-100 p-8 border-2 border-black mb-16 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+             <div className="flex justify-between border-b border-zinc-300 pb-4 mb-4">
+                <span>Pushbullet Pro Subscription</span>
+                <span className="text-red-600 font-black">$4.99 / MONTH</span>
+             </div>
+             <div className="flex justify-between border-b border-zinc-300 pb-4 mb-4">
+                <span>SyncClip Basic + Advanced Sync</span>
+                <span className="text-green-600 font-black">$0.00 (FREE FOREVER)</span>
+             </div>
+             <div className="flex justify-between">
+                <span>App Installation Required?</span>
+                <span className="text-zinc-800 font-black">NO (WEB-NATIVE HANDSHAKE)</span>
+             </div>
+          </div>
+
           {/* SECTION 1: THE CORE DIFFERENCE */}
           <section className="mb-20">
             <div className="border-t-2 border-black pt-10">
-              <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-8">The Pushbullet Challenge</h2>
-              <p className="font-body text-base text-zinc-700 leading-relaxed mb-10 max-w-3xl">
-                Pushbullet was once the gold standard for cross-device syncing. However, in 2026, many users are looking for alternatives due to its <strong>mandatory logins</strong>, <strong>app requirements</strong>, and <strong>degrading free tier</strong>. SyncClip solves these exact pain points by moving the entire sync engine into the browser.
+              <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-8 text-black">The Pushbullet Challenge</h2>
+              <p className="font-body text-lg text-zinc-700 leading-relaxed mb-10 max-w-3xl">
+                Pushbullet was once the gold standard for cross-device syncing. However, in 2026, the digital landscape has shifted. Users are looking for alternatives due to <strong>mandatory logins</strong>, <strong>invasive app permissions</strong>, and a <strong>paywalled free tier</strong> that restricts basic utility. 
+              </p>
+              <p className="font-body text-lg text-zinc-700 leading-relaxed mb-10 max-w-3xl">
+                SyncClip solves these exact pain points by moving the entire sync engine into the browser. We leverage modern WebSocket standards and ephemeral data structures to provide a service that is faster, more private, and completely free.
               </p>
               
               <div className="overflow-x-auto border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] bg-white mb-12">
                 <table className="w-full text-left border-collapse font-body">
-                  <thead>
-                    <tr className="bg-black text-white font-mono text-[10px] uppercase tracking-widest">
-                      <th className="p-6 border-r border-zinc-800">Feature</th>
-                      <th className="p-6 border-r border-zinc-800 bg-zinc-900">SyncClip</th>
-                      <th className="p-6">Pushbullet</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-sm divide-y-2 divide-black">
-                    <tr>
-                      <td className="p-6 font-bold border-r-2 border-black bg-zinc-50">Price</td>
-                      <td className="p-6 border-r-2 border-black font-black text-secondary">100% FREE</td>
-                      <td className="p-6 font-mono">$4.99/mo (Pro)</td>
-                    </tr>
-                    <tr>
-                      <td className="p-6 font-bold border-r-2 border-black bg-zinc-50">App/Extension Required</td>
-                      <td className="p-6 border-r-2 border-black font-black">NO (Web-Native)</td>
-                      <td className="p-6">YES (Extension + App)</td>
-                    </tr>
-                    <tr>
-                      <td className="p-6 font-bold border-r-2 border-black bg-zinc-50">Mandatory Login</td>
-                      <td className="p-6 border-r-2 border-black font-black text-secondary">NO</td>
-                      <td className="p-6">YES (Google/FB)</td>
-                    </tr>
-                    <tr>
-                      <td className="p-6 font-bold border-r-2 border-black bg-zinc-50">Real-Time WebSocket Sync</td>
-                      <td className="p-6 border-r-2 border-black font-black">YES</td>
-                      <td className="p-6">PUSH ARCHITECTURE</td>
-                    </tr>
-                    <tr>
-                      <td className="p-6 font-bold border-r-2 border-black bg-zinc-50">Privacy Focus</td>
-                      <td className="p-6 border-r-2 border-black font-black text-secondary uppercase font-black italic tracking-widest">Ephemeral</td>
-                      <td className="p-6 text-red-500 font-bold uppercase tracking-tighter">Cloud Stored</td>
-                    </tr>
-                  </tbody>
+                   <thead>
+                      <tr className="bg-black text-white font-mono text-[10px] uppercase tracking-widest">
+                         <th className="p-6 border-r border-zinc-800">Feature Matrix</th>
+                         <th className="p-6 border-r border-zinc-800 bg-zinc-900 text-secondary">SyncClip Node</th>
+                         <th className="p-6">Pushbullet (Legacy)</th>
+                      </tr>
+                   </thead>
+                   <tbody className="text-sm divide-y-2 divide-black">
+                      <tr>
+                         <td className="p-6 font-bold border-r-2 border-black bg-zinc-50 uppercase text-[11px]">Pricing Model</td>
+                         <td className="p-6 border-r-2 border-black font-black text-secondary uppercase italic">Zero-Cost (Public Good)</td>
+                         <td className="p-6 font-mono text-[10px] uppercase">$4.99/mo (Restricted Free Tier)</td>
+                      </tr>
+                      <tr>
+                         <td className="p-6 font-bold border-r-2 border-black bg-zinc-50 uppercase text-[11px]">Account Requirement</td>
+                         <td className="p-6 border-r-2 border-black font-black">NONE (Anonymous Session)</td>
+                         <td className="p-6">MANDATORY (Google/FB)</td>
+                      </tr>
+                      <tr>
+                         <td className="p-6 font-bold border-r-2 border-black bg-zinc-50 uppercase text-[11px]">Sync Latency</td>
+                         <td className="p-6 border-r-2 border-black font-black text-secondary italic uppercase font-black tracking-widest">&lt;100ms (Real-time)</td>
+                         <td className="p-6">500ms - 2s (Push Protocol)</td>
+                      </tr>
+                      <tr>
+                         <td className="p-6 font-bold border-r-2 border-black bg-zinc-50 uppercase text-[11px]">Privacy Baseline</td>
+                         <td className="p-6 border-r-2 border-black font-black uppercase text-green-600 font-black">Ephemeral (No Logs)</td>
+                         <td className="p-6 text-red-500 font-bold uppercase italic tracking-tighter">Permanent Cloud Storage</td>
+                      </tr>
+                   </tbody>
                 </table>
               </div>
             </div>
           </section>
 
-          {/* SECTION 2: WHY BROWSER-NATIVE MATTERS */}
-          <section className="mb-20 border-t-2 border-black pt-16">
-            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-10">Why Browser-Native is the Future</h2>
-            <div className="grid md:grid-cols-2 gap-12">
-              <div className="space-y-4">
-                <h3 className="font-headline font-black uppercase text-2xl text-secondary">Zero App Fatigue</h3>
-                <p className="font-body text-base text-zinc-600 leading-relaxed italic">Pushbullet requires you to install a browser extension AND an Android/iOS app to get universal clipboard functionality. This is a massive barrier for guest machines, work laptops, or temporary devices.</p>
-                <p className="font-body text-sm text-zinc-500">With SyncClip, you simply navigate to a URL. The browser itself handles the real-time handshake, making it truly universal.</p>
-              </div>
-              <div className="space-y-4">
-                <h3 className="font-headline font-black uppercase text-2xl text-secondary">Ecosystem Independence</h3>
-                <p className="font-body text-base text-zinc-600 leading-relaxed italic">Pushbullet&apos;s recent updates have focused on specific OS features, often leaving Linux or non-mainstream browser users behind.</p>
-                <p className="font-body text-sm text-zinc-500">SyncClip operates at the protocol level. If it runs a modern browser (Chromium, Firefox, Safari), it can sync. Period.</p>
-              </div>
-            </div>
+          {/* APP FATIGUE SECTION */}
+          <section className="mb-24 border-t-2 border-black pt-16">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter text-black">Solving_ App_ Fatigue_</h2>
+             <div className="font-body text-lg text-zinc-700 leading-relaxed space-y-8 max-w-3xl">
+                <p>
+                   In 2026, the average professional uses 15+ SaaS tools daily. Installing a dedicated application, granting it &quot;Accessibility Services&quot; permissions on Android, or installing a background helper on Windows just to move a URL is <strong>technology overkill</strong>.
+                </p>
+                <p>
+                   SyncClip operates on the principle of <strong>Zero-Friction Productivity</strong>. By using a browser-native bridge, we eliminate the need for:
+                </p>
+                <ul className="grid md:grid-cols-2 gap-4 list-none font-mono text-xs uppercase tracking-widest text-zinc-500">
+                   <li className="bg-zinc-50 p-4 border border-zinc-200"><span className="text-red-600 font-black">×</span> App Store Downloads</li>
+                   <li className="bg-zinc-50 p-4 border border-zinc-200"><span className="text-red-600 font-black">×</span> Startup Bloat</li>
+                   <li className="bg-zinc-50 p-4 border border-zinc-200"><span className="text-red-600 font-black">×</span> Persistent Background Data</li>
+                   <li className="bg-zinc-50 p-4 border border-zinc-200"><span className="text-red-600 font-black">×</span> OS-Specific Crashes</li>
+                </ul>
+             </div>
           </section>
 
-          {/* SECTION 3: COST & PRIVACY */}
-          <section className="mb-20 border-t-2 border-black pt-16">
-            <div className="bg-zinc-100 p-12 border-2 border-black">
-              <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-8">Cost & Privacy: The Hidden Price</h2>
-              <div className="grid md:grid-cols-2 gap-12 font-body text-zinc-700 leading-relaxed">
-                <p>
-                  To use Pushbullet, you must hand over your identity via Google or Facebook. This creates a permanent link between your identity and the snippets you sync. For privacy-conscious developers and students, this is a deal-breaker.
-                </p>
-                <p>
-                  SyncClip uses anonymous, ephemeral session tokens. We don&apos;t know who you are, and we don&apos;t want to. Your data is purged within 24 hours, ensuring your clipboard history never becomes a permanent cloud record.
-                </p>
-              </div>
-            </div>
+          {/* OS PAIN POINTS */}
+          <section className="mb-24">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 text-secondary">Ecosystem Wall-Breaker</h2>
+             <div className="grid md:grid-cols-3 gap-8">
+                <div className="border-4 border-black p-8 bg-white relative overflow-hidden group">
+                   <div className="absolute -right-4 -top-4 font-mono text-[60px] text-zinc-100 opacity-80 font-black italic">APPLE</div>
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-black">iOS to Windows_</h3>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Apple&apos;s Universal Clipboard ignores Windows. SyncClip bridges the gap in 1 click.</p>
+                </div>
+                <div className="border-4 border-black p-8 bg-white relative overflow-hidden group">
+                   <div className="absolute -right-4 -top-4 font-mono text-[60px] text-zinc-100 opacity-80 font-black italic">DROID</div>
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-black">Android to Mac_</h3>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Stop using &apos;AirDroid&apos; bloatware. Use the real-time browser node for instant sync.</p>
+                </div>
+                <div className="border-4 border-black p-8 bg-white relative overflow-hidden group">
+                   <div className="absolute -right-4 -top-4 font-mono text-[60px] text-zinc-100 opacity-80 font-black italic">B2B</div>
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-black">Work to Personal_</h3>
+                   <p className="text-sm text-zinc-600 leading-relaxed italic">Move snippets between personal phone and work PC without signing into corporate accounts.</p>
+                </div>
+             </div>
           </section>
 
           {/* CTA */}
-          <section className="bg-black text-white p-14 text-center">
-            <h2 className="font-headline text-4xl md:text-7xl font-black uppercase mb-8 italic text-secondary">Stop Paying. Start Syncing_</h2>
-            <p className="font-mono text-sm tracking-widest mb-10 text-zinc-500 italic uppercase">Unlimited Sync. No Account. Free Forever.</p>
-            <Link href="/" className="inline-block bg-white text-black font-mono font-black py-5 px-14 hover:bg-secondary transition-colors uppercase tracking-widest text-lg shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]">
-              SYNC NOW — NO INSTALL REQUIRED
+          <section className="bg-zinc-900 text-white p-16 md:p-24 text-center border-b-[20px] border-secondary shadow-[30px_30px_0px_0px_rgba(0,0,0,0.1)]">
+            <h2 className="font-headline text-4xl md:text-7xl font-black uppercase mb-8 italic text-secondary leading-none tracking-tighter">Stop_ Paying._ Start_ Syncing._</h2>
+            <p className="font-mono text-sm tracking-widest mb-12 text-zinc-500 italic uppercase">Unlimited Sync. No Account. Free Forever.</p>
+            <Link href="/" className="inline-block bg-secondary text-black font-mono font-black py-6 px-16 hover:bg-white transition-all uppercase tracking-widest text-xl shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+              SYNC_ NOW_ NO_ INSTALL_
             </Link>
           </section>
 

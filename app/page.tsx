@@ -175,12 +175,12 @@ export default function Home() {
                   Live · No Signup · Ephemeral
                 </div>
 
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter font-headline leading-[0.9] text-primary mb-6">
-                  CLIPBOARD SYNC_
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter font-headline leading-[1.1] text-primary mb-6">
+                  ONLINE_
                   <br />
-                  BETWEEN
+                  CLIPBOARD_
                   <br />
-                  <span className="text-secondary">ANY DEVICE.</span>
+                  <span className="text-secondary block mt-4 md:mt-6">SYNC_ANYWHERE.</span>
                 </h1>
 
                 <p className="font-body text-lg md:text-xl text-zinc-600 max-w-lg leading-relaxed mb-10">
@@ -497,31 +497,26 @@ export default function Home() {
               <Link href="/clipboard-sync-guide" className="font-mono text-[10px] font-black uppercase tracking-widest border-b-2 border-black pb-1 hover:text-secondary hover:border-secondary transition-all">View Full Guide →</Link>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-              <Link href="/clipboard" className="border-2 border-black p-6 hover:bg-secondary group transition-all bg-zinc-50">
-                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Free Clipboard</h3>
-                <p className="text-xs text-zinc-500 group-hover:text-white transition-colors mb-4">The free online clipboard tool to copy paste between any devices.</p>
-                <span className="font-mono text-[10px] font-bold text-secondary group-hover:text-white uppercase tracking-widest">Open Now _</span>
-              </Link>
-              <Link href="/sync-clipboard-between-devices" className="border-2 border-black p-6 hover:bg-black group transition-all">
-                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">How to Sync</h3>
-                <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">Master the real-time clipboard sync between all your devices.</p>
-                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Read More _</span>
-              </Link>
-              <Link href="/copy-text-from-phone-to-computer" className="border-2 border-black p-6 hover:bg-black group transition-all">
-                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Phone to PC</h3>
-                <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">The fastest way to move text from mobile to desktop without apps.</p>
-                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Read More _</span>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Link href="/blog/online-clipboard-vs-desktop-apps" className="border-2 border-black p-6 hover:bg-black group transition-all">
+                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Apps vs Web</h3>
+                <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">Why browser-native sync is replacing installed apps.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Read Audit _</span>
               </Link>
               <Link href="/pushbullet-alternative" className="border-2 border-black p-6 hover:bg-black group transition-all">
-                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Free Alternative</h3>
-                <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">Why SyncClip is the best free alternative to Pushbullet in 2026.</p>
-                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Read More _</span>
+                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Pushbullet Alt</h3>
+                <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">Why SyncClip is the best free alternative in 2026.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">View Comparison _</span>
               </Link>
-              <Link href="/online-clipboard" className="border-2 border-black p-6 hover:bg-black group transition-all">
-                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Online Hub</h3>
-                <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">A secure, ephemeral space for your transient clipboard data.</p>
-                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Read More _</span>
+              <Link href="/pastebin-alternative" className="border-2 border-black p-6 hover:bg-black group transition-all">
+                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Pastebin Alt</h3>
+                <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">Ephemeral code sharing without permanent trails.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Secure Code _</span>
+              </Link>
+              <Link href="/fastest-way-to-copy-links-between-devices" className="border-2 border-black p-6 hover:bg-black group transition-all">
+                <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Link Sync</h3>
+                <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">Mastering sub-100ms URL transfers across devices.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Fastest Way _</span>
               </Link>
             </div>
           </div>
