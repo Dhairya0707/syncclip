@@ -9,7 +9,7 @@ export const EXPERIMENTS = {
   TRACKING_ENABLED: true,
 
   // Flag A: 5-second redirect nudge bar on homepage
-  REDIRECT_NUDGE_ENABLED: true,
+  REDIRECT_NUDGE_ENABLED: false,
 
   // Flag C: Prominent second device CTA strip in room view
   FORCE_SECOND_DEVICE_ENABLED: true,
