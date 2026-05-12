@@ -3,15 +3,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Clipboard — Free Online Clipboard to Share Text Between Devices",
-  description: "Use this free online clipboard to instantly copy and paste text between your phone, laptop, and tablet. No login, no app install. Sync your clipboard across all devices in real-time.",
+  title: "Clipboard Sync Online — Share Text Between Devices | SyncClip",
+  description: "Instantly sync your clipboard across all devices. No app, no account. Just paste.",
   keywords: ["clipboard", "online clipboard", "clipboard online", "free clipboard", "clipboard tool", "clipboard app", "clipboard sharing", "share clipboard", "clipboard sync", "text clipboard online"],
   alternates: {
     canonical: "https://syncclip.in/clipboard",
   },
   openGraph: {
-    title: "Free Online Clipboard — Share Text Between Any Devices",
-    description: "The fastest free clipboard to copy and paste text across devices. No login, no tracking, instant sync.",
+    title: "Clipboard Sync Online — Share Text Between Any Devices",
+    description: "Instantly sync your clipboard across all devices. No app, no account. Just paste.",
   },
 };
 
