@@ -172,7 +172,7 @@ export default function Home() {
               <div className="lg:col-span-3">
                 <div className="font-mono text-[10px] tracking-[0.4em] text-secondary uppercase mb-6 flex items-center gap-3">
                   <span className="w-2 h-2 bg-secondary animate-pulse block"></span>
-                  Live · No Signup · Ephemeral
+                  Live · Used in 39+ Countries · No Signup
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter font-headline leading-[1.1] text-primary mb-6">
@@ -231,6 +231,8 @@ export default function Home() {
 
                 {/* Trust line */}
                 <div className="flex flex-wrap items-center gap-4 font-mono text-[9px] tracking-widest uppercase text-zinc-400">
+                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">public</span> Used in 39+ countries</span>
+                  <span className="text-zinc-200">|</span>
                   <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">encrypted</span> Secured</span>
                   <span className="text-zinc-200">|</span>
                   <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">timer</span> Sessions expire in 24h</span>

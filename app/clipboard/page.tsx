@@ -3,15 +3,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Clipboard Sync Online — Share Text Between Devices | SyncClip",
-  description: "Instantly sync your clipboard across all devices. No app, no account. Just paste.",
+  title: "Online Clipboard — Sync Text Between Any Devices Instantly | SyncClip",
+  description: "Free online clipboard sync. Share text, code, links between phone and computer instantly. No signup, no app, just paste.",
   keywords: ["clipboard", "online clipboard", "clipboard online", "free clipboard", "clipboard tool", "clipboard app", "clipboard sharing", "share clipboard", "clipboard sync", "text clipboard online"],
   alternates: {
     canonical: "https://syncclip.in/clipboard",
   },
   openGraph: {
-    title: "Clipboard Sync Online — Share Text Between Any Devices",
-    description: "Instantly sync your clipboard across all devices. No app, no account. Just paste.",
+    title: "Online Clipboard — Sync Text Between Any Devices Instantly | SyncClip",
+    description: "Free online clipboard sync. Share text, code, links between phone and computer instantly. No signup, no app, just paste.",
   },
 };
 
@@ -105,8 +105,8 @@ export default function ClipboardPage() {
             {/* AEO ANSWER BOX (Answer First Strategy) */}
             <div className="bg-zinc-900 text-white p-10 mb-16 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
               <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-6">Quick Answer // AEO Node</div>
-              <p className="font-body text-xl md:text-3xl leading-relaxed font-bold italic">
-                An online clipboard is a web-based utility that allows you to sync text, code, and snippets between devices instantly using real-time WebSockets. Unlike native tools, it works across Android, iOS, Windows, and Mac without apps or logins, providing an ephemeral, encrypted bridge for cross-platform data sharing.
+              <p className="font-body text-xl md:text-3xl leading-relaxed italic">
+                <strong>Quick Answer:</strong> An online clipboard is a web-based utility that allows you to sync text, code, and snippets between devices instantly using real-time WebSockets. Unlike native tools, it works across Android, iOS, Windows, and Mac without apps or logins, providing an ephemeral, encrypted bridge for cross-platform data sharing.
               </p>
             </div>
 

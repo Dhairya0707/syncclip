@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How to Sync Clipboard Between Devices — Complete Guide",
-  description: "Step-by-step guide to sync clipboard between phone, laptop, tablet. No app required. Free tool included.",
+  title: "How to Sync Clipboard Between Devices in 2026 — No App Needed",
+  description: "Copy text on your phone, paste on your laptop in seconds. Free clipboard sync tool, no installation required. Works on Android, iPhone, Mac, Windows.",
   alternates: {
     canonical: "https://syncclip.in/clipboard-sync-guide",
   },
   openGraph: {
-    title: "How to Sync Clipboard Between Devices — Complete Guide",
-    description: "Step-by-step guide to sync clipboard between phone, laptop, tablet. No app required. Free tool included.",
+    title: "How to Sync Clipboard Between Devices in 2026 — No App Needed",
+    description: "Copy text on your phone, paste on your laptop in seconds. Free clipboard sync tool, no installation required. Works on Android, iPhone, Mac, Windows.",
     url: "https://syncclip.in/clipboard-sync-guide",
     type: "article",
     images: [
@@ -64,6 +64,30 @@ export default function ClipboardSyncGuide() {
     ]
   };
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Sync Clipboard Between Devices in 2026 — No App Needed",
+    "description": "Copy text on your phone, paste on your laptop in seconds. Free clipboard sync tool, no installation required. Works on Android, iPhone, Mac, Windows.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Open SyncClip on both devices",
+        "text": "Open syncclip.in on your phone and laptop browser. No account registration or app installation is required."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Connect to the same session",
+        "text": "Enter the 6-character room code on your second device or scan the QR code to pair the devices instantly."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Copy and paste seamlessly",
+        "text": "Copy text, links, or code snippets on one device. It will appear instantly on the other device in real-time."
+      }
+    ]
+  };
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -91,6 +115,10 @@ export default function ClipboardSyncGuide() {
       />
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
@@ -112,10 +140,11 @@ export default function ClipboardSyncGuide() {
               HOW TO SYNC YOUR CLIPBOARD BETWEEN DEVICES IN 2026 (NO APPS, NO LOGIN)_
             </h1>
             
-            {/* BLUF Paragraph */}
+            {/* QUICK ANSWER BOX */}
             <div className="border-l-[12px] border-secondary pl-8 py-6 bg-zinc-900 text-white mb-12 shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
-              <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic">
-                Updated May 2026: To sync your clipboard across devices in 2026, use a zero-installation web tool like SyncClip for cross-OS compatibility, or native ecosystems like Apple Universal Clipboard if you stay within one brand.
+              <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">Quick Answer // AEO Citation Node</div>
+              <p className="font-body text-xl md:text-2xl leading-relaxed italic">
+                <strong>Quick Answer:</strong> To sync your clipboard between devices instantly without installing apps, open SyncClip.in on both your phone and laptop. Join the same session using the 6-character code or QR scan. Text copied on one device mirrors to the other in sub-100ms via secure WebSockets. Works across Android, iPhone, Mac, and Windows.
               </p>
             </div>
           </div>

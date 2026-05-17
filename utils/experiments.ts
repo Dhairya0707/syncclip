@@ -12,7 +12,7 @@ export const EXPERIMENTS = {
   REDIRECT_NUDGE_ENABLED: false,
 
   // Flag C: Prominent second device CTA strip in room view
-  FORCE_SECOND_DEVICE_ENABLED: true,
+  FORCE_SECOND_DEVICE_ENABLED: false,
 
   // Flag D: PWA install prompt after first keystroke
   PWA_NUDGE_ENABLED: true,
