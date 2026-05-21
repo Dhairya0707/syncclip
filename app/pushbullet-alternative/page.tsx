@@ -25,26 +25,26 @@ export default function PushbulletAlternativePage() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Is there a free alternative to Pushbullet in 2026?",
+        "name": "How do I sync my clipboard between devices in real time?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, SyncClip is a 100% free alternative to Pushbullet for clipboard syncing. It requires no app installation, no login, and offers unlimited text synchronization across all platforms including Android, iOS, Windows, and Mac."
+          "text": "Open SyncClip on both devices. A session generates automatically — share the URL or scan the QR code. Text syncs between all connected devices instantly, no app or account required."
         }
       },
       {
         "@type": "Question",
-        "name": "Do I need to install an app to sync my clipboard with SyncClip?",
+        "name": "Is SyncClip free to use?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. Unlike Pushbullet which requires browser extensions and mobile apps, SyncClip is web-native. You only need a modern browser to sync your clipboard instantly."
+          "text": "Yes, completely free. Sessions last 24 hours and support up to 100 devices simultaneously."
         }
       },
       {
         "@type": "Question",
-        "name": "Is SyncClip safer than Pushbullet?",
+        "name": "Does SyncClip work without installing anything?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "SyncClip prioritizes privacy by using ephemeral sessions that are purged every 24 hours. No personal data or login information is ever collected, whereas Pushbullet requires account creation and cloud storage of your data."
+          "text": "Yes. SyncClip runs entirely in the browser. No download, no extension, no account. Just open the URL on any device."
         }
       }
     ]

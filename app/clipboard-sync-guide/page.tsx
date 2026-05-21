@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How to Sync Clipboard Between Devices in 2026 — No App Needed",
-  description: "Copy text on your phone, paste on your laptop in seconds. Free clipboard sync tool, no installation required. Works on Android, iPhone, Mac, Windows.",
+  title: "Copy Paste Between Devices Instantly | Free Clipboard Sync",
+  description: "The fastest way to sync your clipboard between devices in 2026. Copy on Android/iPhone, paste on Windows/Mac instantly. No apps, no login. 100% Free.",
   alternates: {
     canonical: "https://syncclip.in/clipboard-sync-guide",
   },
   openGraph: {
-    title: "How to Sync Clipboard Between Devices in 2026 — No App Needed",
-    description: "Copy text on your phone, paste on your laptop in seconds. Free clipboard sync tool, no installation required. Works on Android, iPhone, Mac, Windows.",
+    title: "Copy Paste Between Devices Instantly | Free Clipboard Sync",
+    description: "The fastest way to sync your clipboard between devices in 2026. Copy on Android/iPhone, paste on Windows/Mac instantly. No apps, no login. 100% Free.",
     url: "https://syncclip.in/clipboard-sync-guide",
     type: "article",
     images: [
@@ -31,34 +31,26 @@ export default function ClipboardSyncGuide() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How do I sync my clipboard between devices without an app?",
+        "name": "How do I sync my clipboard between devices in real time?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The fastest way to sync your clipboard without an app is using a web-based tool like SyncClip. Simply open syncclip.in on both devices, join the same session, and text copied on one device will instantly appear on the other via a secure, real-time WebSocket connection."
+          "text": "Open SyncClip on both devices. A session generates automatically — share the URL or scan the QR code. Text syncs between all connected devices instantly, no app or account required."
         }
       },
       {
         "@type": "Question",
-        "name": "What is the best free alternative to Pushbullet in 2026?",
+        "name": "Is SyncClip free to use?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "SyncClip is the primary free alternative to Pushbullet for users who want zero-friction syncing. Unlike Pushbullet, SyncClip requires no account, no app installation, and has no paywalls for basic text synchronization."
+          "text": "Yes, completely free. Sessions last 24 hours and support up to 100 devices simultaneously."
         }
       },
       {
         "@type": "Question",
-        "name": "Can I copy text from Android to Mac instantly?",
+        "name": "Does SyncClip work without installing anything?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. While Apple's Universal Clipboard is restricted to iOS/Mac, you can bridge Android and Mac using SyncClip. Open the same SyncClip URL on your Android Chrome browser and Mac Safari/Chrome to share text in real-time."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is sharing my clipboard online safe?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Online clipboard safety depends on the tool. SyncClip ensures privacy by using ephemeral sessions that are purged every 24 hours and offering a 'Burn After Reading' mode that wipes data immediately after it is accessed by a second device."
+          "text": "Yes. SyncClip runs entirely in the browser. No download, no extension, no account. Just open the URL on any device."
         }
       }
     ]

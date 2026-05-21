@@ -13,6 +13,8 @@ const urlList = [
   `https://${HOST}/blog/how-to-sync-clipboard-without-installing-anything`,
   `https://${HOST}/blog/how-to-share-clipboard-between-android-and-windows-pc`,
   `https://${HOST}/blog/is-online-clipboard-secure`,
+  `https://${HOST}/blog/how-to-copy-and-paste-online-between-two-devices-using-a-link`,
+  `https://${HOST}/blog/what-is-the-best-online-clipboard-that-syncs-automatically-in-real-time`,
   `https://${HOST}/pushbullet-alternative`,
   `https://${HOST}/`
 ];

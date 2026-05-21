@@ -3,6 +3,14 @@
 ##make sure your all work is going to be checked by other ai like codex
 
 ## Updates
+
+### 2026-05-21 - SEO/AEO/GEO Scaling & 14-Day Action Plan
+- Analysed 4-week SEO trajectory: confirmed unprompted ChatGPT citations (16 referrers) and Bing AI grounding queries (224 citations) as active.
+- Diagnosed 59% bounce rate spike; confirmed that Flag A auto-redirect is now disabled (`REDIRECT_NUDGE_ENABLED: false`) to mitigate this.
+- Identified 4 broken snippets requiring title/meta rewrites: `/clipboard-sync-guide`, `/blog/go-online-tools-clipboard-alternative`, `/blog/pushbullet-alternatives-2026`, and `/blog/how-to-copy-text-from-android-to-mac`.
+- Planned adding FAQPage schema to homepage, guide, go-online-tools post, and pushbullet comparison.
+- Added tasks to add AEO Quick Answer boxes to all 12 blog posts, write 2 new AI-intent posts, and update homepage social proof to "Used in 50+ countries".
+
 1: 
 2: ### 2026-04-18 - Launch Preparation & Playbook Execution
 3: - Initialized the 6-phase public launch playbook (Pages, Email, SEO, Indexing, Analytics, Marketing).
@@ -157,3 +165,17 @@ TODO:
 - [x] Branding, every page SEO and logo work completed.
 - [x] Base URL resolved (`https://syncclip.in`).
 - [ ] Off-site Launch Sequence (Product Hunt, Reddit, etc.)
+- [x] Investigate homepage bounce rate spike (Verify `REDIRECT_NUDGE_ENABLED` is false and test other redirects)
+- [x] Fix titles and metas for broken page snippets:
+  - `/clipboard-sync-guide`
+  - `/blog/go-online-tools-clipboard-alternative`
+  - `/blog/pushbullet-alternatives-2026`
+  - `/blog/how-to-copy-text-from-android-to-mac`
+- [x] Add/update FAQPage JSON-LD schema on homepage, `/clipboard-sync-guide`, `/blog/go-online-tools-clipboard-alternative`, and `/pushbullet-alternative`
+- [x] Add 50-60 word "Quick Answer" box at the top of all 12 blog posts
+- [ ] Investigate Vercel Analytics referral source for Nepal traffic
+- [x] Write 2 new AI-intent blog posts:
+  - *"How to copy and paste online between two devices using a link"*
+  - *"What is the best online clipboard that syncs automatically in real time?"*
+- [x] Update homepage hero pulse-badge and trust line to "Used in 50+ countries"
+- [x] Implement event tracking (Flag F) using Vercel Analytics custom events

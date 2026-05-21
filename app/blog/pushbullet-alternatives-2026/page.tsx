@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Top 5 Pushbullet Alternatives for Clipboard Sync in 2026 | SyncClip",
-  description: "Searching for Pushbullet alternatives for clipboard sync in 2026? Compare top free and paid tools for seamless cross-device text sharing without app bloat.",
+  title: "Best Pushbullet Alternative in 2026 (Free & No Login)",
+  description: "Looking for a free Pushbullet alternative? SyncClip instantly syncs your clipboard between Android, Windows & Mac without accounts or app installs.",
   keywords: ["pushbullet alternatives", "pushbullet alternative 2026", "clipboard sync pushbullet", "free pushbullet alternative", "cross device clipboard sync"],
   alternates: {
     canonical: "https://syncclip.in/blog/pushbullet-alternatives-2026",

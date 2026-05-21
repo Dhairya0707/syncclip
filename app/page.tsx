@@ -9,6 +9,7 @@ import { isExperimentEnabled } from "../utils/experiments";
 import { getRandomCopyBlock } from "../utils/headlines";
 import Link from "next/link";
 import RedirectNudgeBar from "../components/RedirectNudgeBar";
+import { track as vaTrack } from "@vercel/analytics";
 
 export default function Home() {
   const createSession = useMutation(api.sessions.createSession);
@@ -44,6 +45,9 @@ export default function Home() {
       
       track("room_created", {
         timestamp: new Date().toISOString(),
+        platform: typeof window !== "undefined" ? (window.innerWidth < 768 ? "mobile" : "desktop") : "unknown",
+      });
+      vaTrack("room_created", {
         platform: typeof window !== "undefined" ? (window.innerWidth < 768 ? "mobile" : "desktop") : "unknown",
       });
 
@@ -105,26 +109,26 @@ export default function Home() {
     'mainEntity': [
       {
         '@type': 'Question',
-        'name': 'Is SyncClip free?',
+        'name': 'How do I sync my clipboard between devices in real time?',
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': 'Yes, completely free. No account or login required to sync your clipboard between devices.'
+          'text': 'Open SyncClip on both devices. A session generates automatically — share the URL or scan the QR code. Text syncs between all connected devices instantly, no app or account required.'
         }
       },
       {
         '@type': 'Question',
-        'name': 'How fast does it sync?',
+        'name': 'Is SyncClip free to use?',
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': 'Under 100ms. Type or paste on one device, it appears instantly on another via our real-time WebSocket engine.'
+          'text': 'Yes, completely free. Sessions last 24 hours and support up to 100 devices simultaneously.'
         }
       },
       {
         '@type': 'Question',
-        'name': 'What happens to my data?',
+        'name': 'Does SyncClip work without installing anything?',
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': 'Sessions auto-delete after 24 hours of inactivity. We offer a "Burn After Reading" mode for permanent data destruction after one use.'
+          'text': 'Yes. SyncClip runs entirely in the browser. No download, no extension, no account. Just open the URL on any device.'
         }
       }
     ]
@@ -172,7 +176,7 @@ export default function Home() {
               <div className="lg:col-span-3">
                 <div className="font-mono text-[10px] tracking-[0.4em] text-secondary uppercase mb-6 flex items-center gap-3">
                   <span className="w-2 h-2 bg-secondary animate-pulse block"></span>
-                  Live · Used in 39+ Countries · No Signup
+                  Live · Used in 50+ Countries · No Signup
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter font-headline leading-[1.1] text-primary mb-6">
@@ -231,7 +235,7 @@ export default function Home() {
 
                 {/* Trust line */}
                 <div className="flex flex-wrap items-center gap-4 font-mono text-[9px] tracking-widest uppercase text-zinc-400">
-                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">public</span> Used in 39+ countries</span>
+                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">public</span> Used in 50+ countries</span>
                   <span className="text-zinc-200">|</span>
                   <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">encrypted</span> Secured</span>
                   <span className="text-zinc-200">|</span>

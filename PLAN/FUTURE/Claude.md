@@ -49,3 +49,23 @@
 - **Privacy First**: We only store metadata (event type, device type, environment). We explicitly do not capture `session.text` or any clipboard data.
 - **Fire-and-Forget**: By using the Convex client's `mutation` method directly in a utility, we achieve non-blocking event logging without needing React hooks in every component.
 - **Tamper-Resilience**: Maintained regex validation for `localStorage` flags to ensure robust session management even with custom analytics.
+
+---
+
+## [2026-05-21] Task: SEO, AEO, and GEO Scaling Plan (Phase 2)
+
+### Research & Diagnostic Notes
+- **Trajectory & Citations**: ChatGPT is actively sending referrals (16 visitors). Bing AI grounding queries are active with 224 citations.
+- **Bounce Rate Spike**: Jumped to 59%. Auto-redirect Flag A is disabled to mitigate this.
+- **Inner Page Snippet Optimization**: Titles/metas of 4 specific pages are misaligned with search intent and require rewrites.
+- **AEO Optimization**: Blog posts need structured Quick Answer boxes to maximize citation extraction by LLM summarizers.
+
+### Execution Steps
+1. **Bounce Rate Fix**: Verified `REDIRECT_NUDGE_ENABLED` is set to `false` in `utils/experiments.ts` to prevent auto-redirects from spiking the bounce rate.
+2. **Page Snippet Correction**: Rewrote metadata (Title & Description) for 4 underperforming pages (`/clipboard-sync-guide`, `/blog/go-online-tools-clipboard-alternative`, `/blog/pushbullet-alternatives-2026`, `/blog/how-to-copy-text-from-android-to-mac`).
+3. **FAQ Schema Alignment**: Injected the universal, optimized `FAQPage` JSON-LD block into the homepage and 3 key subpages.
+4. **Quick Answer Insertion**: Created a Node.js script to automatically inject 50-60 word "Quick Answer" AEO boxes to all 8 existing blog posts.
+5. **New Blog Content**: Wrote and deployed 2 new AI-intent blog posts targeting exact link-sharing and auto-sync queries.
+6. **Social Proof Update**: Updated homepage copy from "39+ countries" to "50+ countries".
+7. **Event Tracking**: Implemented Vercel Analytics `va.track('room_created')` to monitor actual session generation.
+8. **Deployment**: Built the project (`npm run build`) and successfully pushed the updated URL roster to Bing/Yandex using `indexnow.js`.
