@@ -11,8 +11,35 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPost() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How can I copy text from my phone to my PC without an app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can use an online clipboard like SyncClip. Simply open syncclip.in on both devices, enter the same session code, and your text will instantly sync across devices in under 100ms."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the disadvantage of using email drafts to copy text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Emailing yourself or sending chat messages is slow, cluttering your inbox or messaging history with temporary links and snippets that have to be deleted later."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

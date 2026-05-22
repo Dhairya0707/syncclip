@@ -11,8 +11,35 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPost() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the best free clipboard manager?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The best free clipboard manager in 2026 is a web-native solution like SyncClip. It does not require downloading heavy applications or creating accounts, syncing text across devices in real-time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is a 'no account' clipboard manager safer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your clipboard contains sensitive data like passwords and 2FA codes. Using a manager that doesn't store your data in a permanent account linked to your identity reduces security risks."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

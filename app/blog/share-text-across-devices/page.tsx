@@ -11,8 +11,35 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPost() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I share text across devices in one click?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open SyncClip.in on both devices. On the second device, scan the QR code or enter the 6-digit session code, and your devices are paired for instant cross-device sharing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to install any software to share text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, SyncClip requires no installation. It runs completely inside any web browser on iOS, Android, Windows, Mac, or Linux."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

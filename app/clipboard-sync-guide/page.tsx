@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Copy Paste Between Devices Instantly | Free Clipboard Sync",
+  title: "How to Sync Clipboard Between Devices — Free, No App",
   description: "The fastest way to sync your clipboard between devices in 2026. Copy on Android/iPhone, paste on Windows/Mac instantly. No apps, no login. 100% Free.",
   alternates: {
     canonical: "https://syncclip.in/clipboard-sync-guide",
   },
   openGraph: {
-    title: "Copy Paste Between Devices Instantly | Free Clipboard Sync",
+    title: "How to Sync Clipboard Between Devices — Free, No App",
     description: "The fastest way to sync your clipboard between devices in 2026. Copy on Android/iPhone, paste on Windows/Mac instantly. No apps, no login. 100% Free.",
     url: "https://syncclip.in/clipboard-sync-guide",
     type: "article",

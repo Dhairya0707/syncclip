@@ -11,8 +11,35 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPost() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I sync clipboard between Mac and Windows?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Since Apple's Universal Clipboard does not support Windows, you can open SyncClip.in on both your Mac and Windows PC, pair them with a 6-character room code, and share text instantly in real-time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is SyncClip free for cross-platform clipboard sharing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, SyncClip is completely free, does not require an account, and supports real-time text syncing between macOS, Windows, Android, and iOS devices."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

@@ -11,8 +11,35 @@ export const metadata: Metadata = {
 };
 
 export default function Blog1() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How can I sync my clipboard across devices without installing apps?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can use an online, browser-based tool like SyncClip. Just open syncclip.in on both devices and connect via a session code to instantly share text using WebSockets."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does clipboard syncing work between different operating systems?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, browser-native tools like SyncClip work seamlessly across any operating system (Mac, Windows, iOS, Android, Linux) as long as you have a web browser."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

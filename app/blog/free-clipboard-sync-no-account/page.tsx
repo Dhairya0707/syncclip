@@ -11,8 +11,35 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPost() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is there a free clipboard sync tool that doesn't require an account?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, SyncClip is a 100% free online clipboard that allows you to sync text between devices instantly without requiring email registration or passwords."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does SyncClip store my clipboard data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip uses an ephemeral database. If a session is inactive for 24 hours, all associated clipboard data is permanently hard-purged. For extra privacy, you can use 'Burn After Reading' mode."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

@@ -11,8 +11,35 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPost() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is emailing yourself notes bad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Emailing yourself notes clutters your inbox, causes sync delay, and mixes temporary snippets (like 2FA codes) with permanent conversation threads."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best alternative to emailing yourself links?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The best alternative is a dedicated web clipboard like SyncClip. It uses secure WebSockets to sync text across devices in under 100ms with zero login or setup required."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

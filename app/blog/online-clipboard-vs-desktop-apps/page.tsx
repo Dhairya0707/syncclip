@@ -12,8 +12,51 @@ export const metadata: Metadata = {
 };
 
 export default function BlogComparisonPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why not just use Apple's Universal Clipboard?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Apple's solution is excellent, but it locks you into the 'Apple Wall.' SyncClip is for those who need to break that wall and move data to Linux, Windows, or Android instantly without brand-locked accounts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a limit to how much I can sync?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip is optimized for text and code snippets (transient data). While there is no hard limit, the protocol is optimized for speed and latency, not bulk binary storage like Dropbox or iCloud Drive."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does SyncClip see my data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We use ephemeral WebSocket channels. We do not store, log, or 'peek' at your data. Once the session is closed or times out (24h), the entire data pipe is destroyed. We operate on a Zero-Trust Architecture."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it safe for API keys?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, especially with 'Burn After Reading' enabled. This ensures your key is delivered to the target node and then immediately wiped from our transit memory, leaving zero traces for potential audit or leak."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

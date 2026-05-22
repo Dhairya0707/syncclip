@@ -12,8 +12,43 @@ export const metadata: Metadata = {
 };
 
 export default function BlogRemoteTeamsPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many people can join a single session?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip supports multi-node sessions. Whether it's a 2-person pair-programming session or a 10-person standup, the latency remains sub-100ms."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the data encrypted between team members?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All data is transmitted over secure WSS (WebSocket Secure) channels, ensuring that your team snippets are encrypted in transit and never stored on disk."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can we name our team sessions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Currently, sessions use high-entropy random codes to ensure maximum security and zero collisions. You can share this URL directly with your team."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6 text-[10px] tracking-widest uppercase font-bold">

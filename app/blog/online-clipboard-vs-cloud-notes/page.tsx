@@ -12,8 +12,43 @@ export const metadata: Metadata = {
 };
 
 export default function BlogNotesComparisonPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is an online clipboard safer than Google Keep?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For temporary data, yes. Google Keep stores data indefinitely until manual deletion. SyncClip purges data automatically, reducing your data exposure window from 'Forever' to '24 Hours.'"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use SyncClip for long-term notes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely not. SyncClip is an ephemeral bridge. Use Notion for your wiki; use SyncClip for your transient snippets."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it work in Incognito mode?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Since we require no cookies and no login, SyncClip is the perfect companion for private browsing workflows."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6 text-[10px] tracking-widest uppercase font-bold">

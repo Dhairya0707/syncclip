@@ -12,8 +12,35 @@ export const metadata: Metadata = {
 };
 
 export default function BlogAndroidToMac() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How can I copy text from Android to Mac without apps?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can use an online web-native clipboard like SyncClip. Simply open syncclip.in on both browsers, connect via a 6-character room code, and sync your clipboard in real-time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why doesn't Apple's Universal Clipboard work on Android?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Apple's Universal Clipboard is restricted to Apple's native hardware ecosystem and requires all devices to be signed into the same iCloud account."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* NAV */}
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>

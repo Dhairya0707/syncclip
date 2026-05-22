@@ -4,6 +4,19 @@
 
 ## Updates
 
+### 2026-05-22 - Phase 4 AEO, GEO and Crawlability Optimizations
+- Registered the 7 missing blogs in the blog index registry (`app/blog/page.tsx`).
+- Appended the 5 missing blogs to sitemap (`app/sitemap.ts`).
+- Updated IndexNow submission script (`scripts/indexnow.js`) to include all 54 active routes.
+- Injected custom `FAQPage` JSON-LD schemas into 12 targeted blog posts to optimize for AEO and GEO search engines.
+- Verified successful production build and dispatched IndexNow submission (200 OK status).
+
+### 2026-05-22 - Phase 3 Aggressive SEO Snippet Fix & Content Expansion
+- Updated GoOnlineTools alternative snippet and guide titles to improve GSC click-through rate (CTR).
+- Created 4 new high-ROI blog posts targeting no-install search intents, developer sharing, local network limits, and GoOnlineTools downtime.
+- Registered all new posts on the blog index page, dynamic `sitemap.ts`, and `indexnow.js` roster.
+- Verified successful production build and submitted 16 URLs to the IndexNow API roster for immediate crawl.
+
 ### 2026-05-21 - SEO/AEO/GEO Scaling & 14-Day Action Plan
 - Analysed 4-week SEO trajectory: confirmed unprompted ChatGPT citations (16 referrers) and Bing AI grounding queries (224 citations) as active.
 - Diagnosed 59% bounce rate spike; confirmed that Flag A auto-redirect is now disabled (`REDIRECT_NUDGE_ENABLED: false`) to mitigate this.
