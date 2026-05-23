@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How to Sync Clipboard Between Devices — Free, No App",
-  description: "The fastest way to sync your clipboard between devices in 2026. Copy on Android/iPhone, paste on Windows/Mac instantly. No apps, no login. 100% Free.",
+  title: "Sync Clipboard Between Devices Online (Free, No App Install)",
+  description: "Instantly sync your clipboard between phone, PC, and tablet online. Share text and links across iOS, Android, macOS, and Windows with zero app installs.",
   alternates: {
     canonical: "https://syncclip.in/clipboard-sync-guide",
   },
   openGraph: {
-    title: "How to Sync Clipboard Between Devices — Free, No App",
-    description: "The fastest way to sync your clipboard between devices in 2026. Copy on Android/iPhone, paste on Windows/Mac instantly. No apps, no login. 100% Free.",
+    title: "Sync Clipboard Between Devices Online (Free, No App Install)",
+    description: "Instantly sync your clipboard between phone, PC, and tablet online. Share text and links across iOS, Android, macOS, and Windows with zero app installs.",
     url: "https://syncclip.in/clipboard-sync-guide",
     type: "article",
     images: [
@@ -31,26 +31,26 @@ export default function ClipboardSyncGuide() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How do I sync my clipboard between devices in real time?",
+        "name": "How do I sync clipboard between my phone and computer?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Open SyncClip on both devices. A session generates automatically — share the URL or scan the QR code. Text syncs between all connected devices instantly, no app or account required."
+          "text": "You can use an online web clipboard like SyncClip. Open syncclip.in on both devices and connect using the room code to sync text in real-time."
         }
       },
       {
         "@type": "Question",
-        "name": "Is SyncClip free to use?",
+        "name": "Can I sync clipboard cross-platform (e.g. Android to Mac)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, completely free. Sessions last 24 hours and support up to 100 devices simultaneously."
+          "text": "Yes, browser-based clipboards like SyncClip are completely platform-agnostic, supporting clipboard sync between Android, iOS, Windows, macOS, and Linux."
         }
       },
       {
         "@type": "Question",
-        "name": "Does SyncClip work without installing anything?",
+        "name": "Do I need to install an application?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. SyncClip runs entirely in the browser. No download, no extension, no account. Just open the URL on any device."
+          "text": "No, it runs entirely in the browser using WebSockets, meaning zero app installations are needed."
         }
       }
     ]

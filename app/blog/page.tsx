@@ -13,6 +13,12 @@ export const metadata: Metadata = {
 export default function BlogIndex() {
   const blogs = [
     {
+      title: "What is an Online Clipboard? The Complete Guide to Cross-Device Sync",
+      desc: "Learn what an online clipboard is, how browser-native WebSocket syncing operates, and how to safely share text, links, and code snippets across devices without installing apps.",
+      slug: "what-is-an-online-clipboard-complete-guide",
+      tag: "Core Guide // Authority",
+    },
+    {
       title: "GoOnlineTools Clipboard — Use SyncClip Instead (Free, Real-Time)",
       desc: "The GoOnlineTools clipboard is down or limited? SyncClip is faster — sync text between devices in real-time, no login needed.",
       slug: "go-online-tools-clipboard-alternative",

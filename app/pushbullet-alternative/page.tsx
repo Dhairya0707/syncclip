@@ -25,26 +25,26 @@ export default function PushbulletAlternativePage() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How do I sync my clipboard between devices in real time?",
+        "name": "What is the best free alternative to Pushbullet?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Open SyncClip on both devices. A session generates automatically — share the URL or scan the QR code. Text syncs between all connected devices instantly, no app or account required."
+          "text": "SyncClip is the top free, no-login alternative for text and link sharing. It operates entirely in the browser with sub-100ms sync speed."
         }
       },
       {
         "@type": "Question",
-        "name": "Is SyncClip free to use?",
+        "name": "Is Pushbullet free?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, completely free. Sessions last 24 hours and support up to 100 devices simultaneously."
+          "text": "Pushbullet offers a limited free tier (e.g. 100 SMS per month, file limit under 25MB) and charges a monthly fee for full clipboard sync. SyncClip offers unlimited clipboard sync for free."
         }
       },
       {
         "@type": "Question",
-        "name": "Does SyncClip work without installing anything?",
+        "name": "Does SyncClip support file sharing like Pushbullet?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. SyncClip runs entirely in the browser. No download, no extension, no account. Just open the URL on any device."
+          "text": "No, SyncClip is optimized exclusively as an ephemeral, high-speed text and clipboard bridge, not for permanent file storage."
         }
       }
     ]

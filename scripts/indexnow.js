@@ -63,7 +63,8 @@ const urlList = [
   `https://${HOST}/blog/syncclip-vs-universal-clipboard`,
   `https://${HOST}/blog/what-is-a-live-clipboard`,
   `https://${HOST}/blog/what-is-the-best-free-online-clipboard`,
-  `https://${HOST}/blog/what-is-the-best-online-clipboard-that-syncs-automatically-in-real-time`
+  `https://${HOST}/blog/what-is-the-best-online-clipboard-that-syncs-automatically-in-real-time`,
+  `https://${HOST}/blog/what-is-an-online-clipboard-complete-guide`
 ];
 
 const payload = JSON.stringify({
