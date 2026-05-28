@@ -4,6 +4,13 @@
 
 ## Updates
 
+### 2026-05-28 - 7-Day CTR & India Search Intent Emergency Plan
+- Optimized metadata titles/descriptions on `/blog/go-online-tools-clipboard-alternative` and `/clipboard-sync-guide` to directly target broken/outage intents and device setups for better SERP clicks.
+- Created and deployed two new guides matching high-volume Indian search intents: `"How to Copy Text from Android Phone to Windows PC Instantly (No Cable)"` and `"Share Text Between Mobile and Laptop Without WhatsApp (Free Tool)"`.
+- Registered new pages across blog indexes, dynamic sitemaps, and IndexNow submit scripts.
+- Adjusted the session presence cleanup cron interval in `convex/crons.ts` from 2 minutes to 5 minutes to reduce database read/write transaction bills on Convex free tier.
+- Verified successful production build of 66 static pages and successfully dispatched IndexNow API submission (200 OK).
+
 ### 2026-05-23 - Phase 5 (Week 1): "Online Clipboard" Topical Cluster Sprint
 - Optimized metadata for better CTR on `/clipboard-sync-guide`.
 - Injected specific, content-relevant FAQPage schemas into `/clipboard-sync-guide`, `/blog/go-online-tools-clipboard-alternative`, and `/pushbullet-alternative`.
