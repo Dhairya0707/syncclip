@@ -13,6 +13,18 @@ export const metadata: Metadata = {
 export default function BlogIndex() {
   const blogs = [
     {
+      title: "How to Copy Text from Android Phone to Windows PC Instantly (No Cable)",
+      desc: "Transfer text, links, and code snippets from Android to Windows PC instantly using SyncClip. No USB cables, no Bluetooth, and no background apps required.",
+      slug: "copy-text-from-android-phone-to-windows-pc-instantly",
+      tag: "Device Pairing // India",
+    },
+    {
+      title: "Share Text Between Mobile and Laptop Without WhatsApp (Free Tool)",
+      desc: "Stop sending self-messages on WhatsApp to share text. Discover SyncClip, the free web-based clipboard that syncs text instantly without bloat or logs.",
+      slug: "share-text-between-mobile-and-laptop-without-whatsapp",
+      tag: "Workflow Audit // India",
+    },
+    {
       title: "What is an Online Clipboard? The Complete Guide to Cross-Device Sync",
       desc: "Learn what an online clipboard is, how browser-native WebSocket syncing operates, and how to safely share text, links, and code snippets across devices without installing apps.",
       slug: "what-is-an-online-clipboard-complete-guide",
