@@ -31,8 +31,8 @@ export default function BlogIndex() {
       tag: "Core Guide // Authority",
     },
     {
-      title: "GoOnlineTools Clipboard — Use SyncClip Instead (Free, Real-Time)",
-      desc: "The GoOnlineTools clipboard is down or limited? SyncClip is faster — sync text between devices in real-time, no login needed.",
+      title: "GoOnlineTools Clipboard Down? Use SyncClip — Real-Time Sync That Works",
+      desc: "GoOnlineTools clipboard broken or limited? SyncClip syncs text instantly between any devices. Free, faster, no login needed.",
       slug: "go-online-tools-clipboard-alternative",
       tag: "Top Alternative",
     },
@@ -55,8 +55,8 @@ export default function BlogIndex() {
       tag: "India & Nepal // Workflow",
     },
     {
-      title: "Online Clipboard Without Installing Anything or Using a Network App",
-      desc: "Need a free online clipboard with zero installation or network apps? Discover how SyncClip syncs text instantly across devices in your web browser.",
+      title: "Online Clipboard Without Installing Anything — Works Any Device, Any Time",
+      desc: "Need a clipboard online without installing apps? SyncClip works in browser. Sync text across phone, laptop, tablet instantly.",
       slug: "online-clipboard-without-installing-anything-or-using-a-network-app",
       tag: "Zero-bloat // Utility",
     },
@@ -73,8 +73,8 @@ export default function BlogIndex() {
       tag: "Downtime // Support",
     },
     {
-      title: "Best Pushbullet Alternatives in 2026 — Free & No Login",
-      desc: "Pushbullet changed. Here are the best free alternatives to sync clipboard, files, and links across devices. SyncClip is #1 for zero-friction sharing.",
+      title: "Best Free Pushbullet Alternatives 2026 — Instant Sync, No Account",
+      desc: "Pushbullet got expensive? Try SyncClip. Real-time clipboard sync across all devices. No login, no email required.",
       slug: "pushbullet-alternatives-2026",
       tag: "Pushbullet // battle",
     },
@@ -109,8 +109,8 @@ export default function BlogIndex() {
       tag: "Analysis // Comparison",
     },
     {
-      title: "How to Copy Text from Android to Mac (Without Apps)",
-      desc: "Learn the fastest way to move text from an Android phone to a Mac computer in 2026 without installing background apps.",
+      title: "Copy Text from Android to Mac Instantly — No Cable, No App, No Bluetooth Required",
+      desc: "Fast method to transfer text from Android to Mac. No USB, no Bluetooth, no extra setup. Just share a link and paste.",
       slug: "how-to-copy-text-from-android-to-mac",
       tag: "Top Choice // Guide",
     },

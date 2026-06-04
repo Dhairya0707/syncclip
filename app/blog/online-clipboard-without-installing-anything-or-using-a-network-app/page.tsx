@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Online Clipboard Without Installing Anything or Using a Network App",
-  description: "Need a free online clipboard with zero installation or network apps? Discover how SyncClip syncs text instantly across devices in your web browser.",
+  title: "Online Clipboard Without Installing Anything — Works Any Device, Any Time",
+  description: "Need a clipboard online without installing apps? SyncClip works in browser. Sync text across phone, laptop, tablet instantly.",
   alternates: {
     canonical: "https://syncclip.in/blog/online-clipboard-without-installing-anything-or-using-a-network-app",
   },

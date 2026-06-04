@@ -3,8 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "How to Copy Text from Android to Mac Instantly (Free, No Apps)",
-  description: "The fastest way to copy text from Android to Mac in 2026. Sync your clipboard across devices instantly without cables, accounts, or downloading apps.",
+  title: "Copy Text from Android to Mac Instantly — No Cable, No App, No Bluetooth Required",
+  description: "Fast method to transfer text from Android to Mac. No USB, no Bluetooth, no extra setup. Just share a link and paste.",
   keywords: ["copy text android to mac", "android to mac clipboard", "share text android to mac", "online clipboard android mac", "universal clipboard alternative"],
   alternates: {
     canonical: "https://syncclip.in/blog/how-to-copy-text-from-android-to-mac",

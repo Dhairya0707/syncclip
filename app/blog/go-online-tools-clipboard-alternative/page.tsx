@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "GoOnlineTools Clipboard Broken? Try SyncClip — Instant Sync, No Login",
-  description: "GoOnlineTools clipboard not working? SyncClip syncs between ANY devices instantly. No app, no account. Works on Android, Windows, Mac, iPhone.",
+  title: "GoOnlineTools Clipboard Down? Use SyncClip — Real-Time Sync That Works",
+  description: "GoOnlineTools clipboard broken or limited? SyncClip syncs text instantly between any devices. Free, faster, no login needed.",
   alternates: {
     canonical: "https://syncclip.in/blog/go-online-tools-clipboard-alternative",
   },
