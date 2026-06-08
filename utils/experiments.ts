@@ -1,6 +1,6 @@
 /**
  * Centralized feature flags for A/B tests and activation funnel experiments.
- * Follows the "High-Density Editorial Brutalism" philosophy: 
+ * Follows the "High-Density Editorial Brutalism" philosophy:
  * These flags allow rapid iteration without modifying core logic.
  */
 
@@ -15,7 +15,7 @@ export const EXPERIMENTS = {
   FORCE_SECOND_DEVICE_ENABLED: false,
 
   // Flag D: PWA install prompt after first keystroke
-  PWA_NUDGE_ENABLED: true,
+  PWA_NUDGE_ENABLED: false,
 
   // Flag B: Rotating post-room-creation headlines
   ROTATING_HEADLINES_ENABLED: true,

@@ -2,9 +2,9 @@ import { v } from "convex/values";
 import { action } from "./_generated/server";
 import { api } from "./_generated/api";
 
-const BLUE = 0x057DBC;
-const GREEN = 0x2ECC71;
-const ORANGE = 0xF5A623;
+const BLUE = 0x057dbc;
+const GREEN = 0x2ecc71;
+const ORANGE = 0xf5a623;
 
 function fmt(num: number): string {
   return num.toLocaleString("en-IN");
@@ -70,9 +70,12 @@ export const sendDailyDigest = action({
     fields.push(eventsField);
 
     if (retention.length > 0) {
-      const cohortLines = retention.slice(0, 6).map((c) =>
-        `Week of ${c.label}: **${c.rate}%** returned (${fmt(c.returned)}/${fmt(c.size)})`,
-      );
+      const cohortLines = retention
+        .slice(0, 6)
+        .map(
+          (c) =>
+            `Week of ${c.label}: **${c.rate}%** returned (${fmt(c.returned)}/${fmt(c.size)})`,
+        );
       fields.push({
         name: "📈 Weekly Retention",
         value: cohortLines.join("\n"),
@@ -101,7 +104,11 @@ export const sendDailyDigest = action({
         body: JSON.stringify(payload),
       });
       if (!response.ok) {
-        console.error("Discord digest webhook failed:", response.status, await response.text());
+        console.error(
+          "Discord digest webhook failed:",
+          response.status,
+          await response.text(),
+        );
       }
     } catch (e) {
       console.error("Discord digest webhook error:", e);
@@ -124,10 +131,11 @@ export const sendTest = action({
       embeds: [
         {
           title: "🧪 Test — SyncClip Daily Digest",
-          description: "This is a test message to verify the daily digest webhook is configured correctly.",
+          description:
+            "This is a test message to verify the daily digest webhook is configured correctly.",
           color: GREEN,
           fields: [
-            { name: "Channel", value: "`#daily-ops`", inline: true },
+            { name: "Channel", value: "`#daily-digest`", inline: true },
             { name: "Schedule", value: "Every day at 08:00 UTC", inline: true },
           ],
           footer: { text: "SyncClip • Test message" },
