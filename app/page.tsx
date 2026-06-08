@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { track } from "../utils/analytics";
 import { isExperimentEnabled } from "../utils/experiments";
 import { getRandomCopyBlock } from "../utils/headlines";
+import { sendError } from "../utils/discord";
 import Link from "next/link";
 import RedirectNudgeBar from "../components/RedirectNudgeBar";
 import { track as vaTrack } from "@vercel/analytics";
@@ -59,6 +60,7 @@ export default function Home() {
       router.push(`/${code}`);
     } catch (err) {
       console.error("Failed to create session:", err);
+      sendError("Session creation failed", err instanceof Error ? err.message : String(err));
       setInitializing(false);
     }
   }

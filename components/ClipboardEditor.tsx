@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { track } from "../utils/analytics";
 import { isExperimentEnabled } from "../utils/experiments";
+import { sendError, sendInfo } from "../utils/discord";
 import SecondDeviceCTA from "./SecondDeviceCTA";
 import PWAInstallPrompt from "./PWAInstallPrompt";
 import { getRandomCopyBlock, CopyBlock } from "../utils/headlines";
@@ -147,6 +148,11 @@ export default function ClipboardEditor({ session }: { session: any }) {
         sessionId: session._id,
         name: userName,
         nodeId: nodeId,
+      }).catch((err) => {
+        sendError("Presence heartbeat failed", err instanceof Error ? err.message : String(err), {
+          nodeId,
+          sessionId: session.code,
+        });
       });
     };
 
@@ -239,9 +245,16 @@ export default function ClipboardEditor({ session }: { session: any }) {
   useEffect(() => {
     if (session.isBurnMode && !isOwner && text !== "") {
       const tm = setTimeout(() => {
-        burnMutation({ id: session._id }).then(() => {
-          showToast("🔥 Data wiped! Burn protocol complete.");
-        });
+        burnMutation({ id: session._id })
+          .then(() => {
+            showToast("🔥 Data wiped! Burn protocol complete.");
+          })
+          .catch((err) => {
+            sendError("Burn execution failed", err instanceof Error ? err.message : String(err), {
+              sessionId: session.code,
+              nodeId,
+            });
+          });
       }, 5000);
       return () => clearTimeout(tm);
     }
@@ -267,10 +280,17 @@ export default function ClipboardEditor({ session }: { session: any }) {
 
             setText(localText);
             setIsSyncing(true);
-            update({ id: session._id, text: localText, callerNodeId: nodeId }).finally(() => {
-              setIsSyncing(false);
-              showToast("Local Clipboard Uploaded to Cloud");
-            });
+            update({ id: session._id, text: localText, callerNodeId: nodeId })
+              .catch((err) => {
+                sendError("Auto-read clipboard sync failed", err instanceof Error ? err.message : String(err), {
+                  nodeId,
+                  sessionId: session.code,
+                });
+              })
+              .finally(() => {
+                setIsSyncing(false);
+                showToast("Local Clipboard Uploaded to Cloud");
+              });
           }
         }
       } catch (err) {
@@ -295,9 +315,17 @@ export default function ClipboardEditor({ session }: { session: any }) {
     debounce((newText: string) => {
       if (!canEdit) return;
       setIsSyncing(true);
-      update({ id: session._id, text: newText, callerNodeId: nodeId }).finally(() => {
-        setIsSyncing(false);
-      });
+      update({ id: session._id, text: newText, callerNodeId: nodeId })
+        .catch((err) => {
+          sendError("Text sync failed", err instanceof Error ? err.message : String(err), {
+            nodeId,
+            sessionId: session.code,
+            textLength: newText.length,
+          });
+        })
+        .finally(() => {
+          setIsSyncing(false);
+        });
     }, 500),
     [update, session._id, nodeId, canEdit]
   );
@@ -350,34 +378,68 @@ export default function ClipboardEditor({ session }: { session: any }) {
   function handleRestore(idx: number) {
     if (!canEdit) return;
     track("history_restored", { history_index: idx, timestamp: new Date().toISOString() });
-    restoreHistory({ id: session._id, index: idx, callerNodeId: nodeId });
-    setIsSidebarOpen(false); // Close drawer on mobile
+    restoreHistory({ id: session._id, index: idx, callerNodeId: nodeId }).catch((err) => {
+      sendError("History restore failed", err instanceof Error ? err.message : String(err), {
+        nodeId,
+        sessionId: session.code,
+        historyIndex: idx,
+      });
+    });
+    setIsSidebarOpen(false);
   }
 
   function handleToggleLock() {
     if (!isOwner) return;
     const newLockedState = !isLocked;
     track("session_locked", { locked: newLockedState, timestamp: new Date().toISOString() });
-    toggleLockMutation({ id: session._id, callerNodeId: nodeId, isLocked: newLockedState }).then(() => {
-      showToast(`Node ${newLockedState ? "Locked" : "Unlocked"}`);
-    });
+    toggleLockMutation({ id: session._id, callerNodeId: nodeId, isLocked: newLockedState })
+      .then(() => {
+        showToast(`Node ${newLockedState ? "Locked" : "Unlocked"}`);
+      })
+      .catch((err) => {
+        sendError("Toggle lock failed", err instanceof Error ? err.message : String(err), {
+          nodeId,
+          sessionId: session.code,
+          newLockedState,
+        });
+      });
   }
 
   function handleToggleBurn() {
     if (!isOwner) return;
     const newBurnState = !session.isBurnMode;
     track("burn_mode_toggled", { armed: newBurnState, timestamp: new Date().toISOString() });
-    toggleBurnMutation({ id: session._id, callerNodeId: nodeId, isBurnMode: newBurnState }).then(() => {
-      showToast(`Burn Protocol ${newBurnState ? "ARMED" : "DISARMED"}`);
-    });
+    toggleBurnMutation({ id: session._id, callerNodeId: nodeId, isBurnMode: newBurnState })
+      .then(() => {
+        showToast(`Burn Protocol ${newBurnState ? "ARMED" : "DISARMED"}`);
+        if (newBurnState) {
+          sendInfo("Burn Mode Armed", [
+            { name: "Session", value: `\`${session.code}\``, inline: true },
+            { name: "Node", value: `\`${nodeId}\``, inline: true },
+          ], { sessionId: session.code, nodeId });
+        }
+      })
+      .catch((err) => {
+        sendError("Toggle burn mode failed", err instanceof Error ? err.message : String(err), {
+          nodeId,
+          sessionId: session.code,
+        });
+      });
   }
 
   async function handleDeleteSession() {
     if (!isOwner) return;
     if (confirm("🚨 WARNING: This cluster and its archival history will be permanently deleted. Proceed?")) {
       track("session_deleted", { timestamp: new Date().toISOString() });
-      await deleteSessionMutation({ id: session._id, callerNodeId: nodeId });
-      router.push("/");
+      try {
+        await deleteSessionMutation({ id: session._id, callerNodeId: nodeId });
+        router.push("/");
+      } catch (err) {
+        sendError("Delete session failed", err instanceof Error ? err.message : String(err), {
+          nodeId,
+          sessionId: session.code,
+        });
+      }
     }
   }
 

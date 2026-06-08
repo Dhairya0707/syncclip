@@ -27,14 +27,20 @@ export default defineSchema({
     status: v.string(), // e.g., "success", "error"
   }).index("by_type", ["type"]),
   analytics_events: defineTable({
-    type: v.string(),      // e.g., "room_created", "first_keystroke"
+    type: v.string(),
     timestamp: v.number(),
-    environment: v.string(), // "development" or "production"
+    environment: v.string(),
     pathname: v.string(),
-    device: v.string(),    // "mobile" or "desktop"
+    device: v.string(),
     nodeId: v.optional(v.string()),
-    sessionId: v.optional(v.string()), // room code
+    sessionId: v.optional(v.string()),
     metadata: v.optional(v.any()),
   }).index("by_type", ["type"])
     .index("by_timestamp", ["timestamp"]),
+
+  node_profiles: defineTable({
+    nodeId: v.string(),
+    firstSeen: v.number(),
+    lastSeen: v.number(),
+  }).index("by_nodeId", ["nodeId"]),
 });
