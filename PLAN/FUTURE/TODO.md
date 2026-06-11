@@ -87,3 +87,49 @@
 
 ## Progress Log
 - [2026-05-22] Completed Phase 3 content creation, metadata adjustments, index integration, and successfully pinged indexing services.
+
+---
+
+# Task: Analytics Overhaul & Discord Integration (Phase 4) — June 8, 2026
+
+## Objectives
+- [x] Add `node_profiles` table to schema for caching node firstSeen/lastSeen
+- [x] Update `logEvent` to upsert node_profiles on every event
+- [x] Add `getDailyDigest` query — today's active nodes, retention, sessions, multi-device rooms, events, device split
+- [x] Add `getRetention` query — weekly cohort retention matrix (first seen week → return rate)
+- [x] Create `utils/discord.ts` — client-side Discord webhook sender (error/warn/info)
+- [x] Add try/catch + Discord error reporting to all 8 mutation calls in ClipboardEditor.tsx
+- [x] Add Discord error reporting to session creation failure in page.tsx
+- [x] Create `convex/discord.ts` — `sendDailyDigest` action + `sendTest` verification action
+- [x] Add daily digest cron to `convex/crons.ts` (08:00 UTC)
+- [x] Document webhook env vars in `.env.local`
+- [x] Verify clean TypeScript compilation
+
+## Env Vars Required
+- `NEXT_PUBLIC_DISCORD_WEBHOOK` — Vercel env var for client-side error/event alerts
+- `DISCORD_DIGEST_WEBHOOK` — Convex env var for daily digest (`npx convex env set DISCORD_DIGEST_WEBHOOK <url>`)
+
+## Architecture
+```
+Errors/Events → Client catch blocks → fetch() → Discord #errors channel
+Daily Digest  → Convex cron (08:00 UTC) → action → Discord #daily-ops channel
+```
+
+## Files Created
+- `convex/discord.ts` — server-side daily digest action
+- `utils/discord.ts` — client-side webhook sender
+
+## Files Modified
+- `convex/schema.ts` — added node_profiles table
+- `convex/analytics.ts` — logEvent upsert + getDailyDigest + getRetention queries
+- `convex/crons.ts` — added daily digest cron
+- `components/ClipboardEditor.tsx` — Discord error handling on all mutations
+- `app/page.tsx` — Discord error on session creation failure
+- `.env.local` — webhook env var docs
+
+## Progress Log
+- [2026-06-08] Built analytics foundation (node_profiles, retention queries, daily digest query)
+- [2026-06-08] Built client-side Discord error sender + wired into all mutation catch blocks
+- [2026-06-08] Built server-side daily digest action + cron
+- [2026-06-08] Verified clean build with `npx convex codegen` and `npx tsc --noEmit`
+- [2026-06-08] Documented in CLAUDE.md, Claude.md, TODO.md

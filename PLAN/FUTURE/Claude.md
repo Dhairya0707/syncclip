@@ -87,3 +87,70 @@
    - "GoOnlineTools Clipboard Not Working? Here Are 3 Free Alternatives"
 3. **Internal Indexing & Sitemap**: Added new blog details to sitemap (`app/sitemap.ts`) and main blog index page (`app/blog/page.tsx`).
 4. **Verification & IndexNow Submission**: Verified project builds cleanly under Next.js 16/Turbopack, then successfully ran `indexnow.js` (200 OK) with 16 active pages.
+
+---
+
+## [2026-06-08] Task: Analytics Overhaul — Discord Webhooks & User Retention Tracking
+
+### Research & Motivation
+- Needed better user tracking without auth (returning users, multi-device rooms, weekly cohorts).
+- Wanted real-time ops alerts for errors (lock violations, payload rejections, Convex failures).
+- Wanted a daily ops digest in Discord with key metrics instead of checking dashboards.
+
+### Execution Steps
+
+1. **`node_profiles` Table**: Added to schema (`convex/schema.ts`) to cache `firstSeen`/`lastSeen` per nodeId. Upserts on every `logEvent` call so cohort queries are fast without scanning all events.
+
+2. **New Analytics Queries** (`convex/analytics.ts`):
+   - `getDailyDigest` — returns today's active nodes, returning rate, sessions, multi-device rooms, events breakdown, device split. Used by the daily cron.
+   - `getRetention` — weekly cohort retention matrix. Groups nodeIds by week of first appearance, shows what percentage returned each subsequent week.
+   - `logEvent` now also upserts `node_profiles` to maintain the firstSeen/lastSeen cache.
+
+3. **Client-Side Discord Webhook** (`utils/discord.ts`):
+   - `sendError()`, `sendWarn()`, `sendInfo()` — POST formatted Discord embeds to `NEXT_PUBLIC_DISCORD_WEBHOOK`.
+   - Embeds include title, description, color-coded (red/orange/blue), fields for session/node IDs, IST timestamp footer.
+   - Fire-and-forget — never blocks the UI.
+
+4. **Error Handling on All Mutations** (`components/ClipboardEditor.tsx`, `app/page.tsx`):
+   - Added `.catch()` or try/catch with `sendError()` to every mutation call:
+     - `createSession` (page.tsx)
+     - `updateText` (debounced sync + auto-read)
+     - `updatePresence` (heartbeat)
+     - `restoreHistory`
+     - `toggleLock`
+     - `toggleBurn` (+ sends `sendInfo` when burn is armed)
+     - `burnSession` (execution)
+     - `deleteSession`
+   - Previously most mutations had `.finally()` but no `.catch()` — errors were silently swallowed.
+
+5. **Server-Side Daily Digest** (`convex/discord.ts`):
+   - `sendDailyDigest` action — queries `getDailyDigest` + `getRetention`, builds a rich Discord embed with fields for nodes, sessions, devices, events, and weekly retention cohorts.
+   - `sendTest` action — sends a test embed to verify webhook config.
+   - Webhook URL read from `DISCORD_DIGEST_WEBHOOK` (Convex env var).
+
+6. **Cron Registration** (`convex/crons.ts`):
+   - Added daily cron at 08:00 UTC (1:30 PM IST) to run `sendDailyDigest`.
+
+7. **Env Config** (`.env.local`):
+   - Documented `NEXT_PUBLIC_DISCORD_WEBHOOK` and `DISCORD_DIGEST_WEBHOOK`.
+
+### Files Changed
+
+| File | Change |
+|---|---|
+| `convex/schema.ts` | Added `node_profiles` table (nodeId, firstSeen, lastSeen) |
+| `convex/analytics.ts` | `logEvent` now upserts node_profiles; added `getDailyDigest`, `getRetention` |
+| `convex/discord.ts` | **New** — `sendDailyDigest` + `sendTest` actions |
+| `convex/crons.ts` | Added daily digest cron at 08:00 UTC |
+| `utils/discord.ts` | **New** — client-side error/event webhook sender |
+| `components/ClipboardEditor.tsx` | Added try/catch + Discord error on all 8 mutation calls |
+| `app/page.tsx` | Added Discord error on session creation failure |
+| `.env.local` | Documented webhook env vars |
+
+### Design Decisions
+
+- **No polling, no extra infra**: Errors fire directly from client catch blocks via `fetch()`. No queues, no polling, no Convex actions needed for real-time alerts.
+- **Two webhook channels**: Error/event alerts go to one Discord channel via `NEXT_PUBLIC_DISCORD_WEBHOOK`. Daily digest goes to a separate channel via `DISCORD_DIGEST_WEBHOOK` (server-side only).
+- **Privacy**: Node profiles only store `nodeId`, `firstSeen`, `lastSeen`. No content, no IP, no PII. This enables cohort retention without auth.
+- **Retention via nodeId**: Uses localStorage `syncclip_node_id` for returning user tracking. ~85% accurate without auth. Canvas fingerprint could be added later for fallback.
+- **Daily digest is cheap**: One Convex action per day. Negligible cost.
