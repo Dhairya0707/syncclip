@@ -10,6 +10,7 @@ const urlList = [
   `https://${HOST}/about`,
   `https://${HOST}/support`,
   `https://${HOST}/privacy`,
+  `https://${HOST}/legal/privacy`,
   `https://${HOST}/clipboard-sync-guide`,
   `https://${HOST}/clipboard`,
   `https://${HOST}/sync-clipboard-between-devices`,
@@ -66,7 +67,9 @@ const urlList = [
   `https://${HOST}/blog/what-is-the-best-online-clipboard-that-syncs-automatically-in-real-time`,
   `https://${HOST}/blog/what-is-an-online-clipboard-complete-guide`,
   `https://${HOST}/blog/copy-text-from-android-phone-to-windows-pc-instantly`,
-  `https://${HOST}/blog/share-text-between-mobile-and-laptop-without-whatsapp`
+  `https://${HOST}/blog/share-text-between-mobile-and-laptop-without-whatsapp`,
+  `https://${HOST}/blog/fastest-way-to-copy-text-without-app`,
+  `https://${HOST}/blog/can-i-sync-clipboard-android-windows-free`
 ];
 
 const payload = JSON.stringify({

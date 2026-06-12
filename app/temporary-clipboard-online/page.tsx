@@ -12,8 +12,43 @@ export const metadata: Metadata = {
 };
 
 export default function TemporaryClipboardPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a temporary online clipboard?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A temporary online clipboard is a web-based tool that lets you share text between devices without permanent storage. SyncClip is a temporary clipboard that auto-deletes all data after 24 hours and offers a Burn After Reading mode for instant destruction."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does a disposable clipboard work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A disposable clipboard creates a temporary session that exists only for the duration of your sync. SyncClip generates a 6-character session code, data syncs in real-time via WebSocket, and the entire session is permanently deleted after 24 hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is temporary clipboard sharing secure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SyncClip encrypts all data in transit via HTTPS/TLS, uses cryptographically random session codes, and auto-purges data within 24 hours. Burn After Reading mode destroys data immediately after the recipient reads it."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

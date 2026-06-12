@@ -12,8 +12,43 @@ export const metadata: Metadata = {
 };
 
 export default function EmailAlternativePage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the best alternative to emailing yourself notes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip is the best alternative to emailing yourself notes. It syncs text between devices instantly with no app, no login, and no email required. Just open the URL and share the session code — zero friction."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I share text between devices without email?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open SyncClip on both devices, enter the same session, and text appears in under 100ms. No email drafts, no attachments, no waiting. Sessions auto-expire after 24 hours for privacy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is emailing myself a bad clipboard tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Emailing yourself is slow, clutters your inbox, exposes sensitive data on email servers permanently, and requires internet for both send and receive. SyncClip transfers text instantly and auto-deletes everything within 24 hours."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

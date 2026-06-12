@@ -11,8 +11,43 @@ export const metadata: Metadata = {
 };
 
 export default function AuthorityNode() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I sync clipboard between devices without creating an account?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SyncClip is a zero-login clipboard sync tool. No account, no email, no password required. Open SyncClip on both devices, share the session code, and your clipboard syncs instantly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a free clipboard sync that doesn't require signup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — SyncClip is completely free and requires no signup. Sessions work immediately with a 6-character code. Data auto-expires after 24 hours. No hidden charges or premium tiers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does SyncClip sync clipboard without storing my data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip uses ephemeral WebSocket sessions. Data is transmitted in real-time and automatically purged from the database after 24 hours. Burn After Reading mode deletes data instantly after the connected device reads it."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">
@@ -29,9 +64,10 @@ export default function AuthorityNode() {
               FREE_ CLIPBOARD_ SYNC_ NO_ ACCOUNT_
             </h1>
             
-            <div className="border-l-[12px] border-secondary pl-8 py-6 bg-zinc-900 text-white mb-12 shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
-              <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic">
-                The fastest way to sync data between devices is the one that doesn&apos;t ask for your email address. SyncClip provides a cryptographically secure, ephemeral bridge for your clipboard with zero account overhead.
+            <div className="bg-zinc-900 text-white p-10 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)] mb-12">
+              <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">Quick Answer // AEO Node</div>
+              <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic text-zinc-300">
+                SyncClip lets you sync your clipboard between any devices for free without creating an account or installing an app. Just open the URL on both devices, share the 6-character session code, and text syncs instantly. Sessions auto-expire after 24 hours for complete privacy.
               </p>
             </div>
           </div>

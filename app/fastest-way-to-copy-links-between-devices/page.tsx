@@ -12,8 +12,43 @@ export const metadata: Metadata = {
 };
 
 export default function FastestLinkSyncPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the fastest way to copy a link from phone to PC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip is the fastest way — open syncclip.in on both devices, share the session code, and paste the link. It appears on your PC in under 100ms. No email, no messaging app, no USB cable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I share URLs between devices without email?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use SyncClip to share URLs instantly. Open the same session on both devices, paste a link on one, and it syncs to the other in real-time. No email drafts, no cloud storage, no accounts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I sync browser links between devices in real-time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SyncClip replicates text across all connected devices in under 100ms via WebSocket. Paste a URL on any device and it appears immediately on every other device in the same session."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

@@ -21,3 +21,6 @@ A 4-post series around the SyncClip launch. Each post targets a different angle 
 - Engage heavily in comments during the first 60 minutes after posting
 - Best posting times for Indian tech LinkedIn: 8:30 AM IST or 12:00 PM IST (weekdays)
 - Link always goes AFTER the CTA, never in the body
+
+## Master Prompt
+Full LinkedIn content strategy, brand voice, hooks library, formats, templates, and weekly workflow at `PLAN/_data/marketing/linkedin-master-prompt.md`. Copy-paste that file into any LLM to generate daily posts.

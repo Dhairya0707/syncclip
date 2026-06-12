@@ -2,10 +2,24 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "GoOnlineTools Clipboard Not Working? Here Are 3 Free Alternatives",
-  description: "Is the GoOnlineTools clipboard down, slow, or broken? Discover the best 3 free alternatives to sync your text across devices instantly with zero ads.",
+  title: "GoOnlineTools Clipboard Not Working? 3 Free Alternatives That Work",
+  description: "Is the GoOnlineTools clipboard down or broken? Try these 3 free alternatives to sync text between devices instantly. No ads, no login, works on all devices.",
   alternates: {
     canonical: "https://syncclip.in/blog/go-online-tools-clipboard-not-working-free-alternatives",
+  },
+  openGraph: {
+    title: "GoOnlineTools Clipboard Not Working? 3 Free Alternatives That Work",
+    description: "Is the GoOnlineTools clipboard down or broken? Try these 3 free alternatives to sync text between devices instantly.",
+    url: "https://syncclip.in/blog/go-online-tools-clipboard-not-working-free-alternatives",
+    type: "article",
+    images: [
+      {
+        url: "https://syncclip.in/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "GoOnlineTools Alternatives",
+      },
+    ],
   },
 };
 

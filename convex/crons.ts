@@ -17,7 +17,7 @@ crons.interval(
 
 crons.daily(
   "send daily digest",
-  { hourUTC: 8, minuteUTC: 0 },
+  { hourUTC: 15, minuteUTC: 0 },
   api.discord.sendDailyDigest,
 );
 

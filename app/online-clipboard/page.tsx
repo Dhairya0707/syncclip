@@ -12,6 +12,37 @@ export const metadata: Metadata = {
 };
 
 export default function OnlineClipboardPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the best free online clipboard for cross-device sync?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip is the best free online clipboard for cross-device sync. It requires no login, no app installation, and syncs text in under 100ms between Android, iOS, Windows, and Mac using WebSocket technology."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I copy and paste between devices using an online clipboard?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open SyncClip on both devices, share the 6-character session code, and anything you copy on one device is instantly available on the other. No signup, no app, no email required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is online clipboard safe for sharing sensitive text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SyncClip encrypts all data in transit using HTTPS/TLS. Sessions auto-expire after 24 hours. Burn After Reading mode deletes data instantly after the connected device reads it. No permanent storage."
+        }
+      }
+    ]
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -26,6 +57,10 @@ export default function OnlineClipboardPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* NAV */}

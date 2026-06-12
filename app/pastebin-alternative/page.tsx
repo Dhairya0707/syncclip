@@ -9,6 +9,20 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://syncclip.in/pastebin-alternative",
   },
+  openGraph: {
+    title: "Best Pastebin Alternative for 2026 (Secure & Ephemeral)",
+    description: "Secure, ephemeral alternative to Pastebin for sharing code and text without public indexing or permanent storage.",
+    url: "https://syncclip.in/pastebin-alternative",
+    type: "website",
+    images: [
+      {
+        url: "https://syncclip.in/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Pastebin Alternative - SyncClip",
+      },
+    ],
+  },
 };
 
 export default function PastebinAlternativePage() {

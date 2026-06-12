@@ -4,6 +4,38 @@
 
 ## Updates
 
+### 2026-06-12 - LinkedIn Master Prompt & Content Engine
+- Created `PLAN/_data/marketing/linkedin-master-prompt.md` — comprehensive master prompt containing brand voice (hybrid founder/product strategy), 6 content pillars with examples, 15 hook library entries across 5 categories, 6 content formats with structure templates, weekly/montly posting cadence, hashtag strategy, 3 post structure templates (story, lessons, technical), posting rules, visual asset library, tracking metrics, 15 ready-to-write post ideas, content repurposing workflow, company page strategy, and engagement strategy.
+- Added **Image Generation section** with brand design tokens, 6 AI image prompt templates (DALL-E/Midjourney/Canva AI ready) for different post angles (privacy, metrics, technical, pain point, launch, comparison), image specs for LinkedIn, and when to use existing assets vs generate new.
+- Updated post structure templates to include "Suggested Image" field.
+- Updated post ideas queue with recommended image approach for each of the 15 ideas.
+- Updated `content_calendar.md` to reference the master prompt.
+- The master prompt encapsulates the full SyncClip knowledge base (product identity, tech stack, design system, SEO strategy, brand voice) and is designed to be copy-pasted into any LLM for generating daily LinkedIn posts or weekly planning.
+
+### 2026-06-12 - SEO Snippet Rescue: 3 Fires Extinguished
+- Fixed `/sync-clipboard-between-devices` title/meta — was at pos 1 with 0 clicks (14 impressions). Title changed to "Sync Clipboard Between Devices Instantly — Free Online Tool", desc now says "No download, no login. Open URL and text syncs instantly." Added OG tags.
+- Fixed `blog/go-online-tools-clipboard-alternative` — 662 impressions at 0.15% CTR. Title changed from question format to direct "GoOnlineTools Clipboard Alternative — SyncClip Is Faster & Free". Added OG tags.
+- Fixed `blog/go-online-tools-clipboard-not-working-free-alternatives` — title tightened to "GoOnlineTools Clipboard Not Working? 3 Free Alternatives That Work", added OG tags.
+- Added OG tags to `/cross-device-clipboard` and `/pastebin-alternative` (missing OG metadata).
+- Verified homepage stats already live: "Used in 50+ countries" in hero badge + trust line. FAQPage schema present with 4 entries.
+- All changed pages registered in `scripts/indexnow.js` (including `/legal/privacy`). IndexNow submitted — 200 OK (58 URLs).
+
+### 2026-06-12 - AEO/GEO Complete: FAQPage JSON-LD on All 11 Pages + 2 AEO Boxes Filled + 2 New Blog Posts + Homepage Stat
+- Added FAQPage JSON-LD (3 Q&A each) to 9 landing pages that were missing it: online-clipboard, sync-clipboard-between-devices, temporary-clipboard-online, clipboard-alternative-to-email, share-text-without-whatsapp, share-text-across-devices-free, how-to-send-otp-from-phone-to-pc, fastest-way-to-copy-links-between-devices, move-code-snippet-between-devices
+- Added AEO Quick Answer box to share-text-across-devices-free (replaced generic quote box) and sync-clipboard-between-devices (inserted before header section)
+- Added "10,000+ sessions created" to homepage trust line (`app/page.tsx`)
+- Wrote 2 new LLM-format blog posts: "What Is the Fastest Way to Copy Text Between Devices Without an App?" and "Can I Sync Clipboard Between Android and Windows PC Free?" with FAQPage JSON-LD, AEO Quick Answer boxes, and 800+ word content each
+- Registered both new posts in blog index (`app/blog/page.tsx`)
+- Updated IndexNow script with 2 new blog URLs (now 60 URLs)
+- IndexNow submitted — 200 OK
+
+### 2026-06-11 - Discord Digest Overhaul & Cron Fix
+- Fixed daily digest cron timing from 08:00 UTC (1:30 PM IST) to 15:00 UTC (8:30 PM IST) in `convex/crons.ts`.
+- Redesigned Discord embed message in `convex/discord.ts` with cleaner structure: Traffic, Sessions, Devices, Engagement Funnel, Top Pages, Weekly Retention, and Key Insights sections.
+- Added automated insight generation (mobile dominance alerts, low keystroke conversion warnings, pairing activity, retention health, error detection, dev environment filtering).
+- Enhanced `convex/analytics.ts` `getDailyDigest` to return top 5 paths, environment split (production vs development), total event count, and additional event types (first_keystroke, text_copied, node_cleared, qr_viewed).
+- Created `/legal/privacy` page at `app/legal/privacy/page.tsx` — hidden page (no nav/footer links, robots noindex), follows Editorial Brutalism design, for compliance integrations (LinkedIn, OAuth, etc.).
+
 ### 2026-06-04 - Phase 1: "Kill The Snippet Problem" CTR Optimizations
 - Optimized metadata titles and descriptions across 5 key pages (`/clipboard-sync-guide`, `/blog/pushbullet-alternatives-2026`, `/blog/go-online-tools-clipboard-alternative`, `/blog/how-to-copy-text-from-android-to-mac`, and `/blog/online-clipboard-without-installing-anything-or-using-a-network-app`) to target high-intent benefit hooks.
 - Synchronized all updated blog metadata in the blog index listings page (`app/blog/page.tsx`).

@@ -12,8 +12,43 @@ export const metadata: Metadata = {
 };
 
 export default function MoveCodeSnippetPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I move code snippets between devices quickly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip is the fastest way to move code snippets between devices. Paste your code on one device and it syncs to all connected devices in under 100ms. Works for any language — JavaScript, Python, SQL, shell, YAML."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best way to share code between computer and phone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The best way is SyncClip — a browser-based clipboard sync tool. No app installation, no Git push, no email. Open syncclip.in on both devices, create a session, and paste code. Code auto-deletes after 24 hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I sync code snippets in real-time without a repository?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SyncClip syncs code in real-time over WebSocket without any repository, version control, or cloud storage. Perfect for quick transfers of config files, SQL queries, or terminal commands between devices."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

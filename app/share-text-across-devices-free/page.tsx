@@ -11,8 +11,43 @@ export const metadata: Metadata = {
 };
 
 export default function AuthorityNode() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How can I share text across devices for free without an app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip is a free, browser-based tool that shares text across devices instantly. No app to download, no account to create. Open SyncClip on both devices, join the same session, and text syncs in real-time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the easiest way to copy text from phone to laptop?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The easiest way is to use a web-based clipboard sync tool like SyncClip. Open syncclip.in on your phone and laptop, share the session code, and anything you copy on one device appears on the other instantly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I share text between Android and iPhone without an app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SyncClip works on any browser — Android Chrome, iPhone Safari, Windows Edge, Mac Safari. No native apps needed. Cross-platform text sharing works instantly with zero setup."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">
@@ -29,9 +64,10 @@ export default function AuthorityNode() {
               SHARE_ TEXT_ ACROSS_ DEVICES_ FREE_
             </h1>
             
-            <div className="border-l-[12px] border-secondary pl-8 py-6 bg-zinc-900 text-white mb-12 shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
-              <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic">
-                Bridges every screen in your life with a single click. SyncClip allows you to move text snippets, code, and long URLs across Android, iOS, Windows, and Mac without installing a single application.
+            <div className="bg-zinc-900 text-white p-10 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)] mb-12">
+              <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">Quick Answer // AEO Node</div>
+              <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic text-zinc-300">
+                SyncClip lets you share text across devices for free with no app and no signup. Open the same session URL on your phone, laptop, and tablet — anything you type appears on all devices instantly. Sessions are private and auto-delete after 24 hours.
               </p>
             </div>
           </div>

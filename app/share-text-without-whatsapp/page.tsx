@@ -12,8 +12,43 @@ export const metadata: Metadata = {
 };
 
 export default function ShareWithoutWhatsAppPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How can I share text between devices without WhatsApp?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip lets you share text between any devices without WhatsApp. No app installation, no phone number, no account. Open SyncClip on both devices, share the session code, and text syncs in real-time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best WhatsApp alternative for sharing text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip is purpose-built for instant text sharing — faster than WhatsApp, no contact list needed, and you can share with your own devices across platforms. Works on Android, iOS, Windows, and Mac."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I sync clipboard without installing any app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SyncClip works entirely in your browser. No app store download, no extension, no setup. Open syncclip.in on both devices, generate a session, and start syncing immediately."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

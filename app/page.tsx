@@ -132,6 +132,30 @@ export default function Home() {
           '@type': 'Answer',
           'text': 'Yes. SyncClip runs entirely in the browser. No download, no extension, no account. Just open the URL on any device.'
         }
+      },
+      {
+        '@type': 'Question',
+        'name': 'What is the best online clipboard for cross-device sync?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'SyncClip is the best free online clipboard for cross-device sync because it requires no login, no app installation, and syncs text in under 100ms between any devices using WebSocket technology.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'How does SyncClip protect my privacy?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'SyncClip is privacy-first. No accounts, no tracking, no permanent storage. Sessions auto-delete after 24 hours. Burn After Reading mode instantly destroys data after the connected device reads it. All transmissions are encrypted via HTTPS/TLS.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'Can I use SyncClip on mobile and desktop together?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Yes. SyncClip works on any device with a browser — Android, iPhone, Windows, Mac, Linux. Join the same session URL on all your devices and they sync instantly. Use QR pairing for zero-typing mobile join.'
+        }
       }
     ]
   };
@@ -166,6 +190,18 @@ export default function Home() {
       <RedirectNudgeBar />
 
       <main className="pt-10 flex-grow">
+
+        {/* ════════════════════════════════════════════
+            AEO ANSWER BOX — AI Grounding
+        ════════════════════════════════════════════ */}
+        <div className="max-w-7xl mx-auto px-6 pt-8">
+          <div className="bg-zinc-900 text-white p-6 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
+            <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-2">Quick Answer // AEO Node</div>
+            <p className="font-body text-lg md:text-xl leading-relaxed font-bold italic text-zinc-300">
+              SyncClip is a free, browser-based online clipboard that syncs text between your devices in real-time. No app to download, no account to create — just open the URL on any device and anything you copy appears everywhere instantly. Used in 50+ countries.
+            </p>
+          </div>
+        </div>
 
         {/* ════════════════════════════════════════════
             HERO — Benefit-Focused, Product-in-Context
@@ -238,6 +274,8 @@ export default function Home() {
                 {/* Trust line */}
                 <div className="flex flex-wrap items-center gap-4 font-mono text-[9px] tracking-widest uppercase text-zinc-400">
                   <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">public</span> Used in 50+ countries</span>
+                  <span className="text-zinc-200">|</span>
+                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">bar_chart</span> 10,000+ sessions created</span>
                   <span className="text-zinc-200">|</span>
                   <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">encrypted</span> Secured</span>
                   <span className="text-zinc-200">|</span>

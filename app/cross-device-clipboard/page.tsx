@@ -9,6 +9,20 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://syncclip.in/cross-device-clipboard",
   },
+  openGraph: {
+    title: "Cross-Device Clipboard: Sync Text Between Any Devices",
+    description: "Sync text and code between Android, iOS, Windows, and Mac instantly. No login, no app install, 100% free.",
+    url: "https://syncclip.in/cross-device-clipboard",
+    type: "website",
+    images: [
+      {
+        url: "https://syncclip.in/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Cross-Device Clipboard Sync",
+      },
+    ],
+  },
 };
 
 export default function CrossDeviceClipboard() {

@@ -13,6 +13,18 @@ export const metadata: Metadata = {
 export default function BlogIndex() {
   const blogs = [
     {
+      title: "Can I Sync Clipboard Between Android and Windows PC Free?",
+      desc: "Yes — sync clipboard between Android and Windows PC free with no app, no signup, no cables. Browser-based WebSocket sync works instantly.",
+      slug: "can-i-sync-clipboard-android-windows-free",
+      tag: "AEO Core // Android-Win",
+    },
+    {
+      title: "What Is the Fastest Way to Copy Text Between Devices Without an App?",
+      desc: "Stop installing bloatware. Learn the fastest way to copy text between Android, iPhone, Windows, and Mac without any app — pure browser magic under 100ms.",
+      slug: "fastest-way-to-copy-text-without-app",
+      tag: "Speed Analysis // 2026",
+    },
+    {
       title: "How to Copy Text from Android Phone to Windows PC Instantly (No Cable)",
       desc: "Transfer text, links, and code snippets from Android to Windows PC instantly using SyncClip. No USB cables, no Bluetooth, and no background apps required.",
       slug: "copy-text-from-android-phone-to-windows-pc-instantly",

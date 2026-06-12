@@ -86,23 +86,46 @@ export const getDailyDigest = query({
     const countByType = (events: typeof todayEvents, type: string) =>
       events.filter(e => e.type === type).length;
 
+    const topPaths = new Map<string, number>();
+    for (const event of todayEvents) {
+      const path = event.pathname || "/";
+      topPaths.set(path, (topPaths.get(path) ?? 0) + 1);
+    }
+    const sortedPaths = Array.from(topPaths.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5)
+      .map(([path, count]) => ({ path, count }));
+
+    const envSplit = { production: 0, development: 0 };
+    for (const event of todayEvents) {
+      if (event.environment === "production") envSplit.production++;
+      else envSplit.development++;
+    }
+
     return {
       date: todayStart.toISOString().split("T")[0],
+      totalEvents: todayEvents.length,
       activeNodes: todayNodes.size,
       yesterdayNodes: yesterdayNodes.size,
       returningNodes,
       retentionRate: todayNodes.size > 0 ? Math.round((returningNodes / todayNodes.size) * 100) : 0,
       sessionsCreated: countByType(todayEvents, "room_created"),
       yesterdaySessions: countByType(yesterdayEvents, "room_created"),
+      firstKeystrokes: countByType(todayEvents, "first_keystroke"),
       secondDeviceJoins: countByType(todayEvents, "second_device_joined"),
       multiDeviceSessions7d: multiDeviceSessions.size,
       burnTriggers: countByType(todayEvents, "burn_mode_toggled"),
       sessionDeletions: countByType(todayEvents, "session_deleted"),
+      textCopied: countByType(todayEvents, "text_copied"),
+      nodeCleared: countByType(todayEvents, "node_cleared"),
+      qrViewed: countByType(todayEvents, "qr_viewed"),
       errors: todayEvents.filter(e => e.type.startsWith("error_")).length,
       byDevice: {
         mobile: todayEvents.filter(e => e.device === "mobile").length,
         desktop: todayEvents.filter(e => e.device === "desktop").length,
       },
+      topPaths: sortedPaths,
+      environment: envSplit,
     };
   },
 });

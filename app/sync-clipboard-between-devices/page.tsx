@@ -3,10 +3,24 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Sync Clipboard Between Devices Instantly",
-  description: "Sync your clipboard between Android, iOS, Windows, and Mac instantly. No login, no app installation, and zero tracking. The fastest way to copy paste across devices.",
+  title: "Sync Clipboard Between Devices Instantly — Free Online Tool",
+  description: "Real-time clipboard sync between phone, laptop, and tablet. No download, no login. Open the URL on both devices and text syncs instantly. Free tool.",
   alternates: {
     canonical: "https://syncclip.in/sync-clipboard-between-devices",
+  },
+  openGraph: {
+    title: "Sync Clipboard Between Devices Instantly — Free Online Tool",
+    description: "Real-time clipboard sync between phone, laptop, and tablet. No download, no login. Open the URL on both devices and text syncs instantly.",
+    url: "https://syncclip.in/sync-clipboard-between-devices",
+    type: "website",
+    images: [
+      {
+        url: "https://syncclip.in/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Sync Clipboard Between Devices Instantly",
+      },
+    ],
   },
 };
 
@@ -26,11 +40,46 @@ export default function SyncClipboardPage() {
     "description": "A zero-friction, real-time clipboard synchronization tool that works across all devices via the web."
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I sync clipboard between devices instantly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open SyncClip on both devices, share the 6-character session code, and anything you type or copy on one device appears on the other in milliseconds. No app, no login, no setup required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I sync clipboard between Android and Windows PC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SyncClip works on any browser — Android Chrome, Windows Edge, Mac Safari, iPhone Safari. Cross-platform clipboard sync works instantly with zero native app installation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a free tool to sync clipboard without installing anything?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — SyncClip is a free, browser-based clipboard sync tool. No download, no extension, no account. Sessions auto-expire after 24 hours. Burn After Reading mode available for sensitive data."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* NAV */}
@@ -45,6 +94,14 @@ export default function SyncClipboardPage() {
       <main className="pt-24 pb-20 flex-grow px-6">
         <div className="max-w-4xl mx-auto">
           
+          {/* AEO ANSWER BOX */}
+          <div className="bg-zinc-900 text-white p-10 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)] mb-12">
+            <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">Quick Answer // AEO Node</div>
+            <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic text-zinc-300">
+              SyncClip lets you sync your clipboard between any devices instantly — phone, laptop, tablet. No app to download, no account to create. Open the URL on both devices, share the session code, and everything you type appears everywhere in under 100ms.
+            </p>
+          </div>
+
           {/* HEADER */}
           <div className="mb-16">
             <div className="font-mono text-[10px] tracking-[0.3em] text-secondary mb-4 uppercase">Solution Overview // V4.0</div>

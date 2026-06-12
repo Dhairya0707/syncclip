@@ -12,8 +12,43 @@ export const metadata: Metadata = {
 };
 
 export default function SendOTPPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I send OTP from phone to PC instantly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open SyncClip on your phone and PC, share the session code, then type or paste the OTP on your phone — it appears on your PC in under 100ms. No app, no email, no manual retyping required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it safe to send OTP through an online clipboard?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SyncClip uses HTTPS/TLS encryption for all data in transit. Sessions auto-expire after 24 hours. Burn After Reading mode destroys the OTP instantly after it is read once on the receiving device."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the fastest way to transfer OTP to a computer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip is the fastest way — it takes 3 seconds: open syncclip.in on both devices, create a session, and paste the OTP. No email drafts, no SMS forwarding, no manual typing errors."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">
