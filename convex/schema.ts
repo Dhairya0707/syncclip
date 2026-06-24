@@ -11,14 +11,17 @@ export default defineSchema({
     isLocked: v.optional(v.boolean()),
     isBurnMode: v.optional(v.boolean()),
     updateCount: v.optional(v.number()),
-  }),
+  })
+    .index("by_code", ["code"])
+    .index("by_createdAt", ["createdAt"]),
   presence: defineTable({
     sessionId: v.id("sessions"),
     name: v.string(),
     updatedAt: v.number(),
     nodeId: v.string(),
   })
-    .index("by_session", ["sessionId"])
+    .index("by_sessionId_and_nodeId", ["sessionId", "nodeId"])
+    .index("by_sessionId_and_updatedAt", ["sessionId", "updatedAt"])
     .index("by_updatedAt", ["updatedAt"]),
   logs: defineTable({
     type: v.string(), // e.g., "session_cleanup", "presence_cleanup"
@@ -42,5 +45,7 @@ export default defineSchema({
     nodeId: v.string(),
     firstSeen: v.number(),
     lastSeen: v.number(),
-  }).index("by_nodeId", ["nodeId"]),
+  })
+    .index("by_nodeId", ["nodeId"])
+    .index("by_firstSeen", ["firstSeen"]),
 });

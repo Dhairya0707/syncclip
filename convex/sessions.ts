@@ -35,7 +35,7 @@ export const getSession = query({
   handler: async (ctx, args) => {
     return await ctx.db
       .query("sessions")
-      .filter((q) => q.eq(q.field("code"), args.code))
+      .withIndex("by_code", (q) => q.eq("code", args.code))
       .first();
   },
 });
@@ -142,7 +142,7 @@ export const deleteSession = mutation({
     // Cleanup presence for this session
     const presence = await ctx.db
       .query("presence")
-      .withIndex("by_session", (q) => q.eq("sessionId", args.id))
+      .withIndex("by_sessionId_and_nodeId", (q) => q.eq("sessionId", args.id))
       .collect();
     for (const p of presence) {
       await ctx.db.delete(p._id);
@@ -159,14 +159,14 @@ export const cleanupSessions = mutation({
     const twentyFourHoursAgo = Date.now() - 24 * 60 * 60 * 1000;
     const oldSessions = await ctx.db
       .query("sessions")
-      .filter((q) => q.lt(q.field("createdAt"), twentyFourHoursAgo))
+      .withIndex("by_createdAt", (q) => q.lt("createdAt", twentyFourHoursAgo))
       .collect();
 
     for (const session of oldSessions) {
       // Cleanup presence for this session
       const presence = await ctx.db
         .query("presence")
-        .withIndex("by_session", (q) => q.eq("sessionId", session._id))
+        .withIndex("by_sessionId_and_nodeId", (q) => q.eq("sessionId", session._id))
         .collect();
       for (const p of presence) {
         await ctx.db.delete(p._id);
@@ -200,8 +200,9 @@ export const updatePresence = mutation({
     }
     const existing = await ctx.db
       .query("presence")
-      .withIndex("by_session", (q) => q.eq("sessionId", args.sessionId))
-      .filter((q) => q.eq(q.field("nodeId"), args.nodeId))
+      .withIndex("by_sessionId_and_nodeId", (q) =>
+        q.eq("sessionId", args.sessionId).eq("nodeId", args.nodeId)
+      )
       .first();
 
     if (existing) {
@@ -213,7 +214,7 @@ export const updatePresence = mutation({
       // Security check: limit to 100 active nodes per session
       const presenceCount = await ctx.db
         .query("presence")
-        .withIndex("by_session", (q) => q.eq("sessionId", args.sessionId))
+        .withIndex("by_sessionId_and_nodeId", (q) => q.eq("sessionId", args.sessionId))
         .collect();
 
       if (presenceCount.length >= 100) {
@@ -261,8 +262,9 @@ export const getPresence = query({
   handler: async (ctx, args) => {
     const presenceList = await ctx.db
       .query("presence")
-      .withIndex("by_session", (q) => q.eq("sessionId", args.sessionId))
-      .filter((q) => q.gt(q.field("updatedAt"), Date.now() - 30000)) // 30 sec timeout
+      .withIndex("by_sessionId_and_updatedAt", (q) =>
+        q.eq("sessionId", args.sessionId).gt("updatedAt", Date.now() - 30000)
+      )
       .collect();
     
     // Privacy sanitize: never leak nodeId to nodes other than the owner

@@ -1,6 +1,7 @@
 import { convex } from "../app/ConvexClientProvider";
 import { api } from "../convex/_generated/api";
 import { isExperimentEnabled } from "./experiments";
+import { sendError, sendWarn } from "./discord";
 
 /**
  * Lightweight, privacy-first analytics wrapper for SyncClip.
@@ -17,6 +18,15 @@ export const track = (event: string, properties?: Record<string, any>) => {
     const device = window.innerWidth < 768 ? 'mobile' : 'desktop';
     const pathname = window.location.pathname;
 
+    // Track in Umami if loaded
+    if ((window as any).umami) {
+      try {
+        (window as any).umami.track(event, properties);
+      } catch (err) {
+        sendWarn("Umami tracking failed", err instanceof Error ? err.message : String(err), { event });
+      }
+    }
+
     // Fire-and-forget: we don't await this to keep UX snappy
     convex.mutation(api.analytics.logEvent, {
       type: event,
@@ -28,9 +38,9 @@ export const track = (event: string, properties?: Record<string, any>) => {
       metadata: properties,
     }).catch(e => {
       // Analytics failures must NEVER break UX.
-      console.warn('Convex analytics capture failed:', e);
+      sendWarn('Convex analytics capture failed', e instanceof Error ? e.message : String(e), { event });
     });
   } catch (e) {
-    console.warn('Analytics logic error:', e);
+    sendError('Analytics logic error', e instanceof Error ? e.message : String(e), { event });
   }
 }

@@ -19,6 +19,20 @@ export default function PushbulletAlternativePage() {
     "breadcrumb": "Home > Pushbullet Alternative"
   };
 
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SyncClip",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilityApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free, browser-based online clipboard to sync text instantly between phone and computer with no app installation or signups."
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -59,6 +73,10 @@ export default function PushbulletAlternativePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
       />
 
       {/* NAV */}

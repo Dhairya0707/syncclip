@@ -74,7 +74,7 @@ export default function BlogPost() {
 
             <h2 className="font-headline font-black text-2xl uppercase mt-12 text-black">Method 1: SyncClip (The Universal Bridge)</h2>
             <p>
-              For <Link href="/clipboard-between-devices" className="text-secondary underline font-bold">clipboard sync between Mac and Windows</Link>, the most friction-free method is web-native synchronization.
+              For <Link href="/cross-device-clipboard" className="text-secondary underline font-bold">clipboard sync between Mac and Windows</Link>, the most friction-free method is web-native synchronization.
             </p>
             <div className="bg-zinc-100 p-8 border-2 border-black my-8">
                <h3 className="font-headline font-black uppercase text-xl mb-4 italic text-secondary">The 10-Second Setup_</h3>

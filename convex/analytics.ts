@@ -142,11 +142,8 @@ export const getRetention = query({
 
       const cohortProfiles = await ctx.db
         .query("node_profiles")
-        .filter((q) =>
-          q.and(
-            q.gte(q.field("firstSeen"), weekStart),
-            q.lt(q.field("firstSeen"), weekEnd),
-          ),
+        .withIndex("by_firstSeen", (q) =>
+          q.gte("firstSeen", weekStart).lt("firstSeen", weekEnd)
         )
         .collect();
 

@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://syncclip.in/about",
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function AboutPage() {

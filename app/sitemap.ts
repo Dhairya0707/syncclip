@@ -17,12 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/support`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
@@ -45,12 +39,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/sync-clipboard-between-devices`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/copy-text-from-phone-to-computer`,
@@ -142,18 +130,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
-    {
-      url: `${baseUrl}/clipboard-between-devices`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/copy-text-phone-to-computer`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
+
     {
       url: `${baseUrl}/how-to-send-otp-from-phone-to-pc`,
       lastModified: new Date(),
@@ -293,10 +270,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/blog/go-online-tools-clipboard-not-working-free-alternatives`,
+      url: `${baseUrl}/blog/sync-clipboard-between-devices-without-same-wifi`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/blog/best-free-clipboard-manager`,

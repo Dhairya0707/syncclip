@@ -99,6 +99,20 @@ export default function ClipboardSyncGuide() {
     ]
   };
 
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SyncClip",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilityApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free, browser-based online clipboard to sync text instantly between phone and computer with no app installation or signups."
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
       <script
@@ -112,6 +126,10 @@ export default function ClipboardSyncGuide() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
       />
 
       {/* NAV */}

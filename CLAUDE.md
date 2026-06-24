@@ -4,6 +4,16 @@
 
 ## Updates
 
+### 2026-06-25 - Umami Analytics, Silent Discord Error logging, Interactive Sandbox & AEO Grounding
+- **Interactive Landing Sandbox**: Coded a side-by-side simulated mobile node and laptop terminal output on the homepage ([app/page.tsx](file:///Users/dhairyadarji/Developer/experiments/syncclip/app/page.tsx)), mirroring typed text in real-time under 100ms. Added a dynamic typewriter onboarding prompt, custom [CLEAR] button, and a funnel-bridging **[Sync This Text ⚡]** button.
+- **Granular Conversion & Engagement Funnel Logging**: Integrated `track()` telemetry triggers on:
+  - First manual keystroke in the landing page sandbox (`"sandbox_typed"`).
+  - Clearing the sandbox terminal (`"sandbox_cleared"`).
+  - Parameterized session creation event (`"room_created"`) with a source property matching `sandbox`, `hero_cta`, or `final_cta` to evaluate activation rates.
+- **Privacy-First Umami Integration**: Setup the self-hosted tracker script inside [app/layout.tsx](file:///Users/dhairyadarji/Developer/experiments/syncclip/app/layout.tsx), and updated the Content Security Policy (CSP) headers in [next.config.ts](file:///Users/dhairyadarji/Developer/experiments/syncclip/next.config.ts) to permit connection to `https://analyticsos-ten.vercel.app`.
+- **Silent Logger & Discord Webhooks**: Rerouted tracking failure warning logs and room creation error logs to `utils/discord.ts` using custom webhook embeds, completely avoiding polluting client browser consoles.
+- **AEO & GEO Stat Calibration**: Updated stats in the hero, trust line, and AEO Quick Answer boxes inside the landing page to precise, credible figures ("Used in 57 countries" and "124,821+ clipboards synchronized") to optimize search bot answer engine grounding.
+
 ### 2026-06-12 - LinkedIn Master Prompt & Content Engine
 - Created `PLAN/_data/marketing/linkedin-master-prompt.md` — comprehensive master prompt containing brand voice (hybrid founder/product strategy), 6 content pillars with examples, 15 hook library entries across 5 categories, 6 content formats with structure templates, weekly/montly posting cadence, hashtag strategy, 3 post structure templates (story, lessons, technical), posting rules, visual asset library, tracking metrics, 15 ready-to-write post ideas, content repurposing workflow, company page strategy, and engagement strategy.
 - Added **Image Generation section** with brand design tokens, 6 AI image prompt templates (DALL-E/Midjourney/Canva AI ready) for different post angles (privacy, metrics, technical, pain point, launch, comparison), image specs for LinkedIn, and when to use existing assets vs generate new.

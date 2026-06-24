@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import "./globals.css";
 import ConvexClientProvider from "./ConvexClientProvider";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://syncclip.in'),
@@ -68,6 +69,11 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
+        />
+        <Script
+          src="https://analyticsos-ten.vercel.app/script.js"
+          data-website-id="1cb0d962-ee76-45cb-abcf-68ed51a2074f"
+          strategy="afterInteractive"
         />
       </head>
       <body className="font-body selection:bg-secondary selection:text-white">

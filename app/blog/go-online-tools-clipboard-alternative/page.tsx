@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "GoOnlineTools Clipboard Alternative — SyncClip Is Faster & Free",
-  description: "GoOnlineTools clipboard too slow or limited? SyncClip syncs text between devices in real-time. No login, no app. Works on Android, Windows, Mac, iPhone.",
+  title: "GoOnlineTools Clipboard — Open SyncClip Instead (Works Instantly)",
+  description: "GoOnlineTools clipboard not loading? SyncClip syncs text between your devices in seconds. No login, no install. Open it now.",
   alternates: {
     canonical: "https://syncclip.in/blog/go-online-tools-clipboard-alternative",
   },
   openGraph: {
-    title: "GoOnlineTools Clipboard Alternative — SyncClip Is Faster & Free",
-    description: "GoOnlineTools clipboard too slow or limited? SyncClip syncs text between devices in real-time. No login, no app. Works on all devices.",
+    title: "GoOnlineTools Clipboard — Open SyncClip Instead (Works Instantly)",
+    description: "GoOnlineTools clipboard not loading? SyncClip syncs text between your devices in seconds. No login, no install. Open it now.",
     url: "https://syncclip.in/blog/go-online-tools-clipboard-alternative",
     type: "article",
     images: [

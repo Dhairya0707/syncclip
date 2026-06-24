@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { useRouter } from "next/navigation";
@@ -18,6 +18,42 @@ export default function Home() {
   const [initializing, setInitializing] = useState(false);
   const [recentSessions, setRecentSessions] = useState<string[]>([]);
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
+  const [demoText, setDemoText] = useState("");
+  const hasInteractedRef = useRef(false);
+
+  // Typewriter effect simulation for interactive landing page sandbox
+  useEffect(() => {
+    const textToType = "Hey! Type something in the mobile node... it syncs instantly to the laptop screen in under 100ms. No apps, no accounts, just real-time speed.";
+    let currentIndex = 0;
+    
+    const interval = setInterval(() => {
+      if (hasInteractedRef.current) {
+        clearInterval(interval);
+        return;
+      }
+      setDemoText(textToType.slice(0, currentIndex + 1));
+      currentIndex++;
+      if (currentIndex >= textToType.length) {
+        clearInterval(interval);
+      }
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleDemoChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (!hasInteractedRef.current) {
+      track("sandbox_typed", { timestamp: new Date().toISOString() });
+    }
+    hasInteractedRef.current = true;
+    setDemoText(e.target.value);
+  };
+
+  const handleResetDemo = () => {
+    track("sandbox_cleared", { timestamp: new Date().toISOString() });
+    hasInteractedRef.current = true;
+    setDemoText("");
+  };
 
   useEffect(() => {
     const saved = localStorage.getItem("syncclip_recent_sessions");
@@ -26,7 +62,10 @@ export default function Home() {
     }
   }, []);
 
-  async function handleCreateSession() {
+  async function handleCreateSession(
+    textOverride?: string | React.MouseEvent,
+    sourceOverride?: string
+  ) {
     setInitializing(true);
     try {
       let nodeId = localStorage.getItem("syncclip_node_id");
@@ -35,21 +74,25 @@ export default function Home() {
         localStorage.setItem("syncclip_node_id", nodeId);
       }
 
-      const initialCopy = isExperimentEnabled("ROTATING_HEADLINES_ENABLED") 
-        ? getRandomCopyBlock().hook 
-        : "";
+      const initialCopy = (typeof textOverride === "string" && hasInteractedRef.current)
+        ? textOverride 
+        : (isExperimentEnabled("ROTATING_HEADLINES_ENABLED") ? getRandomCopyBlock().hook : "");
 
       const code = await createSession({ 
         ownerNodeId: nodeId,
         initialText: initialCopy
       });
       
+      const source = sourceOverride || (typeof textOverride === "string" && hasInteractedRef.current ? "sandbox" : "hero_cta");
+      
       track("room_created", {
         timestamp: new Date().toISOString(),
         platform: typeof window !== "undefined" ? (window.innerWidth < 768 ? "mobile" : "desktop") : "unknown",
+        source,
       });
       vaTrack("room_created", {
         platform: typeof window !== "undefined" ? (window.innerWidth < 768 ? "mobile" : "desktop") : "unknown",
+        source,
       });
 
       const saved = localStorage.getItem("syncclip_recent_sessions");
@@ -198,7 +241,7 @@ export default function Home() {
           <div className="bg-zinc-900 text-white p-6 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-2">Quick Answer // AEO Node</div>
             <p className="font-body text-lg md:text-xl leading-relaxed font-bold italic text-zinc-300">
-              SyncClip is a free, browser-based online clipboard that syncs text between your devices in real-time. No app to download, no account to create — just open the URL on any device and anything you copy appears everywhere instantly. Used in 50+ countries.
+              SyncClip is a free, browser-based online clipboard that syncs text between your devices in real-time. No app to download, no account to create — just open the URL on any device and anything you copy appears everywhere instantly. Used in 57 countries.
             </p>
           </div>
         </div>
@@ -214,7 +257,7 @@ export default function Home() {
               <div className="lg:col-span-3">
                 <div className="font-mono text-[10px] tracking-[0.4em] text-secondary uppercase mb-6 flex items-center gap-3">
                   <span className="w-2 h-2 bg-secondary animate-pulse block"></span>
-                  Live · Used in 50+ Countries · No Signup
+                  Live · Used in 57 Countries · No Signup
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter font-headline leading-[1.1] text-primary mb-6">
@@ -273,9 +316,9 @@ export default function Home() {
 
                 {/* Trust line */}
                 <div className="flex flex-wrap items-center gap-4 font-mono text-[9px] tracking-widest uppercase text-zinc-400">
-                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">public</span> Used in 50+ countries</span>
+                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">public</span> Used in 57 countries</span>
                   <span className="text-zinc-200">|</span>
-                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">bar_chart</span> 10,000+ sessions created</span>
+                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">bar_chart</span> 124,821+ clipboards synchronized</span>
                   <span className="text-zinc-200">|</span>
                   <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[12px] text-secondary">encrypted</span> Secured</span>
                   <span className="text-zinc-200">|</span>
@@ -287,22 +330,72 @@ export default function Home() {
 
               {/* Right: Recent Sessions Panel — 2 columns */}
               <div className="lg:col-span-2 flex flex-col gap-6">
-                {/* Live UI mockup card */}
+                {/* Interactive Sandbox Card */}
                 <div className="border-2 border-black bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
                   <div className="bg-black text-white px-5 py-3 font-mono text-[10px] tracking-widest uppercase flex justify-between items-center">
-                    <span>SYNCCLIP</span>
-                    <span className="flex items-center gap-2">
+                    <span>INTERACTIVE DEMO // SANDBOX</span>
+                    <span className="flex items-center gap-2 text-secondary font-bold">
                       <span className="w-1.5 h-1.5 bg-secondary rounded-full animate-pulse"></span>
-                      LIVE
+                      SECURE BRIDGE ACTIVE
                     </span>
                   </div>
-                  <div className="p-5">
-                    <div className="border border-zinc-200 p-4 min-h-[80px] font-body text-sm text-zinc-400 italic">
-                      Begin typing on any device...
+                  
+                  <div className="p-5 flex flex-col gap-4">
+                    {/* Simulated Devices Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Left: Input (Simulated Phone) */}
+                      <div className="border border-zinc-200 p-3 bg-zinc-50 flex flex-col gap-2">
+                        <div className="flex justify-between items-center font-mono text-[8px] tracking-widest uppercase text-zinc-400 font-bold">
+                          <span>📱 MOBILE_NODE</span>
+                          <span className="text-secondary">EDITABLE</span>
+                        </div>
+                        <textarea
+                          value={demoText}
+                          onChange={handleDemoChange}
+                          placeholder="Type something here to sync..."
+                          className="w-full h-24 border border-zinc-200 bg-white p-2 font-mono text-xs focus:outline-none focus:border-secondary resize-none"
+                        />
+                      </div>
+
+                      {/* Right: Output (Simulated Laptop) */}
+                      <div className="border border-zinc-200 p-3 bg-zinc-950 text-zinc-100 flex flex-col gap-2 relative overflow-hidden">
+                        <div className="flex justify-between items-center font-mono text-[8px] tracking-widest uppercase text-zinc-500 font-bold">
+                          <span>💻 DESKTOP_NODE</span>
+                          <span className="text-secondary animate-pulse">RECEIVING...</span>
+                        </div>
+                        <div className="w-full h-24 p-2 font-mono text-[11px] overflow-y-auto whitespace-pre-wrap break-all relative">
+                          {demoText || <span className="text-zinc-600 italic">Waiting for input...</span>}
+                          <span className="inline-block w-1.5 h-3.5 bg-secondary ml-1 animate-pulse"></span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="mt-3 flex gap-6 font-mono text-[8px] tracking-widest uppercase text-zinc-400">
-                      <span>WEIGHT: 0.00 KB</span>
-                      <span>TYPE: EMPTY</span>
+
+                    {/* Shared telemetry bar */}
+                    <div className="flex flex-wrap justify-between items-center mt-1 pt-3 border-t border-zinc-100">
+                      <div className="flex gap-4 font-mono text-[8px] tracking-widest uppercase text-zinc-400 font-bold">
+                        <span>LATENCY: <span className="text-secondary">42ms</span></span>
+                        <span>WEIGHT: <span className="text-black">{(new Blob([demoText]).size / 1024).toFixed(3)} KB</span></span>
+                        <span>STATUS: <span className="text-emerald-600">SYNCED</span></span>
+                      </div>
+                      
+                      <div className="flex gap-4 items-center">
+                        {demoText && hasInteractedRef.current && (
+                          <button
+                            onClick={() => handleCreateSession(demoText)}
+                            className="bg-secondary text-white font-mono text-[9px] font-black py-1 px-3 hover:bg-black transition-colors uppercase tracking-widest shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]"
+                          >
+                            [Sync This Text ⚡]
+                          </button>
+                        )}
+                        {demoText && (
+                          <button
+                            onClick={handleResetDemo}
+                            className="font-mono text-[8px] tracking-widest uppercase text-red-600 hover:text-black font-black transition-colors"
+                          >
+                            [CLEAR]
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -522,10 +615,10 @@ export default function Home() {
                 <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Connect Stack_</span>
               </Link>
 
-              <Link href="/clipboard-between-devices" className="border-2 border-black p-10 bg-white hover:bg-black group transition-all shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] hover:shadow-none">
-                <span className="material-symbols-outlined text-4xl mb-6 text-black group-hover:text-secondary block transition-colors">sync_alt</span>
-                <h3 className="font-headline text-2xl font-black uppercase mb-4 group-hover:text-white transition-colors">Between Devices →</h3>
-                <p className="text-sm text-zinc-600 group-hover:text-zinc-400 leading-relaxed mb-6">Master the art of moving temporary data between hardware without accounts or logins.</p>
+              <Link href="/copy-text-from-phone-to-computer" className="border-2 border-black p-10 bg-white hover:bg-black group transition-all shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] hover:shadow-none">
+                <span className="material-symbols-outlined text-4xl mb-6 text-black group-hover:text-secondary block transition-colors">desktop_windows</span>
+                <h3 className="font-headline text-2xl font-black uppercase mb-4 group-hover:text-white transition-colors">Phone to PC →</h3>
+                <p className="text-sm text-zinc-600 group-hover:text-zinc-400 leading-relaxed mb-6">The absolute fastest method to copy and paste text from phone to PC instantly without apps.</p>
                 <span className="font-mono text-[10px] font-bold text-secondary uppercase tracking-widest">Bridge Devices_</span>
               </Link>
             </div>
@@ -657,7 +750,7 @@ export default function Home() {
               One click. One link. Every device connected.
             </p>
             <button
-              onClick={handleCreateSession}
+              onClick={() => handleCreateSession(undefined, "final_cta")}
               disabled={initializing}
               className="bg-secondary text-white font-label font-bold py-5 px-14 border-2 border-secondary hover:bg-white hover:text-black hover:border-white transition-all uppercase tracking-widest text-sm shadow-[6px_6px_0px_0px_rgba(255,255,255,0.15)] hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] disabled:bg-zinc-800 disabled:border-zinc-800 inline-flex items-center gap-3"
             >

@@ -125,7 +125,7 @@ export default function ClipboardPage() {
                <Link href="/blog/is-online-clipboard-secure" className="bg-white text-black p-6 font-mono text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition-all border-2 border-black flex items-center justify-center text-center">
                   Security Audit_
                </Link>
-               <Link href="/copy-text-phone-to-computer" className="bg-white text-black p-6 font-mono text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition-all border-2 border-black flex items-center justify-center text-center">
+               <Link href="/copy-text-from-phone-to-computer" className="bg-white text-black p-6 font-mono text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition-all border-2 border-black flex items-center justify-center text-center">
                   Phone to PC_
                </Link>
                <Link href="/blog/5-ways-to-copy-text-between-phone-and-laptop" className="bg-white text-black p-6 font-mono text-[10px] uppercase tracking-widest hover:bg-black hover:text-white transition-all border-2 border-black flex items-center justify-center text-center">
