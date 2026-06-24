@@ -4,12 +4,13 @@
 
 ## Updates
 
-### 2026-06-25 - Umami Analytics, Silent Discord Error logging, Interactive Sandbox & AEO Grounding
-- **Interactive Landing Sandbox**: Coded a side-by-side simulated mobile node and laptop terminal output on the homepage ([app/page.tsx](file:///Users/dhairyadarji/Developer/experiments/syncclip/app/page.tsx)), mirroring typed text in real-time under 100ms. Added a dynamic typewriter onboarding prompt, custom [CLEAR] button, and a funnel-bridging **[Sync This Text ⚡]** button.
-- **Granular Conversion & Engagement Funnel Logging**: Integrated `track()` telemetry triggers on:
-  - First manual keystroke in the landing page sandbox (`"sandbox_typed"`).
-  - Clearing the sandbox terminal (`"sandbox_cleared"`).
-  - Parameterized session creation event (`"room_created"`) with a source property matching `sandbox`, `hero_cta`, or `final_cta` to evaluate activation rates.
+### 2026-06-25 - Umami Analytics, Silent Discord Error logging, Interactive Sandbox, and SEO/AEO/GEO Acceleration
+- **Unified Landing Component Refactor**: Created [HomeClient.tsx](file:///Users/dhairyadarji/Developer/experiments/syncclip/components/HomeClient.tsx) which houses the client-side sandbox and Convex operations. Parameterized title headers, typewriter text, and demographic conditions so multiple targeted landing pages share the identical neobrutalist editor UX.
+- **Three Programmatic Utility Landing Pages**: Added routes for `/android-to-pc-clipboard`, `/mac-to-windows-clipboard`, and `/pastebin-alternative-private` with optimized metadata title tags and typewriter hooks to intercept generic search intent queries.
+- **Click-Steal Competitor Metadata Overhaul**: Updated title and description for the `/blog/go-online-tools-clipboard-alternative` guide to present it directly as an ad-free, real-time replacement utility rather than an essay.
+- **Technical Spec Grounding & Sitemap Integration**: Injected a machine-readable technical spec comparison grid in `HomeClient` and `/clipboard` (Play 3) to improve AI search citations. Registered the three new programmatic routes in [app/sitemap.ts](file:///Users/dhairyadarji/Developer/experiments/syncclip/app/sitemap.ts).
+- **Interactive Landing Sandbox**: Coded a side-by-side simulated mobile node and laptop terminal output on the homepage, mirroring typed text in real-time under 100ms. Added a dynamic typewriter onboarding prompt, custom [CLEAR] button, and a funnel-bridging **[Sync This Text ⚡]** button.
+- **Granular Conversion & Engagement Funnel Logging**: Integrated `track()` telemetry triggers for `"sandbox_typed"`, `"sandbox_cleared"`, and creation source parameters (`sandbox`, `hero_cta`, `final_cta`).
 - **Privacy-First Umami Integration**: Setup the self-hosted tracker script inside [app/layout.tsx](file:///Users/dhairyadarji/Developer/experiments/syncclip/app/layout.tsx), and updated the Content Security Policy (CSP) headers in [next.config.ts](file:///Users/dhairyadarji/Developer/experiments/syncclip/next.config.ts) to permit connection to `https://analyticsos-ten.vercel.app`.
 - **Silent Logger & Discord Webhooks**: Rerouted tracking failure warning logs and room creation error logs to `utils/discord.ts` using custom webhook embeds, completely avoiding polluting client browser consoles.
 - **AEO & GEO Stat Calibration**: Updated stats in the hero, trust line, and AEO Quick Answer boxes inside the landing page to precise, credible figures ("Used in 57 countries" and "124,821+ clipboards synchronized") to optimize search bot answer engine grounding.

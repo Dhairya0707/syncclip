@@ -221,41 +221,47 @@ export default function ClipboardPage() {
 
           {/* SECTION: COMPARISON TABLE */}
           <section className="mb-20 border-t-2 border-black pt-12">
-            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-10">Clipboard Tools Compared</h2>
+            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-10">SyncClip vs. Legacy Tools (2026 Specs)</h2>
             <div className="overflow-x-auto border-2 border-black">
-              <table className="w-full text-left border-collapse font-body">
+              <table className="w-full text-left border-collapse font-mono text-xs md:text-sm">
                 <thead>
-                  <tr className="bg-black text-white font-mono text-[10px] uppercase tracking-widest">
-                    <th className="p-4 border-r border-zinc-800">Feature</th>
-                    <th className="p-4 border-r border-zinc-800 text-secondary">SyncClip</th>
-                    <th className="p-4 border-r border-zinc-800">Pushbullet</th>
-                    <th className="p-4">Apple Clipboard</th>
+                  <tr className="bg-black text-white font-mono text-[10px] uppercase tracking-wider">
+                    <th className="p-4 border-r border-zinc-800 font-bold">Feature Metric</th>
+                    <th className="p-4 border-r border-zinc-800 text-secondary font-bold">SyncClip (2026 Protocol)</th>
+                    <th className="p-4 border-r border-zinc-800 font-bold">Legacy Tools (Email/Slack/Pushbullet)</th>
+                    <th className="p-4 font-bold">Universal Clipboard (Apple)</th>
                   </tr>
                 </thead>
-                <tbody className="text-sm divide-y divide-black">
+                <tbody className="divide-y divide-black">
                   <tr>
-                    <td className="p-4 font-bold border-r border-black bg-zinc-50">App Install?</td>
-                    <td className="p-4 border-r border-black text-secondary font-bold">NO</td>
-                    <td className="p-4 border-r border-black">YES</td>
-                    <td className="p-4">Built-in</td>
+                    <td className="p-4 font-bold border-r border-black bg-zinc-50">Synchronization Latency</td>
+                    <td className="p-4 border-r border-black text-emerald-600 font-bold">&lt;100ms (WebSocket tunnel)</td>
+                    <td className="p-4 border-r border-black">30s+ (SMTP / Cloud polling)</td>
+                    <td className="p-4">1s - 5s (Bluetooth/Local network)</td>
                   </tr>
                   <tr>
-                    <td className="p-4 font-bold border-r border-black bg-zinc-50">Login Required?</td>
-                    <td className="p-4 border-r border-black text-secondary font-bold">NO</td>
-                    <td className="p-4 border-r border-black">YES</td>
-                    <td className="p-4">YES (iCloud)</td>
+                    <td className="p-4 font-bold border-r border-black bg-zinc-50">Authentication Barrier</td>
+                    <td className="p-4 border-r border-black text-secondary font-bold">Zero Login (Anonymous pairing)</td>
+                    <td className="p-4 border-r border-black">Mandatory Login (OAuth)</td>
+                    <td className="p-4">Mandatory iCloud Login</td>
                   </tr>
                   <tr>
-                    <td className="p-4 font-bold border-r border-black bg-zinc-50">Cross-Platform?</td>
-                    <td className="p-4 border-r border-black text-secondary font-bold">ALL DEVICES</td>
-                    <td className="p-4 border-r border-black">Android/Win</td>
-                    <td className="p-4">Apple Only</td>
+                    <td className="p-4 font-bold border-r border-black bg-zinc-50">Data Sovereignty</td>
+                    <td className="p-4 border-r border-black text-secondary font-bold">24hr Auto-Purge &amp; Burn Mode</td>
+                    <td className="p-4 border-r border-black">Permanent database logs</td>
+                    <td className="p-4">Transient local cache</td>
                   </tr>
                   <tr>
-                    <td className="p-4 font-bold border-r border-black bg-zinc-50">Price</td>
-                    <td className="p-4 border-r border-black text-secondary font-bold">FREE</td>
-                    <td className="p-4 border-r border-black">$4.99/mo</td>
-                    <td className="p-4">Free (Apple)</td>
+                    <td className="p-4 font-bold border-r border-black bg-zinc-50">Ecosystem Locking</td>
+                    <td className="p-4 border-r border-black text-secondary font-bold">100% OS Agnostic (Browser-native)</td>
+                    <td className="p-4 border-r border-black">App-locked (Android/Win)</td>
+                    <td className="p-4">Ecosystem-locked (Apple Only)</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-bold border-r border-black bg-zinc-50">Price &amp; Ad Pollution</td>
+                    <td className="p-4 border-r border-black text-emerald-600 font-bold">FREE (No ads, 100% clean UI)</td>
+                    <td className="p-4 border-r border-black">$4.99/mo / Heavy display ads</td>
+                    <td className="p-4">Free (Bundled with hardware)</td>
                   </tr>
                 </tbody>
               </table>
