@@ -40,6 +40,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": "https://syncclip.in/feed.xml",
+    },
   },
   robots: {
     index: true,
