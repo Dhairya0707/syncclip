@@ -57,6 +57,8 @@ export const metadata: Metadata = {
   },
 };
 
+//testing
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -84,20 +86,11 @@ export default function RootLayout({
           />
         </noscript>
 
-        {/* Material Symbols — also non-blocking async */}
+        {/* Material Symbols — synchronously loaded so icons render immediately on first paint */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
           rel="stylesheet"
-          media="print"
-          // @ts-ignore
-          onLoad="this.media='all'"
         />
-        <noscript>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-            rel="stylesheet"
-          />
-        </noscript>
 
         <Script
           src="https://analyticsos-ten.vercel.app/script.js"
@@ -109,6 +102,7 @@ export default function RootLayout({
         <ConvexClientProvider>
           {children}
           <Analytics />
+        
         </ConvexClientProvider>
       </body>
     </html>
