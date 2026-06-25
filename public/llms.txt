@@ -1,0 +1,55 @@
+# SyncClip
+
+> SyncClip is a free, browser-based online clipboard that syncs text between devices in real-time. No login, no app, no tracking. Works on Android, iOS, Windows, Mac, and Linux. Sessions expire in 24 hours and support Burn After Reading mode.
+
+SyncClip lets you copy text on your phone and paste it on your PC in milliseconds using WebSocket-based real-time sync. No account required — just open the URL on any device and anything you type appears everywhere instantly.
+
+## Core Features
+
+- Real-time clipboard sync across all devices via WebSockets (<100ms latency)
+- Zero login or account required — anonymous session pairing
+- Burn After Reading mode — data self-destructs after access
+- Session locking — make all other devices read-only
+- QR code pairing for instant device connection
+- CMD+K command palette for keyboard-first control
+- Sessions auto-expire in 24 hours
+- Works on any browser: Chrome, Firefox, Safari, Edge
+
+## Pages
+
+- [Home — Free Online Clipboard](https://syncclip.in/): Main clipboard sync tool
+- [Join a Session](https://syncclip.in/join): Enter a session code to connect devices
+- [Cross-Device Clipboard](https://syncclip.in/cross-device-clipboard): Universal clipboard sync guide
+- [Android to PC Clipboard](https://syncclip.in/android-to-pc-clipboard): Android to Windows sync
+- [Mac to Windows Clipboard](https://syncclip.in/mac-to-windows-clipboard): Mac to PC sync
+- [Phone to Laptop](https://syncclip.in/send-text-mobile-to-laptop): Mobile to laptop text transfer
+- [Copy Text Phone to Computer](https://syncclip.in/copy-text-from-phone-to-computer): Step-by-step guide
+- [Pastebin Alternative](https://syncclip.in/pastebin-alternative): Private ephemeral paste tool
+- [Pushbullet Alternative](https://syncclip.in/pushbullet-alternative): Free Pushbullet replacement
+- [Online Clipboard](https://syncclip.in/online-clipboard): Browser-native clipboard tool
+- [Blog](https://syncclip.in/blog): Clipboard sync guides and productivity articles
+- [About](https://syncclip.in/about): About SyncClip
+- [Privacy Policy](https://syncclip.in/privacy): Privacy and data policy
+- [Support](https://syncclip.in/support): Help and support
+
+## Blog Articles
+
+- [Clipboard Sync for Indian Developers](https://syncclip.in/blog/clipboard-sync-indian-developers)
+- [5 Ways to Copy Text Between Phone and Laptop](https://syncclip.in/blog/5-ways-to-copy-text-between-phone-and-laptop)
+- [Online Clipboard vs Desktop Apps](https://syncclip.in/blog/online-clipboard-vs-desktop-apps)
+- [Go Online Tools Clipboard Alternative](https://syncclip.in/blog/go-online-tools-clipboard-alternative)
+
+## Technical Details
+
+- Backend: Convex (real-time WebSocket database)
+- Frontend: Next.js, React
+- Deployment: Vercel
+- Session storage: Ephemeral, auto-purged at 24h
+- No user data stored beyond session lifetime
+- RSS feed available at: https://syncclip.in/feed.xml
+
+## Optional
+
+- [Sitemap](https://syncclip.in/sitemap.xml)
+- [RSS Feed](https://syncclip.in/feed.xml)
+- [Robots.txt](https://syncclip.in/robots.txt)

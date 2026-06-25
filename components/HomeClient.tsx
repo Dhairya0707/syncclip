@@ -9,6 +9,7 @@ import { isExperimentEnabled } from "../utils/experiments";
 import { getRandomCopyBlock } from "../utils/headlines";
 import { sendError } from "../utils/discord";
 import Link from "next/link";
+import Image from "next/image";
 import RedirectNudgeBar from "./RedirectNudgeBar";
 import { track as vaTrack } from "@vercel/analytics";
 
@@ -389,8 +390,15 @@ export default function HomeClient({
 
             <div className="grid md:grid-cols-3 gap-0 border-2 border-black">
               <div className="p-8 md:p-10 border-b-2 md:border-b-0 md:border-r-2 border-black flex flex-col">
-                <div className="mb-6 border-2 border-black grayscale hover:grayscale-0 transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white">
-                  <img src="/step-1-create.png" alt="Step 1: Create Session" className="w-full h-auto" />
+                <div className="mb-6 border-2 border-black grayscale hover:grayscale-0 transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white overflow-hidden">
+                  <Image
+                    src="/step-1-create.png"
+                    alt="Step 1: Create a clipboard session on SyncClip"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="flex items-center gap-3 mb-4 mt-auto">
                   <span className="bg-black text-white font-mono font-black text-lg w-10 h-10 flex items-center justify-center">01</span>
@@ -401,8 +409,15 @@ export default function HomeClient({
                 </p>
               </div>
               <div className="p-8 md:p-10 border-b-2 md:border-b-0 md:border-r-2 border-black flex flex-col">
-                <div className="mb-6 border-2 border-black grayscale hover:grayscale-0 transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white">
-                  <img src="/step-2-join.png" alt="Step 2: Join Session" className="w-full h-auto" />
+                <div className="mb-6 border-2 border-black grayscale hover:grayscale-0 transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white overflow-hidden">
+                  <Image
+                    src="/step-2-join.png"
+                    alt="Step 2: Join a SyncClip session with a code or QR"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="flex items-center gap-3 mb-4 mt-auto">
                   <span className="bg-black text-white font-mono font-black text-lg w-10 h-10 flex items-center justify-center">02</span>
@@ -413,8 +428,15 @@ export default function HomeClient({
                 </p>
               </div>
               <div className="p-8 md:p-10 flex flex-col">
-                <div className="mb-6 border-2 border-black grayscale hover:grayscale-0 transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white">
-                  <img src="/step-3-sync.png" alt="Step 3: Syncing" className="w-full h-auto" />
+                <div className="mb-6 border-2 border-black grayscale hover:grayscale-0 transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white overflow-hidden">
+                  <Image
+                    src="/step-3-sync.png"
+                    alt="Step 3: Clipboard syncs in real-time across all devices"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="flex items-center gap-3 mb-4 mt-auto">
                   <span className="bg-secondary text-white font-mono font-black text-lg w-10 h-10 flex items-center justify-center">03</span>
