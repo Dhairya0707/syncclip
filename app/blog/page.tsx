@@ -83,12 +83,21 @@ export default function BlogIndex() {
 
       {/* FOOTER */}
       <footer className="w-full border-t-2 border-black bg-white" role="contentinfo">
-        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-8 font-mono text-[9px] tracking-widest text-zinc-400 uppercase">
-          <div>© {new Date().getFullYear()} SYNCCLIP // ARCHIVE-V4</div>
-          <div className="flex gap-8">
-             <Link href="/" className="hover:text-black">Home</Link>
-             <Link href="/clipboard" className="hover:text-black">Hub</Link>
-             <Link href="/privacy" className="hover:text-black">Privacy</Link>
+        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="font-mono text-[9px] tracking-widest text-zinc-400 uppercase text-center md:text-left">
+            © {new Date().getFullYear()} SYNCCLIP // ARCHIVE-V4
+          </div>
+
+          <div className="my-2 md:my-0 flex justify-center shrink-0">
+            <a href="https://www.producthunt.com/products/syncclip?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-syncclip" target="_blank" rel="noopener noreferrer">
+              <img alt="SyncClip - No-login, real-time clipboard sync between any device. | Product Hunt" width="180" height="39" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1127130&theme=light&t=1782389533779" />
+            </a>
+          </div>
+
+          <div className="flex gap-8 font-mono text-[9px] tracking-widest uppercase">
+             <Link href="/" className="text-zinc-500 hover:text-secondary transition-colors">Home</Link>
+             <Link href="/clipboard" className="text-zinc-500 hover:text-secondary transition-colors">Hub</Link>
+             <Link href="/privacy" className="text-zinc-500 hover:text-secondary transition-colors">Privacy</Link>
           </div>
         </div>
       </footer>

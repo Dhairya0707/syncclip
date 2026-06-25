@@ -744,6 +744,13 @@ export default function HomeClient({
           <div className="font-mono text-[9px] tracking-widest text-on-surface-variant uppercase text-center md:text-left">
             © {new Date().getFullYear()} SYNCCLIP // DISTRIBUTED CLIPBOARD PROTOCOL // V4.2
           </div>
+          
+          <div className="my-2 md:my-0 flex justify-center shrink-0">
+            <a href="https://www.producthunt.com/products/syncclip?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-syncclip" target="_blank" rel="noopener noreferrer">
+              <img alt="SyncClip - No-login, real-time clipboard sync between any device. | Product Hunt" width="180" height="39" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1127130&theme=light&t=1782389533779" />
+            </a>
+          </div>
+
           <nav className="flex gap-6 font-mono text-[9px] tracking-widest uppercase">
             <Link href="/about" className="text-zinc-500 hover:text-secondary transition-colors">About</Link>
             <Link href="/support" className="text-zinc-500 hover:text-secondary transition-colors">Support</Link>
