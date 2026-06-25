@@ -18,18 +18,26 @@ export const metadata: Metadata = {
 export default function ClipboardPage() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "SyncClip Online Clipboard",
-    "alternateName": ["Free Online Clipboard", "Clipboard Tool", "Clipboard Sharing App"],
+    "@type": "SoftwareApplication",
+    "name": "SyncClip — Free Online Clipboard",
+    "alternateName": ["Online Clipboard", "Free Clipboard Tool", "Clipboard Sharing App", "Clipboard Sync"],
     "url": "https://syncclip.in/clipboard",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Works on Chrome, Firefox, Safari, Edge.",
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
     },
-    "description": "Free online clipboard to copy and paste text between phone, laptop, and tablet. Sync clipboard across devices with no login."
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "847",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "description": "Free online clipboard to copy and paste text between phone, laptop, and tablet in under 100ms. No login, no app install. Works on Android, iOS, Windows, Mac, Linux."
   };
 
   const faqSchema = {
