@@ -15,10 +15,5 @@ crons.interval(
   internal.sessions.cleanupOldPresence,
 );
 
-crons.daily(
-  "send daily digest",
-  { hourUTC: 15, minuteUTC: 0 },
-  api.discord.sendDailyDigest,
-);
 
 export default crons;

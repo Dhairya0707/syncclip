@@ -256,3 +256,63 @@ export const sendTest = action({
     }
   },
 });
+
+export const postDiscordMessage = action({
+  args: {
+    level: v.string(), // "error" | "warn" | "info"
+    title: v.string(),
+    description: v.optional(v.string()),
+    fields: v.optional(v.array(v.object({ name: v.string(), value: v.string(), inline: v.optional(v.boolean()) }))),
+    metadata: v.optional(v.any()),
+  },
+  handler: async (ctx, args) => {
+    const webhookUrl = process.env.DISCORD_WEBHOOK || process.env.DISCORD_DIGEST_WEBHOOK;
+    if (!webhookUrl) {
+      console.warn("DISCORD_WEBHOOK or DISCORD_DIGEST_WEBHOOK not set");
+      return;
+    }
+
+    const fields = args.fields ? [...args.fields] : [];
+
+    if (args.metadata?.sessionId) {
+      fields.unshift({
+        name: "Session",
+        value: `\`${args.metadata.sessionId}\``,
+        inline: true,
+      });
+    }
+    if (args.metadata?.nodeId) {
+      fields.unshift({
+        name: "Node",
+        value: `\`${args.metadata.nodeId}\``,
+        inline: true,
+      });
+    }
+
+    const payload = {
+      username: "SyncClip Ops",
+      avatar_url: "https://syncclip.in/favicon.ico",
+      embeds: [
+        {
+          title: `${args.level.toUpperCase()} - ${args.title}`,
+          description: args.description,
+          color: args.level === "error" ? 0xE03E2F : args.level === "warn" ? 0xF5A623 : 0x057DBC,
+          fields: fields.length > 0 ? fields.slice(0, 8) : undefined,
+          footer: { text: "SyncClip Server" },
+          timestamp: new Date().toISOString(),
+        },
+      ],
+    };
+
+    try {
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (e) {
+      console.error("Convex Discord webhook failed:", e);
+    }
+  },
+});
+

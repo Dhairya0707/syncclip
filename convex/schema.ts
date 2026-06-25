@@ -11,9 +11,11 @@ export default defineSchema({
     isLocked: v.optional(v.boolean()),
     isBurnMode: v.optional(v.boolean()),
     updateCount: v.optional(v.number()),
+    updatedAt: v.optional(v.number()),
   })
     .index("by_code", ["code"])
-    .index("by_createdAt", ["createdAt"]),
+    .index("by_createdAt", ["createdAt"])
+    .index("by_updatedAt", ["updatedAt"]),
   presence: defineTable({
     sessionId: v.id("sessions"),
     name: v.string(),

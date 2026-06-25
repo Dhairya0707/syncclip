@@ -19,6 +19,9 @@ export const EXPERIMENTS = {
 
   // Flag B: Rotating post-room-creation headlines
   ROTATING_HEADLINES_ENABLED: true,
+
+  // Flag G: Feedback campaign banner + feedback page route
+  FEEDBACK_CAMPAIGN_ENABLED: process.env.NEXT_PUBLIC_FEEDBACK_CAMPAIGN === "true",
 } as const;
 
 /**

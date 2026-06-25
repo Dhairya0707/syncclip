@@ -24,6 +24,7 @@ export const createSession = mutation({
       isLocked: false,
       isBurnMode: false,
       updateCount: 0,
+      updatedAt: Date.now(),
     });
 
     return code;
@@ -63,7 +64,8 @@ export const updateText = mutation({
 
     const patches: any = { 
       text: args.text,
-      updateCount: (session.updateCount || 0) + 1
+      updateCount: (session.updateCount || 0) + 1,
+      updatedAt: Date.now(),
     };
 
     if (args.saveToHistory && session.text !== args.text) {
@@ -89,7 +91,7 @@ export const toggleLock = mutation({
     if (session.ownerNodeId !== args.callerNodeId) {
       throw new Error("Only the origin node may modify lock states.");
     }
-    await ctx.db.patch(args.id, { isLocked: args.isLocked });
+    await ctx.db.patch(args.id, { isLocked: args.isLocked, updatedAt: Date.now() });
   }
 });
 
@@ -105,7 +107,7 @@ export const toggleBurnMode = mutation({
     if (session.ownerNodeId !== args.callerNodeId) {
       throw new Error("Only the origin node may activate Burn Mode.");
     }
-    await ctx.db.patch(args.id, { isBurnMode: args.isBurnMode });
+    await ctx.db.patch(args.id, { isBurnMode: args.isBurnMode, updatedAt: Date.now() });
   }
 });
 
@@ -122,6 +124,7 @@ export const burnSession = mutation({
       text: "",
       history: [],
       isBurnMode: false, // Turn off after burn to prevent loops
+      updatedAt: Date.now(),
     });
   }
 });
@@ -160,6 +163,12 @@ export const cleanupSessions = mutation({
     const oldSessions = await ctx.db
       .query("sessions")
       .withIndex("by_createdAt", (q) => q.lt("createdAt", twentyFourHoursAgo))
+      .filter((q) => 
+        q.or(
+          q.eq(q.field("updatedAt"), undefined),
+          q.lt(q.field("updatedAt"), twentyFourHoursAgo)
+        )
+      )
       .collect();
 
     for (const session of oldSessions) {
@@ -296,6 +305,7 @@ export const restoreHistory = mutation({
     const restoredText = session.history[args.index].text;
     await ctx.db.patch(args.id, {
       text: restoredText,
+      updatedAt: Date.now(),
     });
   },
 });

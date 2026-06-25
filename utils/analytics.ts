@@ -28,18 +28,18 @@ export const track = (event: string, properties?: Record<string, any>) => {
     }
 
     // Fire-and-forget: we don't await this to keep UX snappy
-    convex.mutation(api.analytics.logEvent, {
-      type: event,
-      environment,
-      pathname,
-      device,
-      nodeId: localStorage.getItem("syncclip_node_id") || undefined,
-      sessionId: pathname.split('/')[1] || undefined, // Extract room code if present
-      metadata: properties,
-    }).catch(e => {
-      // Analytics failures must NEVER break UX.
-      sendWarn('Convex analytics capture failed', e instanceof Error ? e.message : String(e), { event });
-    });
+    // convex.mutation(api.analytics.logEvent, {
+    //   type: event,
+    //   environment,
+    //   pathname,
+    //   device,
+    //   nodeId: localStorage.getItem("syncclip_node_id") || undefined,
+    //   sessionId: pathname.split('/')[1] || undefined, // Extract room code if present
+    //   metadata: properties,
+    // }).catch(e => {
+    //   // Analytics failures must NEVER break UX.
+    //   sendWarn('Convex analytics capture failed', e instanceof Error ? e.message : String(e), { event });
+    // });
   } catch (e) {
     sendError('Analytics logic error', e instanceof Error ? e.message : String(e), { event });
   }
