@@ -55,12 +55,14 @@
 ## [2026-05-21] Task: SEO, AEO, and GEO Scaling Plan (Phase 2)
 
 ### Research & Diagnostic Notes
+
 - **Trajectory & Citations**: ChatGPT is actively sending referrals (16 visitors). Bing AI grounding queries are active with 224 citations.
 - **Bounce Rate Spike**: Jumped to 59%. Auto-redirect Flag A is disabled to mitigate this.
 - **Inner Page Snippet Optimization**: Titles/metas of 4 specific pages are misaligned with search intent and require rewrites.
 - **AEO Optimization**: Blog posts need structured Quick Answer boxes to maximize citation extraction by LLM summarizers.
 
 ### Execution Steps
+
 1. **Bounce Rate Fix**: Verified `REDIRECT_NUDGE_ENABLED` is set to `false` in `utils/experiments.ts` to prevent auto-redirects from spiking the bounce rate.
 2. **Page Snippet Correction**: Rewrote metadata (Title & Description) for 4 underperforming pages (`/clipboard-sync-guide`, `/blog/go-online-tools-clipboard-alternative`, `/blog/pushbullet-alternatives-2026`, `/blog/how-to-copy-text-from-android-to-mac`).
 3. **FAQ Schema Alignment**: Injected the universal, optimized `FAQPage` JSON-LD block into the homepage and 3 key subpages.
@@ -75,10 +77,12 @@
 ## [2026-05-22] Task: Phase 3 Aggressive SEO Snippet Fix & Content Expansion
 
 ### Research & Diagnostic Notes
+
 - **CTR Weakness**: GoOnlineTools alternative page was ranking at position 2.19 but had 0% CTR due to soft titles.
 - **Content Gaps**: 4 remaining high-ROI queries identified in GSC/Bing telemetry require dedicated coverage.
 
 ### Execution Steps
+
 1. **Metadata Corrections**: Updated `/blog/go-online-tools-clipboard-alternative` title/description and `/clipboard-sync-guide` title to aggressive, high-CTR versions.
 2. **New Content Creation**: Published 4 new blog posts targeting:
    - "How to Share Text Between Android and Windows Without WhatsApp or Cable"
@@ -93,6 +97,7 @@
 ## [2026-06-08] Task: Analytics Overhaul — Discord Webhooks & User Retention Tracking
 
 ### Research & Motivation
+
 - Needed better user tracking without auth (returning users, multi-device rooms, weekly cohorts).
 - Wanted real-time ops alerts for errors (lock violations, payload rejections, Convex failures).
 - Wanted a daily ops digest in Discord with key metrics instead of checking dashboards.
@@ -136,16 +141,16 @@
 
 ### Files Changed
 
-| File | Change |
-|---|---|
-| `convex/schema.ts` | Added `node_profiles` table (nodeId, firstSeen, lastSeen) |
-| `convex/analytics.ts` | `logEvent` now upserts node_profiles; added `getDailyDigest`, `getRetention` |
-| `convex/discord.ts` | **New** — `sendDailyDigest` + `sendTest` actions |
-| `convex/crons.ts` | Added daily digest cron at 08:00 UTC |
-| `utils/discord.ts` | **New** — client-side error/event webhook sender |
-| `components/ClipboardEditor.tsx` | Added try/catch + Discord error on all 8 mutation calls |
-| `app/page.tsx` | Added Discord error on session creation failure |
-| `.env.local` | Documented webhook env vars |
+| File                             | Change                                                                       |
+| -------------------------------- | ---------------------------------------------------------------------------- |
+| `convex/schema.ts`               | Added `node_profiles` table (nodeId, firstSeen, lastSeen)                    |
+| `convex/analytics.ts`            | `logEvent` now upserts node_profiles; added `getDailyDigest`, `getRetention` |
+| `convex/discord.ts`              | **New** — `sendDailyDigest` + `sendTest` actions                             |
+| `convex/crons.ts`                | Added daily digest cron at 08:00 UTC                                         |
+| `utils/discord.ts`               | **New** — client-side error/event webhook sender                             |
+| `components/ClipboardEditor.tsx` | Added try/catch + Discord error on all 8 mutation calls                      |
+| `app/page.tsx`                   | Added Discord error on session creation failure                              |
+| `.env.local`                     | Documented webhook env vars                                                  |
 
 ### Design Decisions
 
@@ -154,3 +159,22 @@
 - **Privacy**: Node profiles only store `nodeId`, `firstSeen`, `lastSeen`. No content, no IP, no PII. This enables cohort retention without auth.
 - **Retention via nodeId**: Uses localStorage `syncclip_node_id` for returning user tracking. ~85% accurate without auth. Canvas fingerprint could be added later for fallback.
 - **Daily digest is cheap**: One Convex action per day. Negligible cost.
+
+---
+
+## [2026-06-25] Task: PageSpeed Performance Tuning & Resource Optimization
+
+### Research & Diagnostic Notes
+
+- **Payload & Core Metrics Issue**: PageSpeed desktop score was low (56) due to render-blocking assets (fonts, stylesheets), a massive 3.4 MB favicon payload, and non-lazy static image tags.
+- **Icon Rendering Defect**: Loading the Material Symbols font asynchronously caused a FOUT/missing-icon glitch because icon fonts display text glyphs until download completes.
+
+### Execution Steps
+
+1. **Favicon Compression**: Replaced the 3.4 MB favicon with an optimized 1.5 KB `favicon.ico` and 231 KB `icon.png` (PWA).
+2. **Next.js `<Image>` Migration**: Replaced traditional HTML `<img>` elements with Next.js `<Image>` tags + lazy loading + defined dimensions, reducing payloads.
+3. **Google Fonts Defying Render Block**: Applied DNS preconnect hints and loaded text fonts asynchronously using `media="print" onLoad="this.media='all'"`.
+4. **Material Symbols Reversion**: Restored the Material Symbols Outlined stylesheet to load synchronously to ensure immediate icon rendering on first paint.
+5. **Config & Security Headers**: Injected custom cache control headers and security settings (HSTS, COOP, Referrer Policy) in `next.config.ts`.
+6. **LLM Integration**: Drafted a standard-compliant `llms.txt` file in the public directory.
+7. **Verification**: Executed `pnpm build` successfully with 71 routes compiled and 0 compile errors.

@@ -32,3 +32,9 @@ Increase non-branded search visibility (move from position 15 to Top 3) using a 
   1. `/blog/how-to-copy-text-from-android-to-mac`
   2. `/blog/stop-emailing-yourself-notes`
 - **Technical SEO**: Updated `sitemap.ts` to ensure Google instantly crawls the new architecture.
+- **Performance & Asset Optimization**:
+  - Compressed all system/step illustrations and optimized the favicon from 3.4 MB to 1.5 KB to resolve massive network payload warnings.
+  - Converted static page images to Next.js `<Image>` components with lazy loading and explicit layouts.
+  - Deferred render-blocking Google Fonts using preconnect hints and non-blocking stylesheets while keeping Material Symbols synchronous to prevent unstyled icon flashes.
+  - Configured long-term caching and standard security headers (HSTS, CSP/Permissions-Policy) in `next.config.ts`.
+  - Created a spec-compliant `llms.txt` in public folder for LLM scrapers.

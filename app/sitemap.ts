@@ -47,6 +47,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/android-to-windows`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.92,
+      alternates: {
+        languages: {
+          'en-IN': `${baseUrl}/android-to-windows`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/blog/phone-link-vs-syncclip`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/mac-to-windows-clipboard`,
       lastModified: new Date(),
       changeFrequency: 'weekly',

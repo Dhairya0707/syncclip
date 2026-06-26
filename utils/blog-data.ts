@@ -8,6 +8,13 @@ export interface BlogPost {
 
 export const blogs: BlogPost[] = [
   {
+    title: "Microsoft Phone Link vs SyncClip — Android to Windows Clipboard Sync (2026)",
+    desc: "Honest comparison: Phone Link requires same WiFi, Windows 11, and a Microsoft account. SyncClip needs only a browser. Which is better for clipboard sync?",
+    slug: "phone-link-vs-syncclip",
+    tag: "Comparison // Tool Battle",
+    pubDate: "Thu, 26 Jun 2026 00:00:00 GMT",
+  },
+  {
     title: "Can I Sync Clipboard Between Android and Windows PC Free?",
     desc: "Yes — sync clipboard between Android and Windows PC free with no app, no signup, no cables. Browser-based WebSocket sync works instantly.",
     slug: "can-i-sync-clipboard-android-windows-free",

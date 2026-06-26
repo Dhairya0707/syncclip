@@ -15,7 +15,7 @@ export const EXPERIMENTS = {
   FORCE_SECOND_DEVICE_ENABLED: false,
 
   // Flag D: PWA install prompt after first keystroke
-  PWA_NUDGE_ENABLED: false,
+  PWA_NUDGE_ENABLED: true,
 
   // Flag B: Rotating post-room-creation headlines
   ROTATING_HEADLINES_ENABLED: true,

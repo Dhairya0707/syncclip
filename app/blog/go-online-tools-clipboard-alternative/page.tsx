@@ -6,7 +6,11 @@ export const metadata: Metadata = {
   title: "Online Clipboard (Ad-Free GoOnlineTools Alternative) | SyncClip",
   description: "GoOnlineTools clipboard down or too many ads? Use SyncClip's real-time WebSocket clipboard. No login, zero ads, and 100ms sync speed. Open and paste instantly.",
   alternates: {
-    canonical: "https://syncclip.in/blog/go-online-tools-clipboard-alternative",
+    canonical: "https://syncclip.in/clipboard",
+  },
+  robots: {
+    index: false,
+    follow: true,
   },
   openGraph: {
     title: "Online Clipboard (Ad-Free GoOnlineTools Alternative) | SyncClip",
