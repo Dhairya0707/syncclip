@@ -1,6 +1,7 @@
 import { mutation, query, internalMutation } from "./_generated/server";
 import { v } from "convex/values";
 
+// Force sync: Updated createSession validator to include initialText
 function generateCode() {
   const array = new Uint32Array(1);
   crypto.getRandomValues(array);
@@ -9,19 +10,21 @@ function generateCode() {
 
 export const createSession = mutation({
   args: {
-    ownerNodeId: v.optional(v.string())
+    ownerNodeId: v.optional(v.string()),
+    initialText: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const code = generateCode();
 
     await ctx.db.insert("sessions", {
       code,
-      text: "Awaiting your next masterpiece. Or just that grocery list you'll forget anyway. I'm not picky.",
+      text: args.initialText || "",
       createdAt: Date.now(),
       ownerNodeId: args.ownerNodeId,
       isLocked: false,
       isBurnMode: false,
       updateCount: 0,
+      updatedAt: Date.now(),
     });
 
     return code;
@@ -33,7 +36,7 @@ export const getSession = query({
   handler: async (ctx, args) => {
     return await ctx.db
       .query("sessions")
-      .filter((q) => q.eq(q.field("code"), args.code))
+      .withIndex("by_code", (q) => q.eq("code", args.code))
       .first();
   },
 });
@@ -61,7 +64,8 @@ export const updateText = mutation({
 
     const patches: any = { 
       text: args.text,
-      updateCount: (session.updateCount || 0) + 1
+      updateCount: (session.updateCount || 0) + 1,
+      updatedAt: Date.now(),
     };
 
     if (args.saveToHistory && session.text !== args.text) {
@@ -87,7 +91,7 @@ export const toggleLock = mutation({
     if (session.ownerNodeId !== args.callerNodeId) {
       throw new Error("Only the origin node may modify lock states.");
     }
-    await ctx.db.patch(args.id, { isLocked: args.isLocked });
+    await ctx.db.patch(args.id, { isLocked: args.isLocked, updatedAt: Date.now() });
   }
 });
 
@@ -103,7 +107,7 @@ export const toggleBurnMode = mutation({
     if (session.ownerNodeId !== args.callerNodeId) {
       throw new Error("Only the origin node may activate Burn Mode.");
     }
-    await ctx.db.patch(args.id, { isBurnMode: args.isBurnMode });
+    await ctx.db.patch(args.id, { isBurnMode: args.isBurnMode, updatedAt: Date.now() });
   }
 });
 
@@ -120,6 +124,7 @@ export const burnSession = mutation({
       text: "",
       history: [],
       isBurnMode: false, // Turn off after burn to prevent loops
+      updatedAt: Date.now(),
     });
   }
 });
@@ -140,7 +145,7 @@ export const deleteSession = mutation({
     // Cleanup presence for this session
     const presence = await ctx.db
       .query("presence")
-      .withIndex("by_session", (q) => q.eq("sessionId", args.id))
+      .withIndex("by_sessionId_and_nodeId", (q) => q.eq("sessionId", args.id))
       .collect();
     for (const p of presence) {
       await ctx.db.delete(p._id);
@@ -157,14 +162,20 @@ export const cleanupSessions = mutation({
     const twentyFourHoursAgo = Date.now() - 24 * 60 * 60 * 1000;
     const oldSessions = await ctx.db
       .query("sessions")
-      .filter((q) => q.lt(q.field("createdAt"), twentyFourHoursAgo))
+      .withIndex("by_createdAt", (q) => q.lt("createdAt", twentyFourHoursAgo))
+      .filter((q) => 
+        q.or(
+          q.eq(q.field("updatedAt"), undefined),
+          q.lt(q.field("updatedAt"), twentyFourHoursAgo)
+        )
+      )
       .collect();
 
     for (const session of oldSessions) {
       // Cleanup presence for this session
       const presence = await ctx.db
         .query("presence")
-        .withIndex("by_session", (q) => q.eq("sessionId", session._id))
+        .withIndex("by_sessionId_and_nodeId", (q) => q.eq("sessionId", session._id))
         .collect();
       for (const p of presence) {
         await ctx.db.delete(p._id);
@@ -198,8 +209,9 @@ export const updatePresence = mutation({
     }
     const existing = await ctx.db
       .query("presence")
-      .withIndex("by_session", (q) => q.eq("sessionId", args.sessionId))
-      .filter((q) => q.eq(q.field("nodeId"), args.nodeId))
+      .withIndex("by_sessionId_and_nodeId", (q) =>
+        q.eq("sessionId", args.sessionId).eq("nodeId", args.nodeId)
+      )
       .first();
 
     if (existing) {
@@ -211,7 +223,7 @@ export const updatePresence = mutation({
       // Security check: limit to 100 active nodes per session
       const presenceCount = await ctx.db
         .query("presence")
-        .withIndex("by_session", (q) => q.eq("sessionId", args.sessionId))
+        .withIndex("by_sessionId_and_nodeId", (q) => q.eq("sessionId", args.sessionId))
         .collect();
 
       if (presenceCount.length >= 100) {
@@ -259,8 +271,9 @@ export const getPresence = query({
   handler: async (ctx, args) => {
     const presenceList = await ctx.db
       .query("presence")
-      .withIndex("by_session", (q) => q.eq("sessionId", args.sessionId))
-      .filter((q) => q.gt(q.field("updatedAt"), Date.now() - 30000)) // 30 sec timeout
+      .withIndex("by_sessionId_and_updatedAt", (q) =>
+        q.eq("sessionId", args.sessionId).gt("updatedAt", Date.now() - 30000)
+      )
       .collect();
     
     // Privacy sanitize: never leak nodeId to nodes other than the owner
@@ -292,6 +305,7 @@ export const restoreHistory = mutation({
     const restoredText = session.history[args.index].text;
     await ctx.db.patch(args.id, {
       text: restoredText,
+      updatedAt: Date.now(),
     });
   },
 });

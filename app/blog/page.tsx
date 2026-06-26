@@ -1,6 +1,7 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import { blogs } from "@/utils/blog-data";
 
 export const metadata: Metadata = {
   title: "SyncClip Knowledge Base — Master Your Cross-Device Workflow",
@@ -11,62 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default function BlogIndex() {
-  const blogs = [
-    {
-      title: "How to Copy Text from Android to Mac (Without Apps)",
-      desc: "Learn the fastest way to move text from an Android phone to a Mac computer in 2026 without installing background apps.",
-      slug: "how-to-copy-text-from-android-to-mac",
-      tag: "Top Choice // Guide",
-    },
-    {
-      title: "Why You Should Stop Emailing Yourself Notes",
-      desc: "Emailing yourself snippets is a broken workflow. Discover how an online clipboard can save you hours of friction.",
-      slug: "stop-emailing-yourself-notes",
-      tag: "Productivity // Habits",
-    },
-    {
-      title: "Is an Online Clipboard Secure?",
-      desc: "Are online clipboard tools safe? Learn about encryption, ephemeral storage, and the transience protocol.",
-      slug: "is-online-clipboard-secure",
-      tag: "Security // Privacy",
-    },
-    {
-      title: "Online Clipboard: Best Free Sync Tools for 2026",
-      desc: "An audit of the top clipboard sync tools. Why browser-native beats installed apps for transient data.",
-      slug: "best-online-clipboard-tools-2026",
-      tag: "Comparison // Audit",
-    },
-    {
-      title: "5 Ways to Copy Text Between Phone & Laptop",
-      desc: "Stop emailing yourself. Here are 5 ways to move snippets instantly in 30 seconds or less.",
-      slug: "5-ways-to-copy-text-between-phone-and-laptop",
-      tag: "Listicle // Workflow",
-    },
-    {
-      title: "How to Sync Clipboard Between Devices",
-      desc: "Master the 2026 workflow for cross-OS clipboard synchronization without app fatigue.",
-      slug: "how-to-sync-clipboard-between-devices",
-      tag: "Guide // 2026",
-    },
-    {
-      title: "What is a Live Clipboard?",
-      desc: "Discover the new way to sync devices instantly without apps or cloud storage. Learn about the live clipboard protocol.",
-      slug: "what-is-a-live-clipboard",
-      tag: "Tech // Concept",
-    },
-    {
-      title: "How to Share Your Clipboard Online",
-      desc: "Stop emailing yourself. Learn how to share your clipboard instantly using real-time WebSockets.",
-      slug: "how-to-share-clipboard-online",
-      tag: "Workflow // Guide",
-    },
-    {
-      title: "SyncClip vs Universal Clipboard",
-      desc: "Bridge the gap between Android, iPhone, and PC without ecosystem walls.",
-      slug: "syncclip-vs-universal-clipboard",
-      tag: "Analysis // Ecosystem",
-    },
-  ];
 
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
@@ -138,12 +83,21 @@ export default function BlogIndex() {
 
       {/* FOOTER */}
       <footer className="w-full border-t-2 border-black bg-white" role="contentinfo">
-        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-8 font-mono text-[9px] tracking-widest text-zinc-400 uppercase">
-          <div>© {new Date().getFullYear()} SYNCCLIP // ARCHIVE-V4</div>
-          <div className="flex gap-8">
-             <Link href="/" className="hover:text-black">Home</Link>
-             <Link href="/clipboard" className="hover:text-black">Hub</Link>
-             <Link href="/privacy" className="hover:text-black">Privacy</Link>
+        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="font-mono text-[9px] tracking-widest text-zinc-400 uppercase text-center md:text-left">
+            © {new Date().getFullYear()} SYNCCLIP // ARCHIVE-V4
+          </div>
+
+          <div className="my-2 md:my-0 flex justify-center shrink-0">
+            <a href="https://www.producthunt.com/products/syncclip?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-syncclip" target="_blank" rel="noopener noreferrer">
+              <img alt="SyncClip - No-login, real-time clipboard sync between any device. | Product Hunt" width="180" height="39" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1127130&theme=light&t=1782389533779" />
+            </a>
+          </div>
+
+          <div className="flex gap-8 font-mono text-[9px] tracking-widest uppercase">
+             <Link href="/" className="text-zinc-500 hover:text-secondary transition-colors">Home</Link>
+             <Link href="/clipboard" className="text-zinc-500 hover:text-secondary transition-colors">Hub</Link>
+             <Link href="/privacy" className="text-zinc-500 hover:text-secondary transition-colors">Privacy</Link>
           </div>
         </div>
       </footer>

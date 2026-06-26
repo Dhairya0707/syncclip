@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { sendInfo } from "../../utils/discord";
 
 export default function SupportPage() {
   const [formData, setFormData] = useState({
@@ -19,6 +20,13 @@ export default function SupportPage() {
     setErrorMsg("");
 
     try {
+      // Discord fallback notification
+      sendInfo("Support Inquiry Received", [
+        { name: "Name", value: formData.name, inline: true },
+        { name: "Email", value: formData.email, inline: true },
+        { name: "Type", value: formData.inquiryType },
+        { name: "Message", value: formData.message }
+      ]);
       const response = await fetch("https://mailservice-five.vercel.app/api/contact/syncclip", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -2,22 +2,23 @@ import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import "./globals.css";
 import ConvexClientProvider from "./ConvexClientProvider";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://syncclip.in'),
   title: {
-    default: "Online Clipboard — Copy Paste Between Devices Free | SyncClip",
+    default: "SyncClip — Free Online Clipboard (Sync Instantly, No App, No Login)",
     template: "%s | SyncClip — Online Clipboard"
   },
-  description: "Free online clipboard to copy and paste text between devices instantly. Sync clipboard between phone, laptop, and tablet with no login, no app install, and no tracking. The fastest clipboard sharing tool.",
+  description: "Copy text on your phone → paste on PC in milliseconds. No signup, no installation, no logs. Works on Android, iOS, Windows, Mac, Linux.",
   keywords: ["online clipboard", "clipboard online", "copy paste between devices", "sync clipboard between devices", "share clipboard online", "clipboard sharing tool", "cross device clipboard", "paste text between devices", "copy text from phone to computer", "free clipboard sync", "clipboard sync android windows", "universal clipboard online no signup", "pushbullet alternative free"],
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico",
   },
   openGraph: {
-    title: "Online Clipboard — Copy Paste Between Devices Free",
-    description: "Free online clipboard to sync text between phone and PC instantly. No login, no app install. Works on Android, iOS, Windows, Mac, and Linux.",
+    title: "SyncClip — Free Online Clipboard (Sync Instantly)",
+    description: "Copy text on your phone → paste on PC in milliseconds. No signup, no installation, no logs. Works on Android, iOS, Windows, Mac, Linux.",
     url: "https://syncclip.in",
     siteName: "SyncClip — Online Clipboard",
     images: [
@@ -33,12 +34,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Online Clipboard — Copy Paste Devices Free",
-    description: "Free online clipboard to sync text between phone and PC instantly. No login, no app install.",
+    title: "SyncClip — Free Online Clipboard (Sync Instantly)",
+    description: "Copy text on your phone → paste on PC in milliseconds. No signup, no installation, no logs.",
     images: ["/og-image.png"],
   },
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": "https://syncclip.in/feed.xml",
+    },
   },
   robots: {
     index: true,
@@ -53,6 +57,8 @@ export const metadata: Metadata = {
   },
 };
 
+//testing
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -61,19 +67,42 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <head>
+        {/* Preconnect hints — resolve DNS/TLS early, parallel to page render */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* Non-blocking async font load — media="print" trick prevents render-blocking */}
         <link
           href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
           rel="stylesheet"
+          media="print"
+          // @ts-ignore
+          onLoad="this.media='all'"
         />
+        <noscript>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+            rel="stylesheet"
+          />
+        </noscript>
+
+        {/* Material Symbols — synchronously loaded so icons render immediately on first paint */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
           rel="stylesheet"
+        />
+
+        <Script
+          src="https://analyticsos-ten.vercel.app/script.js"
+          data-website-id="1cb0d962-ee76-45cb-abcf-68ed51a2074f"
+          strategy="afterInteractive"
         />
       </head>
       <body className="font-body selection:bg-secondary selection:text-white">
         <ConvexClientProvider>
           {children}
           <Analytics />
+        
         </ConvexClientProvider>
       </body>
     </html>

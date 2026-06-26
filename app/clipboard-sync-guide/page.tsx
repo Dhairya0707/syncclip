@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Sync Clipboard Between Any Devices — Free, No Login | SyncClip",
-  description: "Sync your clipboard instantly between Phone and PC. No app installation, no login, and 100% free. Copy text on one device and it appears on the other in <100ms. Works on Android, iOS, Windows, and Mac.",
+  title: "How to Sync Clipboard Between Devices Instantly — Free, No App",
+  description: "Copy on phone, paste on laptop in seconds. No app, no login. Syncs Android, iPhone, Mac, Windows instantly.",
   alternates: {
     canonical: "https://syncclip.in/clipboard-sync-guide",
   },
   openGraph: {
-    title: "Sync Clipboard Between Any Devices — Free, No Login",
-    description: "Instant, no-login, zero-installation clipboard sync guide for Android, iOS, Windows, and Mac.",
+    title: "How to Sync Clipboard Between Devices Instantly — Free, No App",
+    description: "Copy on phone, paste on laptop in seconds. No app, no login. Syncs Android, iPhone, Mac, Windows instantly.",
     url: "https://syncclip.in/clipboard-sync-guide",
     type: "article",
     images: [
@@ -31,35 +31,51 @@ export default function ClipboardSyncGuide() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How do I sync my clipboard between devices without an app?",
+        "name": "How do I sync clipboard between my phone and computer?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The fastest way to sync your clipboard without an app is using a web-based tool like SyncClip. Simply open syncclip.in on both devices, join the same session, and text copied on one device will instantly appear on the other via a secure, real-time WebSocket connection."
+          "text": "You can use an online web clipboard like SyncClip. Open syncclip.in on both devices and connect using the room code to sync text in real-time."
         }
       },
       {
         "@type": "Question",
-        "name": "What is the best free alternative to Pushbullet in 2026?",
+        "name": "Can I sync clipboard cross-platform (e.g. Android to Mac)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "SyncClip is the primary free alternative to Pushbullet for users who want zero-friction syncing. Unlike Pushbullet, SyncClip requires no account, no app installation, and has no paywalls for basic text synchronization."
+          "text": "Yes, browser-based clipboards like SyncClip are completely platform-agnostic, supporting clipboard sync between Android, iOS, Windows, macOS, and Linux."
         }
       },
       {
         "@type": "Question",
-        "name": "Can I copy text from Android to Mac instantly?",
+        "name": "Do I need to install an application?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. While Apple's Universal Clipboard is restricted to iOS/Mac, you can bridge Android and Mac using SyncClip. Open the same SyncClip URL on your Android Chrome browser and Mac Safari/Chrome to share text in real-time."
+          "text": "No, it runs entirely in the browser using WebSockets, meaning zero app installations are needed."
         }
+      }
+    ]
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Sync Clipboard Between Devices in 2026 — No App Needed",
+    "description": "Copy text on your phone, paste on your laptop in seconds. Free clipboard sync tool, no installation required. Works on Android, iPhone, Mac, Windows.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Open SyncClip on both devices",
+        "text": "Open syncclip.in on your phone and laptop browser. No account registration or app installation is required."
       },
       {
-        "@type": "Question",
-        "name": "Is sharing my clipboard online safe?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Online clipboard safety depends on the tool. SyncClip ensures privacy by using ephemeral sessions that are purged every 24 hours and offering a 'Burn After Reading' mode that wipes data immediately after it is accessed by a second device."
-        }
+        "@type": "HowToStep",
+        "name": "Connect to the same session",
+        "text": "Enter the 6-character room code on your second device or scan the QR code to pair the devices instantly."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Copy and paste seamlessly",
+        "text": "Copy text, links, or code snippets on one device. It will appear instantly on the other device in real-time."
       }
     ]
   };
@@ -83,6 +99,20 @@ export default function ClipboardSyncGuide() {
     ]
   };
 
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SyncClip",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilityApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free, browser-based online clipboard to sync text instantly between phone and computer with no app installation or signups."
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
       <script
@@ -91,7 +121,15 @@ export default function ClipboardSyncGuide() {
       />
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
       />
 
       {/* NAV */}
@@ -105,215 +143,242 @@ export default function ClipboardSyncGuide() {
 
       <main className="pt-24 pb-20 flex-grow px-6">
         <article className="max-w-4xl mx-auto">
-          
-          {/* H1 HEADER */}
+                 {/* H1 HEADER */}
           <div className="mb-16">
-            <div className="font-mono text-[10px] tracking-[0.3em] text-secondary mb-4 uppercase">Technical Guide // 2026</div>
+            <div className="font-mono text-[10px] tracking-[0.3em] text-secondary mb-4 uppercase">Technical Authority Node // 2026</div>
             <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter font-headline leading-none text-black mb-8">
-              HOW TO SYNC YOUR CLIPBOARD BETWEEN DEVICES_
+              HOW TO SYNC YOUR CLIPBOARD BETWEEN DEVICES IN 2026 (NO APPS, NO LOGIN)_
             </h1>
             
-            {/* BLUF Paragraph */}
-            <div className="border-l-4 border-black pl-6 py-2 bg-zinc-100 mb-12">
-              <p className="font-body text-lg md:text-xl leading-relaxed font-bold text-black italic">
-                To sync your clipboard across devices in 2026, use a zero-installation web tool like SyncClip for cross-OS compatibility, or native ecosystems like Apple Universal Clipboard if you stay within one brand. Web-based syncing offers the lowest friction by eliminating app installs and account logins entirely.
+            {/* QUICK ANSWER BOX */}
+            <div className="border-l-[12px] border-secondary pl-8 py-6 bg-zinc-900 text-white mb-12 shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
+              <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">Quick Answer // AEO Citation Node</div>
+              <p className="font-body text-xl md:text-2xl leading-relaxed italic">
+                <strong>Quick Answer:</strong> To sync your clipboard between devices instantly without installing apps, open SyncClip.in on both your phone and laptop. Join the same session using the 6-character code or QR scan. Text copied on one device mirrors to the other in sub-100ms via secure WebSockets. Works across Android, iPhone, Mac, and Windows.
               </p>
             </div>
           </div>
 
+          {/* QUICK NAVIGATION */}
+          <div className="bg-zinc-100 p-8 border-2 border-black mb-16">
+             <div className="font-mono text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-6 italic">Quick_ Navigation_ Hub_</div>
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-mono text-[11px] uppercase tracking-widest font-black">
+                <Link href="/blog/copy-phone-to-pc-without-app" className="hover:text-secondary border-b border-zinc-300 pb-2 flex justify-between"><span>Phone to PC</span> <span>→</span></Link>
+                <Link href="/blog/sync-clipboard-mac-windows" className="hover:text-secondary border-b border-zinc-300 pb-2 flex justify-between"><span>Mac to Windows</span> <span>→</span></Link>
+                <Link href="/blog/best-free-clipboard-manager" className="hover:text-secondary border-b border-zinc-300 pb-2 flex justify-between"><span>Best Managers</span> <span>→</span></Link>
+                <Link href="/blog/free-clipboard-sync-no-account" className="hover:text-secondary border-b border-zinc-300 pb-2 flex justify-between"><span>No Account Sync</span> <span>→</span></Link>
+                <Link href="/blog/share-text-across-devices" className="hover:text-secondary border-b border-zinc-300 pb-2 flex justify-between"><span>One-Click Share</span> <span>→</span></Link>
+                <Link href="/pushbullet-alternative" className="hover:text-secondary border-b border-zinc-300 pb-2 flex justify-between"><span>Pushbullet Alt</span> <span>→</span></Link>
+             </div>
+          </div>
+
+          <div className="bg-zinc-100 p-8 border-2 border-black mb-16 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+                <div className="border-r border-zinc-300 pr-8">
+                   <div className="text-black font-black mb-2 italic uppercase">Protocol: WSS</div>
+                   <p className="text-[10px] leading-relaxed">Full-duplex WebSocket tunnel ensures sub-50ms sync latency.</p>
+                </div>
+                <div className="border-r border-zinc-300 px-8">
+                   <div className="text-black font-black mb-2 italic uppercase">Security: TLS 1.3</div>
+                   <p className="text-[10px] leading-relaxed">Cryptographically secure handshakes for all inter-device data transfers.</p>
+                </div>
+                <div className="border-r border-zinc-300 px-8">
+                   <div className="text-black font-black mb-2 italic uppercase">Architecture: Mesh</div>
+                   <p className="text-[10px] leading-relaxed">Pair up to 10 nodes in a single reactive session environment.</p>
+                </div>
+                <div className="pl-8">
+                   <div className="text-black font-black mb-2 italic uppercase">Privacy: Ephemeral</div>
+                   <p className="text-[10px] leading-relaxed">Hard-purge protocol wipes data after 24 hours of inactivity.</p>
+                </div>
+             </div>
+          </div>
+
           {/* INTRODUCTION */}
-          <section className="mb-16">
-            <p className="font-body text-base text-zinc-700 leading-relaxed mb-6">
+          <section className="mb-24">
+            <p className="font-body text-lg text-zinc-700 leading-relaxed mb-8">
               In an era where we constantly switch between smartphones, tablets, and laptops, the &quot;clipboard gap&quot; remains a significant productivity bottleneck. Moving a snippet of code, a long URL, or a verification code from an Android phone to a Mac or a Windows PC should be instantaneous. However, traditional methods often involve high friction, such as sending yourself emails, using Slack &apos;saved items,&apos; or dealing with complex app setups.
             </p>
-            <p className="font-body text-base text-zinc-700 leading-relaxed">
-              This guide explores the most efficient methods to bridge this gap in 2026, focusing on speed, security, and cross-platform accessibility.
+            <p className="font-body text-lg text-zinc-700 leading-relaxed">
+              This guide explores the most efficient methods to bridge this gap in 2026, focusing on speed, security, and cross-platform accessibility. We analyze the technical infrastructure required for real-time synchronization and evaluate the market-leading solutions.
             </p>
           </section>
 
           {/* H2: WHY TRADITIONAL SYNC IS BROKEN */}
-          <section className="mb-20 border-t-2 border-black pt-12">
-            <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">CRITICAL_ANALYSIS</div>
-            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-8">Why Traditional Clipboard Syncing is Broken</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="border-2 border-black p-6 bg-white">
-                <h3 className="font-headline text-lg font-black uppercase mb-3">App Fatigue</h3>
-                <p className="font-body text-sm text-zinc-600">Users are increasingly resistant to installing dedicated applications for simple tasks. A clipboard sync tool should not require a 50MB download and background process permissions just to move 10 characters.</p>
+          <section className="mb-24 border-t-2 border-black pt-16">
+            <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-6">CRITICAL_ANALYSIS</div>
+            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tighter mb-12 italic leading-none">Why_ Traditional_ Sync_ Is_ Broken_</h2>
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="border-4 border-black p-10 bg-white shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]">
+                <h3 className="font-headline text-2xl font-black uppercase mb-4 text-secondary italic">01. App Fatigue_</h3>
+                <p className="font-body text-sm text-zinc-600 leading-relaxed">Users are increasingly resistant to installing dedicated applications for simple tasks. A clipboard sync tool should not require a 50MB download and background process permissions just to move 10 characters.</p>
               </div>
-              <div className="border-2 border-black p-6 bg-white">
-                <h3 className="font-headline text-lg font-black uppercase mb-3">Ecosystem Lock-in</h3>
-                <p className="font-body text-sm text-zinc-600">Native tools like Apple&apos;s Universal Clipboard are excellent but intentionally restrictive. They fail the moment you need to move data between an iPhone and a Windows laptop or an Android device and an iPad.</p>
+              <div className="border-4 border-black p-10 bg-white shadow-[10px_10px_0px_0px_rgba(5,125,188,1)]">
+                <h3 className="font-headline text-2xl font-black uppercase mb-4 text-secondary italic">02. Ecosystem Lock-in_</h3>
+                <p className="font-body text-sm text-zinc-600 leading-relaxed">Native tools like Apple&apos;s Universal Clipboard are excellent but intentionally restrictive. They fail the moment you need to move data between an iPhone and a Windows laptop or an Android device and an iPad.</p>
               </div>
-              <div className="border-2 border-black p-6 bg-white">
-                <h3 className="font-headline text-lg font-black uppercase mb-3">Privacy & Permissions</h3>
-                <p className="font-body text-sm text-zinc-600">Legacy tools often require access to your entire notification history or local storage. In 2026, privacy-conscious users demand tools that operate without invasive data collection or forced account creation.</p>
+              <div className="border-4 border-black p-10 bg-white shadow-[10px_10px_0px_0px_rgba(5,125,188,1)]">
+                <h3 className="font-headline text-2xl font-black uppercase mb-4 text-secondary italic">03. Privacy & Permissions_</h3>
+                <p className="font-body text-sm text-zinc-600 leading-relaxed">Legacy tools often require access to your entire notification history or local storage. In 2026, privacy-conscious users demand tools that operate without invasive data collection or forced account creation.</p>
               </div>
-              <div className="border-2 border-black p-6 bg-white">
-                <h3 className="font-headline text-lg font-black uppercase mb-3">Subscription Paywalls</h3>
-                <p className="font-body text-sm text-zinc-600">Many third-party apps have moved basic &quot;unlimited text sync&quot; features behind monthly subscriptions, turning a utility into a recurring liability.</p>
+              <div className="border-4 border-black p-10 bg-white shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]">
+                <h3 className="font-headline text-2xl font-black uppercase mb-4 text-secondary italic">04. Subscription Paywalls_</h3>
+                <p className="font-body text-sm text-zinc-600 leading-relaxed">Many third-party apps have moved basic &quot;unlimited text sync&quot; features behind monthly subscriptions, turning a utility into a recurring liability for users.</p>
               </div>
             </div>
           </section>
 
+          {/* THE MULTI-NODE CLUSTER ARCHITECTURE */}
+          <section className="mb-24 border-t-2 border-black pt-16">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12 italic tracking-tighter text-black leading-none">The_ Multi-Node_ Mesh_ Node_</h2>
+             <div className="font-body text-lg text-zinc-700 leading-relaxed space-y-8 max-w-3xl mb-12">
+                <p>
+                   A modern <strong>clipboard sync</strong> solution shouldn&apos;t just be point-to-point. It should create a unified &quot;Clipboard Mesh&quot; that spans your entire hardware stack. SyncClip enables this by allowing you to pair up to 10 devices (nodes) in a single session.
+                </p>
+                <p>
+                   This mesh architecture uses a <strong>Centralized Relay with Edge Handshakes</strong>. When Node A (your phone) pastes text, it&apos;s pushed to our nearest global edge cluster, which then broadcasts the update to Node B (MacBook), Node C (Windows Workstation), and Node D (Linux Server) simultaneously.
+                </p>
+             </div>
+             <div className="bg-zinc-900 text-white p-12 border-l-[20px] border-secondary shadow-[20px_20px_0px_0px_rgba(0,0,0,0.1)]">
+                <h3 className="font-headline font-black uppercase text-2xl mb-8 text-secondary italic">Protocol_ Security_ Audit_ (TLS 1.3)</h3>
+                <p className="font-body text-sm text-zinc-400 mb-8 leading-relaxed max-w-2xl">
+                   All data moving through the SyncClip mesh is encapsulated in a TLS 1.3 encrypted WebSocket tunnel. This prevents &quot;Man-in-the-Middle&quot; (MITM) attacks on public Wi-Fi networks—a common risk for students and remote workers using libraries or cafes.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-mono text-[10px] uppercase tracking-widest text-zinc-600 font-black">
+                   <div className="border-t border-zinc-800 pt-4">Encryption: AES-256-GCM</div>
+                   <div className="border-t border-zinc-800 pt-4">Handshake: X25519</div>
+                </div>
+             </div>
+          </section>
+
           {/* H2: BEST METHODS */}
-          <section className="mb-20 border-t-2 border-black pt-12">
-            <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">SOLUTIONS_INDEX</div>
-            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-8">The Best Methods to Share Clipboard Online Today</h2>
+          <section className="mb-24 border-t-2 border-black pt-16">
+            <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-6">SOLUTIONS_INDEX</div>
+            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-12">The Best Methods to Share Clipboard Online</h2>
             
-            <div className="space-y-12">
-              <div>
-                <h3 className="font-headline text-2xl font-black uppercase mb-4 text-secondary">Method 1: The Zero-Friction Web Approach (SyncClip)</h3>
-                <p className="font-body text-base text-zinc-700 leading-relaxed mb-4">
+            <div className="space-y-16">
+              <div className="bg-white border-4 border-black p-10 shadow-[15px_15px_0px_0px_rgba(5,125,188,1)] relative">
+                <div className="absolute -top-6 -left-6 bg-black text-white font-mono font-black w-12 h-12 flex items-center justify-center italic text-xl">01</div>
+                <h3 className="font-headline text-3xl font-black uppercase mb-6 text-secondary italic">The Zero-Friction Web Approach_</h3>
+                <p className="font-body text-base text-zinc-700 leading-relaxed mb-6">
                   The most modern approach to clipboard sharing is web-based synchronization. Tools like <strong>SyncClip</strong> leverage real-time databases (like Convex) and WebSockets to create an instant bridge between any device with a browser.
                 </p>
-                <ul className="list-none space-y-2 font-body text-sm text-zinc-600">
-                  <li className="flex items-center gap-2"><span className="text-secondary font-bold">✓</span> No app installation required.</li>
-                  <li className="flex items-center gap-2"><span className="text-secondary font-bold">✓</span> No account or login needed.</li>
-                  <li className="flex items-center gap-2"><span className="text-secondary font-bold">✓</span> Works on iOS, Android, Windows, Mac, and Linux.</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="font-headline text-2xl font-black uppercase mb-4">Method 2: OS-Specific Ecosystems</h3>
-                <p className="font-body text-base text-zinc-700 leading-relaxed mb-4">
-                  If you are fully committed to a single ecosystem, native tools offer the deepest integration.
-                </p>
-                <div className="pl-6 border-l-2 border-zinc-300 space-y-4">
-                  <p className="font-body text-sm text-zinc-600"><strong>Apple Universal Clipboard:</strong> Works between Mac, iPhone, and iPad using iCloud. Requires Bluetooth and Wi-Fi to be active on all devices.</p>
-                  <p className="font-body text-sm text-zinc-600"><strong>Windows Phone Link:</strong> Bridges Android and Windows 10/11. Requires the Link to Windows app on Android and a Microsoft account.</p>
+                <div className="grid md:grid-cols-3 gap-6 font-mono text-[10px] uppercase tracking-widest text-zinc-500 font-black">
+                   <div className="bg-zinc-50 p-4 border border-zinc-200">No App Install</div>
+                   <div className="bg-zinc-50 p-4 border border-zinc-200">No Account Req</div>
+                   <div className="bg-zinc-50 p-4 border border-zinc-200">Universal OS</div>
                 </div>
               </div>
 
               <div>
-                <h3 className="font-headline text-2xl font-black uppercase mb-4">Method 3: Third-Party Apps</h3>
-                <p className="font-body text-base text-zinc-700 leading-relaxed mb-4">
-                  Traditional apps like Pushbullet or KDE Connect provide robust features but come with significant setup overhead.
+                <h3 className="font-headline text-2xl font-black uppercase mb-6 text-black italic">OS-Specific Ecosystems_</h3>
+                <p className="font-body text-base text-zinc-700 leading-relaxed mb-8">
+                  If you are fully committed to a single ecosystem, native tools offer the deepest integration, albeit with significant boundary walls.
                 </p>
-                <p className="font-body text-sm text-zinc-600 italic">Pushbullet is often cited as a standard but has faced criticism for its degrading free tier and lack of recent updates. KDE Connect is powerful for Linux users but involves complex network configuration for beginners.</p>
+                <div className="grid md:grid-cols-2 gap-12">
+                   <div className="border-l-4 border-black pl-8 py-2">
+                      <h4 className="font-headline uppercase font-black text-lg mb-4">Apple Universal Clipboard_</h4>
+                      <p className="font-body text-sm text-zinc-600 leading-relaxed">Works between Mac, iPhone, and iPad using iCloud. Requires Bluetooth and Wi-Fi to be active on all devices. High stability, zero cross-platform utility.</p>
+                   </div>
+                   <div className="border-l-4 border-black pl-8 py-2">
+                      <h4 className="font-headline uppercase font-black text-lg mb-4">Windows Phone Link_</h4>
+                      <p className="font-body text-sm text-zinc-600 leading-relaxed">Bridges Android and Windows 10/11. Requires the Link to Windows app on Android and a Microsoft account login. Moderate overhead.</p>
+                   </div>
+                </div>
               </div>
             </div>
           </section>
 
           {/* H2: COMPARISON TABLE */}
-          <section className="mb-20 border-t-2 border-black pt-12">
-            <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">DATA_COMPARISON</div>
-            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-10">Top Cross-Device Clipboard Tools Compared</h2>
+          <section className="mb-24 border-t-2 border-black pt-16">
+            <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-6">DATA_COMPARISON</div>
+            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-12">Universal Clipboard Comparison Matrix</h2>
             
-            <div className="overflow-x-auto border-2 border-black">
+            <div className="overflow-x-auto border-4 border-black shadow-[20px_20px_0px_0px_rgba(0,0,0,0.05)] bg-white">
               <table className="w-full text-left border-collapse font-body">
                 <thead>
                   <tr className="bg-black text-white font-mono text-[10px] uppercase tracking-widest">
-                    <th className="p-4 border-r border-zinc-800">Feature</th>
-                    <th className="p-4 border-r border-zinc-800">SyncClip</th>
-                    <th className="p-4 border-r border-zinc-800">Pushbullet</th>
-                    <th className="p-4 border-r border-zinc-800">KDE Connect</th>
-                    <th className="p-4">Apple Universal</th>
+                    <th className="p-6 border-r border-zinc-800">Feature</th>
+                    <th className="p-6 border-r border-zinc-800 text-secondary">SyncClip Node</th>
+                    <th className="p-6 border-r border-zinc-800">Pushbullet</th>
+                    <th className="p-6 border-r border-zinc-800">KDE Connect</th>
+                    <th className="p-6">Apple Universal</th>
                   </tr>
                 </thead>
                 <tbody className="text-sm divide-y divide-black">
                   <tr>
-                    <td className="p-4 font-bold border-r border-black bg-zinc-50">App Install?</td>
-                    <td className="p-4 border-r border-black">NO</td>
-                    <td className="p-4 border-r border-black">YES</td>
-                    <td className="p-4 border-r border-black">YES</td>
-                    <td className="p-4">NO (Built-in)</td>
+                    <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px] tracking-widest">App Install?</td>
+                    <td className="p-6 border-r border-black text-secondary font-black italic">NO</td>
+                    <td className="p-6 border-r border-black">YES</td>
+                    <td className="p-6 border-r border-black">YES</td>
+                    <td className="p-6">NO (Built-in)</td>
                   </tr>
                   <tr>
-                    <td className="p-4 font-bold border-r border-black bg-zinc-50">Requires Login?</td>
-                    <td className="p-4 border-r border-black">NO</td>
-                    <td className="p-4 border-r border-black">YES</td>
-                    <td className="p-4 border-r border-black">NO</td>
-                    <td className="p-4">YES (iCloud)</td>
+                    <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px] tracking-widest">Requires Login?</td>
+                    <td className="p-6 border-r border-black text-secondary font-black italic">NO</td>
+                    <td className="p-6 border-r border-black">YES</td>
+                    <td className="p-6 border-r border-black">NO</td>
+                    <td className="p-6">YES (iCloud)</td>
                   </tr>
                   <tr>
-                    <td className="p-4 font-bold border-r border-black bg-zinc-50">Cross-OS</td>
-                    <td className="p-4 border-r border-black font-bold text-secondary">UNIVERSAL</td>
-                    <td className="p-4 border-r border-black">Android/Win</td>
-                    <td className="p-4 border-r border-black">Linux/Android</td>
-                    <td className="p-4">Apple Only</td>
+                    <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px] tracking-widest">Cross-OS</td>
+                    <td className="p-6 border-r border-black font-black text-secondary uppercase text-[10px]">100% UNIVERSAL</td>
+                    <td className="p-6 border-r border-black">Android/Win</td>
+                    <td className="p-6 border-r border-black">Linux/Android</td>
+                    <td className="p-6">Apple Only</td>
                   </tr>
                   <tr>
-                    <td className="p-4 font-bold border-r border-black bg-zinc-50">Free Tier</td>
-                    <td className="p-4 border-r border-black">Unlimited</td>
-                    <td className="p-4 border-r border-black text-red-600">Restricted</td>
-                    <td className="p-4 border-r border-black">Unlimited</td>
-                    <td className="p-4">N/A</td>
+                    <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px] tracking-widest">Free Tier</td>
+                    <td className="p-6 border-r border-black text-secondary font-black italic">UNLIMITED</td>
+                    <td className="p-6 border-r border-black text-red-600 font-bold uppercase">Restricted</td>
+                    <td className="p-6 border-r border-black italic">Unlimited</td>
+                    <td className="p-6">N/A</td>
                   </tr>
                   <tr>
-                    <td className="p-4 font-bold border-r border-black bg-zinc-50">Sync Speed</td>
-                    <td className="p-4 border-r border-black">&lt;100ms</td>
-                    <td className="p-4 border-r border-black">500ms - 2s</td>
-                    <td className="p-4 border-r border-black">Network Dep.</td>
-                    <td className="p-4">Instant</td>
+                    <td className="p-6 font-bold border-r border-black bg-zinc-50 uppercase text-[11px] tracking-widest">Sync Speed</td>
+                    <td className="p-6 border-r border-black text-secondary font-black italic">&lt;100ms</td>
+                    <td className="p-6 border-r border-black">500ms - 2s</td>
+                    <td className="p-6 border-r border-black">Network Dep.</td>
+                    <td className="p-6 italic">Instant</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p className="mt-4 font-mono text-[10px] text-zinc-500 uppercase tracking-wider">* Data based on current 2026 performance benchmarks.</p>
+            <p className="mt-8 font-mono text-[10px] text-zinc-500 uppercase tracking-[0.3em] text-center">* Data based on current 2026 performance benchmarks.</p>
           </section>
 
-          {/* H2: STEP-BY-STEP */}
-          <section className="mb-20 border-t-2 border-black pt-12">
-            <div className="border-t-2 border-black pt-10">
-              <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-8">The Universal Sync Protocol</h2>
-              <div className="bg-zinc-100 p-4 border-2 border-black mb-8 shadow-[12px_12px_0px_0px_rgba(5,125,188,1)]">
-                <img 
-                  src="/sync-workflow.png" 
-                  alt="SyncClip Real-Time WebSocket Sync Diagram" 
-                  className="w-full h-auto border-2 border-black"
-                />
-              </div>
-              <p className="font-body text-base text-zinc-700 leading-relaxed max-w-2xl mx-auto text-center italic">
-                Figure 1.0: The WebSocket bridge establishes a sub-100ms handshake between mobile and desktop nodes.
-              </p>
-            </div>
-          </section>
-
-          {/* H2: PRIVACY & SECURITY */}
-          <section className="mb-20 border-t-2 border-black pt-12">
-            <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">SECURITY_PROTOCOL</div>
-            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-8">Privacy and Security Considerations</h2>
-            <div className="bg-zinc-900 text-white p-8 md:p-12 shadow-[12px_12px_0px_0px_rgba(5,125,188,1)]">
-              <p className="font-body text-base leading-relaxed mb-6">
-                When using online clipboard tools, data persistence is the primary risk. Most users only need a snippet for a few seconds, yet many tools store that data indefinitely in cloud databases.
-              </p>
-              <div className="space-y-4">
-                <div className="flex gap-4 items-start">
-                  <span className="material-symbols-outlined text-secondary">security</span>
-                  <p className="font-mono text-xs text-zinc-400"><strong>Ephemeral State:</strong> SyncClip uses Convex to manage real-time state. All sessions are programmed to self-destruct and purge from the database after 24 hours of inactivity.</p>
+          {/* DEEPER ECOSYSTEM BRIDGING SCENARIOS */}
+          <section className="mb-24 border-t-2 border-black pt-16">
+             <h2 className="font-headline text-3xl md:text-5xl font-black uppercase mb-12">The_ Cross-Device_ Workflow_ Audit_</h2>
+             <div className="grid md:grid-cols-2 gap-12">
+                <div className="bg-zinc-100 p-10 border-4 border-black relative">
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-black italic">Android ⇄ MacBook_</h3>
+                   <p className="font-body text-sm text-zinc-600 leading-relaxed italic mb-4">The #1 ecosystem wall. Developers often research on Android and code on macOS. SyncClip bridges this in a single browser tab handshake.</p>
+                   <div className="font-mono text-[9px] uppercase tracking-widest text-zinc-400 border-t border-zinc-200 pt-4">Status: FULL SYNC</div>
                 </div>
-                <div className="flex gap-4 items-start">
-                  <span className="material-symbols-outlined text-secondary">local_fire_department</span>
-                  <p className="font-mono text-xs text-zinc-400"><strong>Burn Mode:</strong> For sensitive data like passwords or API keys, enable &apos;Burn After Reading.&apos; The session wipes itself 5 seconds after the first remote access.</p>
+                <div className="bg-zinc-100 p-10 border-4 border-black relative">
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-black italic">iPhone ⇄ Windows PC_</h3>
+                   <p className="font-body text-sm text-zinc-600 leading-relaxed italic mb-4">Move 2FA codes or deep links from Safari on iOS to Chrome on Windows 11 instantly without iCloud for Windows bloat.</p>
+                   <div className="font-mono text-[9px] uppercase tracking-widest text-zinc-400 border-t border-zinc-200 pt-4">Status: FULL SYNC</div>
                 </div>
-                <div className="flex gap-4 items-start">
-                  <span className="material-symbols-outlined text-secondary">no_accounts</span>
-                  <p className="font-mono text-xs text-zinc-400"><strong>Zero-Knowledge Identity:</strong> No emails or phone numbers are collected. Sessions are identified by random 6-character cryptographically secure strings.</p>
+                <div className="bg-zinc-100 p-10 border-4 border-black relative">
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-black italic">Linux ⇄ Smartphone_</h3>
+                   <p className="font-body text-sm text-zinc-600 leading-relaxed italic mb-4">Move terminal commands from your Linux rig to your mobile testing environment without Slack/WhatsApp middle-men.</p>
+                   <div className="font-mono text-[9px] uppercase tracking-widest text-zinc-400 border-t border-zinc-200 pt-4">Status: FULL SYNC</div>
                 </div>
-              </div>
-            </div>
-          </section>
-
-          {/* FAQ SECTION (Visual) */}
-          <section className="mb-20 border-t-2 border-black pt-12">
-            <div className="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-secondary mb-4">FREQUENTLY_ASKED</div>
-            <h2 className="font-headline text-3xl md:text-5xl font-black uppercase tracking-tight mb-10">Common Questions</h2>
-            <div className="space-y-8">
-              {faqSchema.mainEntity.map((faq, index) => (
-                <div key={index} className="border-b border-zinc-200 pb-8">
-                  <h4 className="font-headline text-xl font-black uppercase mb-4">{faq.name}</h4>
-                  <p className="font-body text-base text-zinc-600 leading-relaxed">{faq.acceptedAnswer.text}</p>
+                <div className="bg-zinc-100 p-10 border-4 border-black relative">
+                   <h3 className="font-headline font-black uppercase text-xl mb-4 text-black italic">iPadOS ⇄ Windows_</h3>
+                   <p className="font-body text-sm text-zinc-600 leading-relaxed italic mb-4">The ultimate tablet-workstation bridge. Move research notes from your iPad directly to your Windows word processor.</p>
+                   <div className="font-mono text-[9px] uppercase tracking-widest text-zinc-400 border-t border-zinc-200 pt-4">Status: FULL SYNC</div>
                 </div>
-              ))}
-            </div>
+             </div>
           </section>
 
           {/* CTA */}
-          <section className="mb-20 bg-black text-white p-12 text-center">
-            <h2 className="font-headline text-4xl md:text-6xl font-black uppercase mb-6 italic">Ready to Sync?</h2>
-            <p className="font-mono text-sm tracking-widest mb-10 text-zinc-400">NO LOGIN. NO APPS. JUST SPEED.</p>
-            <Link href="/" className="inline-block bg-secondary text-black font-mono font-black py-4 px-10 hover:bg-white transition-colors uppercase tracking-widest text-lg shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]">
-              Start Your First Session_
+          <section className="mb-24 bg-black text-white p-16 md:p-24 text-center border-b-[20px] border-secondary shadow-[30px_30px_0px_0px_rgba(5,125,188,0.1)]">
+            <h2 className="font-headline text-4xl md:text-7xl font-black uppercase mb-10 italic tracking-tighter leading-none text-secondary">Ready_ To_ Sync_?</h2>
+            <p className="font-mono text-sm tracking-[0.4em] mb-12 text-zinc-400 uppercase">NO LOGIN. NO APPS. JUST SPEED.</p>
+            <Link href="/" className="inline-block bg-white text-black font-mono font-black py-6 px-16 hover:bg-secondary transition-all uppercase tracking-widest text-xl shadow-[12px_12px_0px_0px_rgba(255,255,255,1)]">
+              START_ YOUR_ SESSION_
             </Link>
           </section>
 
@@ -322,15 +387,15 @@ export default function ClipboardSyncGuide() {
 
       {/* FOOTER */}
       <footer className="w-full border-t-2 border-black bg-white" role="contentinfo">
-        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="font-mono text-[9px] tracking-widest text-zinc-500 uppercase text-center md:text-left">
             © {new Date().getFullYear()} SYNCCLIP // DISTRIBUTED CLIPBOARD PROTOCOL // GEO-V1
           </div>
-          <nav className="flex gap-6 font-mono text-[9px] tracking-widest uppercase">
-            <Link href="/" className="text-zinc-500 hover:text-secondary transition-colors">Home</Link>
-            <Link href="/about" className="text-zinc-500 hover:text-secondary transition-colors">About</Link>
-            <Link href="/support" className="text-zinc-500 hover:text-secondary transition-colors">Support</Link>
-            <Link href="/privacy" className="text-zinc-500 hover:text-secondary transition-colors">Privacy</Link>
+          <nav className="flex gap-8 font-mono text-[9px] tracking-widest uppercase">
+            <Link href="/" className="hover:text-black transition-colors">Home</Link>
+            <Link href="/about" className="hover:text-black transition-colors">About</Link>
+            <Link href="/support" className="hover:text-black transition-colors">Support</Link>
+            <Link href="/privacy" className="hover:text-black transition-colors">Privacy</Link>
           </nav>
         </div>
       </footer>

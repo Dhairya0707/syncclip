@@ -1,0 +1,309 @@
+
+<h2 class="sr-only">SyncClip Bing CTR crisis analysis — 1,200+ impressions, 2 clicks. The positioning problem explained.</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.sec{margin-bottom:2rem;}
+.sec-title{font-size:11px;font-weight:500;color:var(--color-text-secondary);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:0.5px solid var(--color-border-tertiary);}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.875rem 1rem;}
+.metric-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;}
+.metric-value{font-size:26px;font-weight:600;color:var(--color-text-primary);}
+.metric-sub{font-size:11px;color:var(--color-text-secondary);margin-top:2px;}
+.tag{font-size:10px;padding:2px 7px;border-radius:3px;display:inline-block;margin-top:4px;font-weight:500;}
+.td{background:#FCEBEB;color:#A32D2D;}
+.tw{background:#FAEEDA;color:#854F0B;}
+.tg{background:#EAF3DE;color:#3B6D11;}
+.ti{background:#E6F1FB;color:#185FA5;}
+.insight{background:var(--color-background-secondary);border-left:2px solid #378ADD;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:.75rem 1rem;margin-bottom:.625rem;font-size:13px;color:var(--color-text-primary);line-height:1.5;}
+.insight.danger{border-left-color:#E24B4A;}
+.insight.warn{border-left-color:#BA7517;}
+.insight.good{border-left-color:#639922;}
+.kw-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px;}
+.kw-row:last-child{border-bottom:none;}
+.kw-name{flex:1;color:var(--color-text-primary);}
+.kw-imp{width:60px;text-align:right;color:var(--color-text-secondary);font-size:12px;}
+.kw-ctr{width:50px;text-align:right;font-size:12px;}
+.kw-pos{width:40px;text-align:right;font-size:12px;}
+.kw-issue{width:100px;text-align:right;}
+.issue-tag{font-size:10px;padding:2px 6px;border-radius:3px;font-weight:500;}
+.issue-title{background:#FCEBEB;color:#A32D2D;}
+.issue-desc{background:#FAEEDA;color:#854F0B;}
+.issue-pos{background:#E6F1FB;color:#185FA5;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.pri-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;}
+.pri-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.5rem;}
+.pri-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.5;}
+.code-block{background:var(--color-background-secondary);border-radius:6px;padding:.75rem 1rem;font-family:var(--font-mono);font-size:11px;color:var(--color-text-primary);margin-top:.5rem;line-height:1.6;overflow-x:auto;}
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:.5rem;}
+.ba-card{border-radius:6px;padding:.75rem;font-size:12px;line-height:1.5;}
+.ba-before{background:#FCEBEB;}
+.ba-after{background:#EAF3DE;}
+.matrix{width:100%;border-collapse:collapse;font-size:12px;}
+.matrix th{text-align:left;padding:8px;font-size:11px;font-weight:500;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary);}
+.matrix td{padding:8px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);}
+.matrix tr:last-child td{border-bottom:none;}
+.divider{height:0.5px;background:var(--color-border-tertiary);margin:1.5rem 0;}
+</style>
+
+<div style="padding:1rem 0;">
+
+<div class="sec">
+  <div class="sec-title">The crisis: 1,200+ impressions, only 2 clicks</div>
+  <div class="metric-grid">
+    <div class="metric">
+      <div class="metric-label">Total impressions (Bing)</div>
+      <div class="metric-value">1,200+</div>
+      <div class="metric-sub">All keywords combined</div>
+      <span class="tag ti">Volume exists</span>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Total clicks</div>
+      <div class="metric-value">2</div>
+      <div class="metric-sub">From all 1,200 impressions</div>
+      <span class="tag td">Critical</span>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Overall CTR</div>
+      <div class="metric-value">0.17%</div>
+      <div class="metric-sub">Should be 1–3% for pos 5–9</div>
+      <span class="tag td">10× too low</span>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Avg position</div>
+      <div class="metric-value">7.2</div>
+      <div class="metric-sub">Page 1 (good)</div>
+      <span class="tag tg">Position OK</span>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">The real diagnosis: You're ranking but not compelling</div>
+  <div class="insight danger">The position is good (avg 7.2). The volume exists (1,200 impressions). But the snippet is NOT answering the user's question. When they see "online clipboard" at position 7, they're clicking position 1–3 instead. Your title and meta description are not matching intent.</div>
+  <div class="insight warn">"online clipboard" alone is 934 impressions — 77% of your traffic — but only 1 click (0.11% CTR). This is the biggest opportunity AND the biggest problem. Users ARE searching for this. They're just not clicking you.</div>
+  <div class="insight good">One bright spot: "vercel clipboard online" — 14 impressions, 1 click (7.14% CTR). This is because the exact phrase matches your domain/product intent. It's showing you that intent-matched copy gets clicks.</div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">Top problem keywords — why you're getting 0 clicks</div>
+  <div class="card">
+    <div class="kw-row" style="font-size:11px;font-weight:500;color:var(--color-text-secondary);">
+      <span class="kw-name">Keyword</span>
+      <span class="kw-imp">Impr.</span>
+      <span class="kw-pos">Pos.</span>
+      <span class="kw-ctr">CTR</span>
+      <span class="kw-issue">Issue</span>
+    </div>
+    
+    <div class="kw-row">
+      <span class="kw-name">online clipboard</span>
+      <span class="kw-imp">934</span>
+      <span class="kw-pos">9.5</span>
+      <span class="kw-ctr">0.11%</span>
+      <span class="issue-tag issue-title">TITLE</span>
+    </div>
+
+    <div class="kw-row">
+      <span class="kw-name">go online clipboard</span>
+      <span class="kw-imp">73</span>
+      <span class="kw-pos">7.7</span>
+      <span class="kw-ctr">0%</span>
+      <span class="issue-tag issue-desc">DESC</span>
+    </div>
+
+    <div class="kw-row">
+      <span class="kw-name">clipboard online</span>
+      <span class="kw-imp">43</span>
+      <span class="kw-pos">7.7</span>
+      <span class="kw-ctr">0%</span>
+      <span class="issue-tag issue-pos">BOTH</span>
+    </div>
+
+    <div class="kw-row">
+      <span class="kw-name">online clipboard share</span>
+      <span class="kw-imp">9</span>
+      <span class="kw-pos">8.8</span>
+      <span class="kw-ctr">0%</span>
+      <span class="issue-tag issue-desc">DESC</span>
+    </div>
+
+    <div class="kw-row">
+      <span class="kw-name">online clipboard (sync auto in realtime)</span>
+      <span class="kw-imp">7</span>
+      <span class="kw-pos">3.0</span>
+      <span class="kw-ctr">0%</span>
+      <span class="issue-tag issue-title">TITLE</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="sec">
+  <div class="sec-title">What the problem actually is</div>
+  <div class="pri-box">
+    <div class="pri-title">Problem 1: Your title doesn't say "online clipboard"</div>
+    <div class="pri-desc">
+      You rank for "online clipboard" at position 9.5. But your title probably doesn't have those exact words, or emphasizes something else. When Bing shows your result for this query, the user sees your title and thinks "this isn't the direct answer" — so they click the result at position 1 instead.
+      <br/><br/>
+      <strong>Fix</strong>: Your main landing page title should START with "Online Clipboard" or "Free Online Clipboard Sync". That's the exact query.
+    </div>
+  </div>
+
+  <div class="pri-box" style="margin-top:.75rem;">
+    <div class="pri-title">Problem 2: Meta description doesn't answer the question</div>
+    <div class="pri-desc">
+      Users search "online clipboard" — they want to know what it is, fast. Your description probably talks about features (realtime sync, no login, etc). But it should lead with OUTCOME: "Sync text between devices instantly. No app. No login. Paste anywhere."
+      <br/><br/>
+      <strong>Fix</strong>: Rewrite meta description as an answer, not a feature list. Lead with the benefit.
+    </div>
+  </div>
+
+  <div class="pri-box" style="margin-top:.75rem;">
+    <div class="pri-title">Problem 3: You're ranking well but on the "wrong" page</div>
+    <div class="pri-desc">
+      These 1,200 impressions might be coming from your blog posts, /about page, or /clipboard-sync-guide, NOT your homepage. The user wants the tool itself, but you're showing them an explanation page. They bounce to a product site instead.
+      <br/><br/>
+      <strong>Check</strong>: In Bing Webmaster Tools, filter impressions by page. Which page is getting the "online clipboard" impressions? If it's not your main product page, that's the problem.
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">The fix — 3 immediate changes</div>
+  
+  <div class="row2">
+    <div class="pri-box">
+      <div class="pri-title">FIX A: Homepage title tag</div>
+      <div class="pri-desc">
+        <strong>Current (unknown)</strong>: Probably emphasizes brand or "realtime clipboard sync"
+        <br/><br/>
+        <strong>New</strong>: "Online Clipboard Sync Between Devices — Free, Instant | SyncClip"
+        <br/><br/>
+        <strong>Why</strong>: Leads with the exact query "online clipboard sync", includes benefit (between devices), and brand.
+      </div>
+      <div class="code-block">
+&lt;title&gt;Online Clipboard Sync Between Devices — Free, Instant | SyncClip&lt;/title&gt;
+      </div>
+    </div>
+
+    <div class="pri-box">
+      <div class="pri-title">FIX B: Homepage meta description</div>
+      <div class="pri-desc">
+        <strong>Current (unknown)</strong>: Probably feature-focused
+        <br/><br/>
+        <strong>New</strong>: "Copy on one device, paste on another instantly. No app, no login. Sync between phone, laptop, tablet. Zero friction, 24h expiry."
+        <br/><br/>
+        <strong>Why</strong>: Leads with outcome (copy → paste), answers the search intent, and hits multiple keywords in natural language.
+      </div>
+      <div class="code-block">
+Copy on one device, paste on another instantly. No app, no login. Sync between phone, laptop, tablet. Zero friction, 24h expiry.
+      </div>
+    </div>
+  </div>
+
+  <div class="pri-box" style="margin-top:1rem;">
+    <div class="pri-title">FIX C: Homepage H1 tag</div>
+    <div class="pri-desc">
+      Your H1 should reinforce the title. If your title says "Online Clipboard Sync Between Devices", your H1 should NOT be "Copy Here. Paste Anywhere." — it should be something closer to the query intent.
+      <br/><br/>
+      <strong>Option 1 (SEO-heavy)</strong>: "Free Online Clipboard Sync — Share Text Between Devices Instantly"
+      <br/><br/>
+      <strong>Option 2 (Balance)</strong>: "The Fastest Online Clipboard. Sync Between Any Devices."
+      <br/><br/>
+      <strong>Which</strong>: Use Option 1 on the page, then keep your current copy below as a secondary hero line. Both tell the story, but SEO version ranks for the high-volume keyword.
+    </div>
+    <div class="code-block">
+&lt;h1&gt;Free Online Clipboard Sync — Share Text Between Devices Instantly&lt;/h1&gt;
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">Secondary optimization: Target "clipboard online" variant</div>
+  <div class="pri-box">
+    <div class="pri-title">Create a blog post: "Clipboard Online vs Downloaded Apps"</div>
+    <div class="pri-desc">
+      "clipboard online" is 43 impressions with 0 clicks. This is a comparison intent. Users are asking: "Should I use online or download an app?"
+      <br/><br/>
+      Create a blog post with this title: "Online Clipboard vs Desktop Apps — Why Web is Better" (target the keyword).
+      <br/><br/>
+      Content: 1. What is an online clipboard? 2. Comparison table (online vs apps) 3. Why online is better (no install, works everywhere, no bloat) 4. CTA to try SyncClip.
+      <br/><br/>
+      This is a long-tail play to capture intent-specific traffic and build topical authority.
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">Advanced: The real ranking problem (structural)</div>
+  <div class="insight warn">You're ranking at position 9.5 for "online clipboard" (934 impressions). But at position 9, users barely click anything — they're looking at positions 1–3. Moving from position 9 → 6 could 5× your clicks on this keyword alone (assuming CTR improves to 1–2% at position 6). But that requires content authority and backlinks, not just title rewrites. The title fix gets you +0.3→0.5%, but you need backlinks to move positions.</div>
+  <div class="insight good">Short term (this week): Title/description rewrites should 2–3× your CTR on existing keywords. Long term (next 60 days): Build topical authority with 2–3 new blog posts around "online clipboard comparison", "clipboard sync for remote teams", "pushbullet alternative" — these create internal link clusters and attract backlinks, which improve position.</div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">Action checklist — do this TODAY</div>
+  <div class="card">
+    <div style="font-size:13px;color:var(--color-text-primary);line-height:1.7;">
+      <div style="padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);">
+        <strong>☐ Step 1</strong>: Check Bing Webmaster Tools → Keyword Report. Filter by "online clipboard". See which page(s) are ranking for this keyword. If it's not your homepage, create a redirect or consolidate content.
+      </div>
+      <div style="padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);">
+        <strong>☐ Step 2</strong>: Update your homepage title tag to include "online clipboard sync". Deploy.
+      </div>
+      <div style="padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);">
+        <strong>☐ Step 3</strong>: Update meta description to lead with outcome ("Copy on one device, paste on another instantly"). Deploy.
+      </div>
+      <div style="padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);">
+        <strong>☐ Step 4</strong>: Update H1 to "Free Online Clipboard Sync — Share Text Between Devices Instantly". Deploy.
+      </div>
+      <div style="padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);">
+        <strong>☐ Step 5</strong>: Submit updated pages via IndexNow in Bing Webmaster Tools (instant re-crawl).
+      </div>
+      <div style="padding:10px 0;">
+        <strong>☐ Step 6</strong>: After 7 days, check Bing Keyword Report again. Watch CTR on "online clipboard" keyword. Should improve from 0.11% → 0.5–1% within 2 weeks.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">Expected impact — conservative estimate</div>
+  <div class="card">
+    <table class="matrix">
+      <tr>
+        <th>Metric</th>
+        <th>Current</th>
+        <th>After title/desc fix (2 weeks)</th>
+        <th>With backlinks (60 days)</th>
+      </tr>
+      <tr>
+        <td>"online clipboard" impressions</td>
+        <td>934</td>
+        <td>950–1000 (Bing keeps showing you)</td>
+        <td>1200+ (position improves)</td>
+      </tr>
+      <tr>
+        <td>"online clipboard" CTR</td>
+        <td>0.11%</td>
+        <td>0.5–0.8% (title/desc match intent)</td>
+        <td>1.5–2% (better position + title)</td>
+      </tr>
+      <tr>
+        <td>Clicks from this keyword</td>
+        <td>1</td>
+        <td>5–8 per week</td>
+        <td>15–20 per week</td>
+      </tr>
+      <tr>
+        <td>Total Bing clicks/week</td>
+        <td>~1–2</td>
+        <td>10–15</td>
+        <td>30–50 (with other keywords too)</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</div>

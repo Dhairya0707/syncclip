@@ -3,8 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "How to Copy Text from Android to Mac (Without Apps in 2026)",
-  description: "Learn the absolute fastest way to copy text from an Android phone to a Mac computer in 2026 without installing background apps or creating accounts.",
+  title: "Copy Text from Android to Mac Instantly — No Cable, No App, No Bluetooth Required",
+  description: "Fast method to transfer text from Android to Mac. No USB, no Bluetooth, no extra setup. Just share a link and paste.",
   keywords: ["copy text android to mac", "android to mac clipboard", "share text android to mac", "online clipboard android mac", "universal clipboard alternative"],
   alternates: {
     canonical: "https://syncclip.in/blog/how-to-copy-text-from-android-to-mac",
@@ -12,8 +12,35 @@ export const metadata: Metadata = {
 };
 
 export default function BlogAndroidToMac() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How can I copy text from Android to Mac without apps?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can use an online web-native clipboard like SyncClip. Simply open syncclip.in on both browsers, connect via a 6-character room code, and sync your clipboard in real-time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why doesn't Apple's Universal Clipboard work on Android?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Apple's Universal Clipboard is restricted to Apple's native hardware ecosystem and requires all devices to be signed into the same iCloud account."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* NAV */}
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>

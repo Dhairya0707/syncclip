@@ -113,3 +113,28 @@
 ### Backlinks
 * **AlternativeTo**: Submit as a free alternative to existing clipboard tools. `[backlink]`
 * **GitHub**: Update README with the live URL and demo GIF. `[backlink]`
+
+---
+
+## Phase 7: SEO/AEO/GEO Optimization (May 21, 2026)
+*Focus: AI citation (GEO), snippet CTR correction, and bounce rate diagnosis.*
+
+### Analytics & Retention
+* **Bounce Rate Investigation**: Investigate homepage bounce rate spike (59%) and verify `REDIRECT_NUDGE_ENABLED` configuration. `[analytics]`
+* **Nepal Referral Search**: Filter Vercel Analytics by region to isolate and target the active Nepal referral source. `[referrals]`
+* **Event Tracking (Flag F)**: Implement `va.track()` custom events for room creation and visitor conversion metrics. `[tracking]`
+
+### CTR Optimization (Broken Page Snippets)
+* **Guide Snippet**: Rewrite title and meta description for `/clipboard-sync-guide`. `[snippet]`
+* **Competitor Blog Snippet**: Rewrite title and meta description for `/blog/go-online-tools-clipboard-alternative`. `[snippet]`
+* **Pushbullet Alternatives Snippet**: Rewrite title and meta description for `/blog/pushbullet-alternatives-2026`. `[snippet]`
+* **Ecosystem Sync Snippet**: Rewrite title and meta description for `/blog/how-to-copy-text-from-android-to-mac`. `[snippet]`
+
+### Structured Data (AEO & LLM Grounding)
+* **FAQ Schema Scaling**: Deploy/update FAQPage JSON-LD block on homepage, guide, competitor comparison, and Pushbullet pages. `[schema]`
+* **Quick Answer Blocks**: Embed a 50-60 word editorial quick-answer block at the top of all 12+ blog posts. `[content]`
+* **Social Proof Expansion**: Update homepage stats and trust badge to say "Used in 50+ countries". `[copy]`
+
+### Content Expansion (AI Prompt Patterns)
+* **Link-Sharing Blog Post**: Write and index "How to copy and paste online between two devices using a link". `[blog]`
+* **Auto-Sync Blog Post**: Write and index "What is the best online clipboard that syncs automatically in real time?". `[blog]`

@@ -12,8 +12,35 @@ export const metadata: Metadata = {
 };
 
 export default function UniversalClipboardBlog() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does Apple's Universal Clipboard differ from SyncClip?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Apple's Universal Clipboard works natively within the Apple ecosystem (Mac, iPhone, iPad) using iCloud and Bluetooth. SyncClip works across all operating systems, including Android and Windows, using a secure browser-based WebSocket bridge."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need Bluetooth or Wi-Fi to sync clipboard with SyncClip?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, SyncClip does not require Bluetooth or local Wi-Fi pairing. It runs over the internet using WebSockets, allowing you to sync devices on different networks seamlessly."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">

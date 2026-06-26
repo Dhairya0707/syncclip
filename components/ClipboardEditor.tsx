@@ -6,6 +6,12 @@ import { api } from "../convex/_generated/api";
 import { debounce } from "../utils/debounce";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { track } from "../utils/analytics";
+import { isExperimentEnabled } from "../utils/experiments";
+import { sendError, sendInfo } from "../utils/discord";
+import SecondDeviceCTA from "./SecondDeviceCTA";
+import PWAInstallPrompt from "./PWAInstallPrompt";
+import { getRandomCopyBlock, CopyBlock } from "../utils/headlines";
 
 export default function ClipboardEditor({ session }: { session: any }) {
   const update = useMutation(api.sessions.updateText);
@@ -54,6 +60,61 @@ export default function ClipboardEditor({ session }: { session: any }) {
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [activeInfo, setActiveInfo] = useState<string | null>(null);
   const lastDownloadedRef = useRef<number>(0);
+  const firstKeystrokeTracked = useRef(false);
+  const secondDeviceTracked = useRef(false);
+  const qrTracked = useRef(false);
+  const [copyBlock, setCopyBlock] = useState<CopyBlock | null>(null);
+
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+  const feedbackEnabled = isExperimentEnabled("FEEDBACK_CAMPAIGN_ENABLED");
+  const modalTrackedRef = useRef(false);
+
+  const incrementInteractions = useCallback(() => {
+    if (!feedbackEnabled || localStorage.getItem("syncclip_feedback_done") === "true") return;
+    if (typeof window !== "undefined" && sessionStorage.getItem("syncclip_feedback_session_closed") === "true") return;
+    const count = parseInt(localStorage.getItem("syncclip_interactions") || "0", 10) + 1;
+    localStorage.setItem("syncclip_interactions", count.toString());
+    if (count >= 5) {
+      setShowFeedbackModal(true);
+    }
+  }, [feedbackEnabled]);
+
+  function handleDismissFeedback() {
+    localStorage.setItem("syncclip_feedback_done", "true");
+    setShowFeedbackModal(false);
+    track("feedback_popup_dismissed", { timestamp: new Date().toISOString() });
+    showToast("Feedback dismissed");
+  }
+
+  function handleCloseFeedback() {
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("syncclip_feedback_session_closed", "true");
+    }
+    setShowFeedbackModal(false);
+    track("feedback_popup_closed", { timestamp: new Date().toISOString() });
+  }
+
+  function handleFeedbackClick() {
+    track("feedback_popup_clicked", { timestamp: new Date().toISOString() });
+    router.push(`/feedback?code=${session.code}`);
+  }
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !feedbackEnabled) return;
+    const feedbackDone = localStorage.getItem("syncclip_feedback_done") === "true";
+    const sessionClosed = sessionStorage.getItem("syncclip_feedback_session_closed") === "true";
+    const interactions = parseInt(localStorage.getItem("syncclip_interactions") || "0", 10);
+    if (!feedbackDone && !sessionClosed && interactions >= 1) {
+      setShowFeedbackModal(true);
+    }
+  }, [feedbackEnabled]);
+
+  useEffect(() => {
+    if (showFeedbackModal && !modalTrackedRef.current) {
+      track("feedback_popup_shown", { timestamp: new Date().toISOString() });
+      modalTrackedRef.current = true;
+    }
+  }, [showFeedbackModal]);
 
   const getBaseUrl = () => {
     if (typeof window !== "undefined") {
@@ -94,7 +155,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
     setTimeout(() => setToast(null), 3000);
   };
 
-  // Initialize Name from localStorage or suggest one
+  // Initialize Name and Headline
   useEffect(() => {
     const savedName = localStorage.getItem("syncclip_user_name");
     if (savedName) {
@@ -103,7 +164,30 @@ export default function ClipboardEditor({ session }: { session: any }) {
     } else {
       setSuggestedName(generateRandomName());
     }
-  }, [generateRandomName]);
+
+    if (isExperimentEnabled("ROTATING_HEADLINES_ENABLED")) {
+      setCopyBlock(getRandomCopyBlock());
+    }
+
+    // Auto-show QR modal on first entry if alone
+    const hasSeenQR = sessionStorage.getItem(`syncclip_qr_shown_${session.code}`);
+    if (presence?.length === 1 && !hasSeenQR) {
+      setShowQRModal(true);
+      sessionStorage.setItem(`syncclip_qr_shown_${session.code}`, "true");
+      // Tracking will be handled by the useEffect watching showQRModal
+    }
+  }, [generateRandomName, presence?.length, session.code]);
+
+
+  // Track QR View (Once per modal show)
+  useEffect(() => {
+    if (showQRModal && !qrTracked.current) {
+      track("qr_viewed", { timestamp: new Date().toISOString() });
+      qrTracked.current = true;
+    } else if (!showQRModal) {
+      qrTracked.current = false; // Reset when closed so it tracks on next open
+    }
+  }, [showQRModal]);
 
   // Presence Heartbeat (with Visibility Throttling)
   useEffect(() => {
@@ -115,6 +199,11 @@ export default function ClipboardEditor({ session }: { session: any }) {
         sessionId: session._id,
         name: userName,
         nodeId: nodeId,
+      }).catch((err) => {
+        sendError("Presence heartbeat failed", err instanceof Error ? err.message : String(err), {
+          nodeId,
+          sessionId: session.code,
+        });
       });
     };
 
@@ -175,6 +264,19 @@ export default function ClipboardEditor({ session }: { session: any }) {
   const isLocked = session.isLocked;
   const canEdit = !isLocked || isOwner;
 
+  // Track when second device joins
+  useEffect(() => {
+    if (presence && presence.length > 1) {
+      if (!secondDeviceTracked.current) {
+        track("second_device_joined", {
+          deviceCount: presence.length,
+          timestamp: new Date().toISOString(),
+        });
+        secondDeviceTracked.current = true;
+      }
+    }
+  }, [presence]);
+
   // Command Palette Listener
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -194,9 +296,16 @@ export default function ClipboardEditor({ session }: { session: any }) {
   useEffect(() => {
     if (session.isBurnMode && !isOwner && text !== "") {
       const tm = setTimeout(() => {
-        burnMutation({ id: session._id }).then(() => {
-          showToast("🔥 Data wiped! Burn protocol complete.");
-        });
+        burnMutation({ id: session._id })
+          .then(() => {
+            showToast("🔥 Data wiped! Burn protocol complete.");
+          })
+          .catch((err) => {
+            sendError("Burn execution failed", err instanceof Error ? err.message : String(err), {
+              sessionId: session.code,
+              nodeId,
+            });
+          });
       }, 5000);
       return () => clearTimeout(tm);
     }
@@ -222,10 +331,17 @@ export default function ClipboardEditor({ session }: { session: any }) {
 
             setText(localText);
             setIsSyncing(true);
-            update({ id: session._id, text: localText, callerNodeId: nodeId }).finally(() => {
-              setIsSyncing(false);
-              showToast("Local Clipboard Uploaded to Cloud");
-            });
+            update({ id: session._id, text: localText, callerNodeId: nodeId })
+              .catch((err) => {
+                sendError("Auto-read clipboard sync failed", err instanceof Error ? err.message : String(err), {
+                  nodeId,
+                  sessionId: session.code,
+                });
+              })
+              .finally(() => {
+                setIsSyncing(false);
+                showToast("Local Clipboard Uploaded to Cloud");
+              });
           }
         }
       } catch (err) {
@@ -250,15 +366,35 @@ export default function ClipboardEditor({ session }: { session: any }) {
     debounce((newText: string) => {
       if (!canEdit) return;
       setIsSyncing(true);
-      update({ id: session._id, text: newText, callerNodeId: nodeId }).finally(() => {
-        setIsSyncing(false);
-      });
+      update({ id: session._id, text: newText, callerNodeId: nodeId })
+        .then(() => {
+          incrementInteractions();
+        })
+        .catch((err) => {
+          sendError("Text sync failed", err instanceof Error ? err.message : String(err), {
+            nodeId,
+            sessionId: session.code,
+            textLength: newText.length,
+          });
+        })
+        .finally(() => {
+          setIsSyncing(false);
+        });
     }, 500),
-    [update, session._id, nodeId, canEdit]
+    [update, session._id, nodeId, canEdit, incrementInteractions]
   );
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value;
+    
+    // Experiment Flag F: Track first keystroke
+    if (!firstKeystrokeTracked.current && value.length > 0) {
+      track("first_keystroke", { timestamp: new Date().toISOString() });
+      firstKeystrokeTracked.current = true;
+      // Dispatch custom event for PWA nudge (Part D)
+      window.dispatchEvent(new Event('first_keystroke'));
+    }
+
     setText(value);
     debouncedUpdate(value);
   }
@@ -269,6 +405,8 @@ export default function ClipboardEditor({ session }: { session: any }) {
       const fullUrl = `${getBaseUrl()}/${session.code}`;
       navigator.clipboard.writeText(fullUrl);
       showToast("Link copied to clipboard");
+      track("link_shared", { timestamp: new Date().toISOString() });
+      incrementInteractions();
     }
   }
 
@@ -276,6 +414,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
     if (!canEdit) return;
     setIsSyncing(true);
     setText("");
+    track("node_cleared", { text_length: text.length, timestamp: new Date().toISOString() });
     update({ id: session._id, text: "", saveToHistory: true, callerNodeId: nodeId }).finally(() => {
       setIsSyncing(false);
       showToast("Node cleared & saved to history");
@@ -285,37 +424,81 @@ export default function ClipboardEditor({ session }: { session: any }) {
   function handleForceSync() {
     if (!canEdit) return;
     setIsSyncing(true);
-    update({ id: session._id, text, saveToHistory: true, callerNodeId: nodeId }).finally(() => {
-      setIsSyncing(false);
-      showToast("Force synced & saved to history");
-    });
+    update({ id: session._id, text, saveToHistory: true, callerNodeId: nodeId })
+      .then(() => {
+        incrementInteractions();
+      })
+      .finally(() => {
+        setIsSyncing(false);
+        showToast("Force synced & saved to history");
+      });
   }
 
   function handleRestore(idx: number) {
     if (!canEdit) return;
-    restoreHistory({ id: session._id, index: idx, callerNodeId: nodeId });
-    setIsSidebarOpen(false); // Close drawer on mobile
+    track("history_restored", { history_index: idx, timestamp: new Date().toISOString() });
+    restoreHistory({ id: session._id, index: idx, callerNodeId: nodeId }).catch((err) => {
+      sendError("History restore failed", err instanceof Error ? err.message : String(err), {
+        nodeId,
+        sessionId: session.code,
+        historyIndex: idx,
+      });
+    });
+    setIsSidebarOpen(false);
   }
 
   function handleToggleLock() {
     if (!isOwner) return;
-    toggleLockMutation({ id: session._id, callerNodeId: nodeId, isLocked: !isLocked }).then(() => {
-      showToast(`Node ${!isLocked ? "Locked" : "Unlocked"}`);
-    });
+    const newLockedState = !isLocked;
+    track("session_locked", { locked: newLockedState, timestamp: new Date().toISOString() });
+    toggleLockMutation({ id: session._id, callerNodeId: nodeId, isLocked: newLockedState })
+      .then(() => {
+        showToast(`Node ${newLockedState ? "Locked" : "Unlocked"}`);
+      })
+      .catch((err) => {
+        sendError("Toggle lock failed", err instanceof Error ? err.message : String(err), {
+          nodeId,
+          sessionId: session.code,
+          newLockedState,
+        });
+      });
   }
 
   function handleToggleBurn() {
     if (!isOwner) return;
-    toggleBurnMutation({ id: session._id, callerNodeId: nodeId, isBurnMode: !session.isBurnMode }).then(() => {
-      showToast(`Burn Protocol ${!session.isBurnMode ? "ARMED" : "DISARMED"}`);
-    });
+    const newBurnState = !session.isBurnMode;
+    track("burn_mode_toggled", { armed: newBurnState, timestamp: new Date().toISOString() });
+    toggleBurnMutation({ id: session._id, callerNodeId: nodeId, isBurnMode: newBurnState })
+      .then(() => {
+        showToast(`Burn Protocol ${newBurnState ? "ARMED" : "DISARMED"}`);
+        if (newBurnState) {
+          sendInfo("Burn Mode Armed", [
+            { name: "Session", value: `\`${session.code}\``, inline: true },
+            { name: "Node", value: `\`${nodeId}\``, inline: true },
+          ], { sessionId: session.code, nodeId });
+        }
+      })
+      .catch((err) => {
+        sendError("Toggle burn mode failed", err instanceof Error ? err.message : String(err), {
+          nodeId,
+          sessionId: session.code,
+        });
+      });
   }
 
   async function handleDeleteSession() {
     if (!isOwner) return;
     if (confirm("🚨 WARNING: This cluster and its archival history will be permanently deleted. Proceed?")) {
-      await deleteSessionMutation({ id: session._id, callerNodeId: nodeId });
-      router.push("/");
+      track("session_deleted", { timestamp: new Date().toISOString() });
+      try {
+        await deleteSessionMutation({ id: session._id, callerNodeId: nodeId });
+        router.push("/");
+      } catch (err) {
+        sendError("Delete session failed", err instanceof Error ? err.message : String(err), {
+          nodeId,
+          sessionId: session.code,
+        });
+      }
     }
   }
 
@@ -389,6 +572,53 @@ export default function ClipboardEditor({ session }: { session: any }) {
         </div>
       )}
 
+      {/* Feedback Pop-up Modal */}
+      {showFeedbackModal && (
+        <div className="fixed inset-0 bg-black/80 z-[250] flex items-center justify-center p-6 backdrop-blur-xs animate-fade-in" role="dialog" aria-labelledby="feedback-popup-heading">
+          <div className="bg-yellow-300 text-black border-4 border-black p-8 max-w-md w-full shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] relative flex flex-col gap-6" onClick={e => e.stopPropagation()}>
+            {/* Close button X */}
+            <button 
+              onClick={handleCloseFeedback} 
+              aria-label="Close modal"
+              className="absolute top-4 right-4 text-black hover:text-secondary font-bold font-mono text-sm cursor-pointer"
+            >
+              ✕
+            </button>
+
+            <div className="font-mono text-[9px] tracking-[0.25em] text-yellow-300 bg-black px-2.5 py-1 uppercase font-bold inline-block self-start">
+              ⚡ POWER USER STATUS
+            </div>
+
+            <h3 id="feedback-popup-heading" className="font-headline text-3xl font-black uppercase tracking-tight leading-none text-black">
+              THANK YOU, OPERATOR.
+            </h3>
+
+            <p className="font-body text-sm leading-relaxed font-bold text-zinc-900">
+              We noticed you’ve been using SyncClip quite a bit — thank you so much! Since you’re officially one of our active power users, we’d love your help deciding what features to build next.
+            </p>
+
+            <p className="font-body text-xs italic text-zinc-700">
+              Could you spare 45 seconds to share your feedback?
+            </p>
+
+            <div className="flex flex-col gap-3 mt-2">
+              <button
+                onClick={handleFeedbackClick}
+                className="bg-black text-white font-label font-bold py-4 uppercase tracking-widest text-sm hover:bg-secondary transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"
+              >
+                Share Feedback ⚡
+              </button>
+              <button
+                onClick={handleDismissFeedback}
+                className="font-mono text-[10px] uppercase text-zinc-600 hover:text-black tracking-widest font-bold self-center py-2"
+              >
+                No thanks, dismiss
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Command Palette Overlay */}
       {isPaletteOpen && (
         <div className="fixed inset-0 bg-black/80 z-[200] flex items-start justify-center pt-32 p-6 backdrop-blur-sm" onClick={() => setIsPaletteOpen(false)}>
@@ -454,7 +684,9 @@ export default function ClipboardEditor({ session }: { session: any }) {
                     if (cmd.id === 'clear') handleClearNode();
                     if (cmd.id === 'copy') { navigator.clipboard.writeText(text); showToast("Copied"); }
                     if (cmd.id === 'lock') handleToggleLock();
-                    if (cmd.id === 'pair') setShowQRModal(true);
+                    if (cmd.id === 'pair') {
+                      setShowQRModal(true);
+                    }
                     if (cmd.id === 'burn') handleToggleBurn();
                     if (cmd.id === 'sync') handleForceSync();
                   }}
@@ -545,7 +777,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
             </h1>
             {/* </Link> */}
             <div className="font-mono text-xs tracking-[0.2em] mt-2 text-on-surface-variant uppercase flex items-center gap-3">
-              DIGITAL BROADSHEET PROTOCOL V4.2
+              {copyBlock?.brandPrompt || "DIGITAL BROADSHEET PROTOCOL V4.2"}
               <span className="text-black inline-block px-2 border border-black text-[9px]">NODE_{session.code}</span>
             </div>
           </div>
@@ -560,6 +792,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
         <div className="editorial-grid flex-grow min-h-[calc(100vh-350px)]">
           {/* Left Column: Primary Interaction */}
           <div className="p-6 border-r border-black flex flex-col">
+            
             <div className="mb-4 flex flex-col sm:flex-row justify-between items-baseline sm:items-center gap-2">
               <div className="font-mono text-xs font-bold tracking-[0.3em] text-secondary uppercase flex items-center gap-2 flex-wrap">
                 <span className={`w-2 h-2 rounded-full ${isOnline ? "bg-secondary animate-pulse" : "bg-zinc-400"} block`}></span>
@@ -588,7 +821,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
                 maxLength={100000}
                 readOnly={!canEdit}
                 className={`w-full h-full min-h-[300px] flex-grow p-6 md:p-10 font-body text-xl md:text-2xl leading-relaxed border ${!canEdit ? 'border-zinc-300 bg-zinc-50 text-zinc-500 cursor-not-allowed' : 'border-black focus:border-secondary'} focus:outline-none focus:ring-0 transition-all resize-none placeholder:text-zinc-300`}
-                placeholder={canEdit ? "Your text here. Or your cat's walking on the keyboard. Both are fine." : "This node is locked. No entry for you."}
+                placeholder={canEdit ? (copyBlock?.hook || "Awaiting your next masterpiece...") : "This node is locked. No entry for you."}
                 value={text}
                 onChange={handleChange}
               />
@@ -636,6 +869,8 @@ export default function ClipboardEditor({ session }: { session: any }) {
                   onClick={() => {
                     navigator.clipboard.writeText(text);
                     showToast("Copied to clipboard");
+                    track("text_copied", { text_length: text.length, timestamp: new Date().toISOString() });
+                    incrementInteractions();
                   }}
                   aria-label="Copy session text"
                   className="bg-white text-black font-label font-bold py-6 px-2 border-2 border-black hover:bg-secondary hover:text-white hover:border-secondary transition-all uppercase tracking-widest text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] flex items-center justify-center gap-2"
@@ -649,7 +884,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
                   className="bg-white text-black font-label font-bold py-6 px-2 border-2 border-black hover:bg-secondary hover:text-white hover:border-secondary transition-all uppercase tracking-widest text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] flex items-center justify-center gap-2"
                 >
                   <span className="material-symbols-outlined text-[18px]">share</span>
-                  Share
+                  CONNECT
                 </button>
                 <button
                   onClick={() => setIsSettingsModalOpen(true)}
@@ -731,7 +966,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
                     >
                       <span className="flex items-center gap-3">
                         <span className="material-symbols-outlined">share</span>
-                        Share Protocol
+                        Connect Node
                       </span>
                       <span className="material-symbols-outlined text-[18px]">chevron_right</span>
                     </button>
@@ -1058,6 +1293,9 @@ export default function ClipboardEditor({ session }: { session: any }) {
               </section>
             </div>
           </aside>
+
+          {/* PWA Nudge (Part D) */}
+          <PWAInstallPrompt />
         </div>
       </main>
 

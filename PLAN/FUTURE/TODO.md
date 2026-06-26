@@ -1,0 +1,135 @@
+# Task: Implement Experiment Flags (Phase 1)
+
+## Objectives
+- [x] Create centralized experiment configuration
+- [x] Implement Vercel Analytics event tracking
+- [x] Add Redirect Nudge Bar to Homepage
+    - [x] Added `localStorage` limit: Auto-redirect only happens once per day per user.
+    - [x] **ESC Persistence**: Dismissing the bar via ESC now also triggers the 24h cooldown.
+    - [x] **Deferred Rendering**: Bar only appears after client-side mount to prevent hydration flashes.
+    - [x] **Production Grade**: Added resilience for malformed/tampered storage data.
+- [x] Add Second Device CTA to Room View (Refined: Replaced with auto-popup QR)
+- [x] Implement PWA Install Prompt
+- [x] Add Rotating Headlines to Room View (Refined: Integrated into actual session text)
+- [x] Refactor Headlines to Structured "Copy Blocks" (Hook, CTA, Brand Prompt)
+- [x] Fix React Hook Violations in experiment components.
+- [x] Stabilize useEffect dependencies to prevent "changed size" errors.
+- [x] Force sync Convex validators for `initialText`.
+- [x] **Custom Convex Analytics**: Completely removed PostHog. Built lightweight Convex-based event logging system.
+- [x] **Documentation**: Added [ANALYTICS_DOC.md](./ANALYTICS_DOC.md) and detailed Experiment Map to `Claude.md`.
+
+## Constraints
+- Follow "High-Density Editorial Brutalism" design language.
+- Zero impact on core logic (additive/modular).
+- Maintain 100% type safety.
+- No rounded corners, no shadows.
+
+## Progress Log
+- [2026-05-06] Initializing task and researching existing codebase.
+- [2026-05-06] Completed implementation of all experiment flags.
+- [2026-05-06] UI Refinement: Banner removed, auto-popup QR added, CONNECT buttons renamed.
+- [2026-05-06] Fixed Headline Persistence: Integrated random headlines into room creation.
+- [2026-05-06] Stability Fix: Resolved React Hook violations and Convex sync issues.
+- [2026-05-06] Feature Polish: Limited auto-redirect to once per day using `localStorage`.
+- [2026-05-06] Hardened storage logic: Added validation and try-catch for production resilience.
+- [2026-05-06] Documentation: Detailed flag/event mapping completed in `Claude.md`.
+- [2026-05-06] **Analytics Pivot**: PostHog removed due to complexity; custom Convex analytics system deployed.
+
+---
+
+# Task: SEO, AEO, and GEO Scaling Plan (Phase 2) - May 21, 2026
+
+## Objectives
+- [x] Investigate homepage bounce rate spike (59%) and confirm no rogue redirects
+- [x] Fix titles and metas for 4 broken page snippets:
+  - [x] `/clipboard-sync-guide`
+  - [x] `/blog/go-online-tools-clipboard-alternative`
+  - [x] `/blog/pushbullet-alternatives-2026`
+  - [x] `/blog/how-to-copy-text-from-android-to-mac`
+- [x] Add/update FAQPage JSON-LD schema on:
+  - [x] Homepage (`app/page.tsx`)
+  - [x] `/clipboard-sync-guide`
+  - [x] `/blog/go-online-tools-clipboard-alternative`
+  - [x] `/pushbullet-alternative`
+- [x] Add 50-60 word "Quick Answer" box at the top of all blog posts
+- [ ] Investigate Vercel Analytics referral source for Nepal traffic (29% CTR)
+- [x] Write 2 new AI-intent blog posts:
+  - [x] *"How to copy and paste online between two devices using a link"*
+  - [x] *"What is the best online clipboard that syncs automatically in real time?"*
+- [x] Update homepage hero pulse-badge and trust line to "Used in 50+ countries"
+- [x] Implement event tracking (Flag F) using Vercel Analytics custom events
+
+## Progress Log
+- [2026-05-21] Analyzed May 21 trajectory, initialized Phase 2 plan, and synchronized memory files (`CLAUDE.md`, `Tasl.md`, `Claude.md`, `TODO.md`).
+- [2026-05-21] Verified REDIRECT_NUDGE_ENABLED is false to fix bounce rate.
+- [2026-05-21] Rewrote metadata/snippets for 4 underperforming pages.
+- [2026-05-21] Injected robust FAQPage schemas into 4 key pages.
+- [2026-05-21] Scripted and deployed Quick Answer AEO nodes to 8 existing blog posts.
+- [2026-05-21] Published 2 new AI-intent blog posts focusing on link sharing and automatic sync.
+- [2026-05-21] Updated homepage copy and integrated Vercel Analytics event tracking.
+- [2026-05-21] Built project via `npm run build` and forced re-indexing via `indexnow.js`.
+
+---
+
+# Task: Phase 3 Aggressive SEO Snippet Fix & Content Expansion (May 22, 2026)
+
+## Objectives
+- [x] Update title & meta description snippet on GoOnlineTools Alternative page
+- [x] Update title snippet on Clipboard Sync Guide page
+- [x] Write 4 new high-ROI blog posts targeting:
+  - [x] Android/Windows sharing without WhatsApp or cable
+  - [x] Online clipboard no-install search intents
+  - [x] Cross-device clipboard sync for developers
+  - [x] GoOnlineTools down/slow alternatives
+- [x] Register new URLs in sitemap generator
+- [x] Add new entries to static blog index lists
+- [x] Submit updated url roster to IndexNow
+
+## Progress Log
+- [2026-05-22] Completed Phase 3 content creation, metadata adjustments, index integration, and successfully pinged indexing services.
+
+---
+
+# Task: Analytics Overhaul & Discord Integration (Phase 4) — June 8, 2026
+
+## Objectives
+- [x] Add `node_profiles` table to schema for caching node firstSeen/lastSeen
+- [x] Update `logEvent` to upsert node_profiles on every event
+- [x] Add `getDailyDigest` query — today's active nodes, retention, sessions, multi-device rooms, events, device split
+- [x] Add `getRetention` query — weekly cohort retention matrix (first seen week → return rate)
+- [x] Create `utils/discord.ts` — client-side Discord webhook sender (error/warn/info)
+- [x] Add try/catch + Discord error reporting to all 8 mutation calls in ClipboardEditor.tsx
+- [x] Add Discord error reporting to session creation failure in page.tsx
+- [x] Create `convex/discord.ts` — `sendDailyDigest` action + `sendTest` verification action
+- [x] Add daily digest cron to `convex/crons.ts` (08:00 UTC)
+- [x] Document webhook env vars in `.env.local`
+- [x] Verify clean TypeScript compilation
+
+## Env Vars Required
+- `NEXT_PUBLIC_DISCORD_WEBHOOK` — Vercel env var for client-side error/event alerts
+- `DISCORD_DIGEST_WEBHOOK` — Convex env var for daily digest (`npx convex env set DISCORD_DIGEST_WEBHOOK <url>`)
+
+## Architecture
+```
+Errors/Events → Client catch blocks → fetch() → Discord #errors channel
+Daily Digest  → Convex cron (08:00 UTC) → action → Discord #daily-ops channel
+```
+
+## Files Created
+- `convex/discord.ts` — server-side daily digest action
+- `utils/discord.ts` — client-side webhook sender
+
+## Files Modified
+- `convex/schema.ts` — added node_profiles table
+- `convex/analytics.ts` — logEvent upsert + getDailyDigest + getRetention queries
+- `convex/crons.ts` — added daily digest cron
+- `components/ClipboardEditor.tsx` — Discord error handling on all mutations
+- `app/page.tsx` — Discord error on session creation failure
+- `.env.local` — webhook env var docs
+
+## Progress Log
+- [2026-06-08] Built analytics foundation (node_profiles, retention queries, daily digest query)
+- [2026-06-08] Built client-side Discord error sender + wired into all mutation catch blocks
+- [2026-06-08] Built server-side daily digest action + cron
+- [2026-06-08] Verified clean build with `npx convex codegen` and `npx tsc --noEmit`
+- [2026-06-08] Documented in CLAUDE.md, Claude.md, TODO.md
