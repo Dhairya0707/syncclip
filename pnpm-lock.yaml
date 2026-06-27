@@ -23,6 +23,9 @@ importers:
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
+      tinyconfig-sdk:
+        specifier: ^0.1.0
+        version: 0.1.0
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4
@@ -2025,6 +2028,10 @@ packages:
   tapable@2.3.2:
     resolution: {integrity: sha512-1MOpMXuhGzGL5TTCZFItxCc0AARf1EZFQkGqMm7ERKj8+Hgr5oLvJOVFcC+lRmR8hCe2S3jC4T5D7Vg/d7/fhA==}
     engines: {node: '>=6'}
+
+  tinyconfig-sdk@0.1.0:
+    resolution: {integrity: sha512-dVzmlU2keachvYeEzUqrKJcel49lO6mIsL+1FlZmk3jHQmd1Y5Sjq4RPn5P9oDd3zaibOmFjoTBfzvRO7zFXXQ==}
+    engines: {node: '>=18'}
 
   tinyglobby@0.2.16:
     resolution: {integrity: sha512-pn99VhoACYR8nFHhxqix+uvsbXineAasWm5ojXoN8xEwK5Kd3/TrhNn1wByuD52UxWRLy8pu+kRMniEi6Eq9Zg==}
@@ -4217,6 +4224,8 @@ snapshots:
   tailwindcss@4.2.2: {}
 
   tapable@2.3.2: {}
+
+  tinyconfig-sdk@0.1.0: {}
 
   tinyglobby@0.2.16:
     dependencies:

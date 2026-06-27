@@ -1,6 +1,6 @@
 'use client';
 
-import { isExperimentEnabled } from '@/utils/experiments';
+import { useExperiment } from '@/utils/experiments';
 import { CopyBlock } from '@/utils/headlines';
 
 interface SecondDeviceCTAProps {
@@ -20,8 +20,15 @@ export default function SecondDeviceCTA({
   copyBlock,
   onClose
 }: SecondDeviceCTAProps) {
+  const isEnabled = useExperiment('FORCE_SECOND_DEVICE_ENABLED');
+
   // Don't render if flag is off
-  if (!isExperimentEnabled('FORCE_SECOND_DEVICE_ENABLED')) {
+  if (!isEnabled) {
+    return null;
+  }
+
+  // Hide on mobile screens since they can't scan their own screen
+  if (typeof window !== 'undefined' && window.innerWidth < 768) {
     return null;
   }
 
@@ -31,7 +38,7 @@ export default function SecondDeviceCTA({
   }
 
   return (
-    <div className="border-2 border-black bg-white mb-8 flex flex-col md:flex-row items-stretch animate-in fade-in slide-in-from-top duration-500">
+    <div className="border-2 border-black bg-white mb-8 flex flex-col md:flex-row items-stretch flex-shrink-0 animate-in fade-in slide-in-from-top duration-500">
       <div className="flex-grow p-6 flex flex-col justify-center border-b-2 md:border-b-0 md:border-r-2 border-black">
         <div className="font-mono text-[10px] tracking-[0.3em] text-secondary uppercase mb-2">
           {copyBlock?.brandPrompt || "Multi-Device Protocol"}

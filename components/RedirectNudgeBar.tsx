@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { isExperimentEnabled } from '@/utils/experiments';
+import { useExperiment } from '@/utils/experiments';
 import { getRandomCopyBlock } from '@/utils/headlines';
 import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
@@ -20,7 +20,8 @@ export default function RedirectNudgeBar() {
   const router = useRouter();
   const createSession = useMutation(api.sessions.createSession);
 
-  const isEnabled = isExperimentEnabled('REDIRECT_NUDGE_ENABLED');
+  const isEnabled = useExperiment('REDIRECT_NUDGE_ENABLED');
+  const isRotatingHeadlinesEnabled = useExperiment('ROTATING_HEADLINES_ENABLED');
 
   useEffect(() => {
     try {
@@ -80,7 +81,7 @@ export default function RedirectNudgeBar() {
         nodeId = `NODE-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
         localStorage.setItem("syncclip_node_id", nodeId);
       }
-      const initialCopy = isExperimentEnabled("ROTATING_HEADLINES_ENABLED") 
+      const initialCopy = isRotatingHeadlinesEnabled 
         ? getRandomCopyBlock().hook 
         : "";
 

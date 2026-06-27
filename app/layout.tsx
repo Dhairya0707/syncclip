@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ConvexClientProvider from "./ConvexClientProvider";
 import Script from "next/script";
+import { ExperimentsProvider } from "@/utils/experiments";
+
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://syncclip.in'),
@@ -75,16 +77,7 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
           rel="stylesheet"
-          media="print"
-          // @ts-ignore
-          onLoad="this.media='all'"
         />
-        <noscript>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-            rel="stylesheet"
-          />
-        </noscript>
 
         {/* Material Symbols — synchronously loaded so icons render immediately on first paint */}
         <link
@@ -100,9 +93,10 @@ export default function RootLayout({
       </head>
       <body className="font-body selection:bg-secondary selection:text-white">
         <ConvexClientProvider>
-          {children}
-          <Analytics />
-        
+          <ExperimentsProvider>
+            {children}
+            <Analytics />
+          </ExperimentsProvider>
         </ConvexClientProvider>
       </body>
     </html>

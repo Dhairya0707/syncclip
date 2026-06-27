@@ -5,7 +5,7 @@ import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { useRouter } from "next/navigation";
 import { track } from "../utils/analytics";
-import { isExperimentEnabled } from "../utils/experiments";
+import { useExperiment } from "../utils/experiments";
 import { getRandomCopyBlock } from "../utils/headlines";
 import { sendError } from "../utils/discord";
 import Link from "next/link";
@@ -37,6 +37,8 @@ export default function HomeClient({
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
   const [demoText, setDemoText] = useState("");
   const hasInteractedRef = useRef(false);
+
+  const isRotatingHeadlinesEnabled = useExperiment('ROTATING_HEADLINES_ENABLED');
 
   // Typewriter effect simulation for interactive landing page sandbox
   useEffect(() => {
@@ -91,7 +93,7 @@ export default function HomeClient({
 
       const initialCopy = (typeof textOverride === "string" && hasInteractedRef.current)
         ? textOverride 
-        : (isExperimentEnabled("ROTATING_HEADLINES_ENABLED") ? getRandomCopyBlock().hook : "");
+        : (isRotatingHeadlinesEnabled ? getRandomCopyBlock().hook : "");
 
       const code = await createSession({ 
         ownerNodeId: nodeId,

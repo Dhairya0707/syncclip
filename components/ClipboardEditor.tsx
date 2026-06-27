@@ -7,7 +7,7 @@ import { debounce } from "../utils/debounce";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { track } from "../utils/analytics";
-import { isExperimentEnabled } from "../utils/experiments";
+import { useExperiment } from "../utils/experiments";
 import { sendError, sendInfo } from "../utils/discord";
 import SecondDeviceCTA from "./SecondDeviceCTA";
 import PWAInstallPrompt from "./PWAInstallPrompt";
@@ -66,7 +66,10 @@ export default function ClipboardEditor({ session }: { session: any }) {
   const [copyBlock, setCopyBlock] = useState<CopyBlock | null>(null);
 
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
-  const feedbackEnabled = isExperimentEnabled("FEEDBACK_CAMPAIGN_ENABLED");
+  const feedbackEnabled = useExperiment("FEEDBACK_CAMPAIGN_ENABLED");
+  const isRotatingHeadlinesEnabled = useExperiment("ROTATING_HEADLINES_ENABLED");
+  const autoQRModalEnabled = useExperiment("AUTO_QR_MODAL_ENABLED");
+  const isForceSecondDeviceEnabled = useExperiment("FORCE_SECOND_DEVICE_ENABLED");
   const modalTrackedRef = useRef(false);
 
   const incrementInteractions = useCallback(() => {
@@ -165,13 +168,13 @@ export default function ClipboardEditor({ session }: { session: any }) {
       setSuggestedName(generateRandomName());
     }
 
-    if (isExperimentEnabled("ROTATING_HEADLINES_ENABLED")) {
+    if (isRotatingHeadlinesEnabled) {
       setCopyBlock(getRandomCopyBlock());
     }
 
-    // Auto-show QR modal on first entry if alone
+    // Auto-show QR modal on first entry if alone and flag is enabled
     const hasSeenQR = sessionStorage.getItem(`syncclip_qr_shown_${session.code}`);
-    if (presence?.length === 1 && !hasSeenQR) {
+    if (autoQRModalEnabled && presence?.length === 1 && !hasSeenQR) {
       setShowQRModal(true);
       sessionStorage.setItem(`syncclip_qr_shown_${session.code}`, "true");
       // Tracking will be handled by the useEffect watching showQRModal
@@ -410,6 +413,11 @@ export default function ClipboardEditor({ session }: { session: any }) {
     }
   }
 
+  function handleLeaveRoom() {
+    track("room_left", { timestamp: new Date().toISOString() });
+    router.push("/");
+  }
+
   function handleClearNode() {
     if (!canEdit) return;
     setIsSyncing(true);
@@ -638,27 +646,29 @@ export default function ClipboardEditor({ session }: { session: any }) {
                     { id: 'lock', label: 'toggle lock', icon: 'lock' },
                     { id: 'pair', label: 'pair device', icon: 'qr_code_2' },
                     { id: 'burn', label: 'burn protocol', icon: 'local_fire_department' },
-                    { id: 'sync', label: 'force sync', icon: 'sync' }
+                    { id: 'sync', label: 'force sync', icon: 'sync' },
+                    { id: 'leave', label: 'leave room', icon: 'logout' }
                   ].filter(cmd => cmd.label.includes(paletteQuery.toLowerCase()) || cmd.id.includes(paletteQuery.toLowerCase()));
 
                   if (e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    setPaletteIndex(prev => (prev + 1) % commands.length);
+                     e.preventDefault();
+                     setPaletteIndex(prev => (prev + 1) % commands.length);
                   } else if (e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    setPaletteIndex(prev => (prev - 1 + commands.length) % commands.length);
+                     e.preventDefault();
+                     setPaletteIndex(prev => (prev - 1 + commands.length) % commands.length);
                   } else if (e.key === 'Enter' && commands.length > 0) {
-                    e.preventDefault();
-                    const cmd = commands[paletteIndex].id;
-                    setIsPaletteOpen(false);
-                    setPaletteQuery('');
-                    setPaletteIndex(0);
-                    if (cmd === 'clear') handleClearNode();
-                    if (cmd === 'copy') { navigator.clipboard.writeText(text); showToast("Copied"); }
-                    if (cmd === 'lock') handleToggleLock();
-                    if (cmd === 'pair') setShowQRModal(true);
-                    if (cmd === 'burn') handleToggleBurn();
-                    if (cmd === 'sync') handleForceSync();
+                     e.preventDefault();
+                     const cmd = commands[paletteIndex].id;
+                     setIsPaletteOpen(false);
+                     setPaletteQuery('');
+                     setPaletteIndex(0);
+                     if (cmd === 'clear') handleClearNode();
+                     if (cmd === 'copy') { navigator.clipboard.writeText(text); showToast("Copied"); }
+                     if (cmd === 'lock') handleToggleLock();
+                     if (cmd === 'pair') setShowQRModal(true);
+                     if (cmd === 'burn') handleToggleBurn();
+                     if (cmd === 'sync') handleForceSync();
+                     if (cmd === 'leave') handleLeaveRoom();
                   }
                 }}
               />
@@ -671,7 +681,8 @@ export default function ClipboardEditor({ session }: { session: any }) {
                 { id: 'lock', label: 'toggle lock', icon: 'lock' },
                 { id: 'pair', label: 'pair device', icon: 'qr_code_2' },
                 { id: 'burn', label: 'burn protocol', icon: 'local_fire_department' },
-                { id: 'sync', label: 'force sync', icon: 'sync' }
+                { id: 'sync', label: 'force sync', icon: 'sync' },
+                { id: 'leave', label: 'leave room', icon: 'logout' }
 
               ].filter(cmd => cmd.label.includes(paletteQuery.toLowerCase()) || cmd.id.includes(paletteQuery.toLowerCase())).map((cmd, idx) => (
                 <button
@@ -689,6 +700,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
                     }
                     if (cmd.id === 'burn') handleToggleBurn();
                     if (cmd.id === 'sync') handleForceSync();
+                    if (cmd.id === 'leave') handleLeaveRoom();
                   }}
                   onMouseEnter={() => setPaletteIndex(idx)}
                 >
@@ -699,7 +711,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
                   <span className={`material-symbols-outlined text-[16px] transition-transform ${paletteIndex === idx ? 'translate-x-0 opacity-100' : 'translate-x-2 opacity-0'}`}>keyboard_return</span>
                 </button>
               ))}
-              {['clear', 'copy', 'lock', 'pair', 'burn', 'sync'].filter(cmd => cmd.includes(paletteQuery.toLowerCase())).length === 0 && (
+              {['clear', 'copy', 'lock', 'pair', 'burn', 'sync', 'leave'].filter(cmd => cmd.includes(paletteQuery.toLowerCase())).length === 0 && (
                 <div className="p-6 text-center text-zinc-400 italic text-xs tracking-widest">COMMAND NOT RECOGNIZED</div>
               )}
             </div>
@@ -763,6 +775,13 @@ export default function ClipboardEditor({ session }: { session: any }) {
           >
             COPY LINK
           </button>
+          <button
+            aria-label="Leave room"
+            className="text-orange-500 border-b border-transparent hover:text-orange-700 hover:border-orange-700 transition-colors cursor-pointer uppercase shrink-0 font-bold"
+            onClick={handleLeaveRoom}
+          >
+            LEAVE
+          </button>
         </nav>
       </header>
 
@@ -774,7 +793,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
             <span>INSTANT SYNC. ZERO FRICTION.</span>
             <span className="text-black inline-block px-2 border border-black text-[9px]">NODE_{session.code}</span>
           </div>
-          <nav className="flex items-center font-label text-sm font-bold tracking-widest" aria-label="Main navigation">
+          <nav className="hidden sm:flex items-center font-label text-sm font-bold tracking-widest" aria-label="Main navigation">
             <span className="text-black border-b-4 border-black pb-1">
               CLIPBOARD
             </span>
@@ -835,6 +854,15 @@ export default function ClipboardEditor({ session }: { session: any }) {
                 </div>
               </div>
             </div>
+
+            {/* SecondDeviceCTA: Inline nudge to connect a second device (only rendered when needed) */}
+            {isForceSecondDeviceEnabled && (presence?.length || 0) <= 1 && (
+              <SecondDeviceCTA
+                participantCount={presence?.length || 0}
+                qrUrl={qrUrl}
+                copyBlock={copyBlock || undefined}
+              />
+            )}
             {/* Interaction Layer: Action Buttons */}
             <div className="mt-6 flex-shrink-0">
               {/* Desktop Grid (Visible on lg and up) */}

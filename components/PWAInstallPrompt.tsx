@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { isExperimentEnabled } from '@/utils/experiments';
+import { useExperiment } from '@/utils/experiments';
 import { track } from '@/utils/analytics';
 
 interface BeforeInstallPromptEvent extends Event {
@@ -19,7 +19,7 @@ export default function PWAInstallPrompt() {
   const firstKeystrokeRef = useRef(false);
   const dismissedRef = useRef(false);
 
-  const isEnabled = isExperimentEnabled('PWA_NUDGE_ENABLED');
+  const isEnabled = useExperiment('PWA_NUDGE_ENABLED');
 
   useEffect(() => {
     if (!isEnabled) return;
