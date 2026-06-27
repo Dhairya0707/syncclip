@@ -564,7 +564,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
   }
 
   return (
-    <div className="bg-surface font-body selection:bg-secondary selection:text-white min-h-screen flex flex-col">
+    <div className="bg-surface font-body selection:bg-secondary selection:text-white min-h-screen flex flex-col viewport-locked overflow-y-auto">
       {/* Offline Banner */}
       {!isOnline && (
         <div className="bg-secondary text-white font-mono text-[10px] uppercase tracking-widest text-center py-2 z-[60] sticky top-0">
@@ -767,31 +767,24 @@ export default function ClipboardEditor({ session }: { session: any }) {
       </header>
 
       {/* Main Content Area */}
-      <main className="pt-10 flex-grow flex flex-col relative">
-        {/* TopAppBar Medium (Branding Section) */}
-        <section className="flex flex-col md:flex-row justify-between items-end w-full px-6 pt-12 pb-6 border-b-2 border-black">
-          <div className="flex flex-col">
-            {/* <Link href="/" className="group inline-block"> */}
-            <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter font-headline leading-none ">
-              SYNCCLIP
-            </h1>
-            {/* </Link> */}
-            <div className="font-mono text-xs tracking-[0.2em] mt-2 text-on-surface-variant uppercase flex items-center gap-3">
-              {copyBlock?.brandPrompt || "DIGITAL BROADSHEET PROTOCOL V4.2"}
-              <span className="text-black inline-block px-2 border border-black text-[9px]">NODE_{session.code}</span>
-            </div>
+      <main className="pt-10 flex-grow flex flex-col relative min-h-0">
+        {/* Minimal Editorial Header */}
+        <section className="flex flex-row justify-between items-center w-full px-6 py-4 border-b-2 border-black flex-shrink-0">
+          <div className="font-mono text-xs tracking-[0.25em] text-black uppercase flex items-center gap-3">
+            <span>INSTANT SYNC. ZERO FRICTION.</span>
+            <span className="text-black inline-block px-2 border border-black text-[9px]">NODE_{session.code}</span>
           </div>
-          <nav className="flex items-center gap-6 mt-6 md:mt-0 font-label text-sm font-bold tracking-widest" aria-label="Main navigation">
-            <a className="text-black border-b-4 border-black pb-1 focus:outline-none focus:ring-2 focus:ring-secondary" href="#">
+          <nav className="flex items-center font-label text-sm font-bold tracking-widest" aria-label="Main navigation">
+            <span className="text-black border-b-4 border-black pb-1">
               CLIPBOARD
-            </a>
+            </span>
           </nav>
         </section>
 
         {/* Editorial Interface Grid */}
-        <div className="editorial-grid flex-grow min-h-[calc(100vh-350px)]">
+        <div className="editorial-grid flex-grow min-h-0 h-full">
           {/* Left Column: Primary Interaction */}
-          <div className="p-6 border-r border-black flex flex-col">
+          <div className="p-6 border-r border-black flex flex-col min-h-0 h-full">
             
             <div className="mb-4 flex flex-col sm:flex-row justify-between items-baseline sm:items-center gap-2">
               <div className="font-mono text-xs font-bold tracking-[0.3em] text-secondary uppercase flex items-center gap-2 flex-wrap">
@@ -812,7 +805,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
               </div>
             </div>
             {/* Main Textarea Container */}
-            <div className="flex-grow flex flex-col relative group">
+            <div className="flex-grow flex flex-col relative group min-h-0">
               <div className="absolute -top-3 left-6 bg-white px-2 font-mono text-[10px] tracking-widest text-on-surface-variant z-10 select-none">
                 INPUT_STREAM
               </div>
@@ -820,12 +813,12 @@ export default function ClipboardEditor({ session }: { session: any }) {
                 aria-label="Clipboard Text Input"
                 maxLength={100000}
                 readOnly={!canEdit}
-                className={`w-full h-full min-h-[300px] flex-grow p-6 md:p-10 font-body text-xl md:text-2xl leading-relaxed border ${!canEdit ? 'border-zinc-300 bg-zinc-50 text-zinc-500 cursor-not-allowed' : 'border-black focus:border-secondary'} focus:outline-none focus:ring-0 transition-all resize-none placeholder:text-zinc-300`}
+                className={`w-full h-0 min-h-[100px] flex-grow p-6 md:p-10 font-body text-xl md:text-2xl leading-relaxed border ${!canEdit ? 'border-zinc-300 bg-zinc-50 text-zinc-500 cursor-not-allowed' : 'border-black focus:border-secondary'} focus:outline-none focus:ring-0 transition-all resize-none placeholder:text-zinc-300`}
                 placeholder={canEdit ? (copyBlock?.hook || "Awaiting your next masterpiece...") : "This node is locked. No entry for you."}
                 value={text}
                 onChange={handleChange}
               />
-              <div className="mt-4 flex flex-wrap gap-4 justify-between items-center border-t border-black pt-4">
+              <div className="mt-4 flex flex-wrap gap-4 justify-between items-center border-t border-black pt-4 flex-shrink-0">
                 <div className="flex flex-wrap gap-6 md:gap-8 font-mono text-[10px] tracking-widest uppercase text-on-surface-variant">
                   <div>WEIGHT: {weightKb} KB</div>
                   <div>CHARS: {charCount.toLocaleString()} / 100K</div>
@@ -843,7 +836,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
               </div>
             </div>
             {/* Interaction Layer: Action Buttons */}
-            <div className="mt-8">
+            <div className="mt-6 flex-shrink-0">
               {/* Desktop Grid (Visible on lg and up) */}
               <div className="hidden lg:grid lg:grid-cols-4 xl:grid-cols-7 gap-4">
                 {canEdit && (
@@ -1222,7 +1215,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
               </div>
 
               {/* Analytics & Telemetry */}
-              <section className="p-6 border-b border-black bg-zinc-50" aria-label="Session Telemetry">
+              <section className="p-6 border-b border-black" aria-label="Session Telemetry">
                 <div className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 mb-4">
                   TELEMETRY DATA
                 </div>

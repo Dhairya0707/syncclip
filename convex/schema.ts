@@ -6,7 +6,9 @@ export default defineSchema({
     code: v.string(),
     text: v.string(),
     createdAt: v.number(),
-    history: v.optional(v.array(v.object({ text: v.string(), timestamp: v.number() }))),
+    history: v.optional(
+      v.array(v.object({ text: v.string(), timestamp: v.number() })),
+    ),
     ownerNodeId: v.optional(v.string()),
     isLocked: v.optional(v.boolean()),
     isBurnMode: v.optional(v.boolean()),
@@ -40,7 +42,8 @@ export default defineSchema({
     nodeId: v.optional(v.string()),
     sessionId: v.optional(v.string()),
     metadata: v.optional(v.any()),
-  }).index("by_type", ["type"])
+  })
+    .index("by_type", ["type"])
     .index("by_timestamp", ["timestamp"]),
 
   node_profiles: defineTable({
