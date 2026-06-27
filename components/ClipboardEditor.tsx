@@ -66,6 +66,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
   const [copyBlock, setCopyBlock] = useState<CopyBlock | null>(null);
 
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+  const [showThankYouModal, setShowThankYouModal] = useState(false);
   const feedbackEnabled = useExperiment("FEEDBACK_CAMPAIGN_ENABLED");
   const isRotatingHeadlinesEnabled = useExperiment("ROTATING_HEADLINES_ENABLED");
   const autoQRModalEnabled = useExperiment("AUTO_QR_MODAL_ENABLED");
@@ -101,6 +102,29 @@ export default function ClipboardEditor({ session }: { session: any }) {
     track("feedback_popup_clicked", { timestamp: new Date().toISOString() });
     router.push(`/feedback?code=${session.code}`);
   }
+
+  function handleDismissThankYou() {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("syncclip_feedback_thanked_mtkqo", "true");
+    }
+    setShowThankYouModal(false);
+  }
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !nodeId) return;
+    const thanked = localStorage.getItem("syncclip_feedback_thanked_mtkqo") === "true";
+    if (nodeId === "NODE-MTKQO" && !thanked) {
+      // Fire Discord message
+      sendInfo("User NODE-MTKQO returned! ⚡", [
+        { name: "Node ID", value: nodeId },
+        { name: "Event", value: "Returned to editor / thank you modal shown" }
+      ]);
+      const timer = setTimeout(() => {
+        setShowThankYouModal(true);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [nodeId]);
 
   useEffect(() => {
     if (typeof window === "undefined" || !feedbackEnabled) return;
@@ -577,6 +601,59 @@ export default function ClipboardEditor({ session }: { session: any }) {
       {!isOnline && (
         <div className="bg-secondary text-white font-mono text-[10px] uppercase tracking-widest text-center py-2 z-[60] sticky top-0">
           NODE OFFLINE — CLOUD SYCHRONIZATION PAUSED
+        </div>
+      )}
+
+      {/* Personalized Thank You Modal for feedback submitter (NODE-MTKQO) */}
+      {showThankYouModal && (
+        <div className="fixed inset-0 bg-black/80 z-[250] flex items-center justify-center p-6 backdrop-blur-xs animate-fade-in" role="dialog" aria-labelledby="thankyou-popup-heading">
+          <div className="bg-emerald-300 text-black border-4 border-black p-8 max-w-md w-full shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] relative flex flex-col gap-6" onClick={e => e.stopPropagation()}>
+            <button 
+              onClick={handleDismissThankYou} 
+              aria-label="Close thank you"
+              className="absolute top-4 right-4 text-black hover:text-secondary font-bold font-mono text-sm cursor-pointer"
+            >
+              ✕
+            </button>
+
+            <div className="font-mono text-[9px] tracking-[0.25em] text-emerald-300 bg-black px-2.5 py-1 uppercase font-bold inline-block self-start">
+              ⚡ SYSTEM UPDATE TRANSMISSION
+            </div>
+
+            <h3 id="thankyou-popup-heading" className="font-headline text-3xl font-black uppercase tracking-tight leading-none text-black">
+              THANK YOU, OPERATOR!
+            </h3>
+
+            <p className="font-body text-sm leading-relaxed font-bold text-zinc-900">
+              We listened to your genuine feedback about the scrolling issue. We worked on it and solved it—you can try it out now! We hope you love it.
+            </p>
+
+            <p className="font-body text-sm leading-relaxed text-zinc-950">
+              Your feedback is very precious to us, and we value your support. As one of our special power users, we appreciate you helping us shape SyncClip!
+            </p>
+
+            <p className="font-body text-xs text-zinc-700">
+              Is there any other feedback you'd like to share to help us improve?
+            </p>
+
+            <div className="flex flex-col gap-3 mt-2">
+              <button
+                onClick={() => {
+                  handleDismissThankYou();
+                  router.push(`/feedback?code=${session.code}`);
+                }}
+                className="bg-black text-white font-label font-bold py-4 uppercase tracking-widest text-sm hover:bg-secondary transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 text-center cursor-pointer"
+              >
+                Give More Feedback ⚡
+              </button>
+              <button
+                onClick={handleDismissThankYou}
+                className="font-mono text-[10px] uppercase text-zinc-600 hover:text-black tracking-widest font-bold self-center py-2 cursor-pointer"
+              >
+                No thanks, I'm good
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
