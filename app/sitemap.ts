@@ -4,6 +4,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://syncclip.in';
 
   return [
+    // === CORE ===
     {
       url: `${baseUrl}`,
       lastModified: new Date(),
@@ -28,23 +29,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.5,
     },
-    {
-      url: `${baseUrl}/clipboard-sync-guide`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/clipboard`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
+
+    // === THEME 1 FLAGSHIP: Android-to-PC/Windows Transfer ===
     {
       url: `${baseUrl}/android-to-pc-clipboard`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.9,
+      priority: 0.95,
     },
     {
       url: `${baseUrl}/android-to-windows`,
@@ -58,25 +49,49 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
-      url: `${baseUrl}/blog/phone-link-vs-syncclip`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.75,
-    },
-    {
       url: `${baseUrl}/mac-to-windows-clipboard`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+
+    // === THEME 2 FLAGSHIP: No-Install Zero-Login Clipboard ===
     {
-      url: `${baseUrl}/pastebin-alternative-private`,
+      url: `${baseUrl}/clipboard`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/online-clipboard`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/copy-text-from-phone-to-computer`,
+      url: `${baseUrl}/clipboard-sync-guide`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+
+    // === THEME 3 FLAGSHIP: Developer / Code Snippet Sharing ===
+    {
+      url: `${baseUrl}/move-code-snippet-between-devices`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+
+    // === UNIQUE CONTENT (not consolidated) ===
+    {
+      url: `${baseUrl}/pastebin-alternative`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/pastebin-alternative-private`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
@@ -85,38 +100,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/pushbullet-alternative`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.7,
+      priority: 0.75,
     },
-    {
-      url: `${baseUrl}/online-clipboard`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-sync-clipboard-between-devices`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/5-ways-to-copy-text-between-phone-and-laptop`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/best-online-clipboard-tools-2026`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/is-online-clipboard-secure`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
+
+    // === UNIQUE BLOG POSTS (not consolidated) ===
     {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),
@@ -124,239 +111,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/blog/what-is-a-live-clipboard`,
+      url: `${baseUrl}/blog/phone-link-vs-syncclip`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-share-clipboard-online`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/syncclip-vs-universal-clipboard`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
+      priority: 0.75,
     },
     {
       url: `${baseUrl}/blog/how-to-copy-text-from-android-to-mac`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/stop-emailing-yourself-notes`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/send-text-mobile-to-laptop`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/cross-device-clipboard`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-
-    {
-      url: `${baseUrl}/how-to-send-otp-from-phone-to-pc`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/fastest-way-to-copy-links-between-devices`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/share-text-without-whatsapp`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/move-code-snippet-between-devices`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/clipboard-alternative-to-email`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/pastebin-alternative`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/temporary-clipboard-online`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/clipboard-vs-email`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/share-links-between-devices`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/online-clipboard-vs-desktop-apps`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/online-clipboard-vs-cloud-notes`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/blog/clipboard-sync-for-remote-teams`,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/blog/clipboard-sync-indian-developers`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/go-online-tools-clipboard-alternative`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/what-is-the-best-free-online-clipboard`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/pushbullet-alternatives-2026`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-sync-clipboard-without-installing-anything`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-share-clipboard-between-android-and-windows-pc`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-copy-and-paste-online-between-two-devices-using-a-link`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/what-is-the-best-online-clipboard-that-syncs-automatically-in-real-time`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-share-text-between-android-and-windows-without-whatsapp-or-cable`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/online-clipboard-without-installing-anything-or-using-a-network-app`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/cross-device-clipboard-sync-for-developers-copy-code-snippets-instantly`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/sync-clipboard-between-devices-without-same-wifi`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/best-free-clipboard-manager`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/copy-phone-to-pc-without-app`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/free-clipboard-sync-no-account`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/share-text-across-devices`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/sync-clipboard-mac-windows`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/what-is-an-online-clipboard-complete-guide`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/copy-text-from-android-phone-to-windows-pc-instantly`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/share-text-between-mobile-and-laptop-without-whatsapp`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.85,
+      priority: 0.7,
     },
   ];
 }

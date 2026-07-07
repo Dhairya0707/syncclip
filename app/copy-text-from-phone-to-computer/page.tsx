@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "How to Copy Text from Phone to Computer Instantly (No App)",
   description: "The fastest way to copy text from your Android or iPhone to your Windows or Mac laptop instantly without installing apps or emailing yourself. Sync your clipboard in 3 seconds.",
   alternates: {
-    canonical: "https://syncclip.in/copy-text-from-phone-to-computer",
+    canonical: "https://syncclip.in/android-to-pc-clipboard",
   },
 };
 

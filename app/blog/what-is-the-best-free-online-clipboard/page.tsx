@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Looking for the best free online clipboard alternative? Compare top tools for instant, no-login clipboard synchronization across phone, tablet, and PC.",
   keywords: ["best free online clipboard", "online clipboard alternative", "sync clipboard between devices", "free clipboard sharing", "cross device clipboard"],
   alternates: {
-    canonical: "https://syncclip.in/blog/what-is-the-best-free-online-clipboard",
+    canonical: "https://syncclip.in/online-clipboard",
   },
 };
 

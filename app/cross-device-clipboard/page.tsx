@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "The ultimate cross-device clipboard tool. Sync text and code between Android, iOS, Windows, and Mac instantly. No login, no app install, 100% free.",
   keywords: ["cross device clipboard", "sync clipboard between devices", "clipboard sharing tool", "multi device clipboard", "universal clipboard online"],
   alternates: {
-    canonical: "https://syncclip.in/cross-device-clipboard",
+    canonical: "https://syncclip.in/clipboard",
   },
   openGraph: {
     title: "Cross-Device Clipboard: Sync Text Between Any Devices",

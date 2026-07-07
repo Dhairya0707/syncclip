@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "How to Copy Text from Android Phone to Windows PC Instantly (No Cable)",
   description: "Transfer text, links, and code snippets from Android to Windows PC instantly using SyncClip. No USB cables, no Bluetooth, and no background apps required.",
   alternates: {
-    canonical: "/blog/copy-text-from-android-phone-to-windows-pc-instantly",
+    canonical: "https://syncclip.in/android-to-windows",
   },
 };
 

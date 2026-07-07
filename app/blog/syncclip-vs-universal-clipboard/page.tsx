@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "SyncClip vs Universal Clipboard: Bridging the Cross-Platform Gap",
   description: "Frustrated with Apple or Windows ecosystem lock-in? Compare SyncClip with native universal clipboards and learn how to sync between Android, iPhone, and PC without walls.",
   keywords: ["universal clipboard", "sync clipboard android iphone", "cross platform clipboard", "apple universal clipboard alternative", "windows phone link alternative"],

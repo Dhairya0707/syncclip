@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Stop emailing yourself snippets. Learn why a web-native online clipboard is the best alternative to using your inbox for cross-device syncing.",
   keywords: ["clipboard alternative to email", "stop emailing yourself links", "share text between devices without email", "free online clipboard alternative", "productivity sync tools"],
   alternates: {
-    canonical: "https://syncclip.in/clipboard-alternative-to-email",
+    canonical: "https://syncclip.in/clipboard",
   },
 };
 

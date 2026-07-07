@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Stop installing bloatware. Learn the fastest way to copy text between Android, iPhone, Windows, and Mac without any app — pure browser magic under 100ms.",
   keywords: ["fastest way to copy text between devices without app", "copy text phone to pc no app", "share text between devices instantly", "browser clipboard sync", "no install clipboard"],
   alternates: {
-    canonical: "https://syncclip.in/blog/fastest-way-to-copy-text-without-app",
+    canonical: "https://syncclip.in/clipboard",
   },
 };
 

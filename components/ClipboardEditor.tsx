@@ -64,6 +64,8 @@ export default function ClipboardEditor({ session }: { session: any }) {
   const secondDeviceTracked = useRef(false);
   const qrTracked = useRef(false);
   const [copyBlock, setCopyBlock] = useState<CopyBlock | null>(null);
+  const [showCollabPrompt, setShowCollabPrompt] = useState(false);
+  const collabPromptShown = useRef(false);
 
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const [showThankYouModal, setShowThankYouModal] = useState(false);
@@ -424,6 +426,22 @@ export default function ClipboardEditor({ session }: { session: any }) {
 
     setText(value);
     debouncedUpdate(value);
+
+    // Code-paste collaboration prompt: detect code-like content
+    if (
+      !collabPromptShown.current &&
+      value.length > 40 &&
+      (presence?.length || 0) <= 1 &&
+      typeof window !== "undefined" &&
+      sessionStorage.getItem("syncclip_collab_prompt_dismissed") !== "true"
+    ) {
+      const codeSignals = /(?:function\s|const\s|let\s|var\s|import\s|export\s|<div|<span|=>|\{\s*\n|console\.|return\s|class\s)/;
+      if (codeSignals.test(value)) {
+        setShowCollabPrompt(true);
+        collabPromptShown.current = true;
+        track("collab_prompt_shown", { timestamp: new Date().toISOString() });
+      }
+    }
   }
 
   function handleCopyLink(e?: React.MouseEvent) {
@@ -931,6 +949,26 @@ export default function ClipboardEditor({ session }: { session: any }) {
                 </div>
               </div>
             </div>
+
+            {/* Collaboration Prompt for Code Pastes */}
+            {showCollabPrompt && (presence?.length || 0) <= 1 && (
+              <div className="flex items-center justify-between gap-4 px-4 py-3 bg-blue-50 border border-blue-200 flex-shrink-0">
+                <p className="font-mono text-[10px] tracking-wider text-blue-800 uppercase">
+                  ⚡ Working with a teammate? <button onClick={handleCopyLink} className="underline font-bold hover:text-secondary cursor-pointer">Share your room link</button> so they can see this instantly.
+                </p>
+                <button
+                  onClick={() => {
+                    setShowCollabPrompt(false);
+                    sessionStorage.setItem("syncclip_collab_prompt_dismissed", "true");
+                    track("collab_prompt_dismissed", { timestamp: new Date().toISOString() });
+                  }}
+                  className="text-blue-400 hover:text-blue-800 font-mono text-xs font-bold cursor-pointer flex-shrink-0"
+                  aria-label="Dismiss collaboration prompt"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
 
             {/* SecondDeviceCTA: Inline nudge to connect a second device (only rendered when needed) */}
             {isForceSecondDeviceEnabled && (presence?.length || 0) <= 1 && (

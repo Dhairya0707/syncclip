@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "Is an Online Clipboard Secure? What You Need to Know in 2026",
   description: "Are online clipboard tools safe? A deep technical dive into TLS 1.3 encryption, WebSocket tunneling, browser sandboxing, and ephemeral zero-trust architectures.",
   keywords: ["online clipboard security", "is clipboard online safe", "secure clipboard sharing", "clipboard data privacy", "safe online clipboard", "ephemeral clipboard sync"],

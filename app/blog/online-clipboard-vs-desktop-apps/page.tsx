@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "Online Clipboard vs Desktop Apps: Why Web-Native is Better in 2026",
   description: "Comparing online clipboard sync tools vs traditional desktop apps. Discover why web-native solutions offer better privacy, speed, and cross-platform compatibility.",
   keywords: ["clipboard online", "online clipboard vs desktop app", "best clipboard sync 2026", "web-native clipboard sync", "no-install clipboard tool"],

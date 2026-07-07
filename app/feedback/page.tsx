@@ -14,6 +14,7 @@ function FeedbackFormContent() {
   const [pmf, setPmf] = useState<string>("");
   const [nps, setNps] = useState<number | null>(null);
   const [referral, setReferral] = useState<string>("REDDIT");
+  const [hearAboutDetail, setHearAboutDetail] = useState<string>("");
   const [useCases, setUseCases] = useState<string[]>([]);
   const [bug, setBug] = useState<string>("");
   const [name, setName] = useState<string>("");
@@ -47,6 +48,7 @@ function FeedbackFormContent() {
         { name: "PMF Score", value: pmf, inline: true },
         { name: "NPS Score", value: String(nps), inline: true },
         { name: "Referral Source", value: referral, inline: true },
+        { name: "How They Heard (Detail)", value: hearAboutDetail || "Not Provided" },
         { name: "Primary Use Cases", value: useCases.length > 0 ? useCases.join(", ") : "None Selected" },
         { name: "Bugs / Annoyances", value: bug || "None Reported" },
         { name: "Contact Name", value: name || "Anonymous", inline: true },
@@ -61,6 +63,7 @@ function FeedbackFormContent() {
         pmf,
         nps,
         referral,
+        hearAboutDetail,
         roomCode,
         timestamp: new Date().toISOString()
       });
@@ -203,6 +206,14 @@ function FeedbackFormContent() {
                 <option value="FRIEND">Friend / Colleague</option>
                 <option value="OTHER">Other</option>
               </select>
+              <input 
+                type="text"
+                value={hearAboutDetail}
+                onChange={e => setHearAboutDetail(e.target.value)}
+                placeholder="Tell us more — e.g. 'My friend shared it on WhatsApp' (optional)"
+                className="w-full border-2 border-black p-4 bg-transparent font-body text-sm focus:outline-none focus:bg-zinc-50 transition-colors mt-4"
+                maxLength={200}
+              />
             </div>
 
             {/* Q4: Use Cases */}

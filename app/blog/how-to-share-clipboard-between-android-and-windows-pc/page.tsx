@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Learn how to share your clipboard between an Android phone and Windows PC instantly. Compare Phone Link, KDE Connect, and web-native tools like SyncClip.",
   keywords: ["share clipboard android windows", "sync clipboard android pc", "copy paste android to windows", "android windows clipboard sync", "share text android pc"],
   alternates: {
-    canonical: "https://syncclip.in/blog/how-to-share-clipboard-between-android-and-windows-pc",
+    canonical: "https://syncclip.in/android-to-windows",
   },
 };
 

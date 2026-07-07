@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Share Text Across Devices Free — No App, No Signup | SyncClip",
   description: "The fastest free way to share text snippets and code across every device in your hardware stack. Instant synchronization via web-native WebSocket protocol.",
   alternates: {
-    canonical: "/share-text-across-devices-free",
+    canonical: "https://syncclip.in/clipboard",
   },
 };
 

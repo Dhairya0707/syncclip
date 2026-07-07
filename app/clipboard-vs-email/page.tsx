@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Comparing the efficiency, privacy, and speed of using an online clipboard vs emailing yourself snippets. Discover why the ephemeral protocol is the future of cross-device syncing.",
   keywords: ["online clipboard vs email", "stop emailing yourself links", "share text without email", "fastest way to sync clipboard", "email vs clipboard sync comparison"],
   alternates: {
-    canonical: "https://syncclip.in/clipboard-vs-email",
+    canonical: "https://syncclip.in/clipboard",
   },
 };
 

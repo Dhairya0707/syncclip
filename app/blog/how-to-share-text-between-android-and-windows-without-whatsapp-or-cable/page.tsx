@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "How to Share Text Between Android and Windows Without WhatsApp or Cable",
   description: "Tired of sending yourself WhatsApp messages or using cables just to share text? Sync text between Android and Windows PC instantly with a browser-native link.",
   alternates: {
-    canonical: "https://syncclip.in/blog/how-to-share-text-between-android-and-windows-without-whatsapp-or-cable",
+    canonical: "https://syncclip.in/android-to-windows",
   },
 };
 

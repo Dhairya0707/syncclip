@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Best Free Clipboard Manager (No Account Required) 2026",
   description: "Comparing the best free clipboard managers in 2026. Find the top tools that work cross-platform without requiring a login or account signup.",
   alternates: {
-    canonical: "/blog/best-free-clipboard-manager",
+    canonical: "https://syncclip.in/online-clipboard",
   },
 };
 

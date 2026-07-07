@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Need a temporary clipboard? Use SyncClip for disposable text sharing between devices. No login, zero-knowledge sync, and automatic data purging.",
   keywords: ["temporary clipboard", "online disposable clipboard", "disposable text sharing", "temporary online storage", "ephemeral clipboard online", "burner clipboard"],
   alternates: {
-    canonical: "https://syncclip.in/temporary-clipboard-online",
+    canonical: "https://syncclip.in/online-clipboard",
   },
 };
 

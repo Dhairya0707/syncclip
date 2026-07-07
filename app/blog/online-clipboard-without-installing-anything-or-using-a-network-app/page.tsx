@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Online Clipboard Without Installing Anything — Works Any Device, Any Time",
   description: "Need a clipboard online without installing apps? SyncClip works in browser. Sync text across phone, laptop, tablet instantly.",
   alternates: {
-    canonical: "https://syncclip.in/blog/online-clipboard-without-installing-anything-or-using-a-network-app",
+    canonical: "https://syncclip.in/online-clipboard",
   },
 };
 

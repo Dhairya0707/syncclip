@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "What is the Best Online Clipboard That Syncs Automatically?",
   description: "Looking for an online clipboard that syncs automatically in real-time? Discover the fastest WebSocket-based clipboard for instant text sharing.",
   alternates: {
-    canonical: "https://syncclip.in/blog/what-is-the-best-online-clipboard-that-syncs-automatically-in-real-time",
+    canonical: "https://syncclip.in/clipboard",
   },
 };
 

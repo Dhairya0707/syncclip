@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "How to Copy and Paste Online Between Two Devices Using a Link",
   description: "Learn how to instantly copy and paste text between your phone and computer using a simple URL link. No apps or logins required.",
   alternates: {
-    canonical: "https://syncclip.in/blog/how-to-copy-and-paste-online-between-two-devices-using-a-link",
+    canonical: "https://syncclip.in/clipboard",
   },
 };
 

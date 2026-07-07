@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "Online Clipboard: Best Free Sync Tools for 2026",
   description: "Looking for the best online clipboard? Compare the top free tools for 2026. Sync text and code between Android, iPhone, and PC instantly with no login or app install.",
   keywords: ["best online clipboard", "free clipboard sync", "universal clipboard alternative", "online clipboard tool", "share text between devices"],

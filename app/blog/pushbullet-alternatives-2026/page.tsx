@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "Best Free Pushbullet Alternatives 2026 — Instant Sync, No Account",
   description: "Pushbullet got expensive? Try SyncClip. Real-time clipboard sync across all devices. No login, no email required.",
   keywords: ["pushbullet alternatives", "pushbullet alternative 2026", "clipboard sync pushbullet", "free pushbullet alternative", "cross device clipboard sync"],

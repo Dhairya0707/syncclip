@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Sync Clipboard Between Devices Without Same WiFi — How SyncClip Works",
   description: "Can you sync clipboards between devices on different networks or without a shared Wi-Fi connection? Yes! Learn how SyncClip bridges your devices anywhere.",
   alternates: {
-    canonical: "https://syncclip.in/blog/sync-clipboard-between-devices-without-same-wifi",
+    canonical: "https://syncclip.in/clipboard",
   },
   openGraph: {
     title: "Sync Clipboard Between Devices Without Same WiFi — How SyncClip Works",

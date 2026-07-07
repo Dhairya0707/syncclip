@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Free Clipboard Sync — No Account, No Logs, 24-Hour Auto-Delete",
   description: "The most private way to sync your clipboard. No login, no data logging, and automatic 24-hour deletion for ultimate data sovereignty in 2026.",
   alternates: {
-    canonical: "/blog/free-clipboard-sync-no-account",
+    canonical: "https://syncclip.in/clipboard",
   },
 };
 

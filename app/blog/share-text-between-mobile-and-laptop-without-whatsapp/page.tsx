@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Share Text Between Mobile and Laptop Without WhatsApp (Free Tool)",
   description: "Stop sending self-messages on WhatsApp to share text. Discover SyncClip, the free web-based clipboard that syncs text instantly without bloat or logs.",
   alternates: {
-    canonical: "/blog/share-text-between-mobile-and-laptop-without-whatsapp",
+    canonical: "https://syncclip.in/android-to-pc-clipboard",
   },
 };
 

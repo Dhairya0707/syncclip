@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "How to Sync Clipboard Between Devices (2026 Guide)",
   description: "Learn the most efficient ways to sync your clipboard between Android, iPhone, Windows, and Mac in 2026. Comparing native tools and free online alternatives.",
   alternates: {

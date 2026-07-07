@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Yes — sync clipboard between Android and Windows PC free with no app, no signup, no cables. Browser-based WebSocket sync works instantly. Full guide inside.",
   keywords: ["sync clipboard android windows free", "android to windows clipboard sync", "free clipboard sync android pc", "clipboard sync without app android", "share clipboard android windows"],
   alternates: {
-    canonical: "https://syncclip.in/blog/can-i-sync-clipboard-android-windows-free",
+    canonical: "https://syncclip.in/clipboard",
   },
 };
 

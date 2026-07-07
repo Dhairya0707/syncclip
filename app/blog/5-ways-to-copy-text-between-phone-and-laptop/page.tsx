@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "5 Ways to Copy Text Between Phone and Laptop (No App Needed)",
   description: "Stop emailing yourself snippets. Here are 5 ways to copy text between your phone and laptop instantly, including free web-based sync tools.",
   keywords: ["copy text phone to laptop", "transfer text from phone to pc", "share text mobile to computer", "copy paste phone to laptop", "sync text phone pc"],

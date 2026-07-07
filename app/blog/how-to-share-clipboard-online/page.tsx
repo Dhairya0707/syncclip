@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "How to Share Your Clipboard Online Without an App (2026 Guide)",
   description: "Stop emailing yourself snippets. Learn how to share your clipboard online instantly using SyncClip's real-time protocol. No app, no login, zero friction.",
   keywords: ["online clipboard share", "share clipboard online", "clipboard sharing tool", "send text between devices", "no app clipboard sync"],

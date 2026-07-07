@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "What is a Live Clipboard? The Future of Instant Device Syncing",
   description: "Discover what a live clipboard is and how it revolutionizes the way you move text between devices. Learn about real-time WebSocket syncing and ephemeral data.",
   keywords: ["live clipboard", "realtime clipboard", "live sync clipboard", "what is a live clipboard", "instant text sync"],

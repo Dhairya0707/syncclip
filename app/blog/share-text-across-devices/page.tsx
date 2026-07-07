@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "Share Text Across Devices in One Click (No Installation Required)",
   description: "The fastest way to share text across every device in your hardware stack. One click, one session, instant synchronization across Android, iOS, and PC.",
   alternates: {

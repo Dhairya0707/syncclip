@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Free Clipboard Sync — No Account Required | SyncClip",
   description: "Sync your clipboard between any devices for free without creating an account. The most private, zero-login method to share text and code instantly.",
   alternates: {
-    canonical: "/clipboard-sync-free-no-account",
+    canonical: "https://syncclip.in/clipboard",
   },
 };
 

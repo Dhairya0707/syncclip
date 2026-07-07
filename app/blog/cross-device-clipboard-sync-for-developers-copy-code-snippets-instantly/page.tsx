@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Cross-Device Clipboard Sync for Developers — Copy Code Snippets Instantly",
   description: "Boost your programming workflow. Sync code snippets, API keys, commands, and links between dev machines instantly and securely in real-time.",
   alternates: {
-    canonical: "https://syncclip.in/blog/cross-device-clipboard-sync-for-developers-copy-code-snippets-instantly",
+    canonical: "https://syncclip.in/move-code-snippet-between-devices",
   },
 };
 

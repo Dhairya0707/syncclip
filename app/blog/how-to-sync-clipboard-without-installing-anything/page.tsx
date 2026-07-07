@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Learn how to sync your clipboard between phone and computer instantly without installing apps, browser extensions, or creating accounts. 100% web-native.",
   keywords: ["sync clipboard without installing anything", "online clipboard no app", "share text between devices no install", "web native clipboard sync", "browser clipboard sharing"],
   alternates: {
-    canonical: "https://syncclip.in/blog/how-to-sync-clipboard-without-installing-anything",
+    canonical: "https://syncclip.in/clipboard",
   },
 };
 
