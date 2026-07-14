@@ -58,7 +58,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/blog/go-online-tools-clipboard-not-working-free-alternatives",
-        destination: "/blog/go-online-tools-clipboard-alternative",
+        destination: "/clipboard",
+        permanent: true,
+      },
+      {
+        source: "/blog/go-online-tools-clipboard-alternative",
+        destination: "/clipboard",
         permanent: true,
       },
     ];

@@ -681,11 +681,11 @@ export default function HomeClient({
                 <p className="text-sm text-zinc-600 leading-relaxed mb-6">Stop emailing yourself snippets. Here are the 5 fastest ways to move data in 2026 without app bloat.</p>
                 <span className="text-secondary font-mono text-[10px] font-bold uppercase tracking-widest border-b border-secondary">Read Workflow _</span>
               </Link>
-              <Link href="/blog/go-online-tools-clipboard-alternative" className="bg-white border-2 border-black p-8 shadow-[8px_8px_0px_0px_rgba(5,125,188,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
-                <div className="font-mono text-[9px] text-zinc-400 mb-4 uppercase">Alternative // Comparison</div>
-                <h3 className="font-headline font-black uppercase text-xl mb-4">Go Online Tools Clipboard Alternative</h3>
-                <p className="text-sm text-zinc-600 leading-relaxed mb-6">Escape the ad-bloat of legacy tool directories. Discover the modern WebSocket-native sync protocol.</p>
-                <span className="text-secondary font-mono text-[10px] font-bold uppercase tracking-widest border-b border-secondary">View Alternative _</span>
+              <Link href="/clipboard-sync-guide" className="bg-white border-2 border-black p-8 shadow-[8px_8px_0px_0px_rgba(5,125,188,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
+                <div className="font-mono text-[9px] text-zinc-400 mb-4 uppercase">Direct Guide // Step-by-Step</div>
+                <h3 className="font-headline font-black uppercase text-xl mb-4">How to Sync Clipboard Between Devices</h3>
+                <p className="text-sm text-zinc-600 leading-relaxed mb-6">Forget emailing yourself links. Learn the step-by-step guide to real-time copy and paste across Android, Windows, Mac, and iPhone.</p>
+                <span className="text-secondary font-mono text-[10px] font-bold uppercase tracking-widest border-b border-secondary">Read Setup Guide _</span>
               </Link>
             </div>
           </div>

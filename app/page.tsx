@@ -4,9 +4,15 @@ import HomeClient from "../components/HomeClient";
 export const metadata: Metadata = {
   metadataBase: new URL("https://syncclip.in"),
   title: "SyncClip — Free Online Clipboard (Sync Instantly, No App, No Login)",
-  description: "Copy text on your phone → paste on PC in milliseconds. No signup, no installation, no logs. Works on Android, iOS, Windows, Mac, Linux.",
+  description: "Copy text on your phone and paste on your PC in under 100ms. No signup, no installation, no logs. Works on Android, iOS, Windows, Mac, Linux.",
   alternates: {
     canonical: "https://syncclip.in",
+    languages: {
+      'en-US': "https://syncclip.in",
+      'en-IN': "https://syncclip.in",
+      'en-NP': "https://syncclip.in",
+      'en-PK': "https://syncclip.in",
+    },
   },
 };
 

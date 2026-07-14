@@ -4,6 +4,18 @@
 
 ## Updates
 
+### 2026-07-14 - SEO Consolidation, Interactive Guide, Regional Hreflangs, and Umami Funnel Analytics
+
+- **SEO Content Consolidation**: Deleted the low-converting `/blog/go-online-tools-clipboard-alternative` page. Configured permanent 301 redirects in [next.config.ts](file:///Users/dhairyadarji/Developer/experiments/syncclip/next.config.ts) from the deleted routes directly to the high-converting `/clipboard` page.
+- **Sitemap Optimization**: Cleaned up [sitemap.ts](file:///Users/dhairyadarji/Developer/experiments/syncclip/app/sitemap.ts) to reduce sitemap size from 55+ entries to ~20 flagship and unique content pages, concentrating topical authority.
+- **Visual guide page rewrite**: Rewrote [clipboard-sync-guide](file:///Users/dhairyadarji/Developer/experiments/syncclip/app/clipboard-sync-guide/page.tsx) with utility-focused, high-CTR metadata. Integrated the [AndroidWindowsSimulation](file:///Users/dhairyadarji/Developer/experiments/syncclip/components/AndroidWindowsSimulation.tsx) component directly on the page, and added neobrutalist step cards for device pairings (Android ⇄ Windows, iPhone ⇄ Windows, etc.).
+- **Regional targeting (Nepal & Pakistan)**: Added `en-NP` and `en-PK` alternate hreflang tags to [page.tsx](file:///Users/dhairyadarji/Developer/experiments/syncclip/app/page.tsx), [clipboard/page.tsx](file:///Users/dhairyadarji/Developer/experiments/syncclip/app/clipboard/page.tsx), and sitemap configs to capture South Asian organic growth.
+- **Umami Funnel Tracking**: Integrated privacy-first custom event tracking for conversion metrics:
+  - `second_device_joined` when presence size >= 2.
+  - `text_synced` when the first editor update is pushed to the database.
+  - `return_visit` client-side retention hook triggering if a user returns after 24h but within 7 days.
+- **Feedback Form Detail**: Added an optional free-text `"How did you hear about us"` input field to [feedback/page.tsx](file:///Users/dhairyadarji/Developer/experiments/syncclip/app/feedback/page.tsx) to identify specific regional referral loops.
+
 ### 2026-06-25 - Umami Analytics, Silent Discord Error logging, Interactive Sandbox, and SEO/AEO/GEO Acceleration
 
 - **Unified Landing Component Refactor**: Created [HomeClient.tsx](file:///Users/dhairyadarji/Developer/experiments/syncclip/components/HomeClient.tsx) which houses the client-side sandbox and Convex operations. Parameterized title headers, typewriter text, and demographic conditions so multiple targeted landing pages share the identical neobrutalist editor UX.

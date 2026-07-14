@@ -127,7 +127,17 @@ export default function ClipboardEditor({ session }: { session: any }) {
       return () => clearTimeout(timer);
     }
   }, [nodeId]);
-
+  useEffect(() => {
+    if (typeof window === "undefined" || !presence || presence.length < 2) return;
+    const sessionKey = `syncclip_paired_session_${session.code}`;
+    if (sessionStorage.getItem(sessionKey) !== "true") {
+      sessionStorage.setItem(sessionKey, "true");
+      track("second_device_joined", {
+        code: session.code,
+        timestamp: new Date().toISOString()
+      });
+    }
+  }, [presence, session.code]);
   useEffect(() => {
     if (typeof window === "undefined" || !feedbackEnabled) return;
     const feedbackDone = localStorage.getItem("syncclip_feedback_done") === "true";
@@ -398,6 +408,14 @@ export default function ClipboardEditor({ session }: { session: any }) {
       update({ id: session._id, text: newText, callerNodeId: nodeId })
         .then(() => {
           incrementInteractions();
+          const syncedKey = `syncclip_text_synced_${session.code}`;
+          if (sessionStorage.getItem(syncedKey) !== "true") {
+            sessionStorage.setItem(syncedKey, "true");
+            track("text_synced", {
+              code: session.code,
+              timestamp: new Date().toISOString()
+            });
+          }
         })
         .catch((err) => {
           sendError("Text sync failed", err instanceof Error ? err.message : String(err), {

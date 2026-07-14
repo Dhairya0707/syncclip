@@ -50,13 +50,6 @@ export const blogs: BlogPost[] = [
     pubDate: "Wed, 24 Jun 2026 00:00:00 GMT",
   },
   {
-    title: "GoOnlineTools Clipboard Down? Use SyncClip — Real-Time Sync That Works",
-    desc: "GoOnlineTools clipboard broken or limited? SyncClip syncs text instantly between any devices. Free, faster, no login needed.",
-    slug: "go-online-tools-clipboard-alternative",
-    tag: "Top Alternative",
-    pubDate: "Tue, 23 Jun 2026 00:00:00 GMT",
-  },
-  {
     title: "How to Copy and Paste Online Between Two Devices Using a Link",
     desc: "Learn how to instantly copy and paste text between your phone and computer using a simple URL link. No apps or logins required.",
     slug: "how-to-copy-and-paste-online-between-two-devices-using-a-link",
