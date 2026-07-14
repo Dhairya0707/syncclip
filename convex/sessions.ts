@@ -58,8 +58,10 @@ export const updateText = mutation({
     if (!session) return;
     
     // Lock guard
-    if (session.isLocked && session.ownerNodeId !== args.callerNodeId) {
-      throw new Error("Session is locked. Only the origin node may overwrite data.");
+    const isOwner = session.ownerNodeId === args.callerNodeId;
+    const isAllowed = session.allowedWriteNodeIds?.includes(args.callerNodeId || "");
+    if (session.isLocked && !isOwner && !isAllowed) {
+      throw new Error("Session is locked. Only the origin node or authorized writers may overwrite data.");
     }
 
     const patches: any = { 
@@ -269,6 +271,12 @@ export const getPresence = query({
     nodeId: v.optional(v.string()) 
   },
   handler: async (ctx, args) => {
+    const session = await ctx.db.get(args.sessionId);
+    if (!session) return [];
+    
+    const isOwner = session.ownerNodeId === args.nodeId;
+    const allowedWriters = session.allowedWriteNodeIds || [];
+
     const presenceList = await ctx.db
       .query("presence")
       .withIndex("by_sessionId_and_updatedAt", (q) =>
@@ -282,7 +290,9 @@ export const getPresence = query({
       name: p.name,
       updatedAt: p.updatedAt,
       sessionId: p.sessionId,
-      isMe: p.nodeId === args.nodeId
+      isMe: p.nodeId === args.nodeId,
+      isWriter: allowedWriters.includes(p.nodeId),
+      nodeId: (isOwner || p.nodeId === args.nodeId) ? p.nodeId : undefined,
     }));
   },
 });
@@ -298,8 +308,10 @@ export const restoreHistory = mutation({
     if (!session || !session.history || !session.history[args.index]) return;
     
     // Lock guard
-    if (session.isLocked && session.ownerNodeId !== args.callerNodeId) {
-      throw new Error("Session is locked. Only the origin node may restore history.");
+    const isOwner = session.ownerNodeId === args.callerNodeId;
+    const isAllowed = session.allowedWriteNodeIds?.includes(args.callerNodeId || "");
+    if (session.isLocked && !isOwner && !isAllowed) {
+      throw new Error("Session is locked. Only the origin node or authorized writers may restore history.");
     }
 
     const restoredText = session.history[args.index].text;
@@ -308,4 +320,46 @@ export const restoreHistory = mutation({
       updatedAt: Date.now(),
     });
   },
+});
+
+export const toggleNodeWriteAccess = mutation({
+  args: {
+    id: v.id("sessions"),
+    callerNodeId: v.string(),
+    targetNodeId: v.string(),
+    allow: v.boolean(),
+  },
+  handler: async (ctx, args) => {
+    const session = await ctx.db.get(args.id);
+    if (!session) return;
+    if (session.ownerNodeId !== args.callerNodeId) {
+      throw new Error("Only the origin node may delegate write access.");
+    }
+    
+    let currentAllowed = session.allowedWriteNodeIds || [];
+    if (args.allow) {
+      if (!currentAllowed.includes(args.targetNodeId)) {
+        currentAllowed = [...currentAllowed, args.targetNodeId];
+      }
+    } else {
+      currentAllowed = currentAllowed.filter(id => id !== args.targetNodeId);
+    }
+    
+    await ctx.db.patch(args.id, { allowedWriteNodeIds: currentAllowed, updatedAt: Date.now() });
+  }
+});
+
+export const resetAllowedWriteNodes = mutation({
+  args: {
+    id: v.id("sessions"),
+    callerNodeId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const session = await ctx.db.get(args.id);
+    if (!session) return;
+    if (session.ownerNodeId !== args.callerNodeId) {
+      throw new Error("Only the origin node may modify write access.");
+    }
+    await ctx.db.patch(args.id, { allowedWriteNodeIds: [], updatedAt: Date.now() });
+  }
 });

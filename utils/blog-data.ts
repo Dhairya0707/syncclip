@@ -8,6 +8,13 @@ export interface BlogPost {
 
 export const blogs: BlogPost[] = [
   {
+    title: "Pass the Pen: How to Delegate Write Access in a Locked Shared Clipboard",
+    desc: "How to grant temporary write access to a specific guest inside a locked shared clipboard session without compromising security or exposing it to overwrites.",
+    slug: "locked-clipboard-write-delegation",
+    tag: "Feature Launch // Collaboration",
+    pubDate: "Tue, 14 Jul 2026 00:00:00 GMT",
+  },
+  {
     title: "Microsoft Phone Link vs SyncClip — Android to Windows Clipboard Sync (2026)",
     desc: "Honest comparison: Phone Link requires same WiFi, Windows 11, and a Microsoft account. SyncClip needs only a browser. Which is better for clipboard sync?",
     slug: "phone-link-vs-syncclip",

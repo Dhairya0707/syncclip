@@ -21,6 +21,8 @@ export default function ClipboardEditor({ session }: { session: any }) {
   const toggleBurnMutation = useMutation(api.sessions.toggleBurnMode);
   const burnMutation = useMutation(api.sessions.burnSession);
   const deleteSessionMutation = useMutation(api.sessions.deleteSession);
+  const toggleNodeWriteAccess = useMutation(api.sessions.toggleNodeWriteAccess);
+  const resetAllowedWriteNodes = useMutation(api.sessions.resetAllowedWriteNodes);
   const router = useRouter();
 
   // Persistent Node ID for heartbeat continuity
@@ -301,7 +303,8 @@ export default function ClipboardEditor({ session }: { session: any }) {
   // Smart Clipboard Polling (Auto-Read)
   const isOwner = session.ownerNodeId === nodeId;
   const isLocked = session.isLocked;
-  const canEdit = !isLocked || isOwner;
+  const isAllowedWriter = session.allowedWriteNodeIds?.includes(nodeId) || false;
+  const canEdit = !isLocked || isOwner || isAllowedWriter;
 
   // Track when second device joins
   useEffect(() => {
@@ -528,6 +531,44 @@ export default function ClipboardEditor({ session }: { session: any }) {
           nodeId,
           sessionId: session.code,
           newLockedState,
+        });
+      });
+  }
+
+  function handleToggleWriteAccess(targetNodeId: string, allow: boolean) {
+    if (!isOwner) return;
+    toggleNodeWriteAccess({
+      id: session._id,
+      callerNodeId: nodeId,
+      targetNodeId,
+      allow,
+    })
+      .then(() => {
+        showToast(allow ? "Write access granted" : "Write access revoked");
+      })
+      .catch((err) => {
+        sendError("Toggle write access failed", err instanceof Error ? err.message : String(err), {
+          nodeId,
+          sessionId: session.code,
+          targetNodeId,
+          allow,
+        });
+      });
+  }
+
+  function handleResetWriteAccess() {
+    if (!isOwner) return;
+    resetAllowedWriteNodes({
+      id: session._id,
+      callerNodeId: nodeId,
+    })
+      .then(() => {
+        showToast("All write access revoked");
+      })
+      .catch((err) => {
+        sendError("Reset write access failed", err instanceof Error ? err.message : String(err), {
+          nodeId,
+          sessionId: session.code,
         });
       });
   }
@@ -922,7 +963,13 @@ export default function ClipboardEditor({ session }: { session: any }) {
               <div className="font-mono text-xs font-bold tracking-[0.3em] text-secondary uppercase flex items-center gap-2 flex-wrap">
                 <span className={`w-2 h-2 rounded-full ${isOnline ? "bg-secondary animate-pulse" : "bg-zinc-400"} block`}></span>
                 {isOnline ? "LIVE UPLINK ACTIVE" : "UPLINK SIGNAL LOST"}
-                {isLocked && !isOwner && <span className="text-zinc-500 ml-2">(READ ONLY)</span>}
+                {isLocked && !isOwner && (
+                  canEdit ? (
+                    <span className="text-secondary ml-2 font-black">(AUTHORIZED WRITER)</span>
+                  ) : (
+                    <span className="text-zinc-500 ml-2">(READ ONLY)</span>
+                  )
+                )}
                 {session.isBurnMode && <span className="text-orange-500 ml-2 animate-pulse">(BURN PROTOCOL ARMED)</span>}
               </div>
               <div className="font-mono text-[9px] tracking-widest uppercase text-zinc-400">
@@ -1403,15 +1450,48 @@ export default function ClipboardEditor({ session }: { session: any }) {
                 </div>
                 <ul className="space-y-3 font-label text-xs">
                   {presence?.map((p: any) => (
-                    <li key={p._id} className="flex justify-between items-center border-b border-zinc-100 pb-2">
-                      <span className={`${p.isMe ? "text-black font-bold" : "text-zinc-600"} truncate pr-2`}>
-                        {p.name} {p.isMe && "(YOU)"}
-                      </span>
-                      <span className="text-secondary text-[8px] animate-pulse uppercase font-black shrink-0">active</span>
+                    <li key={p._id} className="flex flex-col gap-1 border-b border-zinc-100 pb-2">
+                      <div className="flex justify-between items-center w-full">
+                        <span className={`${p.isMe ? "text-black font-bold" : "text-zinc-600"} truncate pr-2`}>
+                          {p.name} {p.isMe && "(YOU)"}
+                          {isLocked && p.isWriter && !p.isMe && (
+                            <span className="ml-2 text-secondary text-[9px] font-bold font-mono uppercase bg-secondary/10 px-1 py-0.5 rounded">
+                              [WRITER]
+                            </span>
+                          )}
+                        </span>
+                        <span className="text-secondary text-[8px] animate-pulse uppercase font-black shrink-0">active</span>
+                      </div>
+                      
+                      {isLocked && isOwner && !p.isMe && p.nodeId && (
+                        <div className="flex items-center justify-between w-full mt-1.5 pt-1.5 border-t border-dashed border-zinc-200">
+                          <span className="font-mono text-[9px] text-zinc-500 uppercase">Delegated Write:</span>
+                          <button
+                            onClick={() => handleToggleWriteAccess(p.nodeId, !p.isWriter)}
+                            className={`px-2 py-0.5 border text-[9px] font-bold font-mono tracking-wider transition-all uppercase ${
+                              p.isWriter
+                                ? "bg-black text-white border-black hover:bg-zinc-800"
+                                : "bg-white text-zinc-600 border-zinc-300 hover:text-black hover:border-black"
+                            }`}
+                          >
+                            {p.isWriter ? "ON" : "OFF"}
+                          </button>
+                        </div>
+                      )}
                     </li>
                   ))}
                   {(!presence || presence.length === 0) && (
                     <li className="text-zinc-400 italic">No nodes detected</li>
+                  )}
+                  {isLocked && isOwner && session.allowedWriteNodeIds && session.allowedWriteNodeIds.length > 0 && (
+                    <li className="pt-2">
+                      <button
+                        onClick={handleResetWriteAccess}
+                        className="w-full text-center py-1.5 border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-colors font-mono text-[9px] font-bold uppercase tracking-widest"
+                      >
+                        REVOKE ALL WRITE ACCESS
+                      </button>
+                    </li>
                   )}
                 </ul>
               </section>

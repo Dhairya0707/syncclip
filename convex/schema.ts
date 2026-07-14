@@ -14,6 +14,7 @@ export default defineSchema({
     isBurnMode: v.optional(v.boolean()),
     updateCount: v.optional(v.number()),
     updatedAt: v.optional(v.number()),
+    allowedWriteNodeIds: v.optional(v.array(v.string())),
   })
     .index("by_code", ["code"])
     .index("by_createdAt", ["createdAt"])

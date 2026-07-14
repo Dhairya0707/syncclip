@@ -19,6 +19,9 @@
 | 2026-06-25 | Dev.to | `/` | ✅ POSTED | "I Stopped Sending Myself WhatsApp Messages to Share Text — Here's What I Do Instead" |
 | 2026-06-25 | Dev.to | `/` | ✅ POSTED | "How Real-Time Clipboard Sync Works Over WebSockets (And Why It's Faster Than You Think)" |
 | 2026-06-25 | Dev.to | `/` | ✅ POSTED | "5 Ways to Copy Text Between Phone and Laptop — Ranked by a Developer (2026)" |
+| 2026-07-14 | Peerlist | `/` | 🚀 PLANNED | "Pass the Pen: Real-time write delegation on locked WebSockets session" |
+| 2026-07-14 | LinkedIn | `/` | 🚀 PLANNED | "Feature Launch: Temporary Write Access delegation in collaborative clipboards" |
+| 2026-07-14 | Reddit | `/` | 🚀 PLANNED | "Show r/webdev: Implementing multi-write delegation with anti-spoofing in WebSockets" |
 
 ---
 *Log maintained by SyncClip Social Distributor Skill*

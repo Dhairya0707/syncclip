@@ -489,9 +489,9 @@ export default function HomeClient({
 
               <div className="border-2 border-black p-8 md:p-10 group hover:bg-black transition-all duration-300">
                 <span className="material-symbols-outlined text-4xl block mb-5 text-black group-hover:text-secondary transition-colors">shield_lock</span>
-                <h3 className="font-headline text-2xl uppercase font-black mb-3 group-hover:text-white transition-colors">Secure &amp; Controlled</h3>
+                <h3 className="font-headline text-2xl uppercase font-black mb-3 group-hover:text-white transition-colors">Lock &amp; Write Delegation</h3>
                 <p className="font-body text-sm text-zinc-600 leading-relaxed group-hover:text-zinc-400 transition-colors">
-                  <strong className="group-hover:text-white">Lock</strong> your session to make all others read-only. Pair devices instantly via <strong className="group-hover:text-white">QR codes</strong>. Use <strong className="group-hover:text-white">CMD+K</strong> to control everything from the keyboard.
+                  <strong className="group-hover:text-white">Lock</strong> your session to make other nodes read-only. Proactively <strong className="group-hover:text-white"> delegate write access </strong> to specific connected devices (&quot;Pass the Pen&quot;) so teammates can edit while others remain read-only.
                 </p>
               </div>
             </div>
