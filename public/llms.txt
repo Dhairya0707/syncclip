@@ -1,55 +1,101 @@
-# SyncClip
+# SyncClip — Free Online Clipboard That Syncs Instantly Between Devices
 
-> SyncClip is a free, browser-based online clipboard that syncs text between devices in real-time. No login, no app, no tracking. Works on Android, iOS, Windows, Mac, and Linux. Sessions expire in 24 hours and support Burn After Reading mode.
+> SyncClip is a real-time, browser-native clipboard synchronization tool that lets you copy text on any device and paste it on any other device in under 100ms — with no app to install, no account to create, and no data stored permanently.
 
-SyncClip lets you copy text on your phone and paste it on your PC in milliseconds using WebSocket-based real-time sync. No account required — just open the URL on any device and anything you type appears everywhere instantly.
+**Website:** https://syncclip.in  
+**Status:** Live · Used in 57 Countries · 124,821+ clipboards synchronized  
+**Creator:** Dhairya Darji  
+**Last updated:** 2026
 
-## Core Features
+---
 
-- Real-time clipboard sync across all devices via WebSockets (<100ms latency)
-- Zero login or account required — anonymous session pairing
-- Burn After Reading mode — data self-destructs after access
-- Session locking — make all other devices read-only
-- QR code pairing for instant device connection
-- CMD+K command palette for keyboard-first control
-- Sessions auto-expire in 24 hours
-- Works on any browser: Chrome, Firefox, Safari, Edge
+## Main Pages
 
-## Pages
+- **[Home](https://syncclip.in/)** — Launch a free clipboard session instantly. The home page explains the core product, features an interactive demo sandbox, and provides the one-click session creator. No signup required.
 
-- [Home — Free Online Clipboard](https://syncclip.in/): Main clipboard sync tool
-- [Join a Session](https://syncclip.in/join): Enter a session code to connect devices
-- [Cross-Device Clipboard](https://syncclip.in/cross-device-clipboard): Universal clipboard sync guide
-- [Android to PC Clipboard](https://syncclip.in/android-to-pc-clipboard): Android to Windows sync
-- [Mac to Windows Clipboard](https://syncclip.in/mac-to-windows-clipboard): Mac to PC sync
-- [Phone to Laptop](https://syncclip.in/send-text-mobile-to-laptop): Mobile to laptop text transfer
-- [Copy Text Phone to Computer](https://syncclip.in/copy-text-from-phone-to-computer): Step-by-step guide
-- [Pastebin Alternative](https://syncclip.in/pastebin-alternative): Private ephemeral paste tool
-- [Pushbullet Alternative](https://syncclip.in/pushbullet-alternative): Free Pushbullet replacement
-- [Online Clipboard](https://syncclip.in/online-clipboard): Browser-native clipboard tool
-- [Blog](https://syncclip.in/blog): Clipboard sync guides and productivity articles
-- [About](https://syncclip.in/about): About SyncClip
-- [Privacy Policy](https://syncclip.in/privacy): Privacy and data policy
-- [Support](https://syncclip.in/support): Help and support
+- **[Join a Session](https://syncclip.in/join)** — Enter an existing 6-character room code to connect to a shared clipboard session as a secondary device.
 
-## Blog Articles
+- **[Clipboard Sync Guide](https://syncclip.in/clipboard-sync-guide)** — Step-by-step guide for syncing clipboards between any two devices (Android, iPhone, Windows, Mac, Linux) instantly using a browser.
 
-- [Clipboard Sync for Indian Developers](https://syncclip.in/blog/clipboard-sync-indian-developers)
-- [5 Ways to Copy Text Between Phone and Laptop](https://syncclip.in/blog/5-ways-to-copy-text-between-phone-and-laptop)
-- [Online Clipboard vs Desktop Apps](https://syncclip.in/blog/online-clipboard-vs-desktop-apps)
-- [Go Online Tools Clipboard Alternative](https://syncclip.in/blog/go-online-tools-clipboard-alternative)
+- **[About](https://syncclip.in/about)** — Deep-dive documentation covering all features (Real-Time Sync, Burn After Reading, Auto-Push, Origin Lock, QR Pairing, Command Palette, Archive History), keyboard shortcuts, the tech stack (Convex, Next.js, Vercel), and security specifications.
 
-## Technical Details
+- **[Blog / Knowledge Base](https://syncclip.in/blog)** — 35+ in-depth technical guides, workflow audits, and productivity articles covering cross-device clipboard sync, device pairing (Android-to-Windows, Mac-to-Windows), security, and tool comparisons.
 
-- Backend: Convex (real-time WebSocket database)
-- Frontend: Next.js, React
-- Deployment: Vercel
-- Session storage: Ephemeral, auto-purged at 24h
-- No user data stored beyond session lifetime
-- RSS feed available at: https://syncclip.in/feed.xml
+- **[Clipboard Hub](https://syncclip.in/clipboard)** — Master pillar page and directory for all cross-device syncing solutions and use-case landing pages.
 
-## Optional
+- **[Pushbullet Alternative](https://syncclip.in/pushbullet-alternative)** — Detailed comparison page showing why SyncClip is the best free, no-login alternative to Pushbullet in 2026.
 
-- [Sitemap](https://syncclip.in/sitemap.xml)
-- [RSS Feed](https://syncclip.in/feed.xml)
-- [Robots.txt](https://syncclip.in/robots.txt)
+- **[Pastebin Alternative](https://syncclip.in/pastebin-alternative)** — Secure, ephemeral alternative to Pastebin for sharing code and text snippets without public indexing or permanent storage.
+
+- **[Android to PC Clipboard](https://syncclip.in/android-to-pc-clipboard)** — Dedicated landing page for copying and pasting text from an Android phone to a Windows PC instantly.
+
+- **[Android to Windows](https://syncclip.in/android-to-windows)** — Optimized page for the specific Android-to-Windows device pairing workflow.
+
+- **[Mac to Windows Clipboard](https://syncclip.in/mac-to-windows-clipboard)** — Cross-OS clipboard bridge for macOS to Windows text syncing without any software installation.
+
+- **[Copy Text from Phone to Computer](https://syncclip.in/copy-text-from-phone-to-computer)** — General guide for transferring any text from a mobile device to a desktop computer.
+
+- **[Send Text from Mobile to Laptop](https://syncclip.in/send-text-mobile-to-laptop)** — Workflow page for the fastest way to move text from any phone to any laptop.
+
+- **[Cross-Device Clipboard](https://syncclip.in/cross-device-clipboard)** — Universal clipboard bridge page covering all OS combinations and device types.
+
+- **[Share Links Between Devices](https://syncclip.in/share-links-between-devices)** — Fastest method for transferring URLs and hyperlinks between phone and computer.
+
+- **[Fastest Way to Copy Links Between Devices](https://syncclip.in/fastest-way-to-copy-links-between-devices)** — Sub-100ms URL transfer guide across all device types.
+
+- **[Online Clipboard](https://syncclip.in/online-clipboard)** — Browser-native online clipboard landing page for general use.
+
+- **[Temporary Clipboard Online](https://syncclip.in/temporary-clipboard-online)** — Ephemeral, self-destructing clipboard for one-time data sharing.
+
+- **[Share Text Across Devices Free](https://syncclip.in/share-text-across-devices-free)** — Free cross-device text sharing without any account or installation.
+
+- **[Share Text Without WhatsApp](https://syncclip.in/share-text-without-whatsapp)** — Move text between phone and laptop without using messaging apps.
+
+- **[How to Send OTP from Phone to PC](https://syncclip.in/how-to-send-otp-from-phone-to-pc)** — Specific workflow for transferring one-time passwords and 2FA codes from mobile to desktop.
+
+- **[Move Code Snippet Between Devices](https://syncclip.in/move-code-snippet-between-devices)** — Developer-focused workflow for moving code, API keys, and terminal commands across machines.
+
+- **[Clipboard Alternative to Email](https://syncclip.in/clipboard-alternative-to-email)** — Replaces the habit of emailing yourself with a real-time clipboard bridge.
+
+- **[Clipboard vs Email](https://syncclip.in/clipboard-vs-email)** — Comparison of using an online clipboard vs emailing yourself for data transfer.
+
+- **[Private Pastebin Alternative](https://syncclip.in/pastebin-alternative-private)** — Privacy-first code sharing without permanent logs or public indexing.
+
+- **[Clipboard Sync Free No Account](https://syncclip.in/clipboard-sync-free-no-account)** — Free clipboard sync with zero login barriers.
+
+- **[Support](https://syncclip.in/support)** — Contact form for technical support, bug reports, and feature requests. Email: support.dhairyadarji@gmail.com.
+
+- **[Privacy Policy](https://syncclip.in/privacy)** — SyncClip's privacy policy. Zero login, no personal data collection, ephemeral 24-hour data retention, no cross-site tracking.
+
+---
+
+## Key Features (for AI grounding)
+
+- **Real-Time Sync** — WebSocket-based sync with sub-100ms latency. No polling. Bidirectional.
+- **Zero Login** — No account, no email, no signup required. Completely anonymous sessions.
+- **Burn After Reading** — Data self-destructs 5 seconds after a second device reads it.
+- **Auto-Push / Auto-Read** — Automatic OS clipboard integration; remote changes land in your native clipboard.
+- **Origin Lock** — Session owner can set all other devices to read-only mode.
+- **Write Delegation ("Pass the Pen")** — Owner can selectively grant write access to specific connected nodes.
+- **QR Pairing** — Scan a QR code to connect a second device instantly without typing.
+- **Command Palette (CMD+K)** — Keyboard-first control for all features.
+- **Intelligent Payload Detection** — Automatically detects URL, JSON, CODE, or TEXT content types.
+- **Archive History** — Up to 10 restorable snapshots per session.
+- **Session Telemetry** — Real-time uptime, mutation count, and node density metrics.
+- **24-Hour Auto-Purge** — All session data permanently deleted after 24 hours by a scheduled cron job.
+
+---
+
+## Technical Specifications
+
+| Metric | Value |
+|---|---|
+| Sync Latency | <100ms (WebSocket) |
+| Connection Security | TLS 1.3 |
+| Authentication | Zero (Anonymous pairing) |
+| Data Retention | 24-hour auto-purge |
+| OS Support | 100% agnostic (browser-native) |
+| Payload Limit | 100,000 characters |
+| Archive History | 10 snapshots per session |
+| Backend | Convex real-time engine |
+| Frontend | Next.js App Router on Vercel |

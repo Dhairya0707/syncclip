@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Online Clipboard — Copy Paste Between Devices Instantly (No Login)",
-  description: "Copy text on your phone and paste on your PC in under 100ms. Free online clipboard sync. No app downloads, no account setup, 100% private.",
+  title: "Online Clipboard: Copy Text from Phone to PC Instantly",
+  description: "Copy text, links, and code snippets from your phone to PC or laptop in milliseconds. No login, no app downloads, 100% free and secure real-time clipboard sync.",
   keywords: ["clipboard", "online clipboard", "clipboard online", "free clipboard", "clipboard tool", "clipboard app", "clipboard sharing", "share clipboard", "clipboard sync", "text clipboard online"],
   alternates: {
     canonical: "https://syncclip.in/clipboard",
@@ -16,8 +16,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Online Clipboard — Copy Paste Between Devices Instantly (No Login)",
-    description: "Copy text on your phone and paste on your PC in under 100ms. Free online clipboard sync. No app downloads, no account setup, 100% private.",
+    title: "Online Clipboard: Copy Text from Phone to PC Instantly",
+    description: "Copy text, links, and code snippets from your phone to PC or laptop in milliseconds. No login, no app downloads, 100% free and secure real-time clipboard sync.",
   },
 };
 
