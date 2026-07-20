@@ -22,6 +22,7 @@
 | 2026-07-14 | Peerlist | `/` | 🚀 PLANNED | "Pass the Pen: Real-time write delegation on locked WebSockets session" |
 | 2026-07-14 | LinkedIn | `/` | 🚀 PLANNED | "Feature Launch: Temporary Write Access delegation in collaborative clipboards" |
 | 2026-07-14 | Reddit | `/` | 🚀 PLANNED | "Show r/webdev: Implementing multi-write delegation with anti-spoofing in WebSockets" |
+| 2026-07-19 | Dev.to/Medium | `/` | 🚀 PLANNED | "Why We Built SyncClip: A 100ms Browser-Native WebSocket Clipboard for Devs" |
 
 ---
 *Log maintained by SyncClip Social Distributor Skill*

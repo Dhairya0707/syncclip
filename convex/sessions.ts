@@ -5,7 +5,7 @@ import { v } from "convex/values";
 function generateCode() {
   const array = new Uint32Array(1);
   crypto.getRandomValues(array);
-  return array[0].toString(36).toUpperCase().slice(0, 6).padStart(6, '0');
+  return array[0].toString(36).toUpperCase().slice(0, 6).padStart(6, "0");
 }
 
 export const createSession = mutation({
@@ -51,20 +51,26 @@ export const updateText = mutation({
   handler: async (ctx, args) => {
     // Security check: limit text length to 100,000 chars (~100KB)
     if (args.text.length > 100000) {
-      throw new Error("Payload too large: Content exceeds maximum limit of 100,000 characters.");
+      throw new Error(
+        "Payload too large: Content exceeds maximum limit of 100,000 characters.",
+      );
     }
 
     const session = await ctx.db.get(args.id);
     if (!session) return;
-    
+
     // Lock guard
     const isOwner = session.ownerNodeId === args.callerNodeId;
-    const isAllowed = session.allowedWriteNodeIds?.includes(args.callerNodeId || "");
+    const isAllowed = session.allowedWriteNodeIds?.includes(
+      args.callerNodeId || "",
+    );
     if (session.isLocked && !isOwner && !isAllowed) {
-      throw new Error("Session is locked. Only the origin node or authorized writers may overwrite data.");
+      throw new Error(
+        "Session is locked. Only the origin node or authorized writers may overwrite data.",
+      );
     }
 
-    const patches: any = { 
+    const patches: any = {
       text: args.text,
       updateCount: (session.updateCount || 0) + 1,
       updatedAt: Date.now(),
@@ -73,7 +79,10 @@ export const updateText = mutation({
     if (args.saveToHistory && session.text !== args.text) {
       const history = session.history || [];
       // Keep only last 10 history items
-      const newHistory = [{ text: session.text, timestamp: Date.now() }, ...history].slice(0, 10);
+      const newHistory = [
+        { text: session.text, timestamp: Date.now() },
+        ...history,
+      ].slice(0, 10);
       patches.history = newHistory;
     }
 
@@ -93,8 +102,11 @@ export const toggleLock = mutation({
     if (session.ownerNodeId !== args.callerNodeId) {
       throw new Error("Only the origin node may modify lock states.");
     }
-    await ctx.db.patch(args.id, { isLocked: args.isLocked, updatedAt: Date.now() });
-  }
+    await ctx.db.patch(args.id, {
+      isLocked: args.isLocked,
+      updatedAt: Date.now(),
+    });
+  },
 });
 
 export const toggleBurnMode = mutation({
@@ -109,8 +121,11 @@ export const toggleBurnMode = mutation({
     if (session.ownerNodeId !== args.callerNodeId) {
       throw new Error("Only the origin node may activate Burn Mode.");
     }
-    await ctx.db.patch(args.id, { isBurnMode: args.isBurnMode, updatedAt: Date.now() });
-  }
+    await ctx.db.patch(args.id, {
+      isBurnMode: args.isBurnMode,
+      updatedAt: Date.now(),
+    });
+  },
 });
 
 export const burnSession = mutation({
@@ -120,7 +135,7 @@ export const burnSession = mutation({
   handler: async (ctx, args) => {
     const session = await ctx.db.get(args.id);
     if (!session || !session.isBurnMode) return;
-    
+
     // Complete overwrite & wipe history
     await ctx.db.patch(args.id, {
       text: "",
@@ -128,7 +143,7 @@ export const burnSession = mutation({
       isBurnMode: false, // Turn off after burn to prevent loops
       updatedAt: Date.now(),
     });
-  }
+  },
 });
 
 export const deleteSession = mutation({
@@ -139,7 +154,7 @@ export const deleteSession = mutation({
   handler: async (ctx, args) => {
     const session = await ctx.db.get(args.id);
     if (!session) return;
-    
+
     if (session.ownerNodeId !== args.callerNodeId) {
       throw new Error("Only the origin operator can delete this cluster.");
     }
@@ -165,11 +180,11 @@ export const cleanupSessions = mutation({
     const oldSessions = await ctx.db
       .query("sessions")
       .withIndex("by_createdAt", (q) => q.lt("createdAt", twentyFourHoursAgo))
-      .filter((q) => 
+      .filter((q) =>
         q.or(
           q.eq(q.field("updatedAt"), undefined),
-          q.lt(q.field("updatedAt"), twentyFourHoursAgo)
-        )
+          q.lt(q.field("updatedAt"), twentyFourHoursAgo),
+        ),
       )
       .collect();
 
@@ -177,7 +192,9 @@ export const cleanupSessions = mutation({
       // Cleanup presence for this session
       const presence = await ctx.db
         .query("presence")
-        .withIndex("by_sessionId_and_nodeId", (q) => q.eq("sessionId", session._id))
+        .withIndex("by_sessionId_and_nodeId", (q) =>
+          q.eq("sessionId", session._id),
+        )
         .collect();
       for (const p of presence) {
         await ctx.db.delete(p._id);
@@ -207,12 +224,14 @@ export const updatePresence = mutation({
   handler: async (ctx, args) => {
     // Security check: limit name to 50 chars
     if (args.name.length > 50) {
-      throw new Error("Payload too large: Signature exceeds 50 character limit.");
+      throw new Error(
+        "Payload too large: Signature exceeds 50 character limit.",
+      );
     }
     const existing = await ctx.db
       .query("presence")
       .withIndex("by_sessionId_and_nodeId", (q) =>
-        q.eq("sessionId", args.sessionId).eq("nodeId", args.nodeId)
+        q.eq("sessionId", args.sessionId).eq("nodeId", args.nodeId),
       )
       .first();
 
@@ -225,11 +244,15 @@ export const updatePresence = mutation({
       // Security check: limit to 100 active nodes per session
       const presenceCount = await ctx.db
         .query("presence")
-        .withIndex("by_sessionId_and_nodeId", (q) => q.eq("sessionId", args.sessionId))
+        .withIndex("by_sessionId_and_nodeId", (q) =>
+          q.eq("sessionId", args.sessionId),
+        )
         .collect();
 
-      if (presenceCount.length >= 100) {
-        throw new Error("Cluster Capacity Reached: This node is at maximum capacity (100 operators).");
+      if (presenceCount.length >= 500) {
+        throw new Error(
+          "Cluster Capacity Reached: This node is at maximum capacity (100 operators).",
+        );
       }
 
       await ctx.db.insert("presence", {
@@ -266,33 +289,33 @@ export const cleanupOldPresence = internalMutation({
 });
 
 export const getPresence = query({
-  args: { 
+  args: {
     sessionId: v.id("sessions"),
-    nodeId: v.optional(v.string()) 
+    nodeId: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const session = await ctx.db.get(args.sessionId);
     if (!session) return [];
-    
+
     const isOwner = session.ownerNodeId === args.nodeId;
     const allowedWriters = session.allowedWriteNodeIds || [];
 
     const presenceList = await ctx.db
       .query("presence")
       .withIndex("by_sessionId_and_updatedAt", (q) =>
-        q.eq("sessionId", args.sessionId).gt("updatedAt", Date.now() - 30000)
+        q.eq("sessionId", args.sessionId).gt("updatedAt", Date.now() - 30000),
       )
       .collect();
-    
+
     // Privacy sanitize: never leak nodeId to nodes other than the owner
-    return presenceList.map(p => ({
+    return presenceList.map((p) => ({
       _id: p._id,
       name: p.name,
       updatedAt: p.updatedAt,
       sessionId: p.sessionId,
       isMe: p.nodeId === args.nodeId,
       isWriter: allowedWriters.includes(p.nodeId),
-      nodeId: (isOwner || p.nodeId === args.nodeId) ? p.nodeId : undefined,
+      nodeId: isOwner || p.nodeId === args.nodeId ? p.nodeId : undefined,
     }));
   },
 });
@@ -301,17 +324,21 @@ export const restoreHistory = mutation({
   args: {
     id: v.id("sessions"),
     index: v.number(),
-    callerNodeId: v.optional(v.string())
+    callerNodeId: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const session = await ctx.db.get(args.id);
     if (!session || !session.history || !session.history[args.index]) return;
-    
+
     // Lock guard
     const isOwner = session.ownerNodeId === args.callerNodeId;
-    const isAllowed = session.allowedWriteNodeIds?.includes(args.callerNodeId || "");
+    const isAllowed = session.allowedWriteNodeIds?.includes(
+      args.callerNodeId || "",
+    );
     if (session.isLocked && !isOwner && !isAllowed) {
-      throw new Error("Session is locked. Only the origin node or authorized writers may restore history.");
+      throw new Error(
+        "Session is locked. Only the origin node or authorized writers may restore history.",
+      );
     }
 
     const restoredText = session.history[args.index].text;
@@ -335,18 +362,21 @@ export const toggleNodeWriteAccess = mutation({
     if (session.ownerNodeId !== args.callerNodeId) {
       throw new Error("Only the origin node may delegate write access.");
     }
-    
+
     let currentAllowed = session.allowedWriteNodeIds || [];
     if (args.allow) {
       if (!currentAllowed.includes(args.targetNodeId)) {
         currentAllowed = [...currentAllowed, args.targetNodeId];
       }
     } else {
-      currentAllowed = currentAllowed.filter(id => id !== args.targetNodeId);
+      currentAllowed = currentAllowed.filter((id) => id !== args.targetNodeId);
     }
-    
-    await ctx.db.patch(args.id, { allowedWriteNodeIds: currentAllowed, updatedAt: Date.now() });
-  }
+
+    await ctx.db.patch(args.id, {
+      allowedWriteNodeIds: currentAllowed,
+      updatedAt: Date.now(),
+    });
+  },
 });
 
 export const resetAllowedWriteNodes = mutation({
@@ -360,6 +390,9 @@ export const resetAllowedWriteNodes = mutation({
     if (session.ownerNodeId !== args.callerNodeId) {
       throw new Error("Only the origin node may modify write access.");
     }
-    await ctx.db.patch(args.id, { allowedWriteNodeIds: [], updatedAt: Date.now() });
-  }
+    await ctx.db.patch(args.id, {
+      allowedWriteNodeIds: [],
+      updatedAt: Date.now(),
+    });
+  },
 });
