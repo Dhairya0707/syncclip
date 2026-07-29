@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  robots: { index: false },
   title: "What is an Online Clipboard? The Complete Guide to Cross-Device Sync",
   description: "Discover what an online clipboard is, how browser-native WebSocket syncing operates, and how to securely share text, links, and code snippets across devices without installing apps.",
   alternates: {
-    canonical: "/blog/what-is-an-online-clipboard-complete-guide",
+    canonical: "https://syncclip.in/blog/what-is-an-online-clipboard-complete-guide",
   },
 };
 

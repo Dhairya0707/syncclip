@@ -631,6 +631,11 @@ export default function HomeClient({
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Link href="/clipboard" className="border-2 border-black p-6 bg-black text-white hover:bg-secondary hover:text-black group transition-all">
+                <h3 className="font-headline font-black uppercase text-lg mb-2 transition-colors">Online Clipboard</h3>
+                <p className="text-xs text-zinc-300 group-hover:text-zinc-800 transition-colors mb-4">Free online clipboard — copy &amp; paste between phone, PC, and tablet instantly.</p>
+                <span className="font-mono text-[10px] font-bold text-secondary group-hover:text-black uppercase tracking-widest">Open Free Tool _</span>
+              </Link>
               <Link href="/blog/online-clipboard-vs-desktop-apps" className="border-2 border-black p-6 hover:bg-black group transition-all">
                 <h3 className="font-headline font-black uppercase text-lg mb-2 group-hover:text-white transition-colors">Apps vs Web</h3>
                 <p className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors mb-4">Why browser-native sync is replacing installed apps.</p>
@@ -701,15 +706,27 @@ export default function HomeClient({
             
             <div className="space-y-12">
               <div className="border-l-4 border-black pl-8">
+                <h3 className="font-headline text-xl font-black uppercase mb-4">What is SyncClip?</h3>
+                <p className="font-body text-base text-zinc-600 leading-relaxed">
+                  <strong>SyncClip</strong> is a free, browser-based online clipboard that syncs text between any devices in under 100ms. No app download, no account, and no permanent storage — open <Link href="/" className="text-secondary underline">syncclip.in</Link>, create a session, and copy-paste across phone, laptop, and tablet instantly.
+                </p>
+              </div>
+              <div className="border-l-4 border-black pl-8">
+                <h3 className="font-headline text-xl font-black uppercase mb-4">Is SyncClip free?</h3>
+                <p className="font-body text-base text-zinc-600 leading-relaxed">
+                  Yes. SyncClip is <strong>100% free</strong> with no hidden fees, no premium tier, and no ads. No account or credit card required — ever.
+                </p>
+              </div>
+              <div className="border-l-4 border-black pl-8">
                 <h3 className="font-headline text-xl font-black uppercase mb-4">What is an online clipboard?</h3>
                 <p className="font-body text-base text-zinc-600 leading-relaxed">
-                  An online clipboard is a web-based tool like <strong>SyncClip</strong> that allows you to store and sync text or code snippets between different devices (phone, laptop, tablet) without installing software.
+                  An online clipboard is a web-based tool that lets you copy and paste text between devices without installing software. <Link href="/clipboard" className="text-secondary underline">SyncClip&apos;s free online clipboard</Link> syncs in real time across Android, iOS, Windows, Mac, and Linux.
                 </p>
               </div>
               <div className="border-l-4 border-black pl-8">
                 <h3 className="font-headline text-xl font-black uppercase mb-4">How do I copy text between devices instantly?</h3>
                 <p className="font-body text-base text-zinc-600 leading-relaxed">
-                  The fastest way is to use a real-time sync tool. Open SyncClip on both devices, join the same session code, and anything you type on your phone will appear on your laptop in milliseconds.
+                  Open SyncClip on both devices, join the same 6-character session code, and anything you type on your phone appears on your laptop in under 100ms. No login or app install required.
                 </p>
               </div>
               <div className="border-l-4 border-black pl-8">
@@ -721,7 +738,7 @@ export default function HomeClient({
               <div className="border-l-4 border-black pl-8">
                 <h3 className="font-headline text-xl font-black uppercase mb-4">How to share clipboard online securely?</h3>
                 <p className="font-body text-base text-zinc-600 leading-relaxed">
-                  Look for tools that offer end-to-end encryption (SSL) and data auto-purge features. SyncClip offers a <strong>&quot;Burn After Reading&quot;</strong> mode which wipes your data immediately after it&apos;s accessed.
+                  Look for tools with HTTPS encryption and auto-purge. SyncClip offers a <strong>&quot;Burn After Reading&quot;</strong> mode which wipes your data immediately after it&apos;s accessed, plus 24-hour session auto-delete.
                 </p>
               </div>
             </div>

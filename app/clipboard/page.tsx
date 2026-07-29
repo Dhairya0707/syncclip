@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Online Clipboard: Copy Text from Phone to PC Instantly",
-  description: "Copy text, links, and code snippets from your phone to PC or laptop in milliseconds. No login, no app downloads, 100% free and secure real-time clipboard sync.",
-  keywords: ["clipboard", "online clipboard", "clipboard online", "free clipboard", "clipboard tool", "clipboard app", "clipboard sharing", "share clipboard", "clipboard sync", "text clipboard online"],
+  title: "Online Clipboard — Copy & Paste Between Devices Free (No App)",
+  description: "Free online clipboard — paste on PC what you copied on your phone in under 1 second. 124,821+ syncs, no login, no app. Works on Android, iPhone, Windows, Mac, Linux.",
+  keywords: ["online clipboard", "clipboard online", "free online clipboard", "online clipboard free", "copy paste online", "share clipboard online", "clipboard sharing tool", "clipboard sync", "text clipboard online", "syncclip"],
   alternates: {
     canonical: "https://syncclip.in/clipboard",
     languages: {
@@ -16,8 +16,13 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Online Clipboard: Copy Text from Phone to PC Instantly",
-    description: "Copy text, links, and code snippets from your phone to PC or laptop in milliseconds. No login, no app downloads, 100% free and secure real-time clipboard sync.",
+    title: "Online Clipboard — Copy & Paste Between Devices Free (No App)",
+    description: "Free online clipboard — paste on PC what you copied on your phone in under 1 second. No login, no app. Android, iPhone, Windows, Mac.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Online Clipboard — Copy & Paste Between Devices Free",
+    description: "Free online clipboard — sync text between phone and PC in under 1 second. No login, no app install.",
   },
 };
 
@@ -89,6 +94,22 @@ export default function ClipboardPage() {
           "@type": "Answer",
           "text": "SyncClip is the best free clipboard for syncing between Android and Windows. Unlike native tools that are locked to one ecosystem, SyncClip works across all operating systems through the browser."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Is online clipboard free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SyncClip is a 100% free online clipboard with no hidden fees, no premium tier, and no ads. Unlimited sessions, unlimited devices, zero cost."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best free online clipboard in 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SyncClip is rated the best free online clipboard for 2026. It offers real-time WebSocket sync under 100ms, works on every browser and OS, requires no account, and auto-deletes data after 24 hours for privacy."
+        }
       }
     ]
   };
@@ -108,7 +129,7 @@ export default function ClipboardPage() {
       <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
         <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
         <nav className="flex gap-6">
-          <Link href="/online-clipboard" className="text-zinc-400 hover:text-white transition-colors">ONLINE CLIPBOARD</Link>
+          <Link href="/clipboard" className="text-zinc-400 hover:text-white transition-colors">ONLINE CLIPBOARD</Link>
           <Link href="/clipboard-sync-guide" className="text-zinc-400 hover:text-white transition-colors">GUIDE</Link>
         </nav>
       </header>

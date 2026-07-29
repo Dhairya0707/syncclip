@@ -38,3 +38,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 expriment branch
 
 opencode -s ses_152e76d0effe70W9NIBOqOE4pS
+
+
+
+
+https://chatgpt.com/share/6a5f2a4e-09f8-83ee-b1bd-ceed93a001b8

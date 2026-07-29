@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | SyncClip — Online Clipboard"
   },
   description: "Copy text on your phone → paste on PC in milliseconds. No signup, no installation, no logs. Works on Android, iOS, Windows, Mac, Linux.",
-  keywords: ["online clipboard", "clipboard online", "copy paste between devices", "sync clipboard between devices", "share clipboard online", "clipboard sharing tool", "cross device clipboard", "paste text between devices", "copy text from phone to computer", "free clipboard sync", "clipboard sync android windows", "universal clipboard online no signup", "pushbullet alternative free"],
+  keywords: ["syncclip", "syncclip clipboard", "sync clip", "syncclip.in", "online clipboard", "clipboard online", "copy paste between devices", "sync clipboard between devices", "share clipboard online", "clipboard sharing tool", "cross device clipboard", "paste text between devices", "copy text from phone to computer", "free clipboard sync", "clipboard sync android windows", "universal clipboard online no signup", "pushbullet alternative free"],
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico",

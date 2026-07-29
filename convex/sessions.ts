@@ -241,7 +241,7 @@ export const updatePresence = mutation({
         updatedAt: Date.now(),
       });
     } else {
-      // Security check: limit to 100 active nodes per session
+      // Security check: limit to 500 active nodes per session
       const presenceCount = await ctx.db
         .query("presence")
         .withIndex("by_sessionId_and_nodeId", (q) =>
@@ -251,7 +251,7 @@ export const updatePresence = mutation({
 
       if (presenceCount.length >= 500) {
         throw new Error(
-          "Cluster Capacity Reached: This node is at maximum capacity (100 operators).",
+          "Cluster Capacity Reached: This node is at maximum capacity (500 operators).",
         );
       }
 

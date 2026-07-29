@@ -7,7 +7,11 @@ export const metadata: Metadata = {
   description: "Copy and paste online instantly. A secure, real-time clipboard that syncs automatically across Android, iOS, Windows, Mac, and Linux with zero setup. No login required.",
   keywords: ["online clipboard", "clipboard online", "share clipboard online", "online clipboard free", "clipboard sharing tool", "copy paste online", "text sharing between devices"],
   alternates: {
-    canonical: "https://syncclip.in/online-clipboard",
+    canonical: "https://syncclip.in/clipboard",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -74,6 +78,12 @@ export default function OnlineClipboardPage() {
 
       <main className="pt-24 pb-20 flex-grow px-6">
         <div className="max-w-4xl mx-auto">
+          <div className="mb-8 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+            India regional guide ·{" "}
+            <Link href="/clipboard" className="text-secondary underline hover:text-black transition-colors">
+              View global online clipboard guide →
+            </Link>
+          </div>
           {/* AEO ANSWER BOX */}
           <div className="bg-zinc-900 text-white p-10 mb-16 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4 text-center md:text-left">Quick Answer // AEO Node</div>

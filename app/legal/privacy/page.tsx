@@ -81,7 +81,7 @@ export default function LegalPrivacyPage() {
             <section>
               <h2 className="font-headline text-2xl font-black uppercase tracking-tight mb-4">Security</h2>
               <p className="font-body text-base text-zinc-700 leading-relaxed">
-                Data is encrypted during transmission using HTTPS/TLS. Session codes are generated using cryptographically secure randomness (<code className="font-mono text-xs bg-zinc-100 px-1.5 py-0.5 border border-zinc-300">crypto.getRandomValues</code>). We enforce a strict Content Security Policy (CSP) to prevent cross-site scripting. Session payloads are capped at 100KB to prevent abuse. A hard limit of 100 connected nodes per session protects against resource exhaustion attacks.
+                Data is encrypted during transmission using HTTPS/TLS. Session codes are generated using cryptographically secure randomness (<code className="font-mono text-xs bg-zinc-100 px-1.5 py-0.5 border border-zinc-300">crypto.getRandomValues</code>). We enforce a strict Content Security Policy (CSP) to prevent cross-site scripting. Session payloads are capped at 100KB to prevent abuse. A hard limit of 500 connected nodes per session protects against resource exhaustion attacks.
               </p>
             </section>
 
