@@ -21,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Theme 2: No-Install Zero-Login Clipboard
     { path: '/clipboard', priority: 0.98 },
-    { path: '/online-clipboard', priority: 0.75 },
+    // /online-clipboard → 301 → /clipboard (removed from sitemap; authority consolidated)
     { path: '/clipboard-sync-guide', priority: 0.9 },
     { path: '/clipboard-sync-free-no-account', priority: 0.85 },
     { path: '/temporary-clipboard-online', priority: 0.85 },

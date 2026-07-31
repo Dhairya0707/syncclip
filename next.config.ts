@@ -66,6 +66,13 @@ const nextConfig: NextConfig = {
         destination: "/clipboard",
         permanent: true,
       },
+      // Consolidate keyword cannibalization: /online-clipboard → /clipboard
+      // Both pages target "online clipboard". 301 merges all backlink equity + GSC signals.
+      {
+        source: "/online-clipboard",
+        destination: "/clipboard",
+        permanent: true,
+      },
     ];
   },
   async headers() {

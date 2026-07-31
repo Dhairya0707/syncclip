@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Online Clipboard — Copy & Paste Between Devices Free (No App)",
-  description: "Free online clipboard — paste on PC what you copied on your phone in under 1 second. 124,821+ syncs, no login, no app. Works on Android, iPhone, Windows, Mac, Linux.",
+  title: "Free Online Clipboard — Instant Sync, No App, No Login",
+  description: "Copy text on your phone, paste on PC in milliseconds. The fastest free online clipboard — no downloads, no account, no tracking. Works on Android, iPhone, Windows, Mac, Linux.",
   keywords: ["online clipboard", "clipboard online", "free online clipboard", "online clipboard free", "copy paste online", "share clipboard online", "clipboard sharing tool", "clipboard sync", "text clipboard online", "syncclip"],
   alternates: {
     canonical: "https://syncclip.in/clipboard",
@@ -40,13 +40,6 @@ export default function ClipboardPage() {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "847",
-      "bestRating": "5",
-      "worstRating": "1"
     },
     "description": "Free online clipboard to copy and paste text between phone, laptop, and tablet in under 100ms. No login, no app install. Works on Android, iOS, Windows, Mac, Linux."
   };
@@ -186,8 +179,11 @@ export default function ClipboardPage() {
                </Link>
             </div>
 
-            <Link href="/" className="inline-block bg-black text-white font-mono font-black py-5 px-12 hover:bg-secondary transition-colors uppercase tracking-widest text-lg shadow-[8px_8px_0px_0px_rgba(5,125,188,1)]">
-              Open Clipboard Now_
+            <Link
+              href="/?src=clipboard_hero"
+              className="inline-block bg-black text-white font-mono font-black py-5 px-12 hover:bg-secondary transition-colors uppercase tracking-widest text-lg shadow-[8px_8px_0px_0px_rgba(5,125,188,1)]"
+            >
+              Start Free Clipboard ⚡
             </Link>
           {/* </div> */}
 
@@ -320,8 +316,11 @@ export default function ClipboardPage() {
           <section className="bg-black text-white p-12 text-center">
             <h2 className="font-headline text-4xl md:text-6xl font-black uppercase mb-6 italic">Start Using This Clipboard_</h2>
             <p className="font-mono text-sm tracking-widest mb-10 text-zinc-400">FREE · NO LOGIN · NO APP · INSTANT SYNC</p>
-            <Link href="/" className="inline-block bg-secondary text-black font-mono font-black py-4 px-10 hover:bg-white transition-colors uppercase tracking-widest text-lg shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]">
-              Open Free Clipboard_
+            <Link
+              href="/?src=clipboard_cta"
+              className="inline-block bg-secondary text-black font-mono font-black py-4 px-10 hover:bg-white transition-colors uppercase tracking-widest text-lg shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]"
+            >
+              Create My Clipboard Now ⚡
             </Link>
           </section>
 
