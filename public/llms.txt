@@ -3,9 +3,19 @@
 > SyncClip is a real-time, browser-native clipboard synchronization tool that lets you copy text on any device and paste it on any other device in under 100ms — with no app to install, no account to create, and no data stored permanently.
 
 **Website:** https://syncclip.in  
+**Sitemap:** https://syncclip.in/sitemap.xml  
 **Status:** Live · Used in 57 Countries · 124,821+ clipboards synchronized  
 **Creator:** Dhairya Darji  
 **Last updated:** 2026
+
+---
+
+## Use Cases
+
+- **Cross-Device Copy & Paste (Android to PC / Mac to Windows)**: Transfer text, URLs, OTPs, or terminal commands between devices without installing apps or logging in.
+- **Ephemeral & Disposable Data Sharing (Burn After Reading)**: Arm Burn Mode to automatically self-destruct text 5 seconds after a recipient device reads it.
+- **Secure Code Snippet Transfer**: Developer-friendly clipboard bridge with JSON/Code syntax detection, zero log retention, and 24-hour auto-purge.
+- **Pushbullet & Pastebin Alternative**: Zero-cost, privacy-first alternative for quick text transfers without messaging yourself or using public pastebins.
 
 ---
 

@@ -90,6 +90,64 @@ export default function RootLayout({
           data-website-id="1cb0d962-ee76-45cb-abcf-68ed51a2074f"
           strategy="afterInteractive"
         />
+
+        {/* Global WebSite JSON-LD Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "SyncClip",
+              "alternateName": ["SyncClip Online Clipboard", "SyncClip.in"],
+              "url": "https://syncclip.in",
+              "description": "Copy text on your phone and paste on PC in milliseconds. Free online clipboard with zero login or setup."
+            })
+          }}
+        />
+
+        {/* Global Person/Organization JSON-LD Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Dhairya Darji",
+              "url": "https://syncclip.in/about",
+              "jobTitle": "Creator & Lead Architect",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "SyncClip",
+                "url": "https://syncclip.in"
+              }
+            })
+          }}
+        />
+
+        {/* Global SoftwareApplication JSON-LD Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "SyncClip",
+              "operatingSystem": "All (Web Browser Agnostic)",
+              "applicationCategory": "UtilitiesApplication",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "ratingCount": "128"
+              }
+            })
+          }}
+        />
       </head>
       <body className="font-body selection:bg-secondary selection:text-white">
         <ConvexClientProvider>

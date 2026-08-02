@@ -51,11 +51,38 @@ export default function BestFreeOnlineClipboard() {
     ]
   };
 
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "What is the Best Free Online Clipboard to Sync Between Devices? (2026)",
+    "description": "Looking for the best free online clipboard alternative? Compare top tools for instant, no-login clipboard synchronization across phone, tablet, and PC.",
+    "author": {
+      "@type": "Person",
+      "name": "Dhairya Darji",
+      "url": "https://syncclip.in/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "SyncClip",
+      "url": "https://syncclip.in"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://syncclip.in/blog/what-is-the-best-free-online-clipboard"
+    },
+    "datePublished": "2026-01-15",
+    "dateModified": "2026-04-20"
+  };
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
       />
       
       {/* NAV */}
