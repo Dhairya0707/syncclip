@@ -12,6 +12,7 @@ import { sendError, sendInfo } from "../utils/discord";
 import SecondDeviceCTA from "./SecondDeviceCTA";
 import PWAInstallPrompt from "./PWAInstallPrompt";
 import { getRandomCopyBlock, CopyBlock } from "../utils/headlines";
+import { QRCodeSVG } from "qrcode.react";
 
 export default function ClipboardEditor({ session }: { session: any }) {
   const update = useMutation(api.sessions.updateText);
@@ -868,7 +869,22 @@ export default function ClipboardEditor({ session }: { session: any }) {
             <div className="bg-white p-4 border-2 border-black inline-block mb-4 relative group cursor-pointer hover:border-secondary transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               <div className="absolute inset-0 bg-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               {qrUrl && (
-                <img src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(qrUrl)}`} alt="Session QR Code" className="w-[180px] h-[180px] sm:w-[200px] sm:h-[200px]" />
+                <QRCodeSVG
+                  value={qrUrl}
+                  size={240}
+                  bgColor="#ffffff"
+                  fgColor="#000000"
+                  level="H"
+                  marginSize={0}
+                  imageSettings={{
+                    src: "/assets/icon-removebg-preview copy.png",
+                    x: undefined,
+                    y: undefined,
+                    height: 60,
+                    width: 60,
+                    excavate: true,
+                  }}
+                />
               )}
             </div>
             <p className="font-mono text-[9px] text-zinc-500 uppercase tracking-widest text-center mb-6 leading-relaxed">

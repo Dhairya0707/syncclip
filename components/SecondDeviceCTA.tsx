@@ -3,6 +3,8 @@
 import { useExperiment } from '@/utils/experiments';
 import { CopyBlock } from '@/utils/headlines';
 
+import { QRCodeSVG } from 'qrcode.react';
+
 interface SecondDeviceCTAProps {
   participantCount: number;
   qrUrl: string;
@@ -52,12 +54,25 @@ export default function SecondDeviceCTA({
       </div>
 
       <div className="bg-zinc-50 p-6 flex items-center gap-6 relative group">
-        <div className="border-2 border-black p-2 bg-white hover:border-secondary transition-colors cursor-pointer">
-          <img
-            src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrUrl)}`}
-            alt="Room QR code"
-            className="w-[80px] h-[80px] md:w-[100px] md:h-[100px]"
-          />
+        <div className="border-2 border-black p-2 bg-white hover:border-secondary transition-colors cursor-pointer flex items-center justify-center">
+          {qrUrl && (
+            <QRCodeSVG
+              value={qrUrl}
+              size={115}
+              bgColor="#ffffff"
+              fgColor="#000000"
+              level="H"
+              marginSize={0}
+              imageSettings={{
+                src: "/assets/icon-removebg-preview copy.png",
+                x: undefined,
+                y: undefined,
+                height: 30,
+                width: 30,
+                excavate: true,
+              }}
+            />
+          )}
         </div>
         <div className="flex flex-col">
           <span className="font-mono text-[10px] font-black uppercase tracking-widest text-black">SCAN_TO_PAIR</span>
