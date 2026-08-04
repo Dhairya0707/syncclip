@@ -196,6 +196,11 @@ export default function ClipboardEditor({ session }: { session: any }) {
     setTimeout(() => setToast(null), 3000);
   };
 
+  const isOwner = session.ownerNodeId === nodeId;
+  const isLocked = session.isLocked;
+  const isAllowedWriter = session.allowedWriteNodeIds?.includes(nodeId) || false;
+  const canEdit = !isLocked || isOwner || isAllowedWriter;
+
   // Initialize Name and Headline
   useEffect(() => {
     const savedName = localStorage.getItem("syncclip_user_name");
@@ -210,14 +215,14 @@ export default function ClipboardEditor({ session }: { session: any }) {
       setCopyBlock(getRandomCopyBlock());
     }
 
-    // Auto-show QR modal on first entry if alone and flag is enabled
+    // Auto-show QR modal on first entry ONLY for session owner if alone and flag is enabled
     const hasSeenQR = sessionStorage.getItem(`syncclip_qr_shown_${session.code}`);
-    if (autoQRModalEnabled && presence?.length === 1 && !hasSeenQR) {
+    if (isOwner && autoQRModalEnabled && presence?.length === 1 && !hasSeenQR) {
       setShowQRModal(true);
       sessionStorage.setItem(`syncclip_qr_shown_${session.code}`, "true");
       // Tracking will be handled by the useEffect watching showQRModal
     }
-  }, [generateRandomName, presence?.length, session.code]);
+  }, [generateRandomName, presence?.length, session.code, isOwner, autoQRModalEnabled]);
 
 
   // Track QR View (Once per modal show)
@@ -299,12 +304,6 @@ export default function ClipboardEditor({ session }: { session: any }) {
       }
     }
   }, [session.text]); // Exclude text and autoSyncEnabled to prevent loop
-
-  // Smart Clipboard Polling (Auto-Read)
-  const isOwner = session.ownerNodeId === nodeId;
-  const isLocked = session.isLocked;
-  const isAllowedWriter = session.allowedWriteNodeIds?.includes(nodeId) || false;
-  const canEdit = !isLocked || isOwner || isAllowedWriter;
 
   // Track when second device joins
   useEffect(() => {
@@ -595,21 +594,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
       });
   }
 
-  async function handleDeleteSession() {
-    if (!isOwner) return;
-    if (confirm("🚨 WARNING: This cluster and its archival history will be permanently deleted. Proceed?")) {
-      track("session_deleted", { timestamp: new Date().toISOString() });
-      try {
-        await deleteSessionMutation({ id: session._id, callerNodeId: nodeId });
-        router.push("/");
-      } catch (err) {
-        sendError("Delete session failed", err instanceof Error ? err.message : String(err), {
-          nodeId,
-          sessionId: session.code,
-        });
-      }
-    }
-  }
+  // Remove native confirm popup - handleDeleteSession removed in favor of clean handleLeaveRoom
 
   function handleSetSignature(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -876,19 +861,25 @@ export default function ClipboardEditor({ session }: { session: any }) {
       {/* QR Modal Overlay */}
       {showQRModal && (
         <div className="fixed inset-0 bg-black/80 z-[200] flex items-center justify-center p-6 backdrop-blur-sm" onClick={() => setShowQRModal(false)}>
-          <div className="bg-white border-4 border-black p-10 flex flex-col items-center shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] max-w-sm w-full relative" onClick={e => e.stopPropagation()}>
-            <button className="absolute top-4 right-4 text-black hover:text-secondary material-symbols-outlined" onClick={() => setShowQRModal(false)}>close</button>
-            <div className="font-mono text-[10px] tracking-[0.3em] text-secondary mb-2 uppercase">Optical Pairing</div>
-            <h2 className="font-headline text-2xl font-black mb-8 uppercase text-center">Scan to Connect Node</h2>
-            <div className="bg-white p-4 border-2 border-black inline-block mb-6 relative group cursor-pointer hover:border-secondary transition-colors">
+          <div className="bg-white border-4 border-black p-8 sm:p-10 flex flex-col items-center shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] max-w-sm w-full relative" onClick={e => e.stopPropagation()}>
+            <button className="absolute top-4 right-4 text-black hover:text-secondary material-symbols-outlined text-xl" onClick={() => setShowQRModal(false)}>close</button>
+            <div className="font-mono text-[10px] tracking-[0.3em] text-secondary mb-2 uppercase font-bold">Optical Pairing</div>
+            <h2 className="font-headline text-2xl font-black mb-6 uppercase text-center">Scan to Connect Node</h2>
+            <div className="bg-white p-4 border-2 border-black inline-block mb-4 relative group cursor-pointer hover:border-secondary transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               <div className="absolute inset-0 bg-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               {qrUrl && (
-                <img src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(qrUrl)}`} alt="Session QR Code" className="w-[200px] h-[200px]" />
+                <img src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(qrUrl)}`} alt="Session QR Code" className="w-[180px] h-[180px] sm:w-[200px] sm:h-[200px]" />
               )}
             </div>
-            <p className="font-mono text-[9px] text-zinc-500 uppercase tracking-widest text-center">
+            <p className="font-mono text-[9px] text-zinc-500 uppercase tracking-widest text-center mb-6 leading-relaxed">
               Scan from any mobile device to directly access this clipboard cluster.
             </p>
+            <button
+              onClick={() => setShowQRModal(false)}
+              className="w-full bg-secondary text-white font-label font-bold py-3.5 px-4 border-2 border-black hover:bg-black hover:text-white transition-colors uppercase tracking-[0.2em] text-xs shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+            >
+              Got It, Start Typing
+            </button>
           </div>
         </div>
       )}
@@ -1367,18 +1358,16 @@ export default function ClipboardEditor({ session }: { session: any }) {
                         )}
                       </div>
 
-                    {/* Exit & Delete (Owner Only) */}
-                    {isOwner && (
-                      <div className="mt-8 pt-8 border-t-2 border-zinc-100 flex flex-col gap-4">
-                        <div className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest text-center">Origin Cleanup</div>
-                        <button
-                          onClick={handleDeleteSession}
-                          className="w-full bg-zinc-900 text-white font-label font-bold py-5 px-4 border-2 border-black hover:bg-orange-600 transition-colors uppercase tracking-[0.2em] text-xs shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px]"
-                        >
-                          Exit & Delete Node
-                        </button>
-                      </div>
-                    )}
+                    {/* Exit Room */}
+                    <div className="mt-8 pt-8 border-t-2 border-zinc-100 flex flex-col gap-3">
+                      <div className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest text-center">Session Navigation</div>
+                      <button
+                        onClick={handleLeaveRoom}
+                        className="w-full bg-black text-white font-label font-bold py-4 px-4 border-2 border-black hover:bg-secondary hover:text-white transition-colors uppercase tracking-[0.2em] text-xs shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px]"
+                      >
+                        Exit Room
+                      </button>
+                    </div>
 
                     {/* Status Info / Expiration Note (Updated to remove hidden features reference) */}
                     <div className="mt-8 pt-6 border-t-2 border-zinc-100">
