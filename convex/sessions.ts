@@ -136,10 +136,11 @@ export const burnSession = mutation({
     const session = await ctx.db.get(args.id);
     if (!session || !session.isBurnMode) return;
 
-    // Complete overwrite & wipe history (Keep isBurnMode active for persistent burn mode)
+    // Wipe text & history while explicitly keeping isBurnMode: true (ARMED)
     await ctx.db.patch(args.id, {
       text: "",
       history: [],
+      isBurnMode: true,
       updatedAt: Date.now(),
     });
   },

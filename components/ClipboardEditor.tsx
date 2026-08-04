@@ -334,13 +334,13 @@ export default function ClipboardEditor({ session }: { session: any }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Burn Protocol self-destruct
+  // Burn Protocol self-destruct timer
   useEffect(() => {
-    if (session.isBurnMode && !isOwner && text !== "") {
+    if (session.isBurnMode && text !== "") {
       const tm = setTimeout(() => {
         burnMutation({ id: session._id })
           .then(() => {
-            showToast("🔥 Data wiped! Burn protocol complete.");
+            showToast("🔥 Text self-destructed! (Burn Mode remains ARMED)");
           })
           .catch((err) => {
             sendError("Burn execution failed", err instanceof Error ? err.message : String(err), {
@@ -351,7 +351,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
       }, 5000);
       return () => clearTimeout(tm);
     }
-  }, [session.isBurnMode, isOwner, session._id, text, burnMutation]);
+  }, [session.isBurnMode, session._id, text, burnMutation, nodeId]);
 
   // Smart Clipboard Polling (Upload to Cloud)
   useEffect(() => {
@@ -1253,59 +1253,119 @@ export default function ClipboardEditor({ session }: { session: any }) {
 
                     {/* Node Lock */}
                     {isOwner && (
-                      <div className="flex flex-col border-2 border-black p-4 bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                      <div className="flex flex-col border-2 border-black p-4 bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:border-zinc-800">
                         <div className="flex justify-between items-center">
                           <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 border-2 border-black bg-zinc-100 flex items-center justify-center font-bold text-sm shrink-0">
+                              <span className="material-symbols-outlined text-base text-zinc-900">lock</span>
+                            </div>
+                            <span className="font-label font-bold uppercase tracking-widest text-xs">
+                              Lock Node (Read-Only)
+                            </span>
+                          </div>
+                          
+                          <div className="flex items-center gap-2">
                             <button
                               onClick={() => setActiveInfo(activeInfo === 'lock' ? null : 'lock')}
-                              className={`w-6 h-6 border border-black flex items-center justify-center text-[10px] font-bold transition-colors ${activeInfo === 'lock' ? 'bg-secondary text-white' : 'bg-zinc-100 hover:bg-zinc-200'}`}
+                              className={`w-7 h-7 border-2 border-black flex items-center justify-center text-xs font-bold transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] ${
+                                activeInfo === 'lock' ? 'bg-black text-white' : 'bg-white hover:bg-zinc-100 text-zinc-800'
+                              }`}
+                              title="Feature Information"
                             >
-                              ?
+                              <span className="material-symbols-outlined text-sm">{activeInfo === 'lock' ? 'close' : 'help'}</span>
                             </button>
-                            <span className="font-label font-bold uppercase tracking-widest text-xs">Lock for Editing</span>
+                            <button
+                              onClick={handleToggleLock}
+                              className={`w-12 h-6 border-2 border-black relative transition-colors shrink-0 ${isLocked ? 'bg-zinc-900' : 'bg-zinc-200'}`}
+                            >
+                              <div className={`absolute top-0.5 bottom-0.5 w-4 bg-white border border-black transition-all ${isLocked ? 'right-0.5' : 'left-0.5'}`}></div>
+                            </button>
                           </div>
-                          <button
-                            onClick={handleToggleLock}
-                            className={`w-12 h-6 border-2 border-black relative transition-colors ${isLocked ? 'bg-zinc-900' : 'bg-zinc-200'}`}
-                          >
-                            <div className={`absolute top-0.5 bottom-0.5 w-4 bg-white border border-black transition-all ${isLocked ? 'right-0.5' : 'left-0.5'}`}></div>
-                          </button>
                         </div>
                         {activeInfo === 'lock' && (
-                          <div className="mt-4 pt-4 border-t border-zinc-100 font-mono text-[10px] text-zinc-500 leading-relaxed uppercase">
-                            Stops others from changing this text. Only you can unlock it.
+                          <div className="mt-4 pt-3 border-t-2 border-dashed border-zinc-200 font-mono text-[11px] text-zinc-700 leading-relaxed bg-zinc-50 p-3.5 border border-zinc-200 shadow-sm">
+                            <div className="flex items-center gap-1.5 font-bold uppercase text-zinc-900 mb-1.5 pb-1 border-b border-zinc-200">
+                              <span className="material-symbols-outlined text-sm text-secondary">security</span>
+                              Read-Only Lock Mode
+                            </div>
+                            <p className="mb-2 text-[10px] uppercase text-zinc-600">
+                              Prevents visitors from modifying or overwriting your clipboard content. Only the origin node can unlock it.
+                            </p>
+                            <div className="bg-secondary/10 border border-secondary/30 p-2.5 text-[10px] text-secondary font-bold uppercase flex items-start gap-2">
+                              <span className="material-symbols-outlined text-sm shrink-0">devices</span>
+                              <span>
+                                💡 <strong>Delegated Write Access:</strong> You can grant write access to specific connected devices by choosing them from the Active Nodes list in the sidebar.
+                              </span>
+                            </div>
                           </div>
                         )}
                       </div>
                     )}
 
                     {/* Burn Protocol */}
-                    {isOwner && (
-                      <div className={`flex flex-col border-2 p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-colors ${session.isBurnMode ? 'bg-orange-50 border-orange-500' : 'bg-white border-black'}`}>
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center gap-3">
-                            <button
-                              onClick={() => setActiveInfo(activeInfo === 'burn' ? null : 'burn')}
-                              className={`w-6 h-6 border border-black flex items-center justify-center text-[10px] font-bold transition-colors ${activeInfo === 'burn' ? 'bg-orange-500 text-white border-orange-500' : 'bg-zinc-100 hover:bg-zinc-200'}`}
-                            >
-                              ?
-                            </button>
-                            <span className={`font-label font-bold uppercase tracking-widest text-xs ${session.isBurnMode ? 'text-orange-600' : 'text-black'}`}>Burn (Delete Everything)</span>
+                    <div className={`flex flex-col border-2 p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all ${session.isBurnMode ? 'bg-orange-50/80 border-orange-500 ring-2 ring-orange-500/20' : 'bg-white border-black'}`}>
+                      <div className="flex justify-between items-center">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 border-2 border-black bg-orange-100 flex items-center justify-center font-bold text-sm shrink-0">
+                            <span className="material-symbols-outlined text-base text-orange-600">local_fire_department</span>
                           </div>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className={`font-label font-bold uppercase tracking-widest text-xs ${session.isBurnMode ? 'text-orange-600' : 'text-black'}`}>
+                              Burn Protocol
+                            </span>
+                            <span className="bg-orange-500/10 text-orange-600 text-[9px] font-mono font-bold px-1.5 py-0.5 border border-orange-500/30 uppercase tracking-tighter">
+                              5s Self-Destruct
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => setActiveInfo(activeInfo === 'burn' ? null : 'burn')}
+                            className={`w-7 h-7 border-2 border-black flex items-center justify-center text-xs font-bold transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] ${
+                              activeInfo === 'burn' ? 'bg-orange-500 text-white' : 'bg-orange-100 hover:bg-orange-200 text-orange-800'
+                            }`}
+                            title="Feature Information"
+                          >
+                            <span className="material-symbols-outlined text-sm">{activeInfo === 'burn' ? 'close' : 'help'}</span>
+                          </button>
                           <button
                             onClick={handleToggleBurn}
-                            className={`w-12 h-6 border-2 relative transition-colors ${session.isBurnMode ? 'bg-orange-500 border-orange-600' : 'bg-zinc-200 border-black'}`}
+                            disabled={!isOwner}
+                            className={`w-12 h-6 border-2 relative transition-colors shrink-0 ${!isOwner ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'} ${session.isBurnMode ? 'bg-orange-500 border-orange-600' : 'bg-zinc-200 border-black'}`}
+                            title={isOwner ? "Toggle Burn Mode" : "Only origin node can change Burn Mode"}
                           >
                             <div className={`absolute top-0.5 bottom-0.5 w-4 bg-white border border-black transition-all ${session.isBurnMode ? 'right-0.5' : 'left-0.5'}`}></div>
                           </button>
                         </div>
+                      </div>
+
+                        {/* Detailed Burn Mode Info Card */}
                         {activeInfo === 'burn' && (
-                          <div className="mt-4 pt-4 border-t border-orange-200 font-mono text-[10px] text-orange-600 leading-relaxed uppercase">
-                            Arms a manual self-destruct. Once triggered, everything is deleted forever.
+                          <div className="mt-4 pt-3 border-t-2 border-dashed border-orange-300 font-mono text-[11px] text-orange-950 leading-relaxed bg-orange-100/80 p-3.5 border border-orange-300 shadow-sm">
+                            <div className="flex items-center justify-between font-bold uppercase text-orange-700 mb-2 pb-1 border-b border-orange-300/60">
+                              <span className="flex items-center gap-1.5">
+                                <span className="material-symbols-outlined text-sm text-orange-600">timer</span>
+                                5-Second Self-Destruct Protocol
+                              </span>
+                              <span className={`text-[9px] px-2 py-0.5 border font-bold uppercase ${session.isBurnMode ? 'bg-orange-500 text-white border-orange-600 animate-pulse' : 'bg-zinc-200 text-zinc-700 border-zinc-400'}`}>
+                                {session.isBurnMode ? 'ARMED' : 'DISARMED'}
+                              </span>
+                            </div>
+                            
+                            <ul className="space-y-1.5 text-[10px] text-orange-900 uppercase">
+                              <li className="flex items-start gap-1.5">
+                                <span className="text-orange-600 font-bold">•</span>
+                                <span><strong>5s Countdown:</strong> Automatically wipes text &amp; history 5 seconds after text is present.</span>
+                              </li>
+                              <li className="flex items-start gap-1.5">
+                                <span className="text-orange-600 font-bold">•</span>
+                                <span><strong>Persistent Arming:</strong> Burn Mode remains active for all clips until you manually toggle it off.</span>
+                              </li>
+                            </ul>
                           </div>
                         )}
                       </div>
-                    )}
 
                     {/* Exit & Delete (Owner Only) */}
                     {isOwner && (
