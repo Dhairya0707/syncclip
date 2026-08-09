@@ -27,7 +27,7 @@ export default function SupportPage() {
         { name: "Type", value: formData.inquiryType },
         { name: "Message", value: formData.message }
       ]);
-      const response = await fetch("https://mailservice-five.vercel.app/api/contact/syncclip", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -38,7 +38,7 @@ export default function SupportPage() {
         setFormData({ name: "", email: "", inquiryType: "Node Connection Issue", message: "" });
       } else {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || "Protocol transmission failed.");
+        throw new Error(errorData.error || "Protocol transmission failed.");
       }
     } catch (err: any) {
       setStatus("error");
