@@ -36,12 +36,21 @@ export const metadata: Metadata = {
       "Open, type, share. Copy text on phone, paste on PC in milliseconds. Free online clipboard — no login, no app, no tracking.",
     url: "https://syncclip.in/clipboard",
     siteName: "SyncClip",
+    images: [
+      {
+        url: "https://syncclip.in/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Free Online Clipboard - SyncClip",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Free Online Clipboard — Instant Real-Time Sync",
     description:
       "Open syncclip.in/clipboard, type, get a 6-char code. Share it. Text syncs instantly to any device. No login. No app.",
+    images: ["https://syncclip.in/og-image.png"],
   },
 };
 
