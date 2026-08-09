@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "SyncClip — Online Clipboard",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://syncclip.in/og-image.png?v=2",
         width: 1200,
         height: 630,
         alt: "Online Clipboard — Copy Paste Between Devices",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SyncClip — Free Online Clipboard (Sync Instantly)",
     description: "Copy text on your phone → paste on PC in milliseconds. No signup, no installation, no logs.",
-    images: ["/og-image.png"],
+    images: ["https://syncclip.in/og-image.png?v=2"],
   },
   alternates: {
     canonical: "/",

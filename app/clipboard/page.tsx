@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "SyncClip",
     images: [
       {
-        url: "https://syncclip.in/og-image.png",
+        url: "https://syncclip.in/og-image.png?v=2",
         width: 1200,
         height: 630,
         alt: "Free Online Clipboard - SyncClip",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: "Free Online Clipboard — Instant Real-Time Sync",
     description:
       "Open syncclip.in/clipboard, type, get a 6-char code. Share it. Text syncs instantly to any device. No login. No app.",
-    images: ["https://syncclip.in/og-image.png"],
+    images: ["https://syncclip.in/og-image.png?v=2"],
   },
 };
 
