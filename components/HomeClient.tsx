@@ -6,11 +6,11 @@ import { api } from "../convex/_generated/api";
 import { useRouter } from "next/navigation";
 import { track } from "../utils/analytics";
 import { useExperiment } from "../utils/experiments";
+import CampaignBanner from "./CampaignBanner";
 import { getRandomCopyBlock } from "../utils/headlines";
 import { sendError } from "../utils/discord";
 import Link from "next/link";
 import Image from "next/image";
-import RedirectNudgeBar from "./RedirectNudgeBar";
 import { track as vaTrack } from "@vercel/analytics";
 
 interface HomeClientProps {
@@ -23,22 +23,20 @@ interface HomeClientProps {
 }
 
 export default function HomeClient({
-  defaultTypewriter = "Hey! Type something in the mobile node... it syncs instantly to the laptop screen in under 100ms. No apps, no accounts, just real-time speed.",
+  defaultTypewriter = "Paste your text here to test real-time sync across all your devices instantly...",
   defaultH1,
   defaultSubH1 = "SYNC INSTANTLY.",
   isAndroidToPC = false,
   isMacToWindows = false,
   isPastebin = false,
 }: HomeClientProps) {
-  const createSession = useMutation(api.sessions.createSession);
   const router = useRouter();
+  const createSession = useMutation(api.sessions.createSession);
   const [initializing, setInitializing] = useState(false);
   const [recentSessions, setRecentSessions] = useState<string[]>([]);
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
   const [demoText, setDemoText] = useState("");
   const hasInteractedRef = useRef(false);
-
-  const isRotatingHeadlinesEnabled = useExperiment('ROTATING_HEADLINES_ENABLED');
 
   // Typewriter effect simulation for interactive landing page sandbox
   useEffect(() => {
@@ -73,9 +71,13 @@ export default function HomeClient({
   };
 
   useEffect(() => {
-    const saved = localStorage.getItem("syncclip_recent_sessions");
-    if (saved) {
-      setRecentSessions(JSON.parse(saved).slice(0, 5));
+    try {
+      const saved = localStorage.getItem("syncclip_recent_sessions");
+      if (saved) {
+        setRecentSessions(JSON.parse(saved).slice(0, 5));
+      }
+    } catch (e) {
+      // Fail-safe if localStorage is disabled or corrupt
     }
   }, []);
 
@@ -93,7 +95,7 @@ export default function HomeClient({
 
       const initialCopy = (typeof textOverride === "string" && hasInteractedRef.current)
         ? textOverride 
-        : (isRotatingHeadlinesEnabled ? getRandomCopyBlock().hook : "");
+        : getRandomCopyBlock().hook;
 
       const code = await createSession({ 
         ownerNodeId: nodeId,
@@ -127,28 +129,31 @@ export default function HomeClient({
     }
   }
 
+  const campaignBannerEnabled = useExperiment('FEATURE_CAMPAIGN_ENABLED');
+
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
-      {/* NAV */}
-      <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased fixed top-0 w-full z-50 h-10 flex justify-between items-center px-6" role="banner">
-        <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
-        <nav className="flex gap-6 items-center">
-          <Link href="/join" className="text-secondary hover:text-white transition-colors font-bold">JOIN</Link>
-          <a href="#features" className="text-zinc-400 hover:text-white transition-colors hidden sm:block">FEATURES</a>
-          <Link href="/support" className="text-zinc-400 hover:text-white transition-colors">SUPPORT</Link>
-          <button
-            onClick={handleCreateSession}
-            disabled={initializing}
-            className="bg-secondary text-white px-4 py-1 font-bold hover:bg-white hover:text-black transition-all text-[10px] tracking-widest"
-          >
-            {initializing ? "..." : "LAUNCH"}
-          </button>
-        </nav>
-      </header>
+      {/* FIXED TOP NAV & BANNER WRAPPER */}
+      <div className="fixed top-0 left-0 w-full z-50 transition-all duration-200">
+        <CampaignBanner />
+        <header className="bg-black text-white font-mono uppercase tracking-widest text-[10px] antialiased h-10 flex justify-between items-center px-4 sm:px-6" role="banner">
+          <Link href="/" className="font-serif italic font-black text-white hover:text-secondary transition-colors">SYNCCLIP</Link>
+          <nav className="flex gap-4 sm:gap-6 items-center">
+            <Link href="/join" className="text-secondary hover:text-white transition-colors font-bold">JOIN</Link>
+            <a href="#features" className="text-zinc-400 hover:text-white transition-colors hidden sm:block">FEATURES</a>
+            <Link href="/support" className="text-zinc-400 hover:text-white transition-colors">SUPPORT</Link>
+            <button
+              onClick={handleCreateSession}
+              disabled={initializing}
+              className="bg-secondary text-white px-3 sm:px-4 py-1 font-bold hover:bg-white hover:text-black transition-all text-[10px] tracking-widest cursor-pointer"
+            >
+              {initializing ? "..." : "LAUNCH"}
+            </button>
+          </nav>
+        </header>
+      </div>
 
-      <RedirectNudgeBar />
-
-      <main className="pt-10 flex-grow">
+      <main className={`${campaignBannerEnabled ? 'pt-20 sm:pt-18' : 'pt-10'} flex-grow transition-all duration-200`}>
 
         {/* ════════════════════════════════════════════
             AEO ANSWER BOX — AI Grounding

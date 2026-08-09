@@ -1,6 +1,5 @@
 import { convex } from "../app/ConvexClientProvider";
 import { api } from "../convex/_generated/api";
-import { isExperimentEnabled } from "./experiments";
 import { sendError, sendWarn } from "./discord";
 
 /**
@@ -8,9 +7,6 @@ import { sendError, sendWarn } from "./discord";
  * Replaces PostHog with a direct Convex mutation for event logging.
  */
 export const track = (event: string, properties?: Record<string, any>) => {
-  // Respect the global tracking toggle
-  if (!isExperimentEnabled('TRACKING_ENABLED')) return;
-
   if (typeof window === 'undefined') return;
 
   try {

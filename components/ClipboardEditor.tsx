@@ -9,8 +9,10 @@ import { useRouter } from "next/navigation";
 import { track } from "../utils/analytics";
 import { useExperiment } from "../utils/experiments";
 import { sendError, sendInfo } from "../utils/discord";
-import SecondDeviceCTA from "./SecondDeviceCTA";
+
 import PWAInstallPrompt from "./PWAInstallPrompt";
+import CampaignBanner from "./CampaignBanner";
+import FeedbackModal from "./FeedbackModal";
 import { getRandomCopyBlock, CopyBlock } from "../utils/headlines";
 import { QRCodeSVG } from "qrcode.react";
 
@@ -70,43 +72,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
   const [showCollabPrompt, setShowCollabPrompt] = useState(false);
   const collabPromptShown = useRef(false);
 
-  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const [showThankYouModal, setShowThankYouModal] = useState(false);
-  const feedbackEnabled = useExperiment("FEEDBACK_CAMPAIGN_ENABLED");
-  const isRotatingHeadlinesEnabled = useExperiment("ROTATING_HEADLINES_ENABLED");
-  const autoQRModalEnabled = useExperiment("AUTO_QR_MODAL_ENABLED");
-  const isForceSecondDeviceEnabled = useExperiment("FORCE_SECOND_DEVICE_ENABLED");
-  const modalTrackedRef = useRef(false);
-
-  const incrementInteractions = useCallback(() => {
-    if (!feedbackEnabled || localStorage.getItem("syncclip_feedback_done") === "true") return;
-    if (typeof window !== "undefined" && sessionStorage.getItem("syncclip_feedback_session_closed") === "true") return;
-    const count = parseInt(localStorage.getItem("syncclip_interactions") || "0", 10) + 1;
-    localStorage.setItem("syncclip_interactions", count.toString());
-    if (count >= 5) {
-      setShowFeedbackModal(true);
-    }
-  }, [feedbackEnabled]);
-
-  function handleDismissFeedback() {
-    localStorage.setItem("syncclip_feedback_done", "true");
-    setShowFeedbackModal(false);
-    track("feedback_popup_dismissed", { timestamp: new Date().toISOString() });
-    showToast("Feedback dismissed");
-  }
-
-  function handleCloseFeedback() {
-    if (typeof window !== "undefined") {
-      sessionStorage.setItem("syncclip_feedback_session_closed", "true");
-    }
-    setShowFeedbackModal(false);
-    track("feedback_popup_closed", { timestamp: new Date().toISOString() });
-  }
-
-  function handleFeedbackClick() {
-    track("feedback_popup_clicked", { timestamp: new Date().toISOString() });
-    router.push(`/feedback?code=${session.code}`);
-  }
 
   function handleDismissThankYou() {
     if (typeof window !== "undefined") {
@@ -141,22 +107,6 @@ export default function ClipboardEditor({ session }: { session: any }) {
       });
     }
   }, [presence, session.code]);
-  useEffect(() => {
-    if (typeof window === "undefined" || !feedbackEnabled) return;
-    const feedbackDone = localStorage.getItem("syncclip_feedback_done") === "true";
-    const sessionClosed = sessionStorage.getItem("syncclip_feedback_session_closed") === "true";
-    const interactions = parseInt(localStorage.getItem("syncclip_interactions") || "0", 10);
-    if (!feedbackDone && !sessionClosed && interactions >= 1) {
-      setShowFeedbackModal(true);
-    }
-  }, [feedbackEnabled]);
-
-  useEffect(() => {
-    if (showFeedbackModal && !modalTrackedRef.current) {
-      track("feedback_popup_shown", { timestamp: new Date().toISOString() });
-      modalTrackedRef.current = true;
-    }
-  }, [showFeedbackModal]);
 
   const getBaseUrl = () => {
     if (typeof window !== "undefined") {
@@ -212,18 +162,16 @@ export default function ClipboardEditor({ session }: { session: any }) {
       setSuggestedName(generateRandomName());
     }
 
-    if (isRotatingHeadlinesEnabled) {
-      setCopyBlock(getRandomCopyBlock());
-    }
+    setCopyBlock(getRandomCopyBlock());
 
-    // Auto-show QR modal on first entry ONLY for session owner if alone and flag is enabled
+    // Auto-show QR modal on first entry ONLY for session owner if alone
     const hasSeenQR = sessionStorage.getItem(`syncclip_qr_shown_${session.code}`);
-    if (isOwner && autoQRModalEnabled && presence?.length === 1 && !hasSeenQR) {
+    if (isOwner && presence?.length === 1 && !hasSeenQR) {
       setShowQRModal(true);
       sessionStorage.setItem(`syncclip_qr_shown_${session.code}`, "true");
       // Tracking will be handled by the useEffect watching showQRModal
     }
-  }, [generateRandomName, presence?.length, session.code, isOwner, autoQRModalEnabled]);
+  }, [generateRandomName, presence?.length, session.code, isOwner]);
 
 
   // Track QR View (Once per modal show)
@@ -410,7 +358,6 @@ export default function ClipboardEditor({ session }: { session: any }) {
       setIsSyncing(true);
       update({ id: session._id, text: newText, callerNodeId: nodeId })
         .then(() => {
-          incrementInteractions();
           const syncedKey = `syncclip_text_synced_${session.code}`;
           if (sessionStorage.getItem(syncedKey) !== "true") {
             sessionStorage.setItem(syncedKey, "true");
@@ -431,7 +378,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
           setIsSyncing(false);
         });
     }, 500),
-    [update, session._id, nodeId, canEdit, incrementInteractions]
+    [update, session._id, nodeId, canEdit]
   );
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -472,7 +419,6 @@ export default function ClipboardEditor({ session }: { session: any }) {
       navigator.clipboard.writeText(fullUrl);
       showToast("Link copied to clipboard");
       track("link_shared", { timestamp: new Date().toISOString() });
-      incrementInteractions();
     }
   }
 
@@ -496,9 +442,6 @@ export default function ClipboardEditor({ session }: { session: any }) {
     if (!canEdit) return;
     setIsSyncing(true);
     update({ id: session._id, text, saveToHistory: true, callerNodeId: nodeId })
-      .then(() => {
-        incrementInteractions();
-      })
       .finally(() => {
         setIsSyncing(false);
         showToast("Force synced & saved to history");
@@ -703,7 +646,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
               <button
                 onClick={() => {
                   handleDismissThankYou();
-                  router.push(`/feedback?code=${session.code}`);
+                  router.push(`/f/feature-request?code=${session.code}`);
                 }}
                 className="bg-black text-white font-label font-bold py-4 uppercase tracking-widest text-sm hover:bg-secondary transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 text-center cursor-pointer"
               >
@@ -720,52 +663,8 @@ export default function ClipboardEditor({ session }: { session: any }) {
         </div>
       )}
 
-      {/* Feedback Pop-up Modal */}
-      {showFeedbackModal && (
-        <div className="fixed inset-0 bg-black/80 z-[250] flex items-center justify-center p-6 backdrop-blur-xs animate-fade-in" role="dialog" aria-labelledby="feedback-popup-heading">
-          <div className="bg-yellow-300 text-black border-4 border-black p-8 max-w-md w-full shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] relative flex flex-col gap-6" onClick={e => e.stopPropagation()}>
-            {/* Close button X */}
-            <button 
-              onClick={handleCloseFeedback} 
-              aria-label="Close modal"
-              className="absolute top-4 right-4 text-black hover:text-secondary font-bold font-mono text-sm cursor-pointer"
-            >
-              ✕
-            </button>
-
-            <div className="font-mono text-[9px] tracking-[0.25em] text-yellow-300 bg-black px-2.5 py-1 uppercase font-bold inline-block self-start">
-              ⚡ POWER USER STATUS
-            </div>
-
-            <h3 id="feedback-popup-heading" className="font-headline text-3xl font-black uppercase tracking-tight leading-none text-black">
-              THANK YOU, OPERATOR.
-            </h3>
-
-            <p className="font-body text-sm leading-relaxed font-bold text-zinc-900">
-              We noticed you’ve been using SyncClip quite a bit — thank you so much! Since you’re officially one of our active power users, we’d love your help deciding what features to build next.
-            </p>
-
-            <p className="font-body text-xs italic text-zinc-700">
-              Could you spare 45 seconds to share your feedback?
-            </p>
-
-            <div className="flex flex-col gap-3 mt-2">
-              <button
-                onClick={handleFeedbackClick}
-                className="bg-black text-white font-label font-bold py-4 uppercase tracking-widest text-sm hover:bg-secondary transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"
-              >
-                Share Feedback ⚡
-              </button>
-              <button
-                onClick={handleDismissFeedback}
-                className="font-mono text-[10px] uppercase text-zinc-600 hover:text-black tracking-widest font-bold self-center py-2"
-              >
-                No thanks, dismiss
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Clean Feedback Modal Triggered on 2nd Device Join */}
+      <FeedbackModal roomCode={session.code} participantCount={presence ? presence.length : 0} />
 
       {/* Command Palette Overlay */}
       {isPaletteOpen && (
@@ -1042,14 +941,7 @@ export default function ClipboardEditor({ session }: { session: any }) {
               </div>
             )}
 
-            {/* SecondDeviceCTA: Inline nudge to connect a second device (only rendered when needed) */}
-            {isForceSecondDeviceEnabled && (presence?.length || 0) <= 1 && (
-              <SecondDeviceCTA
-                participantCount={presence?.length || 0}
-                qrUrl={qrUrl}
-                copyBlock={copyBlock || undefined}
-              />
-            )}
+
             {/* Interaction Layer: Action Buttons */}
             <div className="mt-6 flex-shrink-0">
               {/* Desktop Grid (Visible on lg and up) */}
@@ -1078,7 +970,6 @@ export default function ClipboardEditor({ session }: { session: any }) {
                     navigator.clipboard.writeText(text);
                     showToast("Copied to clipboard");
                     track("text_copied", { text_length: text.length, timestamp: new Date().toISOString() });
-                    incrementInteractions();
                   }}
                   aria-label="Copy session text"
                   className="bg-white text-black font-label font-bold py-6 px-2 border-2 border-black hover:bg-secondary hover:text-white hover:border-secondary transition-all uppercase tracking-widest text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] flex items-center justify-center gap-2"

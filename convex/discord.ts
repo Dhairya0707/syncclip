@@ -297,7 +297,7 @@ export const postDiscordMessage = action({
           title: `${args.level.toUpperCase()} - ${args.title}`,
           description: args.description,
           color: args.level === "error" ? 0xE03E2F : args.level === "warn" ? 0xF5A623 : 0x057DBC,
-          fields: fields.length > 0 ? fields.slice(0, 8) : undefined,
+          fields: fields.length > 0 ? fields.slice(0, 25) : undefined,
           footer: { text: "SyncClip Server" },
           timestamp: new Date().toISOString(),
         },

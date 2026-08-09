@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { useExperiment } from '@/utils/experiments';
 import { track } from '@/utils/analytics';
 
 interface BeforeInstallPromptEvent extends Event {
@@ -19,10 +18,7 @@ export default function PWAInstallPrompt() {
   const firstKeystrokeRef = useRef(false);
   const dismissedRef = useRef(false);
 
-  const isEnabled = useExperiment('PWA_NUDGE_ENABLED');
-
   useEffect(() => {
-    if (!isEnabled) return;
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
@@ -79,7 +75,7 @@ export default function PWAInstallPrompt() {
     localStorage.setItem('syncclip_pwa_dismissed', 'true');
   };
 
-  if (!isEnabled || !showPrompt || !deferredPrompt) {
+  if (!showPrompt || !deferredPrompt) {
     return null;
   }
 
