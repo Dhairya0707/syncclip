@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "The safest way to send 2FA codes and OTPs from your phone to your computer. No app install, no login, and auto-burn security for transient data.",
   keywords: ["send otp from phone to pc", "share 2fa code between devices", "copy otp from android to windows", "secure otp sharing", "move verification code to computer"],
   alternates: {
-    canonical: "https://syncclip.in/android-to-pc-clipboard",
+    canonical: "https://syncclip.in/how-to-send-otp-from-phone-to-pc",
   },
 };
 

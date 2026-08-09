@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Stop emailing yourself links. Learn the absolute fastest way to sync URLs and code snippets between phone and laptop instantly without login or apps.",
   keywords: ["fastest way to copy links", "sync links between devices", "share url phone to pc", "copy paste links online", "instant link sharing"],
   alternates: {
-    canonical: "https://syncclip.in/clipboard",
+    canonical: "https://syncclip.in/fastest-way-to-copy-links-between-devices",
   },
 };
 

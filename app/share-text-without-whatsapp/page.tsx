@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Looking for a way to share text between devices without using WhatsApp or Telegram? SyncClip is a free, no-login alternative for instant clipboard sharing.",
   keywords: ["share text without whatsapp", "alternative to whatsapp self message", "send text phone to pc no messenger", "private text sharing online", "instant clipboard sync"],
   alternates: {
-    canonical: "https://syncclip.in/android-to-pc-clipboard",
+    canonical: "https://syncclip.in/share-text-without-whatsapp",
   },
 };
 

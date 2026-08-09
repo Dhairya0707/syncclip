@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Need to share links between phone and PC instantly? Use SyncClip for real-time link sharing across Android, iOS, Windows, and Mac. No app required.",
   keywords: ["share links between devices", "send link from phone to pc", "sync links between phone and laptop", "copy links cross platform", "how to share urls between devices"],
   alternates: {
-    canonical: "https://syncclip.in/clipboard",
+    canonical: "https://syncclip.in/share-links-between-devices",
   },
 };
 

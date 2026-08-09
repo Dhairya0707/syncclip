@@ -91,60 +91,68 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
 
-        {/* Global WebSite JSON-LD Schema */}
+        {/* Global Unified Entity JSON-LD Schema Graph */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "SyncClip",
-              "alternateName": ["SyncClip Online Clipboard", "SyncClip.in"],
-              "url": "https://syncclip.in",
-              "description": "Copy text on your phone and paste on PC in milliseconds. Free online clipboard with zero login or setup."
-            })
-          }}
-        />
-
-        {/* Global Person/Organization JSON-LD Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Dhairya Darji",
-              "url": "https://syncclip.in/about",
-              "jobTitle": "Creator & Lead Architect",
-              "worksFor": {
-                "@type": "Organization",
-                "name": "SyncClip",
-                "url": "https://syncclip.in"
-              }
-            })
-          }}
-        />
-
-        {/* Global SoftwareApplication JSON-LD Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "SyncClip",
-              "operatingSystem": "All (Web Browser Agnostic)",
-              "applicationCategory": "UtilitiesApplication",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.9",
-                "ratingCount": "128"
-              }
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  "@id": "https://syncclip.in/#website",
+                  "url": "https://syncclip.in",
+                  "name": "SyncClip",
+                  "alternateName": ["SyncClip Online Clipboard", "SyncClip.in", "SyncClip Realtime Clipboard"],
+                  "description": "Copy text on your phone and paste on PC in milliseconds. Free online clipboard with zero login or setup.",
+                  "publisher": { "@id": "https://syncclip.in/#organization" },
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {
+                      "@type": "EntryPoint",
+                      "urlTemplate": "https://syncclip.in/[code]"
+                    },
+                    "query-input": "required name=code"
+                  }
+                },
+                {
+                  "@type": "Organization",
+                  "@id": "https://syncclip.in/#organization",
+                  "name": "SyncClip",
+                  "url": "https://syncclip.in",
+                  "logo": "https://syncclip.in/assets/og-image.png?v=3",
+                  "founder": { "@id": "https://syncclip.in/#person" },
+                  "sameAs": [
+                    "https://github.com/Dhairya0707/syncclip"
+                  ]
+                },
+                {
+                  "@type": "Person",
+                  "@id": "https://syncclip.in/#person",
+                  "name": "Dhairya Darji",
+                  "url": "https://syncclip.in/about",
+                  "jobTitle": "Creator & Lead Architect",
+                  "worksFor": { "@id": "https://syncclip.in/#organization" }
+                },
+                {
+                  "@type": "SoftwareApplication",
+                  "@id": "https://syncclip.in/#software",
+                  "name": "SyncClip",
+                  "url": "https://syncclip.in",
+                  "operatingSystem": "All (Web Browser Agnostic)",
+                  "applicationCategory": "UtilitiesApplication",
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                  },
+                  "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "4.9",
+                    "ratingCount": "128"
+                  }
+                }
+              ]
             })
           }}
         />

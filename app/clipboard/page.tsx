@@ -55,135 +55,130 @@ export const metadata: Metadata = {
 };
 
 export default function ClipboardPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "SyncClip — Free Online Clipboard",
-    alternateName: [
-      "Online Clipboard",
-      "Free Clipboard Tool",
-      "Clipboard Sharing App",
-      "Clipboard Sync",
-      "Real-Time Clipboard",
-    ],
-    url: "https://syncclip.in/clipboard",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "All",
-    browserRequirements:
-      "Requires JavaScript. Works on Chrome, Firefox, Safari, Edge.",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
+  const faqItems = [
+    {
+      name: "What is an online clipboard?",
+      acceptedAnswer: {
+        text: "An online clipboard is a web-based tool that lets you copy and paste text between different devices like phones, laptops, and tablets without installing any software. SyncClip is a free online clipboard that works instantly in your browser.",
+      },
     },
-    description:
-      "Free online clipboard to copy and paste text between phone, laptop, and tablet in under 100ms. No login, no app install. Works on Android, iOS, Windows, Mac, Linux.",
-  };
+    {
+      name: "How do I use an online clipboard to copy text between devices?",
+      acceptedAnswer: {
+        text: "Open syncclip.in on both devices, create or join a session using the 6-character code, and paste text on one device. It instantly appears on the other device through real-time WebSocket sync.",
+      },
+    },
+    {
+      name: "Is online clipboard sharing safe?",
+      acceptedAnswer: {
+        text: "SyncClip uses SSL encryption for all data in transit. Sessions are ephemeral and auto-delete after 24 hours. You can also enable Burn After Reading mode to destroy data immediately after it is accessed.",
+      },
+    },
+    {
+      name: "Do I need to install an app to use an online clipboard?",
+      acceptedAnswer: {
+        text: "No. SyncClip runs entirely in your web browser. No downloads, no plugins, and no account creation required. It works on Chrome, Safari, Firefox, and Edge across all operating systems.",
+      },
+    },
+    {
+      name: "What is the best free clipboard for Android and Windows?",
+      acceptedAnswer: {
+        text: "SyncClip is the best free clipboard for syncing between Android and Windows. Unlike native tools that are locked to one ecosystem, SyncClip works across all operating systems through the browser.",
+      },
+    },
+    {
+      name: "Is online clipboard free?",
+      acceptedAnswer: {
+        text: "Yes. SyncClip is a 100% free online clipboard with no hidden fees, no premium tier, and no ads. Unlimited sessions, unlimited devices, zero cost.",
+      },
+    },
+    {
+      name: "What is the best free online clipboard in 2026?",
+      acceptedAnswer: {
+        text: "SyncClip is rated the best free online clipboard for 2026. It offers real-time WebSocket sync under 100ms, works on every browser and OS, requires no account, and auto-deletes data after 24 hours for privacy.",
+      },
+    },
+  ];
 
-  const howToSchema = {
+  const unifiedGraphSchema = {
     "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to use a free online clipboard to sync text between devices",
-    description:
-      "Use SyncClip to copy text on one device and instantly paste it on another — no app, no login.",
-    totalTime: "PT30S",
-    estimatedCost: { "@type": "MonetaryAmount", currency: "USD", value: "0" },
-    step: [
+    "@graph": [
       {
-        "@type": "HowToStep",
-        name: "Open the online clipboard",
-        text: "Go to syncclip.in/clipboard on your first device. A live clipboard is ready immediately.",
-        url: "https://syncclip.in/clipboard",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Type your text",
-        text: "Type or paste any text into the clipboard area. A unique 6-character session code is instantly generated.",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Share the code",
-        text: "Copy the session code and open syncclip.in/[code] on your second device — or scan the QR code. Text syncs in under 100ms.",
-      },
-    ],
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What is an online clipboard?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "An online clipboard is a web-based tool that lets you copy and paste text between different devices like phones, laptops, and tablets without installing any software. SyncClip is a free online clipboard that works instantly in your browser.",
+        "@type": "WebApplication",
+        "@id": "https://syncclip.in/clipboard#webapp",
+        "name": "SyncClip — Free Online Clipboard",
+        "alternateName": [
+          "Online Clipboard",
+          "Free Clipboard Tool",
+          "Clipboard Sharing App",
+          "Clipboard Sync",
+          "Real-Time Clipboard",
+        ],
+        "url": "https://syncclip.in/clipboard",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript. Works on Chrome, Firefox, Safari, Edge.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
         },
+        "description": "Free online clipboard to copy and paste text between phone, laptop, and tablet in under 100ms. No login, no app install. Works on Android, iOS, Windows, Mac, Linux.",
+        "publisher": { "@id": "https://syncclip.in/#organization" }
       },
       {
-        "@type": "Question",
-        name: "How do I use an online clipboard to copy text between devices?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Open syncclip.in on both devices, create or join a session using the 6-character code, and paste text on one device. It instantly appears on the other device through real-time WebSocket sync.",
-        },
+        "@type": "Organization",
+        "@id": "https://syncclip.in/#organization",
+        "name": "SyncClip",
+        "url": "https://syncclip.in",
+        "logo": "https://syncclip.in/assets/og-image.png?v=3"
       },
       {
-        "@type": "Question",
-        name: "Is online clipboard sharing safe?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "SyncClip uses SSL encryption for all data in transit. Sessions are ephemeral and auto-delete after 24 hours. You can also enable Burn After Reading mode to destroy data immediately after it is accessed.",
-        },
+        "@type": "HowTo",
+        "@id": "https://syncclip.in/clipboard#howto",
+        "name": "How to use a free online clipboard to sync text between devices",
+        "description": "Use SyncClip to copy text on one device and instantly paste it on another — no app, no login.",
+        "totalTime": "PT30S",
+        "estimatedCost": { "@type": "MonetaryAmount", "currency": "USD", "value": "0" },
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Open the online clipboard",
+            "text": "Go to syncclip.in/clipboard on your first device. A live clipboard is ready immediately.",
+            "url": "https://syncclip.in/clipboard",
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Type your text",
+            "text": "Type or paste any text into the clipboard area. A unique 6-character session code is instantly generated.",
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Share the code",
+            "text": "Copy the session code and open syncclip.in/[code] on your second device — or scan the QR code. Text syncs in under 100ms.",
+          },
+        ],
       },
       {
-        "@type": "Question",
-        name: "Do I need to install an app to use an online clipboard?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. SyncClip runs entirely in your web browser. No downloads, no plugins, and no account creation required. It works on Chrome, Safari, Firefox, and Edge across all operating systems.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What is the best free clipboard for Android and Windows?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "SyncClip is the best free clipboard for syncing between Android and Windows. Unlike native tools that are locked to one ecosystem, SyncClip works across all operating systems through the browser.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is online clipboard free?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. SyncClip is a 100% free online clipboard with no hidden fees, no premium tier, and no ads. Unlimited sessions, unlimited devices, zero cost.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What is the best free online clipboard in 2026?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "SyncClip is rated the best free online clipboard for 2026. It offers real-time WebSocket sync under 100ms, works on every browser and OS, requires no account, and auto-deletes data after 24 hours for privacy.",
-        },
-      },
-    ],
+        "@type": "FAQPage",
+        "@id": "https://syncclip.in/clipboard#faq",
+        "mainEntity": faqItems.map((item) => ({
+          "@type": "Question",
+          "name": item.name,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": item.acceptedAnswer.text,
+          },
+        })),
+      }
+    ]
   };
 
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(unifiedGraphSchema) }}
       />
 
       {/* NAV */}
@@ -230,7 +225,7 @@ export default function ClipboardPage() {
           </p>
 
           {/* ─── LIVE CLIPBOARD EMBED ────────────────────────────── */}
-          <div className="mb-6">
+          <div id="live-clipboard" className="mb-6">
             <InlineClipboardEmbed />
           </div>
 
@@ -562,7 +557,7 @@ export default function ClipboardPage() {
               Clipboard FAQ
             </h2>
             <div className="space-y-8">
-              {faqSchema.mainEntity.map((faq, index) => (
+              {faqItems.map((faq, index) => (
                 <div key={index} className="border-b border-zinc-200 pb-8">
                   <h3 className="font-headline text-xl font-black uppercase mb-4">
                     {faq.name}

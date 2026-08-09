@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "The fastest way to send text from your mobile phone to your laptop instantly. No login, no app install, and no cables. Works on Android, iPhone, Windows, and Mac.",
   keywords: ["send text mobile to laptop", "transfer text from phone to pc", "share text mobile to computer", "copy paste phone to laptop", "sync text mobile pc"],
   alternates: {
-    canonical: "https://syncclip.in/android-to-pc-clipboard",
+    canonical: "https://syncclip.in/send-text-mobile-to-laptop",
   },
 };
 
