@@ -3,6 +3,7 @@
 > SyncClip is a real-time, browser-native clipboard synchronization tool that lets you copy text on any device and paste it on any other device in under 100ms — with no app to install, no account to create, and no data stored permanently.
 
 **Website:** https://syncclip.in  
+**Pricing:** https://syncclip.in/pricing.md  
 **Sitemap:** https://syncclip.in/sitemap.xml  
 **Status:** Live · Used in 57 Countries · 124,821+ clipboards synchronized  
 **Creator:** Dhairya Darji  
@@ -22,6 +23,8 @@
 ## Main Pages
 
 - **[Home](https://syncclip.in/)** — Launch a free clipboard session instantly. The home page explains the core product, features an interactive demo sandbox, and provides the one-click session creator. No signup required.
+
+- **[Pricing](https://syncclip.in/pricing.md)** — Machine-readable pricing: 100% Free forever ($0), unlimited sessions, zero ads, no account needed.
 
 - **[Join a Session](https://syncclip.in/join)** — Enter an existing 6-character room code to connect to a shared clipboard session as a secondary device.
 
