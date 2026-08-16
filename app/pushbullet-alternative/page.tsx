@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Best Free Pushbullet Alternative 2026 | No Login Required | SyncClip",
+  title: "Best Free Pushbullet Alternative 2026 — No Login Required",
   description: "Searching for a free Pushbullet alternative? SyncClip offers instant clipboard syncing without app installs, account logins, or monthly subscriptions. Compare features today.",
   alternates: {
     canonical: "https://syncclip.in/pushbullet-alternative",

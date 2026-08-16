@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/android-to-pc-clipboard', priority: 0.95 },
     { path: '/android-to-windows', priority: 0.95, regional: true },
     { path: '/mac-to-windows-clipboard', priority: 0.9 },
+    { path: '/iphone-to-windows-clipboard', priority: 0.92 },
     { path: '/copy-text-from-phone-to-computer', priority: 0.9 },
     { path: '/send-text-mobile-to-laptop', priority: 0.88 },
     { path: '/cross-device-clipboard', priority: 0.88 },
@@ -34,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/share-text-across-devices-free', priority: 0.85 },
 
     // Theme 3: Developer / Code Snippet Sharing & Competitor Alternatives
+    { path: '/airdrop-for-windows-and-android', priority: 0.92 },
     { path: '/move-code-snippet-between-devices', priority: 0.9 },
     { path: '/pastebin-alternative', priority: 0.88 },
     { path: '/pastebin-alternative-private', priority: 0.85 },

@@ -4,7 +4,7 @@ import Link from "next/link";
 import AndroidWindowsSimulation from "../../components/AndroidWindowsSimulation";
 
 export const metadata: Metadata = {
-  title: "Copy Text from Android to Windows PC Instantly — No App, No Login | SyncClip",
+  title: "Copy Text from Android to Windows PC Instantly — No App, No Login",
   description:
     "The fastest way to sync text from Android to Windows PC. No USB cable, no Bluetooth, no app install. Just open the browser and paste in under 100ms.",
   keywords: [

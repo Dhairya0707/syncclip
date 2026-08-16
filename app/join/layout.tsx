@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Join Session | SyncClip — Online Clipboard",
+  title: "Join Session",
   description: "Enter a session code to join a real-time clipboard sync node.",
   robots: {
     index: false,

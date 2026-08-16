@@ -68,33 +68,30 @@ The following core technical upgrades have been deployed directly into the codeb
 
 ---
 
-## 🧪 3. EXPERIMENTAL SPLIT-TESTING LOG
+## 🧪 3. EXPERIMENTAL SPLIT-TESTING & RECOVERY LOG
 
-### Active Test #1: Title Tag CTR Experiment
+### Incident Recovery & Title Tag Optimization (2026-08-16)
 
-> ⚠️ **RULE:** Only test ONE variable at a time (Title first, then Description after 14 days).
+> 🚨 **INCIDENT & RECOVERY SUMMARY:**
+> - **Issue:** On Aug 14 (commit `76d1e76`), the title on `/clipboard` was changed to `Online Clipboard — Sync Instantly, No Login (124K+ Synced)`. Paired with layout's template, it expanded to 87 characters, duplicated "Online Clipboard" twice, stripped psychological intent keywords, and caused average position to drop from 4.9 to 8.6–9.2.
+> - **Resolution Deployed:** Fixed root layout title template to `"%s | SyncClip"`, deployed optimized high-CTR intent title `Free Online Clipboard — Copy Text Between Phone & PC Instantly` (59 chars), restored full OS coverage in description, expanded FAQ schema to 16 comprehensive Q&As, and launched 2 programmatic landing pages (`/iphone-to-windows-clipboard`, `/airdrop-for-windows-and-android`).
 
 ```
 TEST PROTOCOL:
-- Baseline Period: Aug 9 – Aug 22 (Do not touch titles; record baseline daily GSC data)
-- Test Launch Date: Aug 23, 2026
-- Variable Under Test: Title Tag on /clipboard
+- Recovery Period: Aug 16 – Aug 30, 2026
+- Variable Under Test: Optimized High-Intent Title & Programmatic Cluster Expansion
+- Primary URL: https://syncclip.in/clipboard
 ```
 
-#### Variant Options:
-- **Baseline (Current):** `Free Online Clipboard — Type Here, Sync Instantly (No App, No Login)`
-- **Option A (High-Intent Match):** `Free Online Clipboard – Copy Text Between Devices Instantly`
-- **Option B (Category-First + Explicit OS):** `Online Clipboard – Sync Text Between Phone & PC (No App)`
-
-#### Daily Split-Test Tracking Log
+#### Daily Tracking Log
 
 | Date | Active Title Variant | GSC Clicks | GSC Impressions | CTR % | Avg Position | Notes / Events |
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **2026-08-09** | Baseline (Current) | -- | -- | 0.15% | 4.9 | Baseline established |
-| **2026-08-16** | Baseline (Current) | -- | -- | -- | -- | Monitoring noise |
-| **2026-08-23** | Deploy Option A | -- | -- | -- | -- | Changed title in code |
-| **2026-08-30** | Option A (Day 7) | -- | -- | -- | -- | First GSC re-index check |
-| **2026-09-02** | Option A (Day 10) | -- | -- | -- | -- | **Decision Point: Keep / Revert** |
+| **2026-08-09** | Baseline (Pre-regression) | 84 | 64,320 | 0.30% | 4.9–5.2 | High baseline |
+| **2026-08-15** | Regressed Variant (124K+) | 23 | 2,090 | 1.10% | 8.6–9.2 | SERP truncation & keyword drop |
+| **2026-08-16** | **Recovery Variant (High-Intent)** | -- | -- | -- | -- | **Deployed title fix, 16 FAQs, pSEO cluster** |
+| **2026-08-23** | Recovery (Day 7) | -- | -- | -- | -- | Re-index check in GSC |
+| **2026-08-30** | Recovery (Day 14) | -- | -- | -- | -- | Target: Return to Top 3–5 |
 
 ---
 

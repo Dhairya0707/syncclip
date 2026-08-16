@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Microsoft Phone Link vs SyncClip — Clipboard Sync Showdown (2026) | SyncClip",
+  title: "Microsoft Phone Link vs SyncClip — Clipboard Sync Showdown (2026)",
   description:
     "Honest comparison: Microsoft Phone Link vs SyncClip for Android-to-Windows clipboard sync. Requirements, speed, privacy, and which one actually works without same WiFi.",
   keywords: [

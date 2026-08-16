@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Support & Help Center | SyncClip",
+  title: "Support & Help Center",
   description: "Get help with SyncClip, report issues, or suggest new features for our real-time clipboard sync protocol.",
   alternates: {
     canonical: "/support",

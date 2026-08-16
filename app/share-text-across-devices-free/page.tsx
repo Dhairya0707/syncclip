@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Share Text Across Devices Free — No App, No Signup | SyncClip",
+  title: "Share Text Across Devices Free — No App, No Signup",
   description: "The fastest free way to share text snippets and code across every device in your hardware stack. Instant synchronization via web-native WebSocket protocol.",
   alternates: {
     canonical: "https://syncclip.in/share-text-across-devices-free",

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How to Sync Clipboard Between Devices (India Developer Guide) | SyncClip",
+  title: "How to Sync Clipboard Between Devices — India Developer Guide",
   description: "The ultimate guide for Indian developers to sync clipboard between Android, Mac, and Windows. Share code snippets and 2FA codes instantly without WhatsApp.",
   alternates: {
     canonical: "https://syncclip.in/blog/clipboard-sync-indian-developers",

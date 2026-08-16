@@ -3,23 +3,22 @@ import Link from "next/link";
 import InlineClipboardEmbed from "../../components/InlineClipboardEmbed";
 
 export const metadata: Metadata = {
-  title: "Online Clipboard — Sync Instantly, No Login (124K+ Synced)",
+  title: "Free Online Clipboard — Copy Text Between Phone & PC Instantly",
   description:
-    "Free online clipboard used 124,000+ times. Copy on phone, paste on PC in under 100ms. No login, no app, zero logs. Real-time WebSocket sync. Try free.",
+    "Free online clipboard — copy text on your phone and paste on your PC in under 100ms. No login, no app download, zero logs. Works on Android, iOS, Windows, Mac & Linux.",
   keywords: [
     "online clipboard",
-    "clipboard online",
     "free online clipboard",
-    "online clipboard free",
+    "clipboard online",
     "copy paste online",
     "share clipboard online",
+    "copy text from phone to pc",
+    "clipboard sync between devices",
+    "cross device clipboard",
     "clipboard sharing tool",
-    "clipboard sync",
-    "text clipboard online",
-    "syncclip",
     "realtime clipboard online",
-    "online clipboard live",
-    "clipboard online free",
+    "syncclip",
+    "free clipboard sync no account",
   ],
   alternates: {
     canonical: "https://syncclip.in/clipboard",
@@ -28,12 +27,13 @@ export const metadata: Metadata = {
       "en-IN": "https://syncclip.in/clipboard",
       "en-NP": "https://syncclip.in/clipboard",
       "en-PK": "https://syncclip.in/clipboard",
+      "x-default": "https://syncclip.in/clipboard",
     },
   },
   openGraph: {
-    title: "Online Clipboard — Sync Instantly, No Login (124K+ Synced)",
+    title: "Free Online Clipboard — Copy Text Between Phone & PC Instantly",
     description:
-      "Free online clipboard used 124,000+ times. Copy on phone, paste on PC in under 100ms. No login, no app, zero logs.",
+      "Free online clipboard — copy text on your phone and paste on your PC in under 100ms. No login, no app download, zero logs.",
     url: "https://syncclip.in/clipboard",
     siteName: "SyncClip",
     images: [
@@ -41,15 +41,15 @@ export const metadata: Metadata = {
         url: "https://syncclip.in/assets/og-image.png?v=3",
         width: 1200,
         height: 630,
-        alt: "Online Clipboard — SyncClip Free Real-Time Sync",
+        alt: "Free Online Clipboard — SyncClip Instant Sync",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Online Clipboard — Sync Instantly, No Login (124K+ Synced)",
+    title: "Free Online Clipboard — Copy Text Between Phone & PC Instantly",
     description:
-      "Free online clipboard used 124,000+ times. Copy on phone, paste on PC in under 100ms. No login, no app, zero logs.",
+      "Free online clipboard — copy text on your phone and paste on your PC in under 100ms. No login, no app download, zero logs.",
     images: ["https://syncclip.in/assets/og-image.png?v=3"],
   },
 };
@@ -65,37 +65,91 @@ export default function ClipboardPage() {
     {
       name: "How do I use an online clipboard to copy text between devices?",
       acceptedAnswer: {
-        text: "Open syncclip.in on both devices, create or join a session using the 6-character code, and paste text on one device. It instantly appears on the other device through real-time WebSocket sync in under 100ms.",
+        text: "Open syncclip.in/clipboard on your first device, type or paste your text to generate a 6-character room code, and open syncclip.in/[code] (or scan the QR code) on your other device. The text syncs instantly across both screens.",
       },
     },
     {
-      name: "Is online clipboard sharing safe?",
+      name: "Can I copy text from phone to PC without installing an app?",
       acceptedAnswer: {
-        text: "SyncClip uses SSL/TLS 1.3 encryption for all data in transit. Sessions are ephemeral and auto-delete after 24 hours. You can also enable Burn After Reading mode to destroy data immediately after it is accessed.",
+        text: "Yes. SyncClip works 100% in your web browser (Chrome, Safari, Edge, Firefox). You do not need to download Android apps, Windows software, browser extensions, or pair cables.",
       },
     },
     {
-      name: "Do I need to install an app to use an online clipboard?",
+      name: "Can I use an online clipboard without creating an account or logging in?",
       acceptedAnswer: {
-        text: "No. SyncClip runs entirely in your web browser. No downloads, no plugins, and no account creation required. It works on Chrome, Safari, Firefox, and Edge across all operating systems.",
+        text: "Yes. SyncClip requires zero signup, zero email, and zero passwords. Sessions are identified by ephemeral 6-character room keys that auto-delete after 24 hours.",
       },
     },
     {
-      name: "What is the best free clipboard for Android and Windows?",
+      name: "How do I copy text from Android to Windows PC?",
       acceptedAnswer: {
-        text: "SyncClip is the best free clipboard for syncing between Android and Windows. Unlike native tools that are locked to one ecosystem, SyncClip works across all operating systems through the browser with zero login.",
+        text: "Open SyncClip on your Android phone, type or paste your text, and note the 6-character session code. Open the same link on your Windows PC browser, and your clipboard text is ready to copy with one click.",
       },
     },
     {
-      name: "Is online clipboard free?",
+      name: "Does this online clipboard work on iPhone and Mac?",
       acceptedAnswer: {
-        text: "Yes. SyncClip is a 100% free online clipboard with no hidden fees, no premium tier, and no ads. Unlimited sessions, unlimited devices, zero cost.",
+        text: "Yes. SyncClip is operating system agnostic and works seamlessly between iOS (Safari/Chrome), macOS, Android, Windows, and Linux without Apple ID or ecosystem restrictions.",
       },
     },
     {
-      name: "What is the best free online clipboard in 2026?",
+      name: "Is online clipboard sharing safe and encrypted?",
       acceptedAnswer: {
-        text: "SyncClip is rated the best free online clipboard for 2026 with over 124,000 clipboards synchronized across 57 countries. It offers real-time WebSocket sync under 100ms, works on every browser and OS, requires no account, and auto-deletes data after 24 hours.",
+        text: "Yes. All data in transit is encrypted using SSL/TLS 1.3 over secure WebSockets (WSS). Data is stored ephemerally in active memory and auto-purged after 24 hours with zero permanent logging.",
+      },
+    },
+    {
+      name: "What is Burn After Reading mode?",
+      acceptedAnswer: {
+        text: "Burn After Reading is an extra privacy mode in SyncClip. When enabled, your text and clipboard session are permanently destroyed 5 seconds after a connected device reads it.",
+      },
+    },
+    {
+      name: "How long does clipboard data stay online?",
+      acceptedAnswer: {
+        text: "All SyncClip clipboard sessions automatically expire and hard-purge after 24 hours of inactivity. You can also manually wipe the room at any moment using the 'Clear Node' button.",
+      },
+    },
+    {
+      name: "Can I send passwords or 2FA OTP codes securely?",
+      acceptedAnswer: {
+        text: "Yes. Many users transfer 2FA codes and temporary credentials between phone and PC. For maximum security, enable 'Burn After Reading' so the OTP is wiped immediately after copying.",
+      },
+    },
+    {
+      name: "Can I share code snippets and formatting with this clipboard?",
+      acceptedAnswer: {
+        text: "Yes. SyncClip preserves exact indentation, line breaks, special characters, JSON payloads, Bash commands, and code formatting without character corruption.",
+      },
+    },
+    {
+      name: "Does it work across different Wi-Fi networks and mobile hotspots?",
+      acceptedAnswer: {
+        text: "Yes. Unlike Apple AirDrop or local LAN sharing tools, SyncClip connects over the cloud via WebSockets. Your phone can be on 5G mobile data while your PC is on corporate Ethernet.",
+      },
+    },
+    {
+      name: "What is the maximum text size I can sync?",
+      acceptedAnswer: {
+        text: "SyncClip supports up to 100KB of raw text per payload, which is equivalent to over 15,000 words or entire source code files in a single copy-paste operation.",
+      },
+    },
+    {
+      name: "Can multiple devices connect to the same clipboard room?",
+      acceptedAnswer: {
+        text: "Yes. You can connect 2, 5, or 10+ devices simultaneously to the same session code. All participants see real-time updates instantly as edits are typed.",
+      },
+    },
+    {
+      name: "What makes SyncClip different from Apple Universal Clipboard or Microsoft Phone Link?",
+      acceptedAnswer: {
+        text: "Apple Universal Clipboard only works between Apple hardware logged into the same Apple ID. Phone Link requires Bluetooth pairing, Microsoft accounts, and background software. SyncClip works across all brands instantly via the browser with zero login.",
+      },
+    },
+    {
+      name: "Is this online clipboard 100% free forever?",
+      acceptedAnswer: {
+        text: "Yes. SyncClip is 100% free with no subscription, no credit card required, and no intrusive banner ads.",
       },
     },
   ];
@@ -343,6 +397,60 @@ export default function ClipboardPage() {
             >
               Ecosystems_
             </Link>
+          </div>
+
+          {/* ─── DEVICE PAIRING QUICK MATRIX (pSEO Hub) ───────── */}
+          <div className="border-2 border-black bg-zinc-50 p-8 mb-16 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+            <div className="font-mono text-[10px] tracking-[0.25em] text-secondary uppercase font-bold mb-4">
+              Device Pairing Hub // Select Your Setup
+            </div>
+            <h2 className="font-headline text-2xl md:text-3xl font-black uppercase mb-6">
+              Instant Sync for Any Two Devices:
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 font-mono text-xs">
+              <Link
+                href="/android-to-windows"
+                className="bg-white border-2 border-black p-4 hover:bg-black hover:text-white transition-all flex items-center justify-between group"
+              >
+                <span>📱 Android ➔ 💻 Windows PC</span>
+                <span className="text-secondary group-hover:text-white font-bold">➔</span>
+              </Link>
+              <Link
+                href="/iphone-to-windows-clipboard"
+                className="bg-white border-2 border-black p-4 hover:bg-black hover:text-white transition-all flex items-center justify-between group"
+              >
+                <span>🍏 iPhone ➔ 💻 Windows PC</span>
+                <span className="text-secondary group-hover:text-white font-bold">➔</span>
+              </Link>
+              <Link
+                href="/mac-to-windows-clipboard"
+                className="bg-white border-2 border-black p-4 hover:bg-black hover:text-white transition-all flex items-center justify-between group"
+              >
+                <span>🍏 Mac ➔ 💻 Windows PC</span>
+                <span className="text-secondary group-hover:text-white font-bold">➔</span>
+              </Link>
+              <Link
+                href="/copy-text-from-phone-to-computer"
+                className="bg-white border-2 border-black p-4 hover:bg-black hover:text-white transition-all flex items-center justify-between group"
+              >
+                <span>📱 Phone ➔ 🖥️ Desktop PC</span>
+                <span className="text-secondary group-hover:text-white font-bold">➔</span>
+              </Link>
+              <Link
+                href="/send-text-mobile-to-laptop"
+                className="bg-white border-2 border-black p-4 hover:bg-black hover:text-white transition-all flex items-center justify-between group"
+              >
+                <span>📲 Mobile ➔ 💻 Any Laptop</span>
+                <span className="text-secondary group-hover:text-white font-bold">➔</span>
+              </Link>
+              <Link
+                href="/airdrop-for-windows-and-android"
+                className="bg-white border-2 border-black p-4 hover:bg-black hover:text-white transition-all flex items-center justify-between group"
+              >
+                <span>⚡ AirDrop for Win &amp; Android</span>
+                <span className="text-secondary group-hover:text-white font-bold">➔</span>
+              </Link>
+            </div>
           </div>
 
           {/* Secondary CTA — scrolls back up to the embed */}
@@ -631,7 +739,7 @@ export default function ClipboardPage() {
               Home
             </Link>
             <Link
-              href="/online-clipboard"
+              href="/clipboard"
               className="text-zinc-500 hover:text-secondary transition-colors"
             >
               Online Clipboard

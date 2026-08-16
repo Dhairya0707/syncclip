@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Free Clipboard Sync — No Account Required | SyncClip",
+  title: "Free Clipboard Sync — No Account Required",
   description: "Sync your clipboard between any devices for free without creating an account. The most private, zero-login method to share text and code instantly.",
   alternates: {
     canonical: "https://syncclip.in/clipboard",
