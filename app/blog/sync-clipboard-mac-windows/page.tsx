@@ -3,11 +3,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  robots: { index: false },
   title: "How to Sync Clipboard Between Mac and Windows (2026 Guide)",
   description: "Bridges the gap between Apple and Microsoft. Learn how to sync your clipboard between Mac and Windows instantly without complex software or accounts.",
   alternates: {
-    canonical: "/blog/sync-clipboard-mac-windows",
+    canonical: "https://syncclip.in/blog/sync-clipboard-mac-windows",
   },
 };
 

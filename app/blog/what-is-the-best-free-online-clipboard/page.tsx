@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  robots: { index: false },
   title: "What is the Best Free Online Clipboard to Sync Between Devices? (2026)",
   description: "Looking for the best free online clipboard alternative? Compare top tools for instant, no-login clipboard synchronization across phone, tablet, and PC.",
   keywords: ["best free online clipboard", "online clipboard alternative", "sync clipboard between devices", "free clipboard sharing", "cross device clipboard"],

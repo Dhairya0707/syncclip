@@ -4,6 +4,14 @@
 
 ## Updates
 
+### 2026-08-22 - "Online Clipboard" Ranking Recovery & Schema Consolidation
+
+- **Keyword SERP Snippet Optimization**: Rewrote metadata title and descriptions on the Homepage (`/`), Root Layout (`app/layout.tsx`), and `/clipboard` to front-load `"Online Clipboard"` cleanly under 60 characters to optimize mobile/desktop SERP click-through rates (CTR).
+- **H1 Semantic Token Integrity**: Refactored the homepage `<h1>` in [HomeClient.tsx](file:///Users/dhairyadarji/Developer/experiments/syncclip/components/HomeClient.tsx) to ensure unbroken semantic parsing of `"FREE ONLINE CLIPBOARD"` by search engine crawlers.
+- **Unified Schema.org Graph Integration**: Cleaned up fragmented Schema.org structured data scripts into a consolidated `@graph` featuring `WebApplication`, `Organization`, `HowTo`, and `FAQPage` schemas for enhanced SERP rich snippets and AI grounding.
+- **Topical Anchor Text Reinforcement**: Enriched internal anchor text linking back to the Homepage from flagship guides to concentrate link equity into the `"online clipboard"` entity.
+- **IndexNow & Verification**: Successfully passed `pnpm run build` static compilation check (76 routes) and submitted all 63 production routes via IndexNow API (200 OK).
+
 ### 2026-07-14 - SEO Consolidation, Interactive Guide, Regional Hreflangs, and Umami Funnel Analytics
 
 - **SEO Content Consolidation**: Deleted the low-converting `/blog/go-online-tools-clipboard-alternative` page. Configured permanent 301 redirects in [next.config.ts](file:///Users/dhairyadarji/Developer/experiments/syncclip/next.config.ts) from the deleted routes directly to the high-converting `/clipboard` page.

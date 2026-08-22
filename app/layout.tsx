@@ -9,18 +9,18 @@ import { ExperimentsProvider } from "@/utils/experiments";
 export const metadata: Metadata = {
   metadataBase: new URL('https://syncclip.in'),
   title: {
-    default: "SyncClip — Free Online Clipboard (Sync Instantly, No App, No Login)",
+    default: "Online Clipboard — Free, Instant & No Login | SyncClip",
     template: "%s | SyncClip"
   },
-  description: "Copy text on your phone → paste on PC in milliseconds. No signup, no installation, no logs. Works on Android, iOS, Windows, Mac, Linux.",
-  keywords: ["syncclip", "syncclip clipboard", "sync clip", "syncclip.in", "online clipboard", "clipboard online", "copy paste between devices", "sync clipboard between devices", "share clipboard online", "clipboard sharing tool", "cross device clipboard", "paste text between devices", "copy text from phone to computer", "free clipboard sync", "clipboard sync android windows", "universal clipboard online no signup", "pushbullet alternative free"],
+  description: "Copy text on your phone and paste on PC in under 100ms. Free online clipboard with zero login or setup. Fast, private, and works on all devices.",
+  keywords: ["online clipboard", "free online clipboard", "clipboard online", "copy paste online", "syncclip", "sync clipboard between devices", "cross device clipboard", "paste text between devices", "copy text from phone to computer", "free clipboard sync", "realtime clipboard", "live clipboard"],
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico",
   },
   openGraph: {
-    title: "SyncClip — Free Online Clipboard (Sync Instantly)",
-    description: "Copy text on your phone → paste on PC in milliseconds. No signup, no installation, no logs. Works on Android, iOS, Windows, Mac, Linux.",
+    title: "Online Clipboard — Free, Instant & No Login | SyncClip",
+    description: "Copy text on your phone and paste on PC in under 100ms. Free online clipboard with zero login or setup.",
     url: "https://syncclip.in",
     siteName: "SyncClip — Online Clipboard",
     images: [

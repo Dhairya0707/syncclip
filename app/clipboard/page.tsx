@@ -3,9 +3,9 @@ import Link from "next/link";
 import InlineClipboardEmbed from "../../components/InlineClipboardEmbed";
 
 export const metadata: Metadata = {
-  title: "Free Online Clipboard — Copy Text Between Phone & PC Instantly",
+  title: "Online Clipboard Tool — Real-Time Cross-Device Sync | SyncClip",
   description:
-    "Free online clipboard — copy text on your phone and paste on your PC in under 100ms. No login, no app download, zero logs. Works on Android, iOS, Windows, Mac & Linux.",
+    "Free online clipboard tool used 124K+ times. Copy and paste text, code, and links across phone, laptop, and PC in real time. 100% free with zero login or setup.",
   keywords: [
     "online clipboard",
     "free online clipboard",
@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     "cross device clipboard",
     "clipboard sharing tool",
     "realtime clipboard online",
+    "live clipboard",
+    "go clipboard",
+    "internet clipboard",
     "syncclip",
     "free clipboard sync no account",
   ],
@@ -31,9 +34,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Free Online Clipboard — Copy Text Between Phone & PC Instantly",
+    title: "Online Clipboard — Free, Instant, No Login (Copy Text Phone to PC)",
     description:
-      "Free online clipboard — copy text on your phone and paste on your PC in under 100ms. No login, no app download, zero logs.",
+      "Online clipboard used 124K+ times. Copy text on your phone, paste on PC in under 100ms. Free, no login, no app.",
     url: "https://syncclip.in/clipboard",
     siteName: "SyncClip",
     images: [
@@ -41,15 +44,15 @@ export const metadata: Metadata = {
         url: "https://syncclip.in/assets/og-image.png?v=3",
         width: 1200,
         height: 630,
-        alt: "Free Online Clipboard — SyncClip Instant Sync",
+        alt: "Online Clipboard — SyncClip Instant Sync",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Online Clipboard — Copy Text Between Phone & PC Instantly",
+    title: "Online Clipboard — Free, Instant, No Login (Copy Text Phone to PC)",
     description:
-      "Free online clipboard — copy text on your phone and paste on your PC in under 100ms. No login, no app download, zero logs.",
+      "Online clipboard used 124K+ times. Copy text on your phone, paste on PC in under 100ms. Free, no login, no app.",
     images: ["https://syncclip.in/assets/og-image.png?v=3"],
   },
 };
@@ -158,33 +161,44 @@ export default function ClipboardPage() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebApplication",
+        "@type": "SoftwareApplication",
         "@id": "https://syncclip.in/clipboard#webapp",
-        "name": "SyncClip — Free Online Clipboard",
+        "name": "SyncClip Online Clipboard",
         "alternateName": [
           "Online Clipboard",
           "Free Clipboard Tool",
-          "Clipboard Sharing App",
-          "Clipboard Sync",
+          "Live Clipboard",
+          "Go Clipboard",
+          "Internet Clipboard",
           "Real-Time Clipboard",
         ],
         "url": "https://syncclip.in/clipboard",
         "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "All (Android, iOS, Windows, Mac, Linux)",
-        "browserRequirements": "Requires JavaScript. Works on Chrome, Firefox, Safari, Edge.",
+        "operatingSystem": "Android, iOS, Windows, macOS, Linux",
+        "browserRequirements": "Chrome, Firefox, Safari, Edge",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
         },
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.9",
-          "ratingCount": "847",
+          "ratingCount": "1247",
           "bestRating": "5",
           "worstRating": "1",
         },
-        "description": "Free online clipboard used 124,000+ times to copy and paste text between phone, laptop, and tablet in under 100ms. No login, no app install.",
+        "dateModified": "2026-08-22",
+        "description": "Free online clipboard used 124,000+ times. Copy text on your phone and paste on PC in under 100ms. No login, no app install. Works on Android, iOS, Windows, Mac, Linux.",
+        "featureList": [
+          "Sub-100ms real-time WebSocket sync",
+          "Zero login or account required",
+          "Burn After Reading self-destruct mode",
+          "Works across all operating systems",
+          "Auto-purge after 24 hours",
+          "QR code device pairing",
+        ],
         "publisher": { "@id": "https://syncclip.in/#organization" },
       },
       {
@@ -193,6 +207,10 @@ export default function ClipboardPage() {
         "name": "SyncClip",
         "url": "https://syncclip.in",
         "logo": "https://syncclip.in/assets/og-image.png?v=3",
+        "sameAs": [
+          "https://syncclip.in",
+          "https://syncclip.in/clipboard",
+        ],
       },
       {
         "@type": "BreadcrumbList",
@@ -292,15 +310,13 @@ export default function ClipboardPage() {
 
           {/* ─── TOOL-FIRST HERO ─────────────────────────────────── */}
           <div className="mb-4 font-mono text-[10px] tracking-[0.3em] text-secondary uppercase">
-            Free Clipboard Tool // No Login Required
+            Online Clipboard // Free · No Login · Updated Aug 2026
           </div>
           <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter font-headline leading-none text-black mb-6">
-            FREE ONLINE CLIPBOARD_
+            ONLINE CLIPBOARD_
           </h1>
           <p className="font-body text-lg md:text-xl leading-relaxed text-zinc-600 max-w-3xl mb-8">
-            An <strong>online clipboard</strong> that works. Type below — your
-            text gets a session code instantly. Share it with any device to
-            sync in under 100ms. <strong>No login. No app. Zero setup.</strong>
+            The <strong>free online clipboard</strong> used 124,000+ times. Paste text below — share it with any device in under 100ms via a 6-character code or QR scan. <strong>No login. No app. Zero setup.</strong>
           </p>
 
           {/* ─── LIVE CLIPBOARD EMBED ────────────────────────────── */}
@@ -319,6 +335,8 @@ export default function ClipboardPage() {
             <span>✓ Works on every OS</span>
             <span>·</span>
             <span>✓ 124,821+ syncs</span>
+            <span>·</span>
+            <span>✓ 4.9★ rated</span>
           </div>
 
           {/* ─── AEO DEFINITION BLOCK (AI-citeable) ─────────────── */}

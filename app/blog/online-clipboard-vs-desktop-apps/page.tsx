@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  robots: { index: false },
   title: "Online Clipboard vs Desktop Apps: Why Web-Native is Better in 2026",
   description: "Comparing online clipboard sync tools vs traditional desktop apps. Discover why web-native solutions offer better privacy, speed, and cross-platform compatibility.",
   keywords: ["clipboard online", "online clipboard vs desktop app", "best clipboard sync 2026", "web-native clipboard sync", "no-install clipboard tool"],
@@ -13,6 +12,20 @@ export const metadata: Metadata = {
 };
 
 export default function BlogComparisonPage() {
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Online Clipboard vs Desktop Apps: Why Web-Native is Better in 2026",
+    "description": "Comparing online clipboard sync tools vs traditional desktop apps. Discover why web-native solutions offer better privacy, speed, and cross-platform compatibility.",
+    "url": "https://syncclip.in/blog/online-clipboard-vs-desktop-apps",
+    "datePublished": "2026-07-05",
+    "dateModified": "2026-08-22",
+    "author": { "@type": "Organization", "name": "SyncClip", "url": "https://syncclip.in" },
+    "publisher": { "@type": "Organization", "name": "SyncClip", "url": "https://syncclip.in" },
+    "mainEntityOfPage": "https://syncclip.in/blog/online-clipboard-vs-desktop-apps",
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -54,6 +67,10 @@ export default function BlogComparisonPage() {
 
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

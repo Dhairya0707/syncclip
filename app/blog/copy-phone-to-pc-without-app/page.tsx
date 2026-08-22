@@ -3,11 +3,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  robots: { index: false },
   title: "Copy Text From Phone to PC Without an App (2026 Guide)",
   description: "Learn how to copy text from your Android or iPhone to a Windows PC or Mac without installing any apps. The fastest, no-login method for 2026.",
   alternates: {
-    canonical: "/blog/copy-phone-to-pc-without-app",
+    canonical: "https://syncclip.in/blog/copy-phone-to-pc-without-app",
   },
 };
 

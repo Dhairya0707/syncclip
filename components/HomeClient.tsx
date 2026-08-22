@@ -187,11 +187,7 @@ export default function HomeClient({
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter font-headline leading-[1.1] text-primary mb-6">
                   {defaultH1 || (
                     <>
-                      FREE_
-                      <br />
-                      ONLINE_
-                      <br />
-                      CLIPBOARD_
+                      <span>FREE ONLINE CLIPBOARD</span>
                     </>
                   )}
                   <br />

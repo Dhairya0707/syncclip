@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  robots: { index: false },
   title: "SyncClip vs Universal Clipboard: Bridging the Cross-Platform Gap",
   description: "Frustrated with Apple or Windows ecosystem lock-in? Compare SyncClip with native universal clipboards and learn how to sync between Android, iPhone, and PC without walls.",
   keywords: ["universal clipboard", "sync clipboard android iphone", "cross platform clipboard", "apple universal clipboard alternative", "windows phone link alternative"],
@@ -13,6 +12,20 @@ export const metadata: Metadata = {
 };
 
 export default function UniversalClipboardBlog() {
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "SyncClip vs Universal Clipboard: Bridging the Cross-Platform Gap",
+    "description": "Frustrated with Apple or Windows ecosystem lock-in? Compare SyncClip with native universal clipboards.",
+    "url": "https://syncclip.in/blog/syncclip-vs-universal-clipboard",
+    "datePublished": "2026-07-08",
+    "dateModified": "2026-08-22",
+    "author": { "@type": "Organization", "name": "SyncClip", "url": "https://syncclip.in" },
+    "publisher": { "@type": "Organization", "name": "SyncClip", "url": "https://syncclip.in" },
+    "mainEntityOfPage": "https://syncclip.in/blog/syncclip-vs-universal-clipboard",
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -38,6 +51,10 @@ export default function UniversalClipboardBlog() {
 
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

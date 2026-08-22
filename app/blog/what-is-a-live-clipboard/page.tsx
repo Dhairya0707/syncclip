@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  robots: { index: false },
   title: "What is a Live Clipboard? The Future of Instant Device Syncing",
   description: "Discover what a live clipboard is and how it revolutionizes the way you move text between devices. Learn about real-time WebSocket syncing and ephemeral data.",
   keywords: ["live clipboard", "realtime clipboard", "live sync clipboard", "what is a live clipboard", "instant text sync"],
@@ -13,6 +12,19 @@ export const metadata: Metadata = {
 };
 
 export default function LiveClipboardBlog() {
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What is a Live Clipboard? The Future of Instant Device Syncing",
+    "description": "Discover what a live clipboard is and how it revolutionizes the way you move text between devices. Learn about real-time WebSocket syncing and ephemeral data.",
+    "url": "https://syncclip.in/blog/what-is-a-live-clipboard",
+    "datePublished": "2026-07-01",
+    "dateModified": "2026-08-22",
+    "author": { "@type": "Organization", "name": "SyncClip", "url": "https://syncclip.in" },
+    "publisher": { "@type": "Organization", "name": "SyncClip", "url": "https://syncclip.in" },
+    "mainEntityOfPage": "https://syncclip.in/blog/what-is-a-live-clipboard",
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -46,6 +58,10 @@ export default function LiveClipboardBlog() {
 
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

@@ -202,7 +202,10 @@ export default function BlogPost() {
 
           <div className="mt-20 pt-10 border-t-2 border-black text-center">
             <h3 className="font-headline font-black uppercase text-3xl mb-6 italic tracking-tighter">Ready to try the fastest sync?</h3>
-            <Link href="/" className="inline-block bg-black text-white font-mono text-[14px] py-5 px-16 uppercase tracking-[0.3em] font-black hover:bg-secondary transition-all">Launch Node_</Link>
+            <p className="text-zinc-600 mb-8 max-w-md mx-auto">
+              Start sharing text instantly with our <Link href="/" className="text-secondary font-bold underline">free online clipboard</Link> or explore all features in the <Link href="/clipboard" className="text-secondary font-bold underline">online clipboard tool directory</Link>.
+            </p>
+            <Link href="/" className="inline-block bg-black text-white font-mono text-[14px] py-5 px-16 uppercase tracking-[0.3em] font-black hover:bg-secondary transition-all">Launch Online Clipboard_</Link>
           </div>
         </article>
       </main>

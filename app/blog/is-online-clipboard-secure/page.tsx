@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  robots: { index: false },
   title: "Is an Online Clipboard Secure? What You Need to Know in 2026",
   description: "Are online clipboard tools safe? A deep technical dive into TLS 1.3 encryption, WebSocket tunneling, browser sandboxing, and ephemeral zero-trust architectures.",
   keywords: ["online clipboard security", "is clipboard online safe", "secure clipboard sharing", "clipboard data privacy", "safe online clipboard", "ephemeral clipboard sync"],
@@ -13,6 +12,19 @@ export const metadata: Metadata = {
 };
 
 export default function SecurityBlog() {
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Is an Online Clipboard Secure? What You Need to Know in 2026",
+    "description": "Are online clipboard tools safe? A deep technical dive into TLS 1.3 encryption, WebSocket tunneling, browser sandboxing, and ephemeral zero-trust architectures.",
+    "url": "https://syncclip.in/blog/is-online-clipboard-secure",
+    "datePublished": "2026-07-01",
+    "dateModified": "2026-08-22",
+    "author": { "@type": "Organization", "name": "SyncClip", "url": "https://syncclip.in" },
+    "publisher": { "@type": "Organization", "name": "SyncClip", "url": "https://syncclip.in" },
+    "mainEntityOfPage": "https://syncclip.in/blog/is-online-clipboard-secure",
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -62,6 +74,10 @@ export default function SecurityBlog() {
 
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

@@ -3,11 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  robots: { index: false },
   title: "Stop Emailing Yourself Notes — Use an Online Clipboard in 2026",
   description: "Stop emailing yourself. Learn 5 faster ways to move snippets between devices in 2026 without Slack or email. Use a real-time online clipboard for instant sync.",
   alternates: {
-    canonical: "/blog/stop-emailing-yourself-notes",
+    canonical: "https://syncclip.in/blog/stop-emailing-yourself-notes",
   },
 };
 

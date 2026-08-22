@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  robots: { index: false },
   title: "Online Clipboard vs Cloud Notes (Notion, Keep, Evernote) — 2026 Audit",
   description: "Stop using Notion or Google Keep for temporary snippets. Discover why an ephemeral online clipboard is 10x faster and more secure for transient data syncing.",
   keywords: ["online clipboard vs notion", "google keep alternative for snippets", "fastest way to sync text", "ephemeral vs permanent storage", "online clipboard sync comparison"],

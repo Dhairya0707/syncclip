@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  robots: { index: false },
   title: "5 Ways to Copy Text Between Phone and Laptop (No App Needed)",
   description: "Stop emailing yourself snippets. Here are 5 ways to copy text between your phone and laptop instantly, including free web-based sync tools.",
   keywords: ["copy text phone to laptop", "transfer text from phone to pc", "share text mobile to computer", "copy paste phone to laptop", "sync text phone pc"],
@@ -13,6 +12,20 @@ export const metadata: Metadata = {
 };
 
 export default function WorkflowBlog() {
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "5 Ways to Copy Text Between Phone and Laptop (No App Needed)",
+    "description": "Stop emailing yourself snippets. Here are 5 ways to copy text between your phone and laptop instantly.",
+    "url": "https://syncclip.in/blog/5-ways-to-copy-text-between-phone-and-laptop",
+    "datePublished": "2026-07-12",
+    "dateModified": "2026-08-22",
+    "author": { "@type": "Organization", "name": "SyncClip", "url": "https://syncclip.in" },
+    "publisher": { "@type": "Organization", "name": "SyncClip", "url": "https://syncclip.in" },
+    "mainEntityOfPage": "https://syncclip.in/blog/5-ways-to-copy-text-between-phone-and-laptop",
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -38,6 +51,10 @@ export default function WorkflowBlog() {
 
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

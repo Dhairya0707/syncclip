@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  robots: { index: false },
   title: "Best Free Pushbullet Alternatives 2026 — Instant Sync, No Account",
   description: "Pushbullet got expensive? Try SyncClip. Real-time clipboard sync across all devices. No login, no email required.",
   keywords: ["pushbullet alternatives", "pushbullet alternative 2026", "clipboard sync pushbullet", "free pushbullet alternative", "cross device clipboard sync"],
@@ -12,6 +11,20 @@ export const metadata: Metadata = {
 };
 
 export default function PushbulletAlternatives2026() {
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Best Free Pushbullet Alternatives 2026 — Instant Sync, No Account",
+    "description": "Pushbullet got expensive? Try SyncClip. Real-time clipboard sync across all devices. No login, no email required.",
+    "url": "https://syncclip.in/blog/pushbullet-alternatives-2026",
+    "datePublished": "2026-07-10",
+    "dateModified": "2026-08-22",
+    "author": { "@type": "Organization", "name": "SyncClip", "url": "https://syncclip.in" },
+    "publisher": { "@type": "Organization", "name": "SyncClip", "url": "https://syncclip.in" },
+    "mainEntityOfPage": "https://syncclip.in/blog/pushbullet-alternatives-2026",
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -53,6 +66,10 @@ export default function PushbulletAlternatives2026() {
 
   return (
     <div className="bg-surface font-body min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
