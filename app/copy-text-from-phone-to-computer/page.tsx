@@ -89,7 +89,7 @@ export default function CopyPhoneToPcPage() {
               <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">Quick Answer</div>
               <p className="font-body text-lg md:text-xl leading-relaxed font-bold">
                 To copy text from phone to PC instantly without an app: 
-                1. Open <Link href="/" className="text-secondary hover:underline">SyncClip</Link> on both devices. 
+                1. Open the <Link href="/clipboard" className="text-secondary underline hover:text-white">free online clipboard</Link> on both devices. 
                 2. Join the same session code. 
                 3. Paste on your phone and the text appears on your PC in real-time. 
                 This works across Android, iOS, Windows, and Mac using only your browser.

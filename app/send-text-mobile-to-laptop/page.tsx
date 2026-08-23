@@ -57,7 +57,7 @@ export default function SendTextMobileToLaptop() {
           <div className="bg-zinc-900 text-white p-10 mb-16 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(0,0,0,1)]">
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4 text-center md:text-left">Quick Answer // AEO Node</div>
             <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic">
-              To send text from mobile to laptop instantly, use a web-based clipboard like SyncClip. By connecting both devices to a real-time session via a 6-character code or QR scan, you can sync text across Android, iOS, Windows, and Mac browsers in under 100ms without installing apps or logging in.
+              To send text from mobile to laptop instantly, use a web-based <Link href="/clipboard" className="text-secondary underline hover:text-white">online clipboard</Link> like SyncClip. By connecting both devices to a real-time session via a 6-character code or QR scan, you can sync text across Android, iOS, Windows, and Mac browsers in under 100ms without installing apps or logging in.
             </p>
           </div>
 

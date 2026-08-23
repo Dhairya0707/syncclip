@@ -3,9 +3,9 @@ import Link from "next/link";
 import InlineClipboardEmbed from "../../components/InlineClipboardEmbed";
 
 export const metadata: Metadata = {
-  title: "Online Clipboard Tool — Real-Time Cross-Device Sync | SyncClip",
+  title: "Free Online Clipboard — Instant, No Login & Real-Time Sync | SyncClip",
   description:
-    "Free online clipboard tool used 124K+ times. Copy and paste text, code, and links across phone, laptop, and PC in real time. 100% free with zero login or setup.",
+    "Copy text on your phone and paste on PC in under 100ms. 100% free online clipboard with zero login, no app install, and end-to-end security. Works on all devices.",
   keywords: [
     "online clipboard",
     "free online clipboard",
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Online Clipboard — Free, Instant, No Login (Copy Text Phone to PC)",
+    title: "Free Online Clipboard — Instant, No Login & Real-Time Sync | SyncClip",
     description:
-      "Online clipboard used 124K+ times. Copy text on your phone, paste on PC in under 100ms. Free, no login, no app.",
+      "Copy text on your phone and paste on PC in under 100ms. 100% free online clipboard with zero login, no app install, and end-to-end security.",
     url: "https://syncclip.in/clipboard",
     siteName: "SyncClip",
     images: [
@@ -50,9 +50,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Online Clipboard — Free, Instant, No Login (Copy Text Phone to PC)",
+    title: "Free Online Clipboard — Instant, No Login & Real-Time Sync | SyncClip",
     description:
-      "Online clipboard used 124K+ times. Copy text on your phone, paste on PC in under 100ms. Free, no login, no app.",
+      "Copy text on your phone and paste on PC in under 100ms. 100% free online clipboard with zero login, no app install, and end-to-end security.",
     images: ["https://syncclip.in/assets/og-image.png?v=3"],
   },
 };

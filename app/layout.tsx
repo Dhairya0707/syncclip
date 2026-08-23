@@ -133,24 +133,6 @@ export default function RootLayout({
                   "url": "https://syncclip.in/about",
                   "jobTitle": "Creator & Lead Architect",
                   "worksFor": { "@id": "https://syncclip.in/#organization" }
-                },
-                {
-                  "@type": "SoftwareApplication",
-                  "@id": "https://syncclip.in/#software",
-                  "name": "SyncClip",
-                  "url": "https://syncclip.in",
-                  "operatingSystem": "All (Web Browser Agnostic)",
-                  "applicationCategory": "UtilitiesApplication",
-                  "offers": {
-                    "@type": "Offer",
-                    "price": "0",
-                    "priceCurrency": "USD"
-                  },
-                  "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": "4.9",
-                    "ratingCount": "128"
-                  }
                 }
               ]
             })

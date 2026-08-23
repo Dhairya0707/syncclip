@@ -3,9 +3,9 @@ import HomeClient from "../components/HomeClient";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://syncclip.in"),
-  title: "Online Clipboard — Free, Instant & No Login | SyncClip",
-  description: "Free online clipboard to copy & paste text between phone, PC, and Mac in under 100ms. No login, no app install, no logs. Real-time, private, and secure.",
-  keywords: ["online clipboard", "free online clipboard", "clipboard online", "copy paste online", "syncclip", "sync clipboard between devices", "cross device clipboard", "realtime clipboard", "live clipboard"],
+  title: "SyncClip — Instant Cross-Device Clipboard & Text Sync (No Login)",
+  description: "Copy text on your phone and paste on PC or Mac in under 100ms. Free instant cross-device clipboard with zero login, no app install, and automatic 24-hour purge.",
+  keywords: ["cross device clipboard", "syncclip", "sync clipboard between devices", "copy text from phone to pc", "paste text between devices", "realtime clipboard", "online clipboard", "clipboard sync"],
   alternates: {
     canonical: "https://syncclip.in",
     languages: {
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Online Clipboard — Free, Instant & No Login | SyncClip",
-    description: "Free online clipboard to copy & paste text between phone, PC, and Mac in under 100ms. No login, no app install, no logs.",
+    title: "SyncClip — Instant Cross-Device Clipboard & Text Sync (No Login)",
+    description: "Copy text on your phone and paste on PC or Mac in under 100ms. Free instant cross-device clipboard with zero login, no app install, and automatic 24-hour purge.",
     url: "https://syncclip.in",
     siteName: "SyncClip",
     images: [
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
         url: "https://syncclip.in/assets/og-image.png?v=3",
         width: 1200,
         height: 630,
-        alt: "Online Clipboard — SyncClip Instant Cross-Device Sync",
+        alt: "SyncClip — Instant Cross-Device Clipboard Sync",
       },
     ],
     locale: "en_US",
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Online Clipboard — Free, Instant & No Login | SyncClip",
-    description: "Free online clipboard to copy & paste text between phone, PC, and Mac in under 100ms. No login, no app install, no logs.",
+    title: "SyncClip — Instant Cross-Device Clipboard & Text Sync (No Login)",
+    description: "Copy text on your phone and paste on PC or Mac in under 100ms. Free instant cross-device clipboard with zero login, no app install, and automatic 24-hour purge.",
     images: ["https://syncclip.in/assets/og-image.png?v=3"],
   },
 };

@@ -64,7 +64,7 @@ export default function SendOTPPage() {
           <div className="bg-zinc-900 text-white p-10 mb-16 border-l-[12px] border-secondary shadow-[20px_20px_0px_0px_rgba(5,125,188,0.1)]">
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">Quick Answer // AEO Node</div>
             <p className="font-body text-xl md:text-2xl leading-relaxed font-bold italic">
-              To send an OTP or 2FA code from your phone to your PC securely, use a browser-native clipboard like SyncClip. Join a session on both devices, paste the code on your mobile browser, and it will instantly appear on your computer. For maximum security, use &quot;Burn After Reading&quot; mode to ensure the OTP is purged from the server immediately after use.
+              To send an OTP or 2FA code from your phone to your PC securely, use a browser-native <Link href="/clipboard" className="text-secondary underline hover:text-white">online clipboard</Link> like SyncClip. Join a session on both devices, paste the code on your mobile browser, and it will instantly appear on your computer. For maximum security, use &quot;Burn After Reading&quot; mode to ensure the OTP is purged from the server immediately after use.
             </p>
           </div>
 

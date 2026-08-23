@@ -190,7 +190,7 @@ export default function AirDropAlternativePage() {
               Quick Answer // AirDrop for Windows &amp; Android
             </div>
             <p className="font-body text-lg md:text-xl leading-relaxed italic text-zinc-200">
-              The fastest way to AirDrop text between Windows and Android is with <strong>SyncClip</strong>. Open syncclip.in on both devices, connect via the 6-character room code or QR code, and your clipboard synchronizes over WebSockets in under 100ms.
+              The fastest way to AirDrop text between Windows and Android is with <strong>SyncClip</strong>. Open the <Link href="/clipboard" className="text-secondary underline hover:text-white">free online clipboard</Link> on both devices, connect via the 6-character room code or QR code, and your clipboard synchronizes over WebSockets in under 100ms.
             </p>
           </div>
 
