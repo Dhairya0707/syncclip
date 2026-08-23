@@ -4,14 +4,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About SyncClip | Architecture & Features",
-  description: "Learn how SyncClip's ephemeral clipboard protocol works. Discover our real-time Convex engine, zero-tracking policy, and secure 'Burn After Reading' functionality.",
+  title: "About SyncClip | Architecture & Ephemeral Clipboard Protocol",
+  description: "Learn how SyncClip's ephemeral clipboard protocol works. Discover our real-time engine, zero-tracking policy, and secure 'Burn After Reading' functionality.",
   alternates: {
     canonical: "https://syncclip.in/about",
-  },
-  robots: {
-    index: false,
-    follow: true,
   },
 };
 
