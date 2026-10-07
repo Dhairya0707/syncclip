@@ -11,23 +11,23 @@ SyncClip — Full Working Logic Guide
 User journey:
 
 User opens site
-      ↓
+↓
 Check URL for session code
-      ↓
+↓
 If no code → create session
-      ↓
+↓
 Redirect to /sessionCode
-      ↓
+↓
 Load session from database
-      ↓
+↓
 Render textbox
-      ↓
+↓
 User edits text
-      ↓
+↓
 Update Convex
-      ↓
+↓
 Convex pushes realtime update
-      ↓
+↓
 All connected clients update instantly
 
 This is the entire logic of the app.
@@ -41,20 +41,19 @@ Example structure:
 syncclip
 │
 ├── app
-│   ├── page.tsx
-│   └── [code]
-│       └── page.tsx
+│ ├── page.tsx
+│ └── [code]
+│ └── page.tsx
 │
 ├── convex
-│   ├── schema.ts
-│   └── sessions.ts
+│ ├── schema.ts
+│ └── sessions.ts
 │
 ├── components
-│   └── ClipboardEditor.tsx
+│ └── ClipboardEditor.tsx
 │
 ├── utils
-│   └── debounce.ts
-
+│ └── debounce.ts
 
 ⸻
 
@@ -69,7 +68,6 @@ This creates:
 
 convex/
 
-
 ⸻
 
 4. Database Schema
@@ -82,11 +80,11 @@ import { defineSchema, defineTable } from "convex/server"
 import { v } from "convex/values"
 
 export default defineSchema({
-  sessions: defineTable({
-    code: v.string(),
-    text: v.string(),
-    createdAt: v.number()
-  })
+sessions: defineTable({
+code: v.string(),
+text: v.string(),
+createdAt: v.number()
+})
 })
 
 Each session stores one text document.
@@ -101,15 +99,15 @@ convex/sessions.ts
 
 Create Session
 
-import { mutation, query } from "./_generated/server"
+import { mutation, query } from "./\_generated/server"
 import { v } from "convex/values"
 
 function generateCode() {
-  return Math.random().toString(36).slice(2,8)
+return Math.random().toString(36).slice(2,8)
 }
 
 export const createSession = mutation({
-  handler: async (ctx) => {
+handler: async (ctx) => {
 
     const code = generateCode()
 
@@ -120,43 +118,44 @@ export const createSession = mutation({
     })
 
     return code
-  }
-})
 
+}
+})
 
 ⸻
 
 Get Session
 
 export const getSession = query({
-  args: { code: v.string() },
+args: { code: v.string() },
 
-  handler: async (ctx, args) => {
+handler: async (ctx, args) => {
 
     return await ctx.db
       .query("sessions")
       .filter(q => q.eq(q.field("code"), args.code))
       .first()
-  }
-})
 
+}
+})
 
 ⸻
 
 Update Text
 
 export const updateText = mutation({
-  args: {
-    id: v.id("sessions"),
-    text: v.string()
-  },
+args: {
+id: v.id("sessions"),
+text: v.string()
+},
 
-  handler: async (ctx, args) => {
+handler: async (ctx, args) => {
 
     await ctx.db.patch(args.id, {
       text: args.text
     })
-  }
+
+}
 })
 
 This mutation triggers realtime updates automatically.
@@ -178,15 +177,15 @@ Purpose:
 
 import { useEffect } from "react"
 import { useMutation } from "convex/react"
-import { api } from "../convex/_generated/api"
+import { api } from "../convex/\_generated/api"
 import { useRouter } from "next/navigation"
 
 export default function Home() {
 
-  const createSession = useMutation(api.sessions.createSession)
-  const router = useRouter()
+const createSession = useMutation(api.sessions.createSession)
+const router = useRouter()
 
-  useEffect(() => {
+useEffect(() => {
 
     async function init() {
       const code = await createSession()
@@ -195,9 +194,9 @@ export default function Home() {
 
     init()
 
-  }, [])
+}, [])
 
-  return <div>Creating clipboard session...</div>
+return <div>Creating clipboard session...</div>
 }
 
 So opening:
@@ -207,7 +206,6 @@ syncclip.in
 automatically creates:
 
 syncclip.in/abc123
-
 
 ⸻
 
@@ -221,23 +219,22 @@ app/[code]/page.tsx
 
 import { useParams } from "next/navigation"
 import { useQuery } from "convex/react"
-import { api } from "../../convex/_generated/api"
+import { api } from "../../convex/\_generated/api"
 import ClipboardEditor from "../../components/ClipboardEditor"
 
 export default function Page() {
 
-  const params = useParams()
-  const code = params.code as string
+const params = useParams()
+const code = params.code as string
 
-  const session = useQuery(api.sessions.getSession, { code })
+const session = useQuery(api.sessions.getSession, { code })
 
-  if (!session) return <div>Loading...</div>
+if (!session) return <div>Loading...</div>
 
-  return (
-    <ClipboardEditor session={session}/>
-  )
+return (
+<ClipboardEditor session={session}/>
+)
 }
-
 
 ⸻
 
@@ -252,20 +249,20 @@ Core logic:
 "use client"
 
 import { useMutation } from "convex/react"
-import { api } from "../convex/_generated/api"
+import { api } from "../convex/\_generated/api"
 import { useState, useEffect } from "react"
 
 export default function ClipboardEditor({ session }) {
 
-  const update = useMutation(api.sessions.updateText)
+const update = useMutation(api.sessions.updateText)
 
-  const [text, setText] = useState(session.text)
+const [text, setText] = useState(session.text)
 
-  useEffect(() => {
-    setText(session.text)
-  }, [session.text])
+useEffect(() => {
+setText(session.text)
+}, [session.text])
 
-  function handleChange(e) {
+function handleChange(e) {
 
     const value = e.target.value
     setText(value)
@@ -274,13 +271,14 @@ export default function ClipboardEditor({ session }) {
       id: session._id,
       text: value
     })
-  }
 
-  function copyText() {
-    navigator.clipboard.writeText(text)
-  }
+}
 
-  function clearText() {
+function copyText() {
+navigator.clipboard.writeText(text)
+}
+
+function clearText() {
 
     setText("")
 
@@ -288,10 +286,11 @@ export default function ClipboardEditor({ session }) {
       id: session._id,
       text: ""
     })
-  }
 
-  return (
-    <div className="p-10">
+}
+
+return (
+<div className="p-10">
 
       <div className="flex gap-4 mb-4">
 
@@ -308,9 +307,9 @@ export default function ClipboardEditor({ session }) {
       />
 
     </div>
-  )
-}
 
+)
+}
 
 ⸻
 
@@ -321,13 +320,13 @@ Convex handles this automatically.
 Flow:
 
 User A types
-      ↓
+↓
 updateText mutation
-      ↓
+↓
 Convex database updated
-      ↓
+↓
 Query subscriptions triggered
-      ↓
+↓
 User B receives updated text
 
 No WebSockets needed.
@@ -346,16 +345,17 @@ utils/debounce.ts
 
 export function debounce(fn, delay) {
 
-  let timer
+let timer
 
-  return (...args) => {
+return (...args) => {
 
     clearTimeout(timer)
 
     timer = setTimeout(() => {
       fn(...args)
     }, delay)
-  }
+
+}
 }
 
 Then call:
@@ -371,13 +371,12 @@ instead of every keystroke.
 Add button:
 
 function copyLink() {
-  navigator.clipboard.writeText(window.location.href)
+navigator.clipboard.writeText(window.location.href)
 }
 
 UI:
 
-Session: ABC123   [Copy Link]
-
+Session: ABC123 [Copy Link]
 
 ⸻
 
@@ -444,7 +443,6 @@ syncclip.in
 Session created.
 
 syncclip.in/ab92kd
-
 
 ⸻
 
@@ -513,3 +511,5 @@ If you want, I can also show you 3 extremely important improvements that will ma
 3️⃣ How to make sessions work like WhatsApp Web (device pairing)
 
 These are small changes but huge UX upgrades.
+
+last working
